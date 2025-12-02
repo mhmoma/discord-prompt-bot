@@ -1,0 +1,10460 @@
+{
+  "Body Parts": [
+    {
+      "term": "ear focus",
+      "translation": ""
+    },
+    {
+      "term": "forehead",
+      "translation": ""
+    },
+    {
+      "term": "forehead mark",
+      "translation": ""
+    },
+    {
+      "term": "beard",
+      "translation": ""
+    },
+    {
+      "term": "mustache",
+      "translation": ""
+    },
+    {
+      "term": "head wings",
+      "translation": ""
+    },
+    {
+      "term": "lips",
+      "translation": ""
+    },
+    {
+      "term": "nape",
+      "translation": ""
+    },
+    {
+      "term": "tongue",
+      "translation": ""
+    },
+    {
+      "term": "long tongue",
+      "translation": ""
+    },
+    {
+      "term": "areolae",
+      "translation": ""
+    },
+    {
+      "term": "large areolae",
+      "translation": ""
+    },
+    {
+      "term": "glands of montgomery",
+      "translation": ""
+    },
+    {
+      "term": "armpits",
+      "translation": ""
+    },
+    {
+      "term": "back",
+      "translation": ""
+    },
+    {
+      "term": "collarbone",
+      "translation": ""
+    },
+    {
+      "term": "heart",
+      "translation": "特指角色周围的小爱心标记"
+    },
+    {
+      "term": "lungs",
+      "translation": ""
+    },
+    {
+      "term": "neck",
+      "translation": ""
+    },
+    {
+      "term": "long neck",
+      "translation": ""
+    },
+    {
+      "term": "nipples",
+      "translation": ""
+    },
+    {
+      "term": "covered nipples",
+      "translation": ""
+    },
+    {
+      "term": "puffy nipples",
+      "translation": ""
+    },
+    {
+      "term": "inverted nipples",
+      "translation": ""
+    },
+    {
+      "term": "small nipples",
+      "translation": ""
+    },
+    {
+      "term": "no nipples",
+      "translation": "特指生成裸体图案但是不画乳头，常见于艺术类表达"
+    },
+    {
+      "term": "pectorals",
+      "translation": ""
+    },
+    {
+      "term": "ribs",
+      "translation": ""
+    },
+    {
+      "term": "ass",
+      "translation": ""
+    },
+    {
+      "term": "shoulders",
+      "translation": ""
+    },
+    {
+      "term": "cloaca",
+      "translation": ""
+    },
+    {
+      "term": "anus",
+      "translation": ""
+    },
+    {
+      "term": "dimples of venus",
+      "translation": ""
+    },
+    {
+      "term": "groin",
+      "translation": ""
+    },
+    {
+      "term": "intestines",
+      "translation": ""
+    },
+    {
+      "term": "hips",
+      "translation": ""
+    },
+    {
+      "term": "liver",
+      "translation": ""
+    },
+    {
+      "term": "wide hips",
+      "translation": ""
+    },
+    {
+      "term": "narrow waist",
+      "translation": ""
+    },
+    {
+      "term": "pubic hair",
+      "translation": ""
+    },
+    {
+      "term": "pussy",
+      "translation": ""
+    },
+    {
+      "term": "cleft of venus",
+      "translation": ""
+    },
+    {
+      "term": "clitoris",
+      "translation": ""
+    },
+    {
+      "term": "fat mons",
+      "translation": ""
+    },
+    {
+      "term": "labia",
+      "translation": ""
+    },
+    {
+      "term": "mons pubis",
+      "translation": ""
+    },
+    {
+      "term": "penis",
+      "translation": ""
+    },
+    {
+      "term": "animal penis",
+      "translation": ""
+    },
+    {
+      "term": "no pussy",
+      "translation": ""
+    },
+    {
+      "term": "dog penis",
+      "translation": "配合animal penis，使用主要是用于提示人形、人外等等生成非人结构的阴茎，下同"
+    },
+    {
+      "term": "dolphin penis",
+      "translation": ""
+    },
+    {
+      "term": "horse penis",
+      "translation": ""
+    },
+    {
+      "term": "snake penis",
+      "translation": ""
+    },
+    {
+      "term": "knotted penis",
+      "translation": ""
+    },
+    {
+      "term": "spiked penis",
+      "translation": ""
+    },
+    {
+      "term": "pig penis",
+      "translation": ""
+    },
+    {
+      "term": "bulge",
+      "translation": ""
+    },
+    {
+      "term": "covered penis",
+      "translation": ""
+    },
+    {
+      "term": "erection",
+      "translation": ""
+    },
+    {
+      "term": "erection under clothes",
+      "translation": ""
+    },
+    {
+      "term": "extra penises",
+      "translation": ""
+    },
+    {
+      "term": "disembodied penis",
+      "translation": ""
+    },
+    {
+      "term": "foreskin",
+      "translation": ""
+    },
+    {
+      "term": "phimosis",
+      "translation": ""
+    },
+    {
+      "term": "huge penis",
+      "translation": ""
+    },
+    {
+      "term": "flaccid",
+      "translation": ""
+    },
+    {
+      "term": "large penis",
+      "translation": ""
+    },
+    {
+      "term": "gigantic penis",
+      "translation": ""
+    },
+    {
+      "term": "multiple penises",
+      "translation": ""
+    },
+    {
+      "term": "small penis",
+      "translation": ""
+    },
+    {
+      "term": "veiny penis",
+      "translation": ""
+    },
+    {
+      "term": "perineum",
+      "translation": ""
+    },
+    {
+      "term": "prostate",
+      "translation": ""
+    },
+    {
+      "term": "pseudopenis",
+      "translation": ""
+    },
+    {
+      "term": "stomach",
+      "translation": ""
+    },
+    {
+      "term": "abs",
+      "translation": ""
+    },
+    {
+      "term": "covered navel",
+      "translation": ""
+    },
+    {
+      "term": "belly",
+      "translation": ""
+    },
+    {
+      "term": "obliques",
+      "translation": ""
+    },
+    {
+      "term": "navel",
+      "translation": ""
+    },
+    {
+      "term": "stomach",
+      "translation": "organ"
+    },
+    {
+      "term": "testicles",
+      "translation": ""
+    },
+    {
+      "term": "covered testicles",
+      "translation": ""
+    },
+    {
+      "term": "no testicles",
+      "translation": ""
+    },
+    {
+      "term": "uterus",
+      "translation": ""
+    },
+    {
+      "term": "cervix",
+      "translation": ""
+    },
+    {
+      "term": "appendages",
+      "translation": ""
+    },
+    {
+      "term": "arms",
+      "translation": ""
+    },
+    {
+      "term": "feet",
+      "translation": ""
+    },
+    {
+      "term": "thick arms",
+      "translation": ""
+    },
+    {
+      "term": "bad feet",
+      "translation": ""
+    },
+    {
+      "term": "biceps",
+      "translation": ""
+    },
+    {
+      "term": "barefoot",
+      "translation": ""
+    },
+    {
+      "term": "dirty feet",
+      "translation": ""
+    },
+    {
+      "term": "palms",
+      "translation": ""
+    },
+    {
+      "term": "soles",
+      "translation": ""
+    },
+    {
+      "term": "joints",
+      "translation": ""
+    },
+    {
+      "term": "hands",
+      "translation": ""
+    },
+    {
+      "term": "doll joints",
+      "translation": ""
+    },
+    {
+      "term": "robot joints",
+      "translation": ""
+    },
+    {
+      "term": "legs",
+      "translation": ""
+    },
+    {
+      "term": "knees",
+      "translation": ""
+    },
+    {
+      "term": "long legs",
+      "translation": ""
+    },
+    {
+      "term": "kneepits",
+      "translation": ""
+    },
+    {
+      "term": "slim legs",
+      "translation": ""
+    },
+    {
+      "term": "tentacles",
+      "translation": ""
+    },
+    {
+      "term": "thick thighs",
+      "translation": ""
+    },
+    {
+      "term": "thighs",
+      "translation": ""
+    },
+    {
+      "term": "toes",
+      "translation": ""
+    },
+    {
+      "term": "groin tendon",
+      "translation": ""
+    },
+    {
+      "term": "ninja toes",
+      "translation": "特指穿忍者服后的日式特殊忍者裸足"
+    }
+  ],
+  "Bottomwear": [
+    {
+      "term": "bloomers",
+      "translation": ""
+    },
+    {
+      "term": "buruma",
+      "translation": ""
+    },
+    {
+      "term": "chaps",
+      "translation": ""
+    },
+    {
+      "term": "kilt",
+      "translation": ""
+    },
+    {
+      "term": "pants",
+      "translation": ""
+    },
+    {
+      "term": "bell-bottoms",
+      "translation": ""
+    },
+    {
+      "term": "capri pants",
+      "translation": ""
+    },
+    {
+      "term": "detached pants",
+      "translation": ""
+    },
+    {
+      "term": "jeans",
+      "translation": ""
+    },
+    {
+      "term": "cutoff jeans",
+      "translation": ""
+    },
+    {
+      "term": "lowleg pants",
+      "translation": ""
+    },
+    {
+      "term": "pants rolled up",
+      "translation": ""
+    },
+    {
+      "term": "yoga pants",
+      "translation": ""
+    },
+    {
+      "term": "pelvic curtain",
+      "translation": ""
+    },
+    {
+      "term": "petticoat",
+      "translation": ""
+    },
+    {
+      "term": "shorts",
+      "translation": ""
+    },
+    {
+      "term": "bike shorts",
+      "translation": ""
+    },
+    {
+      "term": "sarong",
+      "translation": ""
+    },
+    {
+      "term": "denim shorts",
+      "translation": ""
+    },
+    {
+      "term": "dolphin shorts",
+      "translation": ""
+    },
+    {
+      "term": "gym shorts",
+      "translation": ""
+    },
+    {
+      "term": "lowleg shorts",
+      "translation": ""
+    },
+    {
+      "term": "micro shorts",
+      "translation": ""
+    },
+    {
+      "term": "short shorts",
+      "translation": ""
+    },
+    {
+      "term": "shorts under skirt",
+      "translation": ""
+    },
+    {
+      "term": "skirt",
+      "translation": ""
+    },
+    {
+      "term": "bubble skirt",
+      "translation": ""
+    },
+    {
+      "term": "high-waist skirt",
+      "translation": ""
+    },
+    {
+      "term": "high-low skirt",
+      "translation": ""
+    },
+    {
+      "term": "long skirt",
+      "translation": ""
+    },
+    {
+      "term": "plaid skirt",
+      "translation": ""
+    },
+    {
+      "term": "suspender skirt",
+      "translation": ""
+    },
+    {
+      "term": "garter belt",
+      "translation": ""
+    },
+    {
+      "term": "plaid skirt",
+      "translation": ""
+    },
+    {
+      "term": "suspender skirt",
+      "translation": ""
+    },
+    {
+      "term": "garter belt",
+      "translation": ""
+    },
+    {
+      "term": "garter straps",
+      "translation": ""
+    },
+    {
+      "term": "legwear garter",
+      "translation": ""
+    },
+    {
+      "term": "kneehighs",
+      "translation": ""
+    },
+    {
+      "term": "leggings",
+      "translation": ""
+    },
+    {
+      "term": "leg warmers",
+      "translation": ""
+    },
+    {
+      "term": "pantyhose",
+      "translation": ""
+    },
+    {
+      "term": "socks",
+      "translation": ""
+    },
+    {
+      "term": "thighhighs",
+      "translation": ""
+    },
+    {
+      "term": "thigh strap",
+      "translation": ""
+    },
+    {
+      "term": "maebari",
+      "translation": "指小穴被什么东西贴住遮挡"
+    }
+  ],
+  "Breasts": [
+    {
+      "term": "breasts",
+      "translation": ""
+    },
+    {
+      "term": "flat chest",
+      "translation": ""
+    },
+    {
+      "term": "breasts",
+      "translation": ""
+    },
+    {
+      "term": "small breasts",
+      "translation": ""
+    },
+    {
+      "term": "medium breasts",
+      "translation": ""
+    },
+    {
+      "term": "large breasts",
+      "translation": ""
+    },
+    {
+      "term": "huge breasts",
+      "translation": ""
+    },
+    {
+      "term": "gigantic breasts",
+      "translation": ""
+    },
+    {
+      "term": "a flat chest is a status symbol",
+      "translation": ""
+    },
+    {
+      "term": "breast conscious",
+      "translation": ""
+    },
+    {
+      "term": "flat envy",
+      "translation": ""
+    },
+    {
+      "term": "breast envy",
+      "translation": ""
+    },
+    {
+      "term": "breast awe",
+      "translation": ""
+    },
+    {
+      "term": "bust measuring",
+      "translation": ""
+    },
+    {
+      "term": "flying button",
+      "translation": ""
+    },
+    {
+      "term": "looking at breasts",
+      "translation": ""
+    },
+    {
+      "term": "convenient breasts",
+      "translation": ""
+    },
+    {
+      "term": "inconvenient breasts",
+      "translation": ""
+    },
+    {
+      "term": "oversized breast cup",
+      "translation": ""
+    },
+    {
+      "term": "breast expansion",
+      "translation": ""
+    },
+    {
+      "term": "breast punch",
+      "translation": ""
+    },
+    {
+      "term": "breast reduction",
+      "translation": ""
+    },
+    {
+      "term": "breast padding",
+      "translation": ""
+    },
+    {
+      "term": "breast size switch",
+      "translation": ""
+    },
+    {
+      "term": "bust chart",
+      "translation": ""
+    },
+    {
+      "term": "bust measuring",
+      "translation": ""
+    },
+    {
+      "term": "flying button",
+      "translation": ""
+    },
+    {
+      "term": "looking at breasts",
+      "translation": ""
+    },
+    {
+      "term": "convenient breasts",
+      "translation": ""
+    },
+    {
+      "term": "inconvenient breasts",
+      "translation": ""
+    },
+    {
+      "term": "oversized breast cup",
+      "translation": ""
+    },
+    {
+      "term": "slapping breasts",
+      "translation": ""
+    },
+    {
+      "term": "slapping with breasts",
+      "translation": ""
+    },
+    {
+      "term": "weighing breasts",
+      "translation": ""
+    },
+    {
+      "term": "areolae",
+      "translation": ""
+    },
+    {
+      "term": "areola slip",
+      "translation": ""
+    },
+    {
+      "term": "dark areolae",
+      "translation": ""
+    },
+    {
+      "term": "glands of montgomery",
+      "translation": ""
+    },
+    {
+      "term": "large areolae",
+      "translation": ""
+    },
+    {
+      "term": "light areolae",
+      "translation": ""
+    },
+    {
+      "term": "backboob",
+      "translation": ""
+    },
+    {
+      "term": "bursting breasts",
+      "translation": ""
+    },
+    {
+      "term": "cleavage",
+      "translation": ""
+    },
+    {
+      "term": "nipples",
+      "translation": ""
+    },
+    {
+      "term": "dark nipples",
+      "translation": ""
+    },
+    {
+      "term": "covered nipples",
+      "translation": ""
+    },
+    {
+      "term": "huge nipples",
+      "translation": ""
+    },
+    {
+      "term": "inverted nipples",
+      "translation": ""
+    },
+    {
+      "term": "long nipples",
+      "translation": ""
+    },
+    {
+      "term": "nipple slip",
+      "translation": ""
+    },
+    {
+      "term": "no nipples",
+      "translation": ""
+    },
+    {
+      "term": "puffy nipples",
+      "translation": ""
+    },
+    {
+      "term": "small nipples",
+      "translation": ""
+    },
+    {
+      "term": "nipple hair",
+      "translation": ""
+    },
+    {
+      "term": "sideboob",
+      "translation": ""
+    },
+    {
+      "term": "underboob",
+      "translation": ""
+    },
+    {
+      "term": "breast slip",
+      "translation": ""
+    },
+    {
+      "term": "breastless clothes",
+      "translation": ""
+    },
+    {
+      "term": "breasts out",
+      "translation": ""
+    },
+    {
+      "term": "impossible shirt",
+      "translation": ""
+    },
+    {
+      "term": "one breast out",
+      "translation": ""
+    },
+    {
+      "term": "asymmetrical breasts",
+      "translation": ""
+    },
+    {
+      "term": "bouncing breasts",
+      "translation": ""
+    },
+    {
+      "term": "breasts apart",
+      "translation": ""
+    },
+    {
+      "term": "floating breasts",
+      "translation": ""
+    },
+    {
+      "term": "hanging breasts",
+      "translation": ""
+    },
+    {
+      "term": "perky breasts",
+      "translation": ""
+    },
+    {
+      "term": "sagging breasts",
+      "translation": ""
+    },
+    {
+      "term": "unaligned breasts",
+      "translation": ""
+    },
+    {
+      "term": "veiny breasts",
+      "translation": ""
+    },
+    {
+      "term": "pointy breasts",
+      "translation": ""
+    },
+    {
+      "term": "bandeau",
+      "translation": ""
+    },
+    {
+      "term": "bikini",
+      "translation": ""
+    },
+    {
+      "term": "bikini bottom only",
+      "translation": ""
+    },
+    {
+      "term": "cupless bikini",
+      "translation": ""
+    },
+    {
+      "term": "bra",
+      "translation": ""
+    },
+    {
+      "term": "cupless bra",
+      "translation": ""
+    },
+    {
+      "term": "hand in bra",
+      "translation": ""
+    },
+    {
+      "term": "no bra",
+      "translation": ""
+    },
+    {
+      "term": "shelf bra",
+      "translation": ""
+    },
+    {
+      "term": "nursing bra",
+      "translation": ""
+    },
+    {
+      "term": "breast curtain",
+      "translation": ""
+    },
+    {
+      "term": "bustier",
+      "translation": ""
+    },
+    {
+      "term": "center opening",
+      "translation": ""
+    },
+    {
+      "term": "chest binder",
+      "translation": ""
+    },
+    {
+      "term": "cinderella bust",
+      "translation": ""
+    },
+    {
+      "term": "cleavage cutout",
+      "translation": ""
+    },
+    {
+      "term": "corset",
+      "translation": ""
+    },
+    {
+      "term": "framed breasts",
+      "translation": ""
+    },
+    {
+      "term": "nipple cutout",
+      "translation": ""
+    },
+    {
+      "term": "nippleless clothes",
+      "translation": ""
+    },
+    {
+      "term": "panties on breasts",
+      "translation": ""
+    },
+    {
+      "term": "plunging neckline",
+      "translation": ""
+    },
+    {
+      "term": "rei no himo",
+      "translation": ""
+    },
+    {
+      "term": "sarashi",
+      "translation": ""
+    },
+    {
+      "term": "taut shirt",
+      "translation": ""
+    },
+    {
+      "term": "underbust",
+      "translation": ""
+    },
+    {
+      "term": "paizuri",
+      "translation": ""
+    },
+    {
+      "term": "autopaizuri",
+      "translation": ""
+    },
+    {
+      "term": "cooperative paizuri",
+      "translation": ""
+    },
+    {
+      "term": "handsfree paizuri",
+      "translation": ""
+    },
+    {
+      "term": "paizuri on lap",
+      "translation": ""
+    },
+    {
+      "term": "paizuri over clothes",
+      "translation": ""
+    },
+    {
+      "term": "paizuri under clothes",
+      "translation": ""
+    },
+    {
+      "term": "perpendicular paizuri",
+      "translation": ""
+    },
+    {
+      "term": "reverse paizuri",
+      "translation": ""
+    },
+    {
+      "term": "straddling paizuri",
+      "translation": ""
+    },
+    {
+      "term": "naizuri",
+      "translation": ""
+    },
+    {
+      "term": "cooperative naizuri",
+      "translation": ""
+    },
+    {
+      "term": "penis to breast",
+      "translation": ""
+    },
+    {
+      "term": "penis under breasts",
+      "translation": ""
+    },
+    {
+      "term": "nipple penetration",
+      "translation": ""
+    },
+    {
+      "term": "breast smother",
+      "translation": ""
+    },
+    {
+      "term": "breast pillow",
+      "translation": ""
+    },
+    {
+      "term": "breasts on head",
+      "translation": ""
+    },
+    {
+      "term": "face to breasts",
+      "translation": ""
+    },
+    {
+      "term": "face to pecs",
+      "translation": ""
+    },
+    {
+      "term": "head between breasts",
+      "translation": ""
+    },
+    {
+      "term": "face between breasts",
+      "translation": ""
+    },
+    {
+      "term": "breast biting",
+      "translation": ""
+    },
+    {
+      "term": "breastfeeding",
+      "translation": ""
+    },
+    {
+      "term": "breast sucking",
+      "translation": ""
+    },
+    {
+      "term": "self breast sucking",
+      "translation": ""
+    },
+    {
+      "term": "mutual breast sucking",
+      "translation": ""
+    },
+    {
+      "term": "nursing handjob",
+      "translation": ""
+    },
+    {
+      "term": "nipple biting",
+      "translation": ""
+    },
+    {
+      "term": "licking nipple",
+      "translation": ""
+    },
+    {
+      "term": "breast hold",
+      "translation": ""
+    },
+    {
+      "term": "grabbing another's breast",
+      "translation": ""
+    },
+    {
+      "term": "flat chest grab",
+      "translation": ""
+    },
+    {
+      "term": "breast press",
+      "translation": ""
+    },
+    {
+      "term": "breast pull",
+      "translation": ""
+    },
+    {
+      "term": "breasts squeezed together",
+      "translation": ""
+    },
+    {
+      "term": "breast suppress",
+      "translation": ""
+    },
+    {
+      "term": "groping",
+      "translation": ""
+    },
+    {
+      "term": "arm between breasts",
+      "translation": ""
+    },
+    {
+      "term": "nipple flick",
+      "translation": ""
+    },
+    {
+      "term": "nipple press",
+      "translation": ""
+    },
+    {
+      "term": "nipple push",
+      "translation": ""
+    },
+    {
+      "term": "nipple pull",
+      "translation": ""
+    },
+    {
+      "term": "nipple rub",
+      "translation": ""
+    },
+    {
+      "term": "nipple tweak",
+      "translation": ""
+    },
+    {
+      "term": "foot on breast",
+      "translation": ""
+    },
+    {
+      "term": "nipple clamps",
+      "translation": ""
+    },
+    {
+      "term": "nipple leash",
+      "translation": ""
+    },
+    {
+      "term": "nipple piercing",
+      "translation": ""
+    },
+    {
+      "term": "areola piercing",
+      "translation": ""
+    },
+    {
+      "term": "nipple bar",
+      "translation": ""
+    },
+    {
+      "term": "nipple bells",
+      "translation": ""
+    },
+    {
+      "term": "nipple chain",
+      "translation": ""
+    },
+    {
+      "term": "nipple lock",
+      "translation": ""
+    },
+    {
+      "term": "nipple rings",
+      "translation": ""
+    },
+    {
+      "term": "nipple stretcher",
+      "translation": ""
+    },
+    {
+      "term": "nipple tag",
+      "translation": ""
+    },
+    {
+      "term": "nipple plug",
+      "translation": ""
+    },
+    {
+      "term": "nipple sleeves",
+      "translation": ""
+    },
+    {
+      "term": "nipple torture",
+      "translation": ""
+    },
+    {
+      "term": "tied nipples",
+      "translation": ""
+    },
+    {
+      "term": "nipple ribbon",
+      "translation": ""
+    },
+    {
+      "term": "vibrator on nipple",
+      "translation": ""
+    },
+    {
+      "term": "asymmetrical docking",
+      "translation": ""
+    },
+    {
+      "term": "symmetrical docking",
+      "translation": ""
+    },
+    {
+      "term": "nipple-to-nipple",
+      "translation": ""
+    },
+    {
+      "term": "between breasts",
+      "translation": ""
+    },
+    {
+      "term": "card between breasts",
+      "translation": ""
+    },
+    {
+      "term": "necktie between breasts",
+      "translation": ""
+    },
+    {
+      "term": "person between breasts",
+      "translation": ""
+    },
+    {
+      "term": "breast bondage",
+      "translation": ""
+    },
+    {
+      "term": "tied breast",
+      "translation": ""
+    },
+    {
+      "term": "person between breasts",
+      "translation": ""
+    },
+    {
+      "term": "breast bondage",
+      "translation": ""
+    },
+    {
+      "term": "tied breast",
+      "translation": ""
+    },
+    {
+      "term": "carried breast rest",
+      "translation": ""
+    },
+    {
+      "term": "breast crush",
+      "translation": ""
+    },
+    {
+      "term": "breasts on glass",
+      "translation": ""
+    },
+    {
+      "term": "bust cup",
+      "translation": ""
+    },
+    {
+      "term": "covering breasts",
+      "translation": ""
+    },
+    {
+      "term": "cum on breasts",
+      "translation": ""
+    },
+    {
+      "term": "extra breasts",
+      "translation": ""
+    },
+    {
+      "term": "food on breasts",
+      "translation": ""
+    },
+    {
+      "term": "chocolate on breasts",
+      "translation": ""
+    },
+    {
+      "term": "actation",
+      "translation": ""
+    },
+    {
+      "term": "breast milk",
+      "translation": ""
+    },
+    {
+      "term": "breast pump",
+      "translation": ""
+    },
+    {
+      "term": "forced lactation",
+      "translation": ""
+    },
+    {
+      "term": "lactating into container",
+      "translation": ""
+    },
+    {
+      "term": "lactation through clothes",
+      "translation": ""
+    },
+    {
+      "term": "milking machine",
+      "translation": ""
+    },
+    {
+      "term": "projectile lactation",
+      "translation": ""
+    },
+    {
+      "term": "male with breasts",
+      "translation": ""
+    },
+    {
+      "term": "mole on breast",
+      "translation": ""
+    },
+    {
+      "term": "nipple injection",
+      "translation": ""
+    },
+    {
+      "term": "object on breast",
+      "translation": ""
+    },
+    {
+      "term": "bubble tea challenge",
+      "translation": ""
+    },
+    {
+      "term": "headphones on breasts",
+      "translation": ""
+    },
+    {
+      "term": "object on pectorals",
+      "translation": ""
+    },
+    {
+      "term": "pasties",
+      "translation": "指胸贴，也就是乳头被什么东西贴住遮挡，和maebari对应，可以配合使用来遮住三点，实现R15级别的色图"
+    }
+  ],
+  "Dresses": [
+    {
+      "term": "cake dress",
+      "translation": ""
+    },
+    {
+      "term": "china dress",
+      "translation": ""
+    },
+    {
+      "term": "coat dress",
+      "translation": ""
+    },
+    {
+      "term": "cocktail dress",
+      "translation": ""
+    },
+    {
+      "term": "denim dress",
+      "translation": ""
+    },
+    {
+      "term": "dirndl",
+      "translation": ""
+    },
+    {
+      "term": "nightgown",
+      "translation": ""
+    },
+    {
+      "term": "pencil dress",
+      "translation": ""
+    },
+    {
+      "term": "pinafore dress",
+      "translation": ""
+    },
+    {
+      "term": "sailor dress",
+      "translation": ""
+    },
+    {
+      "term": "santa dress",
+      "translation": ""
+    },
+    {
+      "term": "sundress",
+      "translation": ""
+    },
+    {
+      "term": "sweater dress",
+      "translation": ""
+    },
+    {
+      "term": "tennis dress",
+      "translation": ""
+    },
+    {
+      "term": "trapeze dress",
+      "translation": ""
+    },
+    {
+      "term": "tube dress",
+      "translation": ""
+    },
+    {
+      "term": "Vietnamese dress",
+      "translation": ""
+    },
+    {
+      "term": "wedding dress",
+      "translation": ""
+    }
+  ],
+  "Eyes": [
+    {
+      "term": "looking at hands",
+      "translation": ""
+    },
+    {
+      "term": "looking at mirror",
+      "translation": ""
+    },
+    {
+      "term": "looking at phone",
+      "translation": ""
+    },
+    {
+      "term": "looking at self",
+      "translation": ""
+    },
+    {
+      "term": "looking at viewer",
+      "translation": ""
+    },
+    {
+      "term": "looking at penis",
+      "translation": ""
+    },
+    {
+      "term": "looking at pussy",
+      "translation": ""
+    },
+    {
+      "term": "looking at crotch",
+      "translation": ""
+    },
+    {
+      "term": "looking away",
+      "translation": ""
+    },
+    {
+      "term": "looking back",
+      "translation": ""
+    },
+    {
+      "term": "looking down",
+      "translation": ""
+    },
+    {
+      "term": "looking outside",
+      "translation": ""
+    },
+    {
+      "term": "looking over eyewear",
+      "translation": ""
+    },
+    {
+      "term": "looking through own legs",
+      "translation": ""
+    },
+    {
+      "term": "looking to the side",
+      "translation": ""
+    },
+    {
+      "term": "looking up",
+      "translation": ""
+    },
+    {
+      "term": "akanbe",
+      "translation": ""
+    },
+    {
+      "term": "artificial eye",
+      "translation": ""
+    },
+    {
+      "term": "glass eye",
+      "translation": ""
+    },
+    {
+      "term": "mechanical eye",
+      "translation": ""
+    },
+    {
+      "term": "asymmetrical eyes",
+      "translation": ""
+    },
+    {
+      "term": "big eyes",
+      "translation": ""
+    },
+    {
+      "term": "blind",
+      "translation": ""
+    },
+    {
+      "term": "partially blind",
+      "translation": ""
+    },
+    {
+      "term": "cross-eyed",
+      "translation": ""
+    },
+    {
+      "term": "drawn on eyes",
+      "translation": ""
+    },
+    {
+      "term": "eyeball",
+      "translation": ""
+    },
+    {
+      "term": "eye beam",
+      "translation": ""
+    },
+    {
+      "term": "eye poke",
+      "translation": ""
+    },
+    {
+      "term": "eye pop",
+      "translation": ""
+    },
+    {
+      "term": "eye trail",
+      "translation": ""
+    },
+    {
+      "term": "googlyeyes",
+      "translation": ""
+    },
+    {
+      "term": "half-closed eyes",
+      "translation": ""
+    },
+    {
+      "term": "lazy eye",
+      "translation": ""
+    },
+    {
+      "term": "rolling eyes",
+      "translation": ""
+    },
+    {
+      "term": "persona eyes",
+      "translation": ""
+    },
+    {
+      "term": "shading eyes",
+      "translation": ""
+    },
+    {
+      "term": "squinting",
+      "translation": ""
+    },
+    {
+      "term": "staring",
+      "translation": ""
+    },
+    {
+      "term": "unusually open eyes",
+      "translation": ""
+    },
+    {
+      "term": "upturned eyes",
+      "translation": ""
+    },
+    {
+      "term": "uneven eyes",
+      "translation": ""
+    },
+    {
+      "term": "wall-eyed",
+      "translation": ""
+    },
+    {
+      "term": "wide-eyed",
+      "translation": ""
+    },
+    {
+      "term": "wince",
+      "translation": ""
+    },
+    {
+      "term": "aqua eyes",
+      "translation": ""
+    },
+    {
+      "term": "black eyes",
+      "translation": ""
+    },
+    {
+      "term": "blue eyes",
+      "translation": ""
+    },
+    {
+      "term": "brown eyes",
+      "translation": ""
+    },
+    {
+      "term": "green eyes",
+      "translation": ""
+    },
+    {
+      "term": "grey eyes",
+      "translation": ""
+    },
+    {
+      "term": "orange eyes",
+      "translation": ""
+    },
+    {
+      "term": "purple eyes",
+      "translation": ""
+    },
+    {
+      "term": "pink eyes",
+      "translation": ""
+    },
+    {
+      "term": "red eyes",
+      "translation": ""
+    },
+    {
+      "term": "white eyes",
+      "translation": ""
+    },
+    {
+      "term": "yellow eyes",
+      "translation": ""
+    },
+    {
+      "term": "amber eyes",
+      "translation": ""
+    },
+    {
+      "term": "heterochromia",
+      "translation": ""
+    },
+    {
+      "term": "multicolored eyes",
+      "translation": ""
+    },
+    {
+      "term": "mismatched irises",
+      "translation": ""
+    },
+    {
+      "term": "dashed eyes",
+      "translation": ""
+    },
+    {
+      "term": "@ @",
+      "translation": ""
+    },
+    {
+      "term": "ringed eyes",
+      "translation": ""
+    },
+    {
+      "term": "aqua pupils",
+      "translation": ""
+    },
+    {
+      "term": "pac-man eyes",
+      "translation": ""
+    },
+    {
+      "term": "blue pupils",
+      "translation": ""
+    },
+    {
+      "term": "brown pupils",
+      "translation": ""
+    },
+    {
+      "term": "green pupils",
+      "translation": ""
+    },
+    {
+      "term": "grey pupils",
+      "translation": ""
+    },
+    {
+      "term": "orange pupils",
+      "translation": ""
+    },
+    {
+      "term": "pink pupils",
+      "translation": ""
+    },
+    {
+      "term": "purple pupils",
+      "translation": ""
+    },
+    {
+      "term": "red pupils",
+      "translation": ""
+    },
+    {
+      "term": "white pupils",
+      "translation": ""
+    },
+    {
+      "term": "yellow pupils",
+      "translation": ""
+    },
+    {
+      "term": "constricted pupils",
+      "translation": ""
+    },
+    {
+      "term": "dilated pupils",
+      "translation": ""
+    },
+    {
+      "term": "extra pupils",
+      "translation": ""
+    },
+    {
+      "term": "horizontal pupils",
+      "translation": ""
+    },
+    {
+      "term": "no pupils",
+      "translation": ""
+    },
+    {
+      "term": "slit pupils",
+      "translation": ""
+    },
+    {
+      "term": "symbol-shaped pupils",
+      "translation": ""
+    },
+    {
+      "term": "diamond-shaped pupils",
+      "translation": ""
+    },
+    {
+      "term": "flower-shaped pupils",
+      "translation": ""
+    },
+    {
+      "term": "heart-shaped pupils",
+      "translation": ""
+    },
+    {
+      "term": "star-shaped pupils",
+      "translation": ""
+    },
+    {
+      "term": "cross-shaped pupils",
+      "translation": ""
+    },
+    {
+      "term": "x-shaped pupils",
+      "translation": ""
+    },
+    {
+      "term": "mismatched pupils",
+      "translation": ""
+    },
+    {
+      "term": "blue sclera",
+      "translation": ""
+    },
+    {
+      "term": "black sclera",
+      "translation": ""
+    },
+    {
+      "term": "blank eyes",
+      "translation": ""
+    },
+    {
+      "term": "white sclera",
+      "translation": ""
+    },
+    {
+      "term": "bloodshot eyes",
+      "translation": ""
+    },
+    {
+      "term": "green sclera",
+      "translation": ""
+    },
+    {
+      "term": "mismatched sclera",
+      "translation": ""
+    },
+    {
+      "term": "no sclera",
+      "translation": ""
+    },
+    {
+      "term": "orange sclera",
+      "translation": ""
+    },
+    {
+      "term": "red sclera",
+      "translation": ""
+    },
+    {
+      "term": "yellow sclera",
+      "translation": ""
+    },
+    {
+      "term": "bags under eyes",
+      "translation": ""
+    },
+    {
+      "term": "flaming eyes",
+      "translation": ""
+    },
+    {
+      "term": "aegyo sal",
+      "translation": ""
+    },
+    {
+      "term": "bruised eye",
+      "translation": ""
+    },
+    {
+      "term": "glowing eyes",
+      "translation": ""
+    },
+    {
+      "term": "glowing eye",
+      "translation": ""
+    },
+    {
+      "term": "amphibian eyes",
+      "translation": ""
+    },
+    {
+      "term": "button eyes",
+      "translation": ""
+    },
+    {
+      "term": "cephalopod eyes",
+      "translation": ""
+    },
+    {
+      "term": "compound eyes",
+      "translation": ""
+    },
+    {
+      "term": "lens eye",
+      "translation": ""
+    },
+    {
+      "term": "pixel eyes",
+      "translation": ""
+    },
+    {
+      "term": "crazy eyes",
+      "translation": ""
+    },
+    {
+      "term": "heart-shaped eyes",
+      "translation": ""
+    },
+    {
+      "term": "empty eyes",
+      "translation": ""
+    },
+    {
+      "term": "nonowa",
+      "translation": ""
+    },
+    {
+      "term": "solid circle eyes",
+      "translation": ""
+    },
+    {
+      "term": "o o",
+      "translation": ""
+    },
+    {
+      "term": "00",
+      "translation": ""
+    },
+    {
+      "term": "jitome",
+      "translation": ""
+    },
+    {
+      "term": "tareme",
+      "translation": ""
+    },
+    {
+      "term": "tsurime",
+      "translation": ""
+    },
+    {
+      "term": "sanpaku",
+      "translation": ""
+    },
+    {
+      "term": "sharingan",
+      "translation": ""
+    },
+    {
+      "term": "geass",
+      "translation": ""
+    },
+    {
+      "term": "mangekyou sharingan",
+      "translation": ""
+    },
+    {
+      "term": "byakugan",
+      "translation": ""
+    },
+    {
+      "term": "nnegan",
+      "translation": ""
+    },
+    {
+      "term": "eye reflection",
+      "translation": ""
+    },
+    {
+      "term": "text in eyes",
+      "translation": ""
+    },
+    {
+      "term": "missing eye",
+      "translation": ""
+    },
+    {
+      "term": "one-eyed",
+      "translation": ""
+    },
+    {
+      "term": "third eye",
+      "translation": ""
+    },
+    {
+      "term": "extra eyes",
+      "translation": ""
+    },
+    {
+      "term": "no eyes",
+      "translation": ""
+    },
+    {
+      "term": "> <",
+      "translation": ""
+    },
+    {
+      "term": "x3",
+      "translation": ""
+    },
+    {
+      "term": "xd",
+      "translation": ""
+    },
+    {
+      "term": "dx",
+      "translation": ""
+    },
+    {
+      "term": "3 3",
+      "translation": ""
+    },
+    {
+      "term": "6 9",
+      "translation": ""
+    },
+    {
+      "term": "^ ^",
+      "translation": ""
+    },
+    {
+      "term": "^o^",
+      "translation": ""
+    },
+    {
+      "term": ". .",
+      "translation": ""
+    },
+    {
+      "term": "<0> <0>",
+      "translation": ""
+    },
+    {
+      "term": "<|> <|>",
+      "translation": ""
+    },
+    {
+      "term": "II",
+      "translation": ""
+    },
+    {
+      "term": "==",
+      "translation": ""
+    },
+    {
+      "term": "++",
+      "translation": ""
+    },
+    {
+      "term": "blinking",
+      "translation": ""
+    },
+    {
+      "term": "closed eyes",
+      "translation": ""
+    },
+    {
+      "term": "one eye closed",
+      "translation": ""
+    },
+    {
+      "term": ";<",
+      "translation": ""
+    },
+    {
+      "term": ";>",
+      "translation": ""
+    },
+    {
+      "term": ";p",
+      "translation": ""
+    },
+    {
+      "term": "covering own eyes",
+      "translation": ""
+    },
+    {
+      "term": "hair over eyes",
+      "translation": ""
+    },
+    {
+      "term": "hair over one eye",
+      "translation": ""
+    },
+    {
+      "term": "bandage over one eye",
+      "translation": ""
+    },
+    {
+      "term": "blindfold",
+      "translation": ""
+    },
+    {
+      "term": "hat over eyes",
+      "translation": ""
+    },
+    {
+      "term": "eyepatch",
+      "translation": ""
+    },
+    {
+      "term": "eyelashes",
+      "translation": ""
+    },
+    {
+      "term": "colored eyelashes",
+      "translation": ""
+    },
+    {
+      "term": "fake eyelashes",
+      "translation": ""
+    },
+    {
+      "term": "eyes visible through hair",
+      "translation": ""
+    },
+    {
+      "term": "glasses",
+      "translation": ""
+    },
+    {
+      "term": "makeup",
+      "translation": ""
+    },
+    {
+      "term": "eyeliner",
+      "translation": ""
+    },
+    {
+      "term": "eyeshadow",
+      "translation": ""
+    },
+    {
+      "term": "mascara",
+      "translation": ""
+    }
+  ],
+  "Facial Expressions": [
+    {
+      "term": "annoyed",
+      "translation": ""
+    },
+    {
+      "term": "angry",
+      "translation": ""
+    },
+    {
+      "term": "anger vein",
+      "translation": ""
+    },
+    {
+      "term": "clenched teeth",
+      "translation": ""
+    },
+    {
+      "term": "scowl",
+      "translation": ""
+    },
+    {
+      "term": "blush",
+      "translation": ""
+    },
+    {
+      "term": "blush stickers",
+      "translation": ""
+    },
+    {
+      "term": "embarrassed",
+      "translation": ""
+    },
+    {
+      "term": "full-face blush",
+      "translation": ""
+    },
+    {
+      "term": "nose blush",
+      "translation": ""
+    },
+    {
+      "term": "bored",
+      "translation": ""
+    },
+    {
+      "term": "closed eyes",
+      "translation": ""
+    },
+    {
+      "term": "confused",
+      "translation": ""
+    },
+    {
+      "term": "despair",
+      "translation": ""
+    },
+    {
+      "term": "crazy",
+      "translation": ""
+    },
+    {
+      "term": "determined",
+      "translation": ""
+    },
+    {
+      "term": "disappointed",
+      "translation": ""
+    },
+    {
+      "term": "disdain",
+      "translation": ""
+    },
+    {
+      "term": "disgust",
+      "translation": ""
+    },
+    {
+      "term": "drunk",
+      "translation": ""
+    },
+    {
+      "term": "envy",
+      "translation": ""
+    },
+    {
+      "term": "evil",
+      "translation": ""
+    },
+    {
+      "term": "excited",
+      "translation": ""
+    },
+    {
+      "term": "exhausted",
+      "translation": ""
+    },
+    {
+      "term": "expressionless",
+      "translation": ""
+    },
+    {
+      "term": "facepalm",
+      "translation": ""
+    },
+    {
+      "term": "flustered",
+      "translation": ""
+    },
+    {
+      "term": "frustrated",
+      "translation": ""
+    },
+    {
+      "term": "furrowed brow",
+      "translation": ""
+    },
+    {
+      "term": "grimace",
+      "translation": ""
+    },
+    {
+      "term": "lonely",
+      "translation": ""
+    },
+    {
+      "term": "nosebleed",
+      "translation": ""
+    },
+    {
+      "term": "nervous",
+      "translation": ""
+    },
+    {
+      "term": "guilt",
+      "translation": ""
+    },
+    {
+      "term": "happy",
+      "translation": ""
+    },
+    {
+      "term": "kubrick stare",
+      "translation": ""
+    },
+    {
+      "term": "one eye closed",
+      "translation": ""
+    },
+    {
+      "term": "open mouth",
+      "translation": ""
+    },
+    {
+      "term": "parted lips",
+      "translation": ""
+    },
+    {
+      "term": "pain",
+      "translation": ""
+    },
+    {
+      "term": "pout",
+      "translation": ""
+    },
+    {
+      "term": "raised eyebrow",
+      "translation": ""
+    },
+    {
+      "term": "rape face",
+      "translation": ""
+    },
+    {
+      "term": "rolling eyes",
+      "translation": ""
+    },
+    {
+      "term": "depressed",
+      "translation": ""
+    },
+    {
+      "term": "frown",
+      "translation": ""
+    },
+    {
+      "term": "gloom",
+      "translation": "expression"
+    },
+    {
+      "term": "scared",
+      "translation": ""
+    },
+    {
+      "term": "panicking",
+      "translation": ""
+    },
+    {
+      "term": "tears",
+      "translation": ""
+    },
+    {
+      "term": "worried",
+      "translation": ""
+    },
+    {
+      "term": "serious",
+      "translation": ""
+    },
+    {
+      "term": "sigh",
+      "translation": ""
+    },
+    {
+      "term": "sleepy",
+      "translation": ""
+    },
+    {
+      "term": "sulking",
+      "translation": ""
+    },
+    {
+      "term": "surprised",
+      "translation": ""
+    },
+    {
+      "term": "thinking",
+      "translation": ""
+    },
+    {
+      "term": "v-shaped eyebrows",
+      "translation": ""
+    },
+    {
+      "term": "pensive",
+      "translation": ""
+    },
+    {
+      "term": "afterglow",
+      "translation": ""
+    },
+    {
+      "term": "ahegao",
+      "translation": ""
+    },
+    {
+      "term": "wince",
+      "translation": ""
+    },
+    {
+      "term": "fucked silly",
+      "translation": ""
+    },
+    {
+      "term": "aroused",
+      "translation": ""
+    },
+    {
+      "term": "in heat",
+      "translation": ""
+    },
+    {
+      "term": "naughty face",
+      "translation": ""
+    },
+    {
+      "term": "seductive smile",
+      "translation": ""
+    },
+    {
+      "term": "torogao",
+      "translation": ""
+    },
+    {
+      "term": "crazy smile",
+      "translation": ""
+    },
+    {
+      "term": "evil smile",
+      "translation": ""
+    },
+    {
+      "term": "fingersmile",
+      "translation": ""
+    },
+    {
+      "term": "forced smile",
+      "translation": ""
+    },
+    {
+      "term": "glasgow smile",
+      "translation": ""
+    },
+    {
+      "term": "grin",
+      "translation": ""
+    },
+    {
+      "term": "evil grin",
+      "translation": ""
+    },
+    {
+      "term": "light smile",
+      "translation": ""
+    },
+    {
+      "term": "sad smile",
+      "translation": ""
+    },
+    {
+      "term": "stifled laugh",
+      "translation": ""
+    },
+    {
+      "term": "doyagao",
+      "translation": ""
+    },
+    {
+      "term": "smirk",
+      "translation": ""
+    },
+    {
+      "term": "smug",
+      "translation": ""
+    },
+    {
+      "term": "troll face",
+      "translation": ""
+    },
+    {
+      "term": "^^^",
+      "translation": "该tag特指漫画动漫里，角色附近的类似符号标记，来表示角色的惊讶等"
+    },
+    {
+      "term": "color drain",
+      "translation": ""
+    },
+    {
+      "term": "gloom",
+      "translation": "expression"
+    },
+    {
+      "term": "horrified",
+      "translation": ""
+    },
+    {
+      "term": "screaming",
+      "translation": ""
+    },
+    {
+      "term": "sobbing",
+      "translation": ""
+    },
+    {
+      "term": "traumatized",
+      "translation": ""
+    },
+    {
+      "term": "turn pale",
+      "translation": ""
+    },
+    {
+      "term": "wavy mouth",
+      "translation": ""
+    },
+    {
+      "term": "diamond mouth",
+      "translation": ""
+    },
+    {
+      "term": "solid circle eyes",
+      "translation": ""
+    },
+    {
+      "term": "heart-shaped eyes",
+      "translation": ""
+    }
+  ],
+  "Focus": [
+    {
+      "term": "face",
+      "translation": ""
+    },
+    {
+      "term": "portrait",
+      "translation": ""
+    },
+    {
+      "term": "upper body",
+      "translation": ""
+    },
+    {
+      "term": "lower body",
+      "translation": ""
+    },
+    {
+      "term": "cowboy shot",
+      "translation": ""
+    },
+    {
+      "term": "feet out of frame",
+      "translation": ""
+    },
+    {
+      "term": "full body",
+      "translation": ""
+    },
+    {
+      "term": "wide shot",
+      "translation": ""
+    },
+    {
+      "term": "very wide shot",
+      "translation": ""
+    },
+    {
+      "term": "close-up",
+      "translation": ""
+    },
+    {
+      "term": "split crop",
+      "translation": ""
+    },
+    {
+      "term": "cut-in",
+      "translation": ""
+    },
+    {
+      "term": "cropped legs",
+      "translation": ""
+    },
+    {
+      "term": "cropped torso",
+      "translation": ""
+    },
+    {
+      "term": "cropped arms",
+      "translation": ""
+    },
+    {
+      "term": "cropped shoulders",
+      "translation": ""
+    },
+    {
+      "term": "cropped head",
+      "translation": ""
+    },
+    {
+      "term": "multiple views",
+      "translation": ""
+    },
+    {
+      "term": "profile",
+      "translation": ""
+    },
+    {
+      "term": "group profile",
+      "translation": ""
+    },
+    {
+      "term": "cityscape",
+      "translation": ""
+    },
+    {
+      "term": "everyone",
+      "translation": ""
+    },
+    {
+      "term": "landscape",
+      "translation": ""
+    },
+    {
+      "term": "nature",
+      "translation": ""
+    },
+    {
+      "term": "armpit focus",
+      "translation": ""
+    },
+    {
+      "term": "no humans",
+      "translation": ""
+    },
+    {
+      "term": "scenery",
+      "translation": ""
+    },
+    {
+      "term": "ass focus",
+      "translation": ""
+    },
+    {
+      "term": "back focus",
+      "translation": ""
+    },
+    {
+      "term": "book focus",
+      "translation": ""
+    },
+    {
+      "term": "breast focus",
+      "translation": ""
+    },
+    {
+      "term": "cloud focus",
+      "translation": ""
+    },
+    {
+      "term": "eye focus",
+      "translation": ""
+    },
+    {
+      "term": "food focus",
+      "translation": ""
+    },
+    {
+      "term": "foot focus",
+      "translation": ""
+    },
+    {
+      "term": "hand focus",
+      "translation": ""
+    },
+    {
+      "term": "hip focus",
+      "translation": ""
+    },
+    {
+      "term": "male focus",
+      "translation": ""
+    },
+    {
+      "term": "navel focus",
+      "translation": ""
+    },
+    {
+      "term": "other focus",
+      "translation": ""
+    },
+    {
+      "term": "pectoral focus",
+      "translation": ""
+    },
+    {
+      "term": "solo focus",
+      "translation": ""
+    },
+    {
+      "term": "vehicle focus",
+      "translation": ""
+    },
+    {
+      "term": "thigh focus",
+      "translation": ""
+    },
+    {
+      "term": "text focus",
+      "translation": ""
+    },
+    {
+      "term": "wind chime focus",
+      "translation": ""
+    },
+    {
+      "term": "weapon focus",
+      "translation": ""
+    }
+  ],
+  "Footwear": [
+    {
+      "term": "boots",
+      "translation": ""
+    },
+    {
+      "term": "ankle boots",
+      "translation": ""
+    },
+    {
+      "term": "armored boots",
+      "translation": ""
+    },
+    {
+      "term": "cowboy boots",
+      "translation": ""
+    },
+    {
+      "term": "spurs",
+      "translation": ""
+    },
+    {
+      "term": "knee boots",
+      "translation": ""
+    },
+    {
+      "term": "high heel boots",
+      "translation": ""
+    },
+    {
+      "term": "lace-up boots",
+      "translation": ""
+    },
+    {
+      "term": "rubber boots",
+      "translation": ""
+    },
+    {
+      "term": "thigh boots",
+      "translation": ""
+    },
+    {
+      "term": "work boots",
+      "translation": ""
+    },
+    {
+      "term": "cross-laced footwear",
+      "translation": ""
+    },
+    {
+      "term": "dress shoes",
+      "translation": ""
+    },
+    {
+      "term": "flats",
+      "translation": ""
+    },
+    {
+      "term": "footwear ribbon",
+      "translation": ""
+    },
+    {
+      "term": "high heels",
+      "translation": ""
+    },
+    {
+      "term": "loafers",
+      "translation": ""
+    },
+    {
+      "term": "kiltie loafers",
+      "translation": ""
+    },
+    {
+      "term": "sandals",
+      "translation": ""
+    },
+    {
+      "term": "cross-laced sandals",
+      "translation": ""
+    },
+    {
+      "term": "pumps",
+      "translation": ""
+    },
+    {
+      "term": "flip-flops",
+      "translation": ""
+    },
+    {
+      "term": "gladiator sandals",
+      "translation": ""
+    },
+    {
+      "term": "geta",
+      "translation": ""
+    },
+    {
+      "term": "okobo",
+      "translation": ""
+    },
+    {
+      "term": "waraji",
+      "translation": ""
+    },
+    {
+      "term": "zouri",
+      "translation": ""
+    },
+    {
+      "term": "slippers",
+      "translation": ""
+    },
+    {
+      "term": "animal slippers",
+      "translation": ""
+    },
+    {
+      "term": "ballet slippers",
+      "translation": ""
+    },
+    {
+      "term": "oxfords",
+      "translation": ""
+    },
+    {
+      "term": "saddle shoes",
+      "translation": ""
+    },
+    {
+      "term": "monk shoes",
+      "translation": ""
+    },
+    {
+      "term": "crocs",
+      "translation": ""
+    },
+    {
+      "term": "uwabaki",
+      "translation": ""
+    },
+    {
+      "term": "sneakers",
+      "translation": ""
+    },
+    {
+      "term": "high tops",
+      "translation": ""
+    },
+    {
+      "term": "converse",
+      "translation": ""
+    },
+    {
+      "term": "toe less footwear",
+      "translation": ""
+    },
+    {
+      "term": "winged footwear",
+      "translation": ""
+    },
+    {
+      "term": "wedge heels",
+      "translation": ""
+    }
+  ],
+  "Format": [
+    {
+      "term": "3d",
+      "translation": ""
+    },
+    {
+      "term": "2d",
+      "translation": ""
+    },
+    {
+      "term": "2.5d",
+      "translation": ""
+    },
+    {
+      "term": "realistic",
+      "translation": ""
+    },
+    {
+      "term": "anime screenshot",
+      "translation": ""
+    },
+    {
+      "term": "archived file",
+      "translation": ""
+    },
+    {
+      "term": "artbook",
+      "translation": ""
+    },
+    {
+      "term": "calendar",
+      "translation": "medium"
+    },
+    {
+      "term": "card",
+      "translation": "medium"
+    },
+    {
+      "term": "comic",
+      "translation": ""
+    },
+    {
+      "term": "1koma",
+      "translation": ""
+    },
+    {
+      "term": "2koma",
+      "translation": ""
+    },
+    {
+      "term": "3koma",
+      "translation": ""
+    },
+    {
+      "term": "4koma",
+      "translation": ""
+    },
+    {
+      "term": "multiple 4koma",
+      "translation": ""
+    },
+    {
+      "term": "5koma",
+      "translation": ""
+    },
+    {
+      "term": "borderless panels",
+      "translation": ""
+    },
+    {
+      "term": "manga",
+      "translation": ""
+    },
+    {
+      "term": "left-to-right manga",
+      "translation": ""
+    },
+    {
+      "term": "right-to-left comic",
+      "translation": ""
+    },
+    {
+      "term": "silent comic",
+      "translation": ""
+    },
+    {
+      "term": "cover",
+      "translation": ""
+    },
+    {
+      "term": "album cover",
+      "translation": ""
+    },
+    {
+      "term": "character single",
+      "translation": ""
+    },
+    {
+      "term": "doujin cover",
+      "translation": ""
+    },
+    {
+      "term": "dvd cover",
+      "translation": ""
+    },
+    {
+      "term": "cover page",
+      "translation": ""
+    },
+    {
+      "term": "fake cover",
+      "translation": ""
+    },
+    {
+      "term": "video game cover",
+      "translation": ""
+    },
+    {
+      "term": "magazine cover",
+      "translation": ""
+    },
+    {
+      "term": "fake screenshot",
+      "translation": ""
+    },
+    {
+      "term": "fake phone screenshot",
+      "translation": ""
+    },
+    {
+      "term": "manga cover",
+      "translation": ""
+    },
+    {
+      "term": "game cg",
+      "translation": ""
+    },
+    {
+      "term": "game screenshot",
+      "translation": ""
+    },
+    {
+      "term": "gyotaku",
+      "translation": "medium"
+    },
+    {
+      "term": "highres",
+      "translation": ""
+    },
+    {
+      "term": "absurdres",
+      "translation": ""
+    },
+    {
+      "term": "incredibly absurdres",
+      "translation": ""
+    },
+    {
+      "term": "lowres",
+      "translation": ""
+    },
+    {
+      "term": "icon",
+      "translation": ""
+    },
+    {
+      "term": "kirigami",
+      "translation": ""
+    },
+    {
+      "term": "lineart",
+      "translation": ""
+    },
+    {
+      "term": "no lineart",
+      "translation": ""
+    },
+    {
+      "term": "outline",
+      "translation": ""
+    },
+    {
+      "term": "tall image",
+      "translation": ""
+    },
+    {
+      "term": "wide image",
+      "translation": ""
+    },
+    {
+      "term": "mosaic art",
+      "translation": ""
+    },
+    {
+      "term": "photomosaic",
+      "translation": ""
+    },
+    {
+      "term": "oekaki",
+      "translation": ""
+    },
+    {
+      "term": "official art",
+      "translation": ""
+    },
+    {
+      "term": "phonecard",
+      "translation": ""
+    },
+    {
+      "term": "photo",
+      "translation": ""
+    },
+    {
+      "term": "papercraft",
+      "translation": ""
+    },
+    {
+      "term": "paper child",
+      "translation": ""
+    },
+    {
+      "term": "paper cutout",
+      "translation": ""
+    },
+    {
+      "term": "pixel art",
+      "translation": ""
+    },
+    {
+      "term": "postcard",
+      "translation": ""
+    },
+    {
+      "term": "poster",
+      "translation": ""
+    },
+    {
+      "term": "scan",
+      "translation": ""
+    },
+    {
+      "term": "shitajiki",
+      "translation": ""
+    },
+    {
+      "term": "tegaki",
+      "translation": ""
+    },
+    {
+      "term": "transparent background",
+      "translation": ""
+    },
+    {
+      "term": "triptych",
+      "translation": "art"
+    },
+    {
+      "term": "twitter thumbnail collage",
+      "translation": ""
+    },
+    {
+      "term": "vector trace",
+      "translation": ""
+    },
+    {
+      "term": "wallpaper",
+      "translation": ""
+    },
+    {
+      "term": "tileable",
+      "translation": ""
+    },
+    {
+      "term": "wallpaper forced",
+      "translation": ""
+    },
+    {
+      "term": "widescreen",
+      "translation": ""
+    },
+    {
+      "term": "cyberpunk",
+      "translation": "theme"
+    },
+    {
+      "term": "fantasy",
+      "translation": "theme"
+    },
+    {
+      "term": "steampunk",
+      "translation": "theme"
+    },
+    {
+      "term": "noir",
+      "translation": "theme"
+    },
+    {
+      "term": "vintage",
+      "translation": "theme"
+    },
+    {
+      "term": "holy_",
+      "translation": "theme"
+    },
+    {
+      "term": "halloween theme",
+      "translation": ""
+    },
+    {
+      "term": "Christmas theme",
+      "translation": ""
+    },
+    {
+      "term": "Cyberpunk",
+      "translation": ""
+    },
+    {
+      "term": "painting",
+      "translation": "medium"
+    },
+    {
+      "term": "photo",
+      "translation": "medium"
+    },
+    {
+      "term": "watercolor",
+      "translation": "medium"
+    },
+    {
+      "term": "marker",
+      "translation": "medium"
+    },
+    {
+      "term": "graphite",
+      "translation": "medium"
+    },
+    {
+      "term": "colored pencil",
+      "translation": "medium"
+    },
+    {
+      "term": "pen",
+      "translation": "medium"
+    },
+    {
+      "term": "millipen",
+      "translation": "medium"
+    },
+    {
+      "term": "acrylic paint",
+      "translation": "medium"
+    },
+    {
+      "term": "nib pen",
+      "translation": "medium"
+    },
+    {
+      "term": "charcoal",
+      "translation": "medium"
+    },
+    {
+      "term": "ink",
+      "translation": "medium"
+    },
+    {
+      "term": "watercolor",
+      "translation": "medium"
+    },
+    {
+      "term": "oil painting",
+      "translation": "medium"
+    },
+    {
+      "term": "sketch",
+      "translation": "medium"
+    },
+    {
+      "term": "digital art",
+      "translation": "medium"
+    },
+    {
+      "term": "pixel art",
+      "translation": "medium"
+    },
+    {
+      "term": "romantic",
+      "translation": "theme"
+    },
+    {
+      "term": "horror",
+      "translation": "theme"
+    },
+    {
+      "term": "mystical",
+      "translation": "theme"
+    },
+    {
+      "term": "dark",
+      "translation": "theme"
+    },
+    {
+      "term": "bright",
+      "translation": "theme"
+    },
+    {
+      "term": "melancholic",
+      "translation": "theme"
+    },
+    {
+      "term": "forest",
+      "translation": "theme"
+    },
+    {
+      "term": "cityscape",
+      "translation": "theme"
+    },
+    {
+      "term": "underwater",
+      "translation": "theme"
+    },
+    {
+      "term": "space",
+      "translation": "theme"
+    },
+    {
+      "term": "desert",
+      "translation": "theme"
+    },
+    {
+      "term": "colorful",
+      "translation": ""
+    },
+    {
+      "term": "monochrome",
+      "translation": ""
+    },
+    {
+      "term": "spot color",
+      "translation": ""
+    },
+    {
+      "term": "limited color",
+      "translation": ""
+    },
+    {
+      "term": "soft blending",
+      "translation": ""
+    },
+    {
+      "term": "fluid colors",
+      "translation": ""
+    },
+    {
+      "term": "delicate textures",
+      "translation": ""
+    },
+    {
+      "term": "organic shapes",
+      "translation": ""
+    },
+    {
+      "term": "atmospheric depth",
+      "translation": ""
+    },
+    {
+      "term": "double exposure",
+      "translation": ""
+    },
+    {
+      "term": "paper cutting",
+      "translation": ""
+    },
+    {
+      "term": "light particles",
+      "translation": ""
+    },
+    {
+      "term": "sparkle",
+      "translation": ""
+    }
+  ],
+  "Full Body Outfits": [
+    {
+      "term": "armored dress",
+      "translation": ""
+    },
+    {
+      "term": "apron",
+      "translation": ""
+    },
+    {
+      "term": "armor",
+      "translation": ""
+    },
+    {
+      "term": "bikini armor",
+      "translation": ""
+    },
+    {
+      "term": "band uniform",
+      "translation": ""
+    },
+    {
+      "term": "cape",
+      "translation": ""
+    },
+    {
+      "term": "capelet",
+      "translation": ""
+    },
+    {
+      "term": "hood",
+      "translation": ""
+    },
+    {
+      "term": "side cape",
+      "translation": ""
+    },
+    {
+      "term": "cassock",
+      "translation": ""
+    },
+    {
+      "term": "cheerleader",
+      "translation": ""
+    },
+    {
+      "term": "costume",
+      "translation": ""
+    },
+    {
+      "term": "ghost costume",
+      "translation": ""
+    },
+    {
+      "term": "formal",
+      "translation": ""
+    },
+    {
+      "term": "suit",
+      "translation": ""
+    },
+    {
+      "term": "business suit",
+      "translation": ""
+    },
+    {
+      "term": "pant suit",
+      "translation": ""
+    },
+    {
+      "term": "skirt suit",
+      "translation": ""
+    },
+    {
+      "term": "tuxedo",
+      "translation": ""
+    },
+    {
+      "term": "gym uniform",
+      "translation": ""
+    },
+    {
+      "term": "buruma",
+      "translation": ""
+    },
+    {
+      "term": "harem outfit",
+      "translation": ""
+    },
+    {
+      "term": "loincloth",
+      "translation": ""
+    },
+    {
+      "term": "hazmat suit",
+      "translation": ""
+    },
+    {
+      "term": "hevsuit",
+      "translation": ""
+    },
+    {
+      "term": "kigurumi",
+      "translation": ""
+    },
+    {
+      "term": "animal costume",
+      "translation": ""
+    },
+    {
+      "term": "nontraditional miko",
+      "translation": ""
+    },
+    {
+      "term": "maid",
+      "translation": ""
+    },
+    {
+      "term": "miko",
+      "translation": ""
+    },
+    {
+      "term": "military uniform",
+      "translation": ""
+    },
+    {
+      "term": "nun",
+      "translation": ""
+    },
+    {
+      "term": "traditional nun",
+      "translation": ""
+    },
+    {
+      "term": "overalls",
+      "translation": ""
+    },
+    {
+      "term": "pajamas",
+      "translation": ""
+    },
+    {
+      "term": "pilot suit",
+      "translation": ""
+    },
+    {
+      "term": "plugsuit",
+      "translation": ""
+    },
+    {
+      "term": "priest",
+      "translation": ""
+    },
+    {
+      "term": "sailor",
+      "translation": ""
+    },
+    {
+      "term": "santa costume",
+      "translation": ""
+    },
+    {
+      "term": "school uniform",
+      "translation": ""
+    },
+    {
+      "term": "serafuku",
+      "translation": ""
+    },
+    {
+      "term": "sailor dress",
+      "translation": ""
+    },
+    {
+      "term": "gakuran",
+      "translation": ""
+    },
+    {
+      "term": "meiji schoolgirl uniform",
+      "translation": ""
+    },
+    {
+      "term": "shosei",
+      "translation": ""
+    },
+    {
+      "term": "track suit",
+      "translation": ""
+    },
+    {
+      "term": "sweatpants",
+      "translation": ""
+    },
+    {
+      "term": "sweater",
+      "translation": ""
+    },
+    {
+      "term": "tutu",
+      "translation": ""
+    },
+    {
+      "term": "waitress",
+      "translation": ""
+    },
+    {
+      "term": "cowboy western",
+      "translation": ""
+    },
+    {
+      "term": "Chinese clothes",
+      "translation": ""
+    },
+    {
+      "term": "changpao",
+      "translation": ""
+    },
+    {
+      "term": "china dress",
+      "translation": ""
+    },
+    {
+      "term": "fengguan",
+      "translation": ""
+    },
+    {
+      "term": "hanfu",
+      "translation": ""
+    },
+    {
+      "term": "longpao",
+      "translation": ""
+    },
+    {
+      "term": "tangzhuang",
+      "translation": ""
+    },
+    {
+      "term": "dirndl",
+      "translation": ""
+    },
+    {
+      "term": "Japanese clothes",
+      "translation": ""
+    },
+    {
+      "term": "fundoshi",
+      "translation": ""
+    },
+    {
+      "term": "mizu happi",
+      "translation": ""
+    },
+    {
+      "term": "geta",
+      "translation": ""
+    },
+    {
+      "term": "hakama",
+      "translation": ""
+    },
+    {
+      "term": "kimono",
+      "translation": ""
+    },
+    {
+      "term": "furisode",
+      "translation": ""
+    },
+    {
+      "term": "layered kimono",
+      "translation": ""
+    },
+    {
+      "term": "short kimono",
+      "translation": ""
+    },
+    {
+      "term": "uchikake",
+      "translation": ""
+    },
+    {
+      "term": "yukata",
+      "translation": ""
+    },
+    {
+      "term": "haori",
+      "translation": ""
+    },
+    {
+      "term": "kimono skirt",
+      "translation": ""
+    },
+    {
+      "term": "sarashi",
+      "translation": ""
+    },
+    {
+      "term": "straw cape",
+      "translation": ""
+    },
+    {
+      "term": "mino boushi",
+      "translation": ""
+    },
+    {
+      "term": "tabi",
+      "translation": ""
+    },
+    {
+      "term": "korean clothes",
+      "translation": ""
+    },
+    {
+      "term": "hanbok",
+      "translation": ""
+    },
+    {
+      "term": "Vietnamese dress",
+      "translation": ""
+    }
+  ],
+  "Hair Color & Style": [
+    {
+      "term": "aqua hair",
+      "translation": ""
+    },
+    {
+      "term": "black hair",
+      "translation": ""
+    },
+    {
+      "term": "blonde hair",
+      "translation": ""
+    },
+    {
+      "term": "blue hair",
+      "translation": ""
+    },
+    {
+      "term": "light blue hair",
+      "translation": ""
+    },
+    {
+      "term": "dark blue hair",
+      "translation": ""
+    },
+    {
+      "term": "brown hair",
+      "translation": ""
+    },
+    {
+      "term": "light brown hair",
+      "translation": ""
+    },
+    {
+      "term": "green hair",
+      "translation": ""
+    },
+    {
+      "term": "dark green hair",
+      "translation": ""
+    },
+    {
+      "term": "light green hair",
+      "translation": ""
+    },
+    {
+      "term": "grey hair",
+      "translation": ""
+    },
+    {
+      "term": "orange hair",
+      "translation": ""
+    },
+    {
+      "term": "pink hair",
+      "translation": ""
+    },
+    {
+      "term": "purple hair",
+      "translation": ""
+    },
+    {
+      "term": "light purple hair",
+      "translation": ""
+    },
+    {
+      "term": "red hair",
+      "translation": ""
+    },
+    {
+      "term": "white hair",
+      "translation": ""
+    },
+    {
+      "term": "multicolored hair",
+      "translation": ""
+    },
+    {
+      "term": "colored inner hair",
+      "translation": ""
+    },
+    {
+      "term": "colored tips",
+      "translation": ""
+    },
+    {
+      "term": "roots",
+      "translation": ""
+    },
+    {
+      "term": "gradient hair",
+      "translation": ""
+    },
+    {
+      "term": "print hair",
+      "translation": ""
+    },
+    {
+      "term": "rainbow hair",
+      "translation": ""
+    },
+    {
+      "term": "split-color hair",
+      "translation": ""
+    },
+    {
+      "term": "spotted hair",
+      "translation": ""
+    },
+    {
+      "term": "streaked hair",
+      "translation": ""
+    },
+    {
+      "term": "two-tone hair",
+      "translation": ""
+    },
+    {
+      "term": "translucent hair",
+      "translation": ""
+    },
+    {
+      "term": "red-blue hair",
+      "translation": ""
+    },
+    {
+      "term": "red-green hair",
+      "translation": ""
+    },
+    {
+      "term": "red-yellow hair",
+      "translation": ""
+    },
+    {
+      "term": "blue-green hair",
+      "translation": ""
+    },
+    {
+      "term": "blue-yellow hair",
+      "translation": ""
+    },
+    {
+      "term": "green-yellow hair",
+      "translation": ""
+    },
+    {
+      "term": "red-blue-green hair",
+      "translation": ""
+    },
+    {
+      "term": "red-blue-yellow hair",
+      "translation": ""
+    },
+    {
+      "term": "red-green-yellow hair",
+      "translation": ""
+    },
+    {
+      "term": "very short hair",
+      "translation": ""
+    },
+    {
+      "term": "short hair",
+      "translation": ""
+    },
+    {
+      "term": "medium hair",
+      "translation": ""
+    },
+    {
+      "term": "long hair",
+      "translation": ""
+    },
+    {
+      "term": "very long hair",
+      "translation": ""
+    },
+    {
+      "term": "absurdly long hair",
+      "translation": ""
+    },
+    {
+      "term": "big hair",
+      "translation": ""
+    },
+    {
+      "term": "bald",
+      "translation": ""
+    },
+    {
+      "term": "bald girl",
+      "translation": ""
+    },
+    {
+      "term": "bob cut",
+      "translation": ""
+    },
+    {
+      "term": "inverted bob",
+      "translation": ""
+    },
+    {
+      "term": "bowl cut",
+      "translation": ""
+    },
+    {
+      "term": "buzz cut",
+      "translation": ""
+    },
+    {
+      "term": "chonmage",
+      "translation": ""
+    },
+    {
+      "term": "crew cut",
+      "translation": ""
+    },
+    {
+      "term": "flattop",
+      "translation": ""
+    },
+    {
+      "term": "okappa",
+      "translation": ""
+    },
+    {
+      "term": "pixie cut",
+      "translation": ""
+    },
+    {
+      "term": "undercut",
+      "translation": ""
+    },
+    {
+      "term": "flipped hair",
+      "translation": ""
+    },
+    {
+      "term": "wolf cut",
+      "translation": ""
+    },
+    {
+      "term": "cornrows",
+      "translation": ""
+    },
+    {
+      "term": "dreadlocks",
+      "translation": ""
+    },
+    {
+      "term": "hime cut",
+      "translation": ""
+    },
+    {
+      "term": "mullet",
+      "translation": ""
+    },
+    {
+      "term": "bow-shaped hair",
+      "translation": ""
+    },
+    {
+      "term": "braid",
+      "translation": ""
+    },
+    {
+      "term": "braided bangs",
+      "translation": ""
+    },
+    {
+      "term": "front braid",
+      "translation": ""
+    },
+    {
+      "term": "side braid",
+      "translation": ""
+    },
+    {
+      "term": "french braid",
+      "translation": ""
+    },
+    {
+      "term": "crown braid",
+      "translation": ""
+    },
+    {
+      "term": "single braid",
+      "translation": ""
+    },
+    {
+      "term": "multiple braids",
+      "translation": ""
+    },
+    {
+      "term": "twin braids",
+      "translation": ""
+    },
+    {
+      "term": "low twin braids",
+      "translation": ""
+    },
+    {
+      "term": "tri braids",
+      "translation": ""
+    },
+    {
+      "term": "quad braids",
+      "translation": ""
+    },
+    {
+      "term": "flower-shaped hair",
+      "translation": ""
+    },
+    {
+      "term": "hair bun",
+      "translation": ""
+    },
+    {
+      "term": "braided bun",
+      "translation": ""
+    },
+    {
+      "term": "single hair bun",
+      "translation": ""
+    },
+    {
+      "term": "double bun",
+      "translation": ""
+    },
+    {
+      "term": "cone hair bun",
+      "translation": ""
+    },
+    {
+      "term": "doughnut hair bun",
+      "translation": ""
+    },
+    {
+      "term": "heart hair bun",
+      "translation": ""
+    },
+    {
+      "term": "triple bun",
+      "translation": ""
+    },
+    {
+      "term": "hair rings",
+      "translation": ""
+    },
+    {
+      "term": "single hair ring",
+      "translation": ""
+    },
+    {
+      "term": "half updo",
+      "translation": ""
+    },
+    {
+      "term": "one side up",
+      "translation": ""
+    },
+    {
+      "term": "two side up",
+      "translation": ""
+    },
+    {
+      "term": "low-braided long hair",
+      "translation": ""
+    },
+    {
+      "term": "low-tied long hair",
+      "translation": ""
+    },
+    {
+      "term": "multi-tied hair",
+      "translation": ""
+    },
+    {
+      "term": "nihongami",
+      "translation": ""
+    },
+    {
+      "term": "mizura",
+      "translation": ""
+    },
+    {
+      "term": "ponytail",
+      "translation": ""
+    },
+    {
+      "term": "folded ponytail",
+      "translation": ""
+    },
+    {
+      "term": "front ponytail",
+      "translation": ""
+    },
+    {
+      "term": "high ponytail",
+      "translation": ""
+    },
+    {
+      "term": "short ponytail",
+      "translation": ""
+    },
+    {
+      "term": "side ponytail",
+      "translation": ""
+    },
+    {
+      "term": "split ponytail",
+      "translation": ""
+    },
+    {
+      "term": "star-shaped hair",
+      "translation": ""
+    },
+    {
+      "term": "topknot",
+      "translation": ""
+    },
+    {
+      "term": "twintails",
+      "translation": ""
+    },
+    {
+      "term": "low twintails",
+      "translation": ""
+    },
+    {
+      "term": "short twintails",
+      "translation": ""
+    },
+    {
+      "term": "uneven twintails",
+      "translation": ""
+    },
+    {
+      "term": "tri tails",
+      "translation": ""
+    },
+    {
+      "term": "quad tails",
+      "translation": ""
+    },
+    {
+      "term": "quin tails",
+      "translation": ""
+    },
+    {
+      "term": "twisted hair",
+      "translation": ""
+    },
+    {
+      "term": "afro",
+      "translation": ""
+    },
+    {
+      "term": "huge afro",
+      "translation": ""
+    },
+    {
+      "term": "beehive hairdo",
+      "translation": ""
+    },
+    {
+      "term": "crested hair",
+      "translation": ""
+    },
+    {
+      "term": "pompadour",
+      "translation": ""
+    },
+    {
+      "term": "quiff",
+      "translation": ""
+    },
+    {
+      "term": "shouten pegasus mix mori",
+      "translation": ""
+    },
+    {
+      "term": "curly hair",
+      "translation": ""
+    },
+    {
+      "term": "drill hair",
+      "translation": ""
+    },
+    {
+      "term": "twin drills",
+      "translation": ""
+    },
+    {
+      "term": "tri drills",
+      "translation": ""
+    },
+    {
+      "term": "hair flaps",
+      "translation": ""
+    },
+    {
+      "term": "messy hair",
+      "translation": ""
+    },
+    {
+      "term": "pointy hair",
+      "translation": ""
+    },
+    {
+      "term": "ringlets",
+      "translation": ""
+    },
+    {
+      "term": "spiked hair",
+      "translation": ""
+    },
+    {
+      "term": "straight hair",
+      "translation": ""
+    },
+    {
+      "term": "wavy hair",
+      "translation": ""
+    },
+    {
+      "term": "bangs",
+      "translation": ""
+    },
+    {
+      "term": "arched bangs",
+      "translation": ""
+    },
+    {
+      "term": "asymmetrical bangs",
+      "translation": ""
+    },
+    {
+      "term": "bangs pinned back",
+      "translation": ""
+    },
+    {
+      "term": "blunt bangs",
+      "translation": ""
+    },
+    {
+      "term": "crossed bangs",
+      "translation": ""
+    },
+    {
+      "term": "choppy bangs",
+      "translation": ""
+    },
+    {
+      "term": "diagonal bangs",
+      "translation": ""
+    },
+    {
+      "term": "dyed bangs",
+      "translation": ""
+    },
+    {
+      "term": "fanged bangs",
+      "translation": ""
+    },
+    {
+      "term": "hair over eyes",
+      "translation": ""
+    },
+    {
+      "term": "hair over one eye",
+      "translation": ""
+    },
+    {
+      "term": "long bangs",
+      "translation": ""
+    },
+    {
+      "term": "parted bangs",
+      "translation": ""
+    },
+    {
+      "term": "curtained hair",
+      "translation": ""
+    },
+    {
+      "term": "wispy bangs",
+      "translation": ""
+    },
+    {
+      "term": "short bangs",
+      "translation": ""
+    },
+    {
+      "term": "swept bangs",
+      "translation": ""
+    },
+    {
+      "term": "hair between eyes",
+      "translation": ""
+    },
+    {
+      "term": "hair intakes",
+      "translation": ""
+    },
+    {
+      "term": "single hair intake",
+      "translation": ""
+    },
+    {
+      "term": "sidelocks",
+      "translation": ""
+    },
+    {
+      "term": "asymmetrical sidelocks",
+      "translation": ""
+    },
+    {
+      "term": "drill sidelocks",
+      "translation": ""
+    },
+    {
+      "term": "low-tied sidelocks",
+      "translation": ""
+    },
+    {
+      "term": "sidelocks tied back",
+      "translation": ""
+    },
+    {
+      "term": "single sidelock",
+      "translation": ""
+    },
+    {
+      "term": "widow's peak",
+      "translation": ""
+    },
+    {
+      "term": "ahoge",
+      "translation": ""
+    },
+    {
+      "term": "heart ahoge",
+      "translation": ""
+    },
+    {
+      "term": "hugeahoge",
+      "translation": ""
+    },
+    {
+      "term": "antenna hair",
+      "translation": ""
+    },
+    {
+      "term": "heart antenna hair",
+      "translation": ""
+    },
+    {
+      "term": "comb over",
+      "translation": ""
+    },
+    {
+      "term": "hair pulled back",
+      "translation": ""
+    },
+    {
+      "term": "hair slicked back",
+      "translation": ""
+    },
+    {
+      "term": "mohawk",
+      "translation": ""
+    },
+    {
+      "term": "oseledets",
+      "translation": ""
+    },
+    {
+      "term": "lone nape hair",
+      "translation": ""
+    },
+    {
+      "term": "hair bikini",
+      "translation": ""
+    },
+    {
+      "term": "hair censor",
+      "translation": ""
+    },
+    {
+      "term": "hair in own mouth",
+      "translation": ""
+    },
+    {
+      "term": "hair over breasts",
+      "translation": ""
+    },
+    {
+      "term": "hair over one breast",
+      "translation": ""
+    },
+    {
+      "term": "hair over crotch",
+      "translation": ""
+    },
+    {
+      "term": "hair over shoulder",
+      "translation": ""
+    },
+    {
+      "term": "hair scarf",
+      "translation": ""
+    },
+    {
+      "term": "hair down",
+      "translation": ""
+    },
+    {
+      "term": "hair up",
+      "translation": ""
+    },
+    {
+      "term": "asymmetrical hair",
+      "translation": ""
+    },
+    {
+      "term": "sidecut",
+      "translation": ""
+    },
+    {
+      "term": "blunt ends",
+      "translation": ""
+    }
+  ],
+  "Headwear": [
+    {
+      "term": "crown",
+      "translation": ""
+    },
+    {
+      "term": "hat",
+      "translation": ""
+    },
+    {
+      "term": "helmet",
+      "translation": ""
+    },
+    {
+      "term": "baseball cap",
+      "translation": ""
+    },
+    {
+      "term": "budenovka",
+      "translation": ""
+    },
+    {
+      "term": "cabbie hat",
+      "translation": ""
+    },
+    {
+      "term": "deerstalker",
+      "translation": ""
+    },
+    {
+      "term": "kepi",
+      "translation": ""
+    },
+    {
+      "term": "m43 field cap",
+      "translation": ""
+    },
+    {
+      "term": "field cap",
+      "translation": ""
+    },
+    {
+      "term": "peaked cap",
+      "translation": ""
+    },
+    {
+      "term": "mao cap",
+      "translation": ""
+    },
+    {
+      "term": "rogatywka",
+      "translation": ""
+    },
+    {
+      "term": "shako cap",
+      "translation": ""
+    },
+    {
+      "term": "bicorne",
+      "translation": ""
+    },
+    {
+      "term": "boater hat",
+      "translation": ""
+    },
+    {
+      "term": "bowler hat",
+      "translation": ""
+    },
+    {
+      "term": "bucket hat",
+      "translation": ""
+    },
+    {
+      "term": "campaign hat",
+      "translation": ""
+    },
+    {
+      "term": "cloche hat",
+      "translation": ""
+    },
+    {
+      "term": "cowboy hat",
+      "translation": ""
+    },
+    {
+      "term": "straw hat",
+      "translation": ""
+    },
+    {
+      "term": "fascinator",
+      "translation": ""
+    },
+    {
+      "term": "fedora",
+      "translation": ""
+    },
+    {
+      "term": "female service cap",
+      "translation": ""
+    },
+    {
+      "term": "flat cap",
+      "translation": ""
+    },
+    {
+      "term": "gat",
+      "translation": ""
+    },
+    {
+      "term": "jingasa",
+      "translation": ""
+    },
+    {
+      "term": "mob cap",
+      "translation": ""
+    },
+    {
+      "term": "picture hat",
+      "translation": ""
+    },
+    {
+      "term": "top hat",
+      "translation": ""
+    },
+    {
+      "term": "mini top hat",
+      "translation": ""
+    },
+    {
+      "term": "tricorne",
+      "translation": ""
+    },
+    {
+      "term": "witch hat",
+      "translation": ""
+    },
+    {
+      "term": "mini witch hat",
+      "translation": ""
+    },
+    {
+      "term": "wizard hat",
+      "translation": ""
+    },
+    {
+      "term": "earflap beanie",
+      "translation": ""
+    },
+    {
+      "term": "dixie cup hat",
+      "translation": ""
+    },
+    {
+      "term": "dunce cap",
+      "translation": ""
+    },
+    {
+      "term": "chef hat",
+      "translation": ""
+    },
+    {
+      "term": "beret",
+      "translation": ""
+    },
+    {
+      "term": "beanie",
+      "translation": ""
+    },
+    {
+      "term": "coif",
+      "translation": ""
+    },
+    {
+      "term": "fez hat",
+      "translation": ""
+    },
+    {
+      "term": "fur hat",
+      "translation": ""
+    },
+    {
+      "term": "garrison cap",
+      "translation": ""
+    },
+    {
+      "term": "nightcap",
+      "translation": ""
+    },
+    {
+      "term": "nurse cap",
+      "translation": ""
+    },
+    {
+      "term": "party hat",
+      "translation": ""
+    },
+    {
+      "term": "pillbox hat",
+      "translation": ""
+    },
+    {
+      "term": "qingdai guanmao",
+      "translation": ""
+    },
+    {
+      "term": "sailor hat",
+      "translation": ""
+    },
+    {
+      "term": "sajkaca",
+      "translation": ""
+    },
+    {
+      "term": "santa hat",
+      "translation": ""
+    },
+    {
+      "term": "tate eboshi",
+      "translation": ""
+    },
+    {
+      "term": "tokin hat",
+      "translation": ""
+    },
+    {
+      "term": "tsunokakushi",
+      "translation": ""
+    },
+    {
+      "term": "balaclava",
+      "translation": ""
+    },
+    {
+      "term": "bandana",
+      "translation": ""
+    },
+    {
+      "term": "aviator cap",
+      "translation": ""
+    },
+    {
+      "term": "bonnet",
+      "translation": ""
+    },
+    {
+      "term": "head scarf",
+      "translation": ""
+    },
+    {
+      "term": "hijab",
+      "translation": ""
+    },
+    {
+      "term": "jester cap",
+      "translation": ""
+    },
+    {
+      "term": "keffiyeh",
+      "translation": ""
+    },
+    {
+      "term": "shower cap",
+      "translation": ""
+    },
+    {
+      "term": "visor cap",
+      "translation": ""
+    },
+    {
+      "term": "veil",
+      "translation": ""
+    },
+    {
+      "term": "bloomers on head",
+      "translation": ""
+    },
+    {
+      "term": "hair bow",
+      "translation": ""
+    },
+    {
+      "term": "hair ribbon",
+      "translation": ""
+    },
+    {
+      "term": "hairband",
+      "translation": ""
+    },
+    {
+      "term": "headband",
+      "translation": ""
+    },
+    {
+      "term": "forehead protector",
+      "translation": ""
+    },
+    {
+      "term": "sweatband",
+      "translation": ""
+    },
+    {
+      "term": "hachimaki",
+      "translation": ""
+    },
+    {
+      "term": "nejiri hachimaki",
+      "translation": ""
+    },
+    {
+      "term": "headdress",
+      "translation": ""
+    },
+    {
+      "term": "maid headdress",
+      "translation": ""
+    },
+    {
+      "term": "native american headdress",
+      "translation": ""
+    },
+    {
+      "term": "warbonnet",
+      "translation": ""
+    }
+  ],
+  "Locations": [
+    {
+      "term": "bathroom",
+      "translation": ""
+    },
+    {
+      "term": "bathtub",
+      "translation": ""
+    },
+    {
+      "term": "toilet stall",
+      "translation": ""
+    },
+    {
+      "term": "shower",
+      "translation": ""
+    },
+    {
+      "term": "bedroom",
+      "translation": ""
+    },
+    {
+      "term": "hotel room",
+      "translation": ""
+    },
+    {
+      "term": "messy room",
+      "translation": ""
+    },
+    {
+      "term": "otaku room",
+      "translation": ""
+    },
+    {
+      "term": "cafeteria",
+      "translation": ""
+    },
+    {
+      "term": "changing room",
+      "translation": ""
+    },
+    {
+      "term": "classroom",
+      "translation": ""
+    },
+    {
+      "term": "clubroom",
+      "translation": ""
+    },
+    {
+      "term": "dining room",
+      "translation": ""
+    },
+    {
+      "term": "conservatory",
+      "translation": ""
+    },
+    {
+      "term": "courtroom",
+      "translation": ""
+    },
+    {
+      "term": "dressing room",
+      "translation": ""
+    },
+    {
+      "term": "dungeon",
+      "translation": ""
+    },
+    {
+      "term": "prison cell",
+      "translation": ""
+    },
+    {
+      "term": "fitting room",
+      "translation": ""
+    },
+    {
+      "term": "gym",
+      "translation": ""
+    },
+    {
+      "term": "locker room",
+      "translation": ""
+    },
+    {
+      "term": "infirmary",
+      "translation": ""
+    },
+    {
+      "term": "kitchen",
+      "translation": ""
+    },
+    {
+      "term": "gym storeroom",
+      "translation": ""
+    },
+    {
+      "term": "laboratory",
+      "translation": ""
+    },
+    {
+      "term": "library",
+      "translation": ""
+    },
+    {
+      "term": "living room",
+      "translation": ""
+    },
+    {
+      "term": "office",
+      "translation": ""
+    },
+    {
+      "term": "cubicle",
+      "translation": ""
+    },
+    {
+      "term": "pool",
+      "translation": ""
+    },
+    {
+      "term": "stage",
+      "translation": ""
+    },
+    {
+      "term": "staff room",
+      "translation": ""
+    },
+    {
+      "term": "storage room",
+      "translation": ""
+    },
+    {
+      "term": "armory",
+      "translation": ""
+    },
+    {
+      "term": "closet",
+      "translation": ""
+    },
+    {
+      "term": "workshop",
+      "translation": ""
+    },
+    {
+      "term": "beach",
+      "translation": ""
+    },
+    {
+      "term": "shore",
+      "translation": ""
+    },
+    {
+      "term": "canyon",
+      "translation": ""
+    },
+    {
+      "term": "cliff",
+      "translation": ""
+    },
+    {
+      "term": "desert",
+      "translation": ""
+    },
+    {
+      "term": "cave",
+      "translation": ""
+    },
+    {
+      "term": "oasis",
+      "translation": ""
+    },
+    {
+      "term": "forest",
+      "translation": ""
+    },
+    {
+      "term": "bamboo forest",
+      "translation": ""
+    },
+    {
+      "term": "glacier",
+      "translation": ""
+    },
+    {
+      "term": "hill",
+      "translation": ""
+    },
+    {
+      "term": "island",
+      "translation": ""
+    },
+    {
+      "term": "floating island",
+      "translation": ""
+    },
+    {
+      "term": "jungle",
+      "translation": ""
+    },
+    {
+      "term": "meadow",
+      "translation": ""
+    },
+    {
+      "term": "volcano",
+      "translation": ""
+    },
+    {
+      "term": "mountain",
+      "translation": ""
+    },
+    {
+      "term": "nature",
+      "translation": ""
+    },
+    {
+      "term": "park",
+      "translation": ""
+    },
+    {
+      "term": "playground",
+      "translation": ""
+    },
+    {
+      "term": "parking lot",
+      "translation": ""
+    },
+    {
+      "term": "plain",
+      "translation": ""
+    },
+    {
+      "term": "savannah",
+      "translation": ""
+    },
+    {
+      "term": "wetland",
+      "translation": ""
+    },
+    {
+      "term": "water",
+      "translation": ""
+    },
+    {
+      "term": "geyser",
+      "translation": ""
+    },
+    {
+      "term": "lake",
+      "translation": ""
+    },
+    {
+      "term": "seafloor",
+      "translation": ""
+    },
+    {
+      "term": "pond",
+      "translation": ""
+    },
+    {
+      "term": "ocean",
+      "translation": ""
+    },
+    {
+      "term": "river",
+      "translation": ""
+    },
+    {
+      "term": "stream",
+      "translation": ""
+    },
+    {
+      "term": "waterfall",
+      "translation": ""
+    },
+    {
+      "term": "wasteland",
+      "translation": ""
+    },
+    {
+      "term": "airfield",
+      "translation": ""
+    },
+    {
+      "term": "runway",
+      "translation": ""
+    },
+    {
+      "term": "amusement park",
+      "translation": ""
+    },
+    {
+      "term": "carousel",
+      "translation": ""
+    },
+    {
+      "term": "ferris wheel",
+      "translation": ""
+    },
+    {
+      "term": "roller coaster",
+      "translation": ""
+    },
+    {
+      "term": "aqueduct",
+      "translation": ""
+    },
+    {
+      "term": "bridge",
+      "translation": ""
+    },
+    {
+      "term": "rope bridge",
+      "translation": ""
+    },
+    {
+      "term": "wooden bridge",
+      "translation": ""
+    },
+    {
+      "term": "canal",
+      "translation": ""
+    },
+    {
+      "term": "city",
+      "translation": ""
+    },
+    {
+      "term": "floating city",
+      "translation": ""
+    },
+    {
+      "term": "rural",
+      "translation": ""
+    },
+    {
+      "term": "town",
+      "translation": ""
+    },
+    {
+      "term": "village",
+      "translation": ""
+    },
+    {
+      "term": "dam",
+      "translation": ""
+    },
+    {
+      "term": "dock",
+      "translation": ""
+    },
+    {
+      "term": "drydock",
+      "translation": ""
+    },
+    {
+      "term": "shipyard",
+      "translation": ""
+    },
+    {
+      "term": "garden",
+      "translation": ""
+    },
+    {
+      "term": "graveyard",
+      "translation": ""
+    },
+    {
+      "term": "jetty",
+      "translation": ""
+    },
+    {
+      "term": "field",
+      "translation": ""
+    },
+    {
+      "term": "flower field",
+      "translation": ""
+    },
+    {
+      "term": "rice paddy",
+      "translation": ""
+    },
+    {
+      "term": "wheatfield",
+      "translation": ""
+    },
+    {
+      "term": "fountain",
+      "translation": ""
+    },
+    {
+      "term": "harbor",
+      "translation": ""
+    },
+    {
+      "term": "market",
+      "translation": ""
+    },
+    {
+      "term": "market stall",
+      "translation": ""
+    },
+    {
+      "term": "pier",
+      "translation": ""
+    },
+    {
+      "term": "phone booth",
+      "translation": ""
+    },
+    {
+      "term": "poolside",
+      "translation": ""
+    },
+    {
+      "term": "waterpark",
+      "translation": ""
+    },
+    {
+      "term": "railroad tracks",
+      "translation": ""
+    },
+    {
+      "term": "railroad crossing",
+      "translation": ""
+    },
+    {
+      "term": "road",
+      "translation": ""
+    },
+    {
+      "term": "alley",
+      "translation": ""
+    },
+    {
+      "term": "crosswalk",
+      "translation": ""
+    },
+    {
+      "term": "dirt road",
+      "translation": ""
+    },
+    {
+      "term": "highway",
+      "translation": ""
+    },
+    {
+      "term": "path",
+      "translation": ""
+    },
+    {
+      "term": "sidewalk",
+      "translation": ""
+    },
+    {
+      "term": "stone walkway",
+      "translation": ""
+    },
+    {
+      "term": "street",
+      "translation": ""
+    },
+    {
+      "term": "soccer field",
+      "translation": ""
+    },
+    {
+      "term": "running track",
+      "translation": ""
+    },
+    {
+      "term": "trench",
+      "translation": ""
+    },
+    {
+      "term": "tunnel",
+      "translation": ""
+    },
+    {
+      "term": "well",
+      "translation": ""
+    },
+    {
+      "term": "zoo",
+      "translation": ""
+    },
+    {
+      "term": "airport",
+      "translation": ""
+    },
+    {
+      "term": "control tower",
+      "translation": ""
+    },
+    {
+      "term": "hangar",
+      "translation": ""
+    },
+    {
+      "term": "apartment",
+      "translation": ""
+    },
+    {
+      "term": "aquarium",
+      "translation": ""
+    },
+    {
+      "term": "arcade",
+      "translation": ""
+    },
+    {
+      "term": "bar",
+      "translation": ""
+    },
+    {
+      "term": "izakaya",
+      "translation": ""
+    },
+    {
+      "term": "barn",
+      "translation": ""
+    },
+    {
+      "term": "tavern",
+      "translation": ""
+    },
+    {
+      "term": "bunker",
+      "translation": ""
+    },
+    {
+      "term": "bus stop",
+      "translation": ""
+    },
+    {
+      "term": "bowling alley",
+      "translation": ""
+    },
+    {
+      "term": "cafe",
+      "translation": ""
+    },
+    {
+      "term": "casino",
+      "translation": ""
+    },
+    {
+      "term": "castle",
+      "translation": ""
+    },
+    {
+      "term": "floating castle",
+      "translation": ""
+    },
+    {
+      "term": "church",
+      "translation": ""
+    },
+    {
+      "term": "construction site",
+      "translation": ""
+    },
+    {
+      "term": "convention",
+      "translation": ""
+    },
+    {
+      "term": "gas station",
+      "translation": ""
+    },
+    {
+      "term": "garage",
+      "translation": ""
+    },
+    {
+      "term": "gazebo",
+      "translation": ""
+    },
+    {
+      "term": "greenhouse",
+      "translation": ""
+    },
+    {
+      "term": "hospital",
+      "translation": ""
+    },
+    {
+      "term": "house",
+      "translation": ""
+    },
+    {
+      "term": "hotel",
+      "translation": ""
+    },
+    {
+      "term": "hut",
+      "translation": ""
+    },
+    {
+      "term": "powerplant",
+      "translation": ""
+    },
+    {
+      "term": "nuclear powerplant",
+      "translation": ""
+    },
+    {
+      "term": "cooling tower",
+      "translation": ""
+    },
+    {
+      "term": "industrial",
+      "translation": ""
+    },
+    {
+      "term": "factory",
+      "translation": ""
+    },
+    {
+      "term": "refinery",
+      "translation": ""
+    },
+    {
+      "term": "warehouse",
+      "translation": ""
+    },
+    {
+      "term": "lighthouse",
+      "translation": ""
+    },
+    {
+      "term": "mall",
+      "translation": ""
+    },
+    {
+      "term": "megastructure",
+      "translation": ""
+    },
+    {
+      "term": "space elevator",
+      "translation": ""
+    },
+    {
+      "term": "military base",
+      "translation": ""
+    },
+    {
+      "term": "mosque",
+      "translation": ""
+    },
+    {
+      "term": "museum",
+      "translation": ""
+    },
+    {
+      "term": "art gallery",
+      "translation": ""
+    },
+    {
+      "term": "nightclub",
+      "translation": ""
+    },
+    {
+      "term": "observatory",
+      "translation": ""
+    },
+    {
+      "term": "onsen",
+      "translation": ""
+    },
+    {
+      "term": "pagoda",
+      "translation": ""
+    },
+    {
+      "term": "planetarium",
+      "translation": ""
+    },
+    {
+      "term": "prison",
+      "translation": ""
+    },
+    {
+      "term": "restaurant",
+      "translation": ""
+    },
+    {
+      "term": "rooftop",
+      "translation": ""
+    },
+    {
+      "term": "ruins",
+      "translation": ""
+    },
+    {
+      "term": "school",
+      "translation": ""
+    },
+    {
+      "term": "skating rink",
+      "translation": ""
+    },
+    {
+      "term": "shack",
+      "translation": ""
+    },
+    {
+      "term": "shrine",
+      "translation": ""
+    },
+    {
+      "term": "shop",
+      "translation": ""
+    },
+    {
+      "term": "bakery",
+      "translation": ""
+    },
+    {
+      "term": "bookstore",
+      "translation": ""
+    },
+    {
+      "term": "convenience store",
+      "translation": ""
+    },
+    {
+      "term": "flower shop",
+      "translation": ""
+    },
+    {
+      "term": "pharmacy",
+      "translation": ""
+    },
+    {
+      "term": "salon",
+      "translation": ""
+    },
+    {
+      "term": "sex shop",
+      "translation": ""
+    },
+    {
+      "term": "supermarket",
+      "translation": ""
+    },
+    {
+      "term": "weapon shop",
+      "translation": ""
+    },
+    {
+      "term": "skyscraper",
+      "translation": ""
+    },
+    {
+      "term": "stadium",
+      "translation": ""
+    },
+    {
+      "term": "arena",
+      "translation": ""
+    },
+    {
+      "term": "stilt house",
+      "translation": ""
+    },
+    {
+      "term": "temple",
+      "translation": ""
+    },
+    {
+      "term": "theater",
+      "translation": ""
+    },
+    {
+      "term": "amphitheater",
+      "translation": ""
+    },
+    {
+      "term": "movie theater",
+      "translation": ""
+    },
+    {
+      "term": "bell tower",
+      "translation": ""
+    },
+    {
+      "term": "tower",
+      "translation": ""
+    },
+    {
+      "term": "clocktower",
+      "translation": ""
+    },
+    {
+      "term": "guard tower",
+      "translation": ""
+    },
+    {
+      "term": "minaret",
+      "translation": ""
+    },
+    {
+      "term": "train station",
+      "translation": ""
+    },
+    {
+      "term": "treehouse",
+      "translation": ""
+    },
+    {
+      "term": "windmill",
+      "translation": ""
+    },
+    {
+      "term": "planet",
+      "translation": ""
+    },
+    {
+      "term": "space station",
+      "translation": ""
+    },
+    {
+      "term": "vehicle interior",
+      "translation": ""
+    },
+    {
+      "term": "airplane interior",
+      "translation": ""
+    },
+    {
+      "term": "bus interior",
+      "translation": ""
+    },
+    {
+      "term": "car interior",
+      "translation": ""
+    },
+    {
+      "term": "cockpit",
+      "translation": ""
+    },
+    {
+      "term": "spacecraft interior",
+      "translation": ""
+    },
+    {
+      "term": "tank interior",
+      "translation": ""
+    },
+    {
+      "term": "train interior",
+      "translation": ""
+    }
+  ],
+  "Neckwear": [
+    {
+      "term": "ascot",
+      "translation": ""
+    },
+    {
+      "term": "bolo tie",
+      "translation": ""
+    },
+    {
+      "term": "bowtie",
+      "translation": ""
+    },
+    {
+      "term": "choker",
+      "translation": ""
+    },
+    {
+      "term": "ribbon choker",
+      "translation": ""
+    },
+    {
+      "term": "collar",
+      "translation": ""
+    },
+    {
+      "term": "neck bell",
+      "translation": ""
+    },
+    {
+      "term": "animal collar",
+      "translation": ""
+    },
+    {
+      "term": "spiked collar",
+      "translation": ""
+    },
+    {
+      "term": "studded collar",
+      "translation": ""
+    },
+    {
+      "term": "pet cone",
+      "translation": ""
+    },
+    {
+      "term": "feather boa",
+      "translation": ""
+    },
+    {
+      "term": "goggles around neck",
+      "translation": ""
+    },
+    {
+      "term": "headphones around neck",
+      "translation": ""
+    },
+    {
+      "term": "lanyard",
+      "translation": ""
+    },
+    {
+      "term": "neckerchief",
+      "translation": ""
+    },
+    {
+      "term": "necklace",
+      "translation": ""
+    },
+    {
+      "term": "chain necklace",
+      "translation": ""
+    },
+    {
+      "term": "flower necklace",
+      "translation": ""
+    },
+    {
+      "term": "lei",
+      "translation": ""
+    },
+    {
+      "term": "friendship charm",
+      "translation": ""
+    },
+    {
+      "term": "pearl necklace",
+      "translation": ""
+    },
+    {
+      "term": "pendant",
+      "translation": ""
+    },
+    {
+      "term": "amulet",
+      "translation": ""
+    },
+    {
+      "term": "locket",
+      "translation": ""
+    },
+    {
+      "term": "magatama",
+      "translation": ""
+    },
+    {
+      "term": "pentacle",
+      "translation": ""
+    },
+    {
+      "term": "neck ribbon",
+      "translation": ""
+    },
+    {
+      "term": "neck ruff",
+      "translation": ""
+    },
+    {
+      "term": "neck tassel",
+      "translation": ""
+    },
+    {
+      "term": "necktie",
+      "translation": ""
+    },
+    {
+      "term": "necktie between breasts",
+      "translation": ""
+    },
+    {
+      "term": "necktie on head",
+      "translation": ""
+    },
+    {
+      "term": "necktie grab",
+      "translation": ""
+    },
+    {
+      "term": "unworn necktie",
+      "translation": ""
+    },
+    {
+      "term": "scarf",
+      "translation": ""
+    },
+    {
+      "term": "detached collar",
+      "translation": ""
+    },
+    {
+      "term": "fur collar",
+      "translation": ""
+    },
+    {
+      "term": "high collar",
+      "translation": ""
+    },
+    {
+      "term": "open collar",
+      "translation": ""
+    },
+    {
+      "term": "popped collar",
+      "translation": ""
+    },
+    {
+      "term": "sailor collar",
+      "translation": ""
+    },
+    {
+      "term": "turtleneck",
+      "translation": ""
+    },
+    {
+      "term": "wing collar",
+      "translation": ""
+    }
+  ],
+  "Posture": [
+    {
+      "term": "kneeling",
+      "translation": ""
+    },
+    {
+      "term": "on one knee",
+      "translation": ""
+    },
+    {
+      "term": "lying",
+      "translation": ""
+    },
+    {
+      "term": "crossed legs",
+      "translation": ""
+    },
+    {
+      "term": "fetal position",
+      "translation": ""
+    },
+    {
+      "term": "on back",
+      "translation": ""
+    },
+    {
+      "term": "on side",
+      "translation": ""
+    },
+    {
+      "term": "on stomach",
+      "translation": ""
+    },
+    {
+      "term": "sitting",
+      "translation": ""
+    },
+    {
+      "term": "butterfly sitting",
+      "translation": ""
+    },
+    {
+      "term": "figure four sitting",
+      "translation": ""
+    },
+    {
+      "term": "indian style",
+      "translation": ""
+    },
+    {
+      "term": "hugging own legs",
+      "translation": ""
+    },
+    {
+      "term": "lotus position",
+      "translation": ""
+    },
+    {
+      "term": "seiza",
+      "translation": ""
+    },
+    {
+      "term": "sitting on lap",
+      "translation": ""
+    },
+    {
+      "term": "sitting on person",
+      "translation": ""
+    },
+    {
+      "term": "straddling",
+      "translation": ""
+    },
+    {
+      "term": "thigh straddling",
+      "translation": ""
+    },
+    {
+      "term": "upright straddle",
+      "translation": ""
+    },
+    {
+      "term": "wariza",
+      "translation": ""
+    },
+    {
+      "term": "yokozuwari",
+      "translation": ""
+    },
+    {
+      "term": "standing",
+      "translation": ""
+    },
+    {
+      "term": "balancing",
+      "translation": ""
+    },
+    {
+      "term": "legs apart",
+      "translation": ""
+    },
+    {
+      "term": "standing on one leg",
+      "translation": ""
+    },
+    {
+      "term": "crawling",
+      "translation": ""
+    },
+    {
+      "term": "idle animation",
+      "translation": ""
+    },
+    {
+      "term": "jumping",
+      "translation": ""
+    },
+    {
+      "term": "running",
+      "translation": ""
+    },
+    {
+      "term": "walking",
+      "translation": ""
+    },
+    {
+      "term": "walk cycle",
+      "translation": ""
+    },
+    {
+      "term": "wallwalking",
+      "translation": ""
+    },
+    {
+      "term": "all fours",
+      "translation": ""
+    },
+    {
+      "term": "top-down bottom-up",
+      "translation": ""
+    },
+    {
+      "term": "prostration",
+      "translation": ""
+    },
+    {
+      "term": "chest stand",
+      "translation": ""
+    },
+    {
+      "term": "chest stand handstand",
+      "translation": ""
+    },
+    {
+      "term": "triplefold",
+      "translation": ""
+    },
+    {
+      "term": "ruppelbend",
+      "translation": ""
+    },
+    {
+      "term": "quadfold",
+      "translation": ""
+    },
+    {
+      "term": "cowering",
+      "translation": ""
+    },
+    {
+      "term": "crucifixion",
+      "translation": ""
+    },
+    {
+      "term": "faceplant",
+      "translation": ""
+    },
+    {
+      "term": "fighting stance",
+      "translation": ""
+    },
+    {
+      "term": "battoujutsu stance",
+      "translation": ""
+    },
+    {
+      "term": "full scorpion",
+      "translation": ""
+    },
+    {
+      "term": "reclining",
+      "translation": ""
+    },
+    {
+      "term": "stretching",
+      "translation": ""
+    },
+    {
+      "term": "superhero landing",
+      "translation": ""
+    },
+    {
+      "term": "squatting",
+      "translation": ""
+    },
+    {
+      "term": "upside-down",
+      "translation": ""
+    },
+    {
+      "term": "handstand",
+      "translation": ""
+    },
+    {
+      "term": "headstand",
+      "translation": ""
+    },
+    {
+      "term": "yoga",
+      "translation": ""
+    },
+    {
+      "term": "scorpion pose",
+      "translation": ""
+    },
+    {
+      "term": "arm support",
+      "translation": ""
+    },
+    {
+      "term": "head rest",
+      "translation": ""
+    },
+    {
+      "term": "head down",
+      "translation": ""
+    },
+    {
+      "term": "head tilt",
+      "translation": ""
+    },
+    {
+      "term": "arched back",
+      "translation": ""
+    },
+    {
+      "term": "bent back",
+      "translation": ""
+    },
+    {
+      "term": "bent over",
+      "translation": ""
+    },
+    {
+      "term": "leaning back",
+      "translation": ""
+    },
+    {
+      "term": "leaning forward",
+      "translation": ""
+    },
+    {
+      "term": "slouching",
+      "translation": ""
+    },
+    {
+      "term": "sway back",
+      "translation": ""
+    },
+    {
+      "term": "twisted torso",
+      "translation": ""
+    },
+    {
+      "term": "arm behind back",
+      "translation": ""
+    },
+    {
+      "term": "arms behind back",
+      "translation": ""
+    },
+    {
+      "term": "arm up",
+      "translation": ""
+    },
+    {
+      "term": "arm behind head",
+      "translation": ""
+    },
+    {
+      "term": "victory pose",
+      "translation": ""
+    },
+    {
+      "term": "arms up",
+      "translation": ""
+    },
+    {
+      "term": "o/",
+      "translation": ""
+    },
+    {
+      "term": "arms behind head",
+      "translation": ""
+    },
+    {
+      "term": "outstretched arm",
+      "translation": ""
+    },
+    {
+      "term": "outstretched arms",
+      "translation": ""
+    },
+    {
+      "term": "spread arms",
+      "translation": ""
+    },
+    {
+      "term": "arm at side",
+      "translation": ""
+    },
+    {
+      "term": "arms at sides",
+      "translation": ""
+    },
+    {
+      "term": "airplane arms",
+      "translation": ""
+    },
+    {
+      "term": "crossed arms",
+      "translation": ""
+    },
+    {
+      "term": "flexing",
+      "translation": ""
+    },
+    {
+      "term": "praise the sun",
+      "translation": ""
+    },
+    {
+      "term": "reaching",
+      "translation": ""
+    },
+    {
+      "term": "shrugging",
+      "translation": ""
+    },
+    {
+      "term": "t-pose",
+      "translation": ""
+    },
+    {
+      "term": "a-pose",
+      "translation": ""
+    },
+    {
+      "term": "v arms",
+      "translation": ""
+    },
+    {
+      "term": "w arms",
+      "translation": ""
+    },
+    {
+      "term": "stroking own chin",
+      "translation": ""
+    },
+    {
+      "term": "outstretched hand",
+      "translation": ""
+    },
+    {
+      "term": "v",
+      "translation": ""
+    },
+    {
+      "term": "interlocked fingers",
+      "translation": ""
+    },
+    {
+      "term": "own hands clasped",
+      "translation": ""
+    },
+    {
+      "term": "own hands together",
+      "translation": ""
+    },
+    {
+      "term": "star hands",
+      "translation": ""
+    },
+    {
+      "term": "contrapposto",
+      "translation": ""
+    },
+    {
+      "term": "crossed ankles",
+      "translation": ""
+    },
+    {
+      "term": "folded",
+      "translation": ""
+    },
+    {
+      "term": "leg up",
+      "translation": ""
+    },
+    {
+      "term": "legs up",
+      "translation": ""
+    },
+    {
+      "term": "knees to chest",
+      "translation": ""
+    },
+    {
+      "term": "legs over head",
+      "translation": ""
+    },
+    {
+      "term": "leg lift",
+      "translation": ""
+    },
+    {
+      "term": "outstretched leg",
+      "translation": ""
+    },
+    {
+      "term": "split",
+      "translation": ""
+    },
+    {
+      "term": "pigeon pose",
+      "translation": ""
+    },
+    {
+      "term": "standing split",
+      "translation": ""
+    },
+    {
+      "term": "spread legs",
+      "translation": ""
+    },
+    {
+      "term": "watson cross",
+      "translation": ""
+    },
+    {
+      "term": "knees apart feet together",
+      "translation": ""
+    },
+    {
+      "term": "knees together feet apart",
+      "translation": ""
+    },
+    {
+      "term": "dorsiflexion",
+      "translation": ""
+    },
+    {
+      "term": "knee up",
+      "translation": ""
+    },
+    {
+      "term": "knees up",
+      "translation": ""
+    },
+    {
+      "term": "plantar flexion",
+      "translation": ""
+    },
+    {
+      "term": "tiptoes",
+      "translation": ""
+    },
+    {
+      "term": "pigeon-toed",
+      "translation": ""
+    },
+    {
+      "term": "back-to-back",
+      "translation": ""
+    },
+    {
+      "term": "belly-to-belly",
+      "translation": ""
+    },
+    {
+      "term": "ass-to-ass",
+      "translation": ""
+    },
+    {
+      "term": "cheek-to-breast",
+      "translation": ""
+    },
+    {
+      "term": "cheek-to-cheek",
+      "translation": ""
+    },
+    {
+      "term": "eye contact",
+      "translation": ""
+    },
+    {
+      "term": "face-to-face",
+      "translation": ""
+    },
+    {
+      "term": "forehead-to-forehead",
+      "translation": ""
+    },
+    {
+      "term": "head on chest",
+      "translation": ""
+    },
+    {
+      "term": "heads together",
+      "translation": ""
+    },
+    {
+      "term": "holding hands",
+      "translation": ""
+    },
+    {
+      "term": "leg lock",
+      "translation": ""
+    },
+    {
+      "term": "locked arms",
+      "translation": ""
+    },
+    {
+      "term": "over the knee",
+      "translation": ""
+    },
+    {
+      "term": "nipple-to-nipple",
+      "translation": ""
+    },
+    {
+      "term": "noses touching",
+      "translation": ""
+    },
+    {
+      "term": "shoulder-to-shoulder",
+      "translation": ""
+    },
+    {
+      "term": "tail lock",
+      "translation": ""
+    },
+    {
+      "term": "circle formation",
+      "translation": ""
+    },
+    {
+      "term": "group hug",
+      "translation": ""
+    },
+    {
+      "term": "3girls",
+      "translation": ""
+    },
+    {
+      "term": "hug",
+      "translation": ""
+    },
+    {
+      "term": "hugging object",
+      "translation": ""
+    },
+    {
+      "term": "hugging tail",
+      "translation": ""
+    },
+    {
+      "term": "wing hug",
+      "translation": ""
+    },
+    {
+      "term": "arm hug",
+      "translation": ""
+    },
+    {
+      "term": "hug from behind",
+      "translation": ""
+    },
+    {
+      "term": "waist hug",
+      "translation": ""
+    },
+    {
+      "term": "baby carry",
+      "translation": ""
+    },
+    {
+      "term": "carrying",
+      "translation": ""
+    },
+    {
+      "term": "carried breast rest",
+      "translation": ""
+    },
+    {
+      "term": "carrying over shoulder",
+      "translation": ""
+    },
+    {
+      "term": "carrying under arm",
+      "translation": ""
+    },
+    {
+      "term": "child carry",
+      "translation": ""
+    },
+    {
+      "term": "fireman's carry",
+      "translation": ""
+    },
+    {
+      "term": "piggyback",
+      "translation": ""
+    },
+    {
+      "term": "princess carry",
+      "translation": ""
+    },
+    {
+      "term": "shoulder carry",
+      "translation": ""
+    },
+    {
+      "term": "sitting on shoulder",
+      "translation": ""
+    },
+    {
+      "term": "standing on shoulder",
+      "translation": ""
+    },
+    {
+      "term": "animal pose",
+      "translation": ""
+    },
+    {
+      "term": "rabbit pose",
+      "translation": ""
+    },
+    {
+      "term": "horns pose",
+      "translation": ""
+    },
+    {
+      "term": "paw pose",
+      "translation": ""
+    },
+    {
+      "term": "claw pose",
+      "translation": ""
+    },
+    {
+      "term": "archer pose",
+      "translation": ""
+    },
+    {
+      "term": "bras d'honneur",
+      "translation": ""
+    },
+    {
+      "term": "body bridge",
+      "translation": ""
+    },
+    {
+      "term": "dojikko pose",
+      "translation": ""
+    },
+    {
+      "term": "ghost pose",
+      "translation": ""
+    },
+    {
+      "term": "inugami-ke no ichizoku pose",
+      "translation": ""
+    },
+    {
+      "term": "letter pose",
+      "translation": ""
+    },
+    {
+      "term": "saboten pose",
+      "translation": ""
+    },
+    {
+      "term": "ojou-sama pose",
+      "translation": ""
+    },
+    {
+      "term": "symmetrical hand pose",
+      "translation": ""
+    },
+    {
+      "term": "villain pose",
+      "translation": ""
+    },
+    {
+      "term": "zombie pose",
+      "translation": ""
+    },
+    {
+      "term": "gendou pose",
+      "translation": ""
+    },
+    {
+      "term": "dio brando's pose",
+      "translation": ""
+    },
+    {
+      "term": "jojo pose",
+      "translation": ""
+    },
+    {
+      "term": "giorno giovanna's pose",
+      "translation": ""
+    },
+    {
+      "term": "jonathan joestar's pose",
+      "translation": ""
+    },
+    {
+      "term": "kujo jotaro's pose",
+      "translation": ""
+    },
+    {
+      "term": "kongou pose",
+      "translation": ""
+    },
+    {
+      "term": "kujou karen pose",
+      "translation": ""
+    }
+  ],
+  "Sex Acts": [
+    {
+      "term": "presenting",
+      "translation": ""
+    },
+    {
+      "term": "footjob",
+      "translation": ""
+    },
+    {
+      "term": "double footjob",
+      "translation": ""
+    },
+    {
+      "term": "implied footjob",
+      "translation": ""
+    },
+    {
+      "term": "cooperative footjob",
+      "translation": ""
+    },
+    {
+      "term": "shoejob",
+      "translation": ""
+    },
+    {
+      "term": "feet",
+      "translation": ""
+    },
+    {
+      "term": "licking foot",
+      "translation": ""
+    },
+    {
+      "term": "foot worship",
+      "translation": ""
+    },
+    {
+      "term": "smelling feet",
+      "translation": ""
+    },
+    {
+      "term": "frottage",
+      "translation": ""
+    },
+    {
+      "term": "armpit sex",
+      "translation": ""
+    },
+    {
+      "term": "grinding",
+      "translation": ""
+    },
+    {
+      "term": "backjob",
+      "translation": ""
+    },
+    {
+      "term": "buttjob",
+      "translation": ""
+    },
+    {
+      "term": "cooperative grinding",
+      "translation": ""
+    },
+    {
+      "term": "kneepit sex",
+      "translation": ""
+    },
+    {
+      "term": "paizuri",
+      "translation": ""
+    },
+    {
+      "term": "autopaizuri",
+      "translation": ""
+    },
+    {
+      "term": "cooperative paizuri",
+      "translation": ""
+    },
+    {
+      "term": "handsfree paizuri",
+      "translation": ""
+    },
+    {
+      "term": "paizuri over clothes",
+      "translation": ""
+    },
+    {
+      "term": "paizuri on lap",
+      "translation": ""
+    },
+    {
+      "term": "naizun",
+      "translation": ""
+    },
+    {
+      "term": "s-a",
+      "translation": ""
+    },
+    {
+      "term": "paizuri under clothes",
+      "translation": ""
+    },
+    {
+      "term": "pecjob",
+      "translation": ""
+    },
+    {
+      "term": "perpendicular paizuri",
+      "translation": ""
+    },
+    {
+      "term": "stealth paizuri",
+      "translation": ""
+    },
+    {
+      "term": "straddling paizuri",
+      "translation": ""
+    },
+    {
+      "term": "thigh sex",
+      "translation": ""
+    },
+    {
+      "term": "glansjob",
+      "translation": ""
+    },
+    {
+      "term": "cloth glansjob",
+      "translation": ""
+    },
+    {
+      "term": "groping",
+      "translation": ""
+    },
+    {
+      "term": "ass grab",
+      "translation": ""
+    },
+    {
+      "term": "grabbing another's breast",
+      "translation": ""
+    },
+    {
+      "term": "guided breast grab",
+      "translation": ""
+    },
+    {
+      "term": "pectoral grab",
+      "translation": ""
+    },
+    {
+      "term": "guided pectoral grab",
+      "translation": ""
+    },
+    {
+      "term": "nipple tweak",
+      "translation": ""
+    },
+    {
+      "term": "crotch grab",
+      "translation": ""
+    },
+    {
+      "term": "guided crotch grab",
+      "translation": ""
+    },
+    {
+      "term": "grabbing own breast",
+      "translation": ""
+    },
+    {
+      "term": "torso grab",
+      "translation": ""
+    },
+    {
+      "term": "hairjob",
+      "translation": ""
+    },
+    {
+      "term": "handjob",
+      "translation": ""
+    },
+    {
+      "term": "caressing testicles",
+      "translation": ""
+    },
+    {
+      "term": "double handjob",
+      "translation": ""
+    },
+    {
+      "term": "cooperative handjob",
+      "translation": ""
+    },
+    {
+      "term": "nursing handjob",
+      "translation": ""
+    },
+    {
+      "term": "cuddling handjob",
+      "translation": ""
+    },
+    {
+      "term": "reverse nursing handjob",
+      "translation": ""
+    },
+    {
+      "term": "reach-around",
+      "translation": ""
+    },
+    {
+      "term": "two-handed handjob",
+      "translation": ""
+    },
+    {
+      "term": "masturbation",
+      "translation": ""
+    },
+    {
+      "term": "clothed masturbation",
+      "translation": ""
+    },
+    {
+      "term": "crotch rub",
+      "translation": ""
+    },
+    {
+      "term": "building sex",
+      "translation": ""
+    },
+    {
+      "term": "pillow sex",
+      "translation": ""
+    },
+    {
+      "term": "teddy bear sex",
+      "translation": ""
+    },
+    {
+      "term": "table humping",
+      "translation": ""
+    },
+    {
+      "term": "female masturbation",
+      "translation": ""
+    },
+    {
+      "term": "futanari masturbation",
+      "translation": ""
+    },
+    {
+      "term": "implied masturbation",
+      "translation": ""
+    },
+    {
+      "term": "male masturbation",
+      "translation": ""
+    },
+    {
+      "term": "mutual masturbation",
+      "translation": ""
+    },
+    {
+      "term": "stealth masturbation",
+      "translation": ""
+    },
+    {
+      "term": "tail masturbation",
+      "translation": ""
+    },
+    {
+      "term": "tail",
+      "translation": ""
+    },
+    {
+      "term": "tail insertion",
+      "translation": ""
+    },
+    {
+      "term": "tailjob",
+      "translation": ""
+    },
+    {
+      "term": "oral",
+      "translation": ""
+    },
+    {
+      "term": "anilingus",
+      "translation": ""
+    },
+    {
+      "term": "rusty trombone",
+      "translation": ""
+    },
+    {
+      "term": "breast sucking",
+      "translation": ""
+    },
+    {
+      "term": "cunnilingus",
+      "translation": ""
+    },
+    {
+      "term": "fellatio",
+      "translation": ""
+    },
+    {
+      "term": "autocunnilingus",
+      "translation": ""
+    },
+    {
+      "term": "implied cunnilingus",
+      "translation": ""
+    },
+    {
+      "term": "autofellatio",
+      "translation": ""
+    },
+    {
+      "term": "cum swap",
+      "translation": ""
+    },
+    {
+      "term": "deepthroat",
+      "translation": ""
+    },
+    {
+      "term": "implied fellatio",
+      "translation": ""
+    },
+    {
+      "term": "cooperative fellatio",
+      "translation": ""
+    },
+    {
+      "term": "irrumatio",
+      "translation": ""
+    },
+    {
+      "term": "multiple penis fellatio",
+      "translation": ""
+    },
+    {
+      "term": "hug and suck",
+      "translation": ""
+    },
+    {
+      "term": "licking testicle",
+      "translation": ""
+    },
+    {
+      "term": "sitting on face",
+      "translation": ""
+    },
+    {
+      "term": "testicle sucking",
+      "translation": ""
+    },
+    {
+      "term": "group sex",
+      "translation": ""
+    },
+    {
+      "term": "bisexual female",
+      "translation": ""
+    },
+    {
+      "term": "bisexual male",
+      "translation": ""
+    },
+    {
+      "term": "blue plate special",
+      "translation": ""
+    },
+    {
+      "term": "daisy chain",
+      "translation": ""
+    },
+    {
+      "term": "gangbang",
+      "translation": ""
+    },
+    {
+      "term": "double penetration",
+      "translation": ""
+    },
+    {
+      "term": "triple penetration",
+      "translation": ""
+    },
+    {
+      "term": "love train",
+      "translation": ""
+    },
+    {
+      "term": "cooperative breast smother",
+      "translation": ""
+    },
+    {
+      "term": "orgy",
+      "translation": ""
+    },
+    {
+      "term": "reverse spitroast",
+      "translation": ""
+    },
+    {
+      "term": "spitroast",
+      "translation": ""
+    },
+    {
+      "term": "teamwork",
+      "translation": ""
+    },
+    {
+      "term": "mmf threesome",
+      "translation": ""
+    },
+    {
+      "term": "threesome",
+      "translation": ""
+    },
+    {
+      "term": "ffm threesome",
+      "translation": ""
+    },
+    {
+      "term": "mmm threesome",
+      "translation": ""
+    },
+    {
+      "term": "fff threesome",
+      "translation": ""
+    },
+    {
+      "term": "animal insertion",
+      "translation": ""
+    },
+    {
+      "term": "cervical penetration",
+      "translation": ""
+    },
+    {
+      "term": "covered penetration",
+      "translation": ""
+    },
+    {
+      "term": "deep penetration",
+      "translation": ""
+    },
+    {
+      "term": "food insertion",
+      "translation": ""
+    },
+    {
+      "term": "inflation",
+      "translation": ""
+    },
+    {
+      "term": "cum inflation",
+      "translation": ""
+    },
+    {
+      "term": "big belly",
+      "translation": ""
+    },
+    {
+      "term": "enema",
+      "translation": ""
+    },
+    {
+      "term": "large insertion",
+      "translation": ""
+    },
+    {
+      "term": "stomach bulge",
+      "translation": ""
+    },
+    {
+      "term": "male penetrated",
+      "translation": ""
+    },
+    {
+      "term": "multiple insertions",
+      "translation": ""
+    },
+    {
+      "term": "nipple penetration",
+      "translation": ""
+    },
+    {
+      "term": "nosejob",
+      "translation": ""
+    },
+    {
+      "term": "object insertion",
+      "translation": ""
+    },
+    {
+      "term": "vaginal object insertion",
+      "translation": ""
+    },
+    {
+      "term": "anal object insertion",
+      "translation": ""
+    },
+    {
+      "term": "fingering",
+      "translation": ""
+    },
+    {
+      "term": "urethral insertion",
+      "translation": ""
+    },
+    {
+      "term": "sounding",
+      "translation": ""
+    },
+    {
+      "term": "anal fingering",
+      "translation": ""
+    },
+    {
+      "term": "prostate milking",
+      "translation": ""
+    },
+    {
+      "term": "fingering through clothes",
+      "translation": ""
+    },
+    {
+      "term": "fingering through panties",
+      "translation": ""
+    },
+    {
+      "term": "implied fingering",
+      "translation": ""
+    },
+    {
+      "term": "fisting",
+      "translation": ""
+    },
+    {
+      "term": "anal fisting",
+      "translation": ""
+    },
+    {
+      "term": "self fisting",
+      "translation": ""
+    },
+    {
+      "term": "sex",
+      "translation": ""
+    },
+    {
+      "term": "after sex",
+      "translation": ""
+    },
+    {
+      "term": "after anal",
+      "translation": ""
+    },
+    {
+      "term": "after buttjob",
+      "translation": ""
+    },
+    {
+      "term": "after fellatio",
+      "translation": ""
+    },
+    {
+      "term": "after fingering",
+      "translation": ""
+    },
+    {
+      "term": "after frottage",
+      "translation": ""
+    },
+    {
+      "term": "after insertion",
+      "translation": ""
+    },
+    {
+      "term": "after masturbation",
+      "translation": ""
+    },
+    {
+      "term": "after oral",
+      "translation": ""
+    },
+    {
+      "term": "after paizuri",
+      "translation": ""
+    },
+    {
+      "term": "after rape",
+      "translation": ""
+    },
+    {
+      "term": "after urethral",
+      "translation": ""
+    },
+    {
+      "term": "after vaginal",
+      "translation": ""
+    },
+    {
+      "term": "afterglow",
+      "translation": ""
+    },
+    {
+      "term": "clothed after sex",
+      "translation": ""
+    },
+    {
+      "term": "anal",
+      "translation": ""
+    },
+    {
+      "term": "double anal",
+      "translation": ""
+    },
+    {
+      "term": "imminent anal",
+      "translation": ""
+    },
+    {
+      "term": "triple anal",
+      "translation": ""
+    },
+    {
+      "term": "clothed sex",
+      "translation": ""
+    },
+    {
+      "term": "pegging",
+      "translation": ""
+    },
+    {
+      "term": "guided penetration",
+      "translation": ""
+    },
+    {
+      "term": "happy sex",
+      "translation": ""
+    },
+    {
+      "term": "imminent penetration",
+      "translation": ""
+    },
+    {
+      "term": "implied sex",
+      "translation": ""
+    },
+    {
+      "term": "navel sex",
+      "translation": ""
+    },
+    {
+      "term": "sex from behind",
+      "translation": ""
+    },
+    {
+      "term": "skull fucking",
+      "translation": ""
+    },
+    {
+      "term": "ear sex",
+      "translation": ""
+    },
+    {
+      "term": "penis in eye",
+      "translation": ""
+    },
+    {
+      "term": "tentacle sex",
+      "translation": ""
+    },
+    {
+      "term": "underwater sex",
+      "translation": ""
+    },
+    {
+      "term": "vaginal",
+      "translation": ""
+    },
+    {
+      "term": "double vaginal",
+      "translation": ""
+    },
+    {
+      "term": "imminent vaginal",
+      "translation": ""
+    },
+    {
+      "term": "triple vaginal",
+      "translation": ""
+    },
+    {
+      "term": "bara",
+      "translation": ""
+    },
+    {
+      "term": "implied yaoi",
+      "translation": ""
+    },
+    {
+      "term": "yaoi",
+      "translation": ""
+    },
+    {
+      "term": "bulges touching",
+      "translation": ""
+    },
+    {
+      "term": "penises touching",
+      "translation": ""
+    },
+    {
+      "term": "testicles touching",
+      "translation": ""
+    },
+    {
+      "term": "implied yuri",
+      "translation": ""
+    },
+    {
+      "term": "tribadism",
+      "translation": ""
+    },
+    {
+      "term": "yuri",
+      "translation": ""
+    },
+    {
+      "term": "leash pull",
+      "translation": ""
+    },
+    {
+      "term": "pet play",
+      "translation": ""
+    },
+    {
+      "term": "human dog",
+      "translation": ""
+    },
+    {
+      "term": "pony play",
+      "translation": ""
+    },
+    {
+      "term": "giant",
+      "translation": ""
+    },
+    {
+      "term": "giantess",
+      "translation": ""
+    },
+    {
+      "term": "miniboy",
+      "translation": ""
+    },
+    {
+      "term": "minigirl",
+      "translation": ""
+    },
+    {
+      "term": "muscular",
+      "translation": ""
+    },
+    {
+      "term": "muscular female",
+      "translation": ""
+    },
+    {
+      "term": "plump",
+      "translation": ""
+    },
+    {
+      "term": "curvy",
+      "translation": ""
+    },
+    {
+      "term": "fat",
+      "translation": ""
+    },
+    {
+      "term": "skinny",
+      "translation": ""
+    },
+    {
+      "term": "breast expansion",
+      "translation": ""
+    },
+    {
+      "term": "breastfeeding",
+      "translation": ""
+    },
+    {
+      "term": "breast smother",
+      "translation": ""
+    },
+    {
+      "term": "lactation",
+      "translation": ""
+    },
+    {
+      "term": "lactation through clothes",
+      "translation": ""
+    },
+    {
+      "term": "milking machine",
+      "translation": ""
+    },
+    {
+      "term": "breast pump",
+      "translation": ""
+    },
+    {
+      "term": "bdsm",
+      "translation": ""
+    },
+    {
+      "term": "asphyxiation",
+      "translation": ""
+    },
+    {
+      "term": "strangling",
+      "translation": ""
+    },
+    {
+      "term": "bondage",
+      "translation": ""
+    },
+    {
+      "term": "breast bondage",
+      "translation": ""
+    },
+    {
+      "term": "predicament bondage",
+      "translation": ""
+    },
+    {
+      "term": "self bondage",
+      "translation": ""
+    },
+    {
+      "term": "public bondage",
+      "translation": ""
+    },
+    {
+      "term": "shared bondage",
+      "translation": ""
+    },
+    {
+      "term": "shibari",
+      "translation": ""
+    },
+    {
+      "term": "shibari over clothes",
+      "translation": ""
+    },
+    {
+      "term": "shibari under clothes",
+      "translation": ""
+    },
+    {
+      "term": "spreader bar",
+      "translation": ""
+    },
+    {
+      "term": "suspension",
+      "translation": ""
+    },
+    {
+      "term": "femdom",
+      "translation": ""
+    },
+    {
+      "term": "assertive female",
+      "translation": ""
+    },
+    {
+      "term": "clothed female nude male",
+      "translation": ""
+    },
+    {
+      "term": "humiliation",
+      "translation": ""
+    },
+    {
+      "term": "tally",
+      "translation": ""
+    },
+    {
+      "term": "rope walking",
+      "translation": ""
+    },
+    {
+      "term": "slave",
+      "translation": ""
+    },
+    {
+      "term": "body writing",
+      "translation": ""
+    },
+    {
+      "term": "neglect play",
+      "translation": ""
+    },
+    {
+      "term": "public use",
+      "translation": ""
+    },
+    {
+      "term": "spanked",
+      "translation": ""
+    },
+    {
+      "term": "torture",
+      "translation": ""
+    },
+    {
+      "term": "clitoris torture",
+      "translation": ""
+    },
+    {
+      "term": "nipple torture",
+      "translation": ""
+    },
+    {
+      "term": "nipple clamps",
+      "translation": ""
+    },
+    {
+      "term": "nipple pull",
+      "translation": ""
+    },
+    {
+      "term": "ball busting",
+      "translation": ""
+    },
+    {
+      "term": "tickle torture",
+      "translation": ""
+    },
+    {
+      "term": "wax play",
+      "translation": ""
+    },
+    {
+      "term": "cum",
+      "translation": ""
+    },
+    {
+      "term": "bukkake",
+      "translation": ""
+    },
+    {
+      "term": "cumdump",
+      "translation": ""
+    },
+    {
+      "term": "cum bath",
+      "translation": ""
+    },
+    {
+      "term": "cumdrip",
+      "translation": ""
+    },
+    {
+      "term": "cum pool",
+      "translation": ""
+    },
+    {
+      "term": "cum in clothes",
+      "translation": ""
+    },
+    {
+      "term": "cum in ass",
+      "translation": ""
+    },
+    {
+      "term": "cum in cup",
+      "translation": ""
+    },
+    {
+      "term": "cum in mouth",
+      "translation": ""
+    },
+    {
+      "term": "cum in throat",
+      "translation": ""
+    },
+    {
+      "term": "cum on tongue",
+      "translation": ""
+    },
+    {
+      "term": "cum in urethra",
+      "translation": ""
+    },
+    {
+      "term": "cum on body",
+      "translation": ""
+    },
+    {
+      "term": "cum in pussy",
+      "translation": ""
+    },
+    {
+      "term": "cum on armpits",
+      "translation": ""
+    },
+    {
+      "term": "cum on ass",
+      "translation": ""
+    },
+    {
+      "term": "cum on back",
+      "translation": ""
+    },
+    {
+      "term": "cum on feet",
+      "translation": ""
+    },
+    {
+      "term": "cum on breasts",
+      "translation": ""
+    },
+    {
+      "term": "cum on chest",
+      "translation": ""
+    },
+    {
+      "term": "cum on fingers",
+      "translation": ""
+    },
+    {
+      "term": "cum on hair",
+      "translation": ""
+    },
+    {
+      "term": "cum on pectorals",
+      "translation": ""
+    },
+    {
+      "term": "cum on pussy",
+      "translation": ""
+    },
+    {
+      "term": "cum on stomach",
+      "translation": ""
+    },
+    {
+      "term": "cum in navel",
+      "translation": ""
+    },
+    {
+      "term": "cum on food",
+      "translation": ""
+    },
+    {
+      "term": "cum on clothes",
+      "translation": ""
+    },
+    {
+      "term": "cum on eyewear",
+      "translation": ""
+    },
+    {
+      "term": "ejaculation",
+      "translation": ""
+    },
+    {
+      "term": "ejaculating while penetrated",
+      "translation": ""
+    },
+    {
+      "term": "pull out",
+      "translation": ""
+    },
+    {
+      "term": "facial",
+      "translation": ""
+    },
+    {
+      "term": "autofacial",
+      "translation": ""
+    },
+    {
+      "term": "felching",
+      "translation": ""
+    },
+    {
+      "term": "gokkun",
+      "translation": ""
+    },
+    {
+      "term": "exhibitionism",
+      "translation": ""
+    },
+    {
+      "term": "public indecency",
+      "translation": ""
+    },
+    {
+      "term": "public nudity",
+      "translation": ""
+    },
+    {
+      "term": "zenra",
+      "translation": ""
+    },
+    {
+      "term": "public vibrator",
+      "translation": ""
+    },
+    {
+      "term": "stealth sex",
+      "translation": ""
+    },
+    {
+      "term": "cheating",
+      "translation": ""
+    },
+    {
+      "term": "cuckolding",
+      "translation": ""
+    },
+    {
+      "term": "caught",
+      "translation": ""
+    },
+    {
+      "term": "peeking",
+      "translation": ""
+    },
+    {
+      "term": "walk-in",
+      "translation": ""
+    },
+    {
+      "term": "netorare",
+      "translation": ""
+    },
+    {
+      "term": "prostitution",
+      "translation": ""
+    },
+    {
+      "term": "voyeurism",
+      "translation": ""
+    },
+    {
+      "term": "crossdressing",
+      "translation": ""
+    },
+    {
+      "term": "otoko no ko",
+      "translation": ""
+    },
+    {
+      "term": "reverse trap",
+      "translation": ""
+    },
+    {
+      "term": "futanari",
+      "translation": ""
+    },
+    {
+      "term": "implied futanari",
+      "translation": ""
+    },
+    {
+      "term": "full-package futanari",
+      "translation": ""
+    },
+    {
+      "term": "futa with female",
+      "translation": ""
+    },
+    {
+      "term": "futa with futa",
+      "translation": ""
+    },
+    {
+      "term": "futa with male",
+      "translation": ""
+    },
+    {
+      "term": "futa on male",
+      "translation": ""
+    },
+    {
+      "term": "male on futa",
+      "translation": ""
+    },
+    {
+      "term": "male futanari",
+      "translation": ""
+    },
+    {
+      "term": "no testicles",
+      "translation": ""
+    },
+    {
+      "term": "newhalf",
+      "translation": ""
+    },
+    {
+      "term": "futa with newhalf",
+      "translation": ""
+    },
+    {
+      "term": "newhalf with female",
+      "translation": ""
+    },
+    {
+      "term": "newhalf with male",
+      "translation": ""
+    },
+    {
+      "term": "newhalf with newhalf",
+      "translation": ""
+    },
+    {
+      "term": "assisted rape",
+      "translation": ""
+    },
+    {
+      "term": "femdom rape",
+      "translation": ""
+    },
+    {
+      "term": "imminent rape",
+      "translation": ""
+    },
+    {
+      "term": "incest",
+      "translation": ""
+    },
+    {
+      "term": "twincest",
+      "translation": ""
+    },
+    {
+      "term": "rape",
+      "translation": ""
+    },
+    {
+      "term": "molestation",
+      "translation": ""
+    },
+    {
+      "term": "chikan",
+      "translation": ""
+    },
+    {
+      "term": "compensated molestation",
+      "translation": ""
+    },
+    {
+      "term": "smother",
+      "translation": ""
+    },
+    {
+      "term": "cross-section",
+      "translation": ""
+    },
+    {
+      "term": "internal cumshot",
+      "translation": ""
+    },
+    {
+      "term": "futasub",
+      "translation": ""
+    },
+    {
+      "term": "power bottom",
+      "translation": ""
+    },
+    {
+      "term": "x-ray",
+      "translation": ""
+    },
+    {
+      "term": "anatomy",
+      "translation": ""
+    },
+    {
+      "term": "conjoined",
+      "translation": ""
+    },
+    {
+      "term": "extra arms",
+      "translation": ""
+    },
+    {
+      "term": "extra breasts",
+      "translation": ""
+    },
+    {
+      "term": "extra penises",
+      "translation": ""
+    },
+    {
+      "term": "bestiality",
+      "translation": ""
+    },
+    {
+      "term": "knotting",
+      "translation": ""
+    },
+    {
+      "term": "condom",
+      "translation": ""
+    },
+    {
+      "term": "used condom on penis",
+      "translation": ""
+    },
+    {
+      "term": "condom left inside",
+      "translation": ""
+    },
+    {
+      "term": "defloration",
+      "translation": ""
+    },
+    {
+      "term": "used condom",
+      "translation": ""
+    },
+    {
+      "term": "nantaimori",
+      "translation": ""
+    },
+    {
+      "term": "nyotaimori",
+      "translation": ""
+    },
+    {
+      "term": "wakamezake",
+      "translation": ""
+    },
+    {
+      "term": "female ejaculation",
+      "translation": ""
+    },
+    {
+      "term": "bust cup",
+      "translation": ""
+    },
+    {
+      "term": "pussyjuice",
+      "translation": ""
+    },
+    {
+      "term": "glory hole",
+      "translation": ""
+    },
+    {
+      "term": "glory wall",
+      "translation": ""
+    },
+    {
+      "term": "human furniture",
+      "translation": ""
+    },
+    {
+      "term": "forniphilia",
+      "translation": ""
+    },
+    {
+      "term": "human toilet",
+      "translation": ""
+    },
+    {
+      "term": "mating",
+      "translation": "animal"
+    },
+    {
+      "term": "mecha on girl",
+      "translation": ""
+    },
+    {
+      "term": "giving birth",
+      "translation": ""
+    },
+    {
+      "term": "pregnant",
+      "translation": ""
+    },
+    {
+      "term": "impregnation",
+      "translation": ""
+    },
+    {
+      "term": "unbirthing",
+      "translation": ""
+    },
+    {
+      "term": "selfcest",
+      "translation": ""
+    },
+    {
+      "term": "smelling",
+      "translation": ""
+    },
+    {
+      "term": "smelling clothes",
+      "translation": ""
+    },
+    {
+      "term": "smelling underwear",
+      "translation": ""
+    },
+    {
+      "term": "smelling pantyhose",
+      "translation": ""
+    },
+    {
+      "term": "tentacles",
+      "translation": ""
+    },
+    {
+      "term": "consensual tentacles",
+      "translation": ""
+    },
+    {
+      "term": "mechanical tentacles",
+      "translation": ""
+    },
+    {
+      "term": "penis tentacle",
+      "translation": ""
+    },
+    {
+      "term": "pussy tentacle",
+      "translation": ""
+    },
+    {
+      "term": "tentacle clothes",
+      "translation": ""
+    },
+    {
+      "term": "tentacle gagged",
+      "translation": ""
+    },
+    {
+      "term": "tentaclejob",
+      "translation": ""
+    },
+    {
+      "term": "tentacle pit",
+      "translation": ""
+    },
+    {
+      "term": "kankaku shadan",
+      "translation": ""
+    },
+    {
+      "term": "tentacles in thighhighs",
+      "translation": ""
+    },
+    {
+      "term": "tentacles under clothes",
+      "translation": ""
+    },
+    {
+      "term": "tentacles on male",
+      "translation": ""
+    },
+    {
+      "term": "too many tentacles",
+      "translation": ""
+    }
+  ],
+  "Sexual Attire": [
+    {
+      "term": "lingerie",
+      "translation": ""
+    },
+    {
+      "term": "babydoll",
+      "translation": ""
+    },
+    {
+      "term": "bodystocking",
+      "translation": ""
+    },
+    {
+      "term": "bra",
+      "translation": ""
+    },
+    {
+      "term": "bustier",
+      "translation": ""
+    },
+    {
+      "term": "camisole",
+      "translation": ""
+    },
+    {
+      "term": "chemise",
+      "translation": ""
+    },
+    {
+      "term": "corset",
+      "translation": ""
+    },
+    {
+      "term": "fishnets",
+      "translation": ""
+    },
+    {
+      "term": "garter straps",
+      "translation": ""
+    },
+    {
+      "term": "garter belt",
+      "translation": ""
+    },
+    {
+      "term": "lace",
+      "translation": ""
+    },
+    {
+      "term": "nightgown",
+      "translation": ""
+    },
+    {
+      "term": "panties",
+      "translation": ""
+    },
+    {
+      "term": "boyshort panties",
+      "translation": ""
+    },
+    {
+      "term": "strapless bottom",
+      "translation": ""
+    },
+    {
+      "term": "teddy",
+      "translation": ""
+    },
+    {
+      "term": "thighhighs",
+      "translation": ""
+    },
+    {
+      "term": "thong",
+      "translation": ""
+    },
+    {
+      "term": "g-string",
+      "translation": ""
+    },
+    {
+      "term": "pearl thong",
+      "translation": ""
+    },
+    {
+      "term": "male underwear",
+      "translation": ""
+    },
+    {
+      "term": "boxers",
+      "translation": ""
+    },
+    {
+      "term": "briefs",
+      "translation": ""
+    },
+    {
+      "term": "boxer briefs",
+      "translation": ""
+    },
+    {
+      "term": "bikini briefs",
+      "translation": ""
+    },
+    {
+      "term": "jockstrap",
+      "translation": ""
+    },
+    {
+      "term": "ball bra",
+      "translation": ""
+    },
+    {
+      "term": "penis sheath",
+      "translation": ""
+    },
+    {
+      "term": "blindfold",
+      "translation": ""
+    },
+    {
+      "term": "bodysuit",
+      "translation": ""
+    },
+    {
+      "term": "gimp suit",
+      "translation": ""
+    },
+    {
+      "term": "bondage outfit",
+      "translation": ""
+    },
+    {
+      "term": "latex",
+      "translation": ""
+    },
+    {
+      "term": "monoglove",
+      "translation": ""
+    },
+    {
+      "term": "crotchless",
+      "translation": ""
+    },
+    {
+      "term": "crotchless panties",
+      "translation": ""
+    },
+    {
+      "term": "crotchless pants",
+      "translation": ""
+    },
+    {
+      "term": "crotchless swimsuit",
+      "translation": ""
+    },
+    {
+      "term": "crotchless pantyhose",
+      "translation": ""
+    },
+    {
+      "term": "crotchless leotard",
+      "translation": ""
+    },
+    {
+      "term": "crotchless bloomers",
+      "translation": ""
+    },
+    {
+      "term": "crotchless buruma",
+      "translation": ""
+    },
+    {
+      "term": "ass cutout",
+      "translation": ""
+    },
+    {
+      "term": "assless swimsuit",
+      "translation": ""
+    },
+    {
+      "term": "backless panties",
+      "translation": ""
+    },
+    {
+      "term": "backless pants",
+      "translation": ""
+    },
+    {
+      "term": "breastless clothes",
+      "translation": ""
+    },
+    {
+      "term": "nippleless clothes",
+      "translation": ""
+    },
+    {
+      "term": "cupless bikini",
+      "translation": ""
+    },
+    {
+      "term": "cupless bra",
+      "translation": ""
+    },
+    {
+      "term": "revealing clothes",
+      "translation": ""
+    },
+    {
+      "term": "reverse outfit",
+      "translation": ""
+    },
+    {
+      "term": "reverse bikini armor",
+      "translation": ""
+    },
+    {
+      "term": "reverse bunnysuit",
+      "translation": ""
+    },
+    {
+      "term": "adhesive bra",
+      "translation": ""
+    },
+    {
+      "term": "belt bra",
+      "translation": ""
+    },
+    {
+      "term": "bow bra",
+      "translation": ""
+    },
+    {
+      "term": "bridgeless bra",
+      "translation": ""
+    },
+    {
+      "term": "frilled bra",
+      "translation": ""
+    },
+    {
+      "term": "shelf bra",
+      "translation": ""
+    },
+    {
+      "term": "sports bra",
+      "translation": ""
+    },
+    {
+      "term": "strapless bra",
+      "translation": ""
+    },
+    {
+      "term": "training bra",
+      "translation": ""
+    },
+    {
+      "term": "front-tie bra",
+      "translation": ""
+    },
+    {
+      "term": "front-hook bra",
+      "translation": ""
+    },
+    {
+      "term": "loose panties",
+      "translation": ""
+    },
+    {
+      "term": "micro panties",
+      "translation": ""
+    },
+    {
+      "term": "lowleg panties",
+      "translation": ""
+    },
+    {
+      "term": "highleg panties",
+      "translation": ""
+    },
+    {
+      "term": "high-waist panties",
+      "translation": ""
+    },
+    {
+      "term": "bow panties",
+      "translation": ""
+    },
+    {
+      "term": "crotch seam",
+      "translation": ""
+    },
+    {
+      "term": "frilled panties",
+      "translation": ""
+    },
+    {
+      "term": "string panties",
+      "translation": ""
+    }
+  ],
+  "Sexual Positions": [
+    {
+      "term": "69",
+      "translation": ""
+    },
+    {
+      "term": "doggystyle",
+      "translation": ""
+    },
+    {
+      "term": "bent over",
+      "translation": ""
+    },
+    {
+      "term": "prone bone",
+      "translation": ""
+    },
+    {
+      "term": "top-down bottom-up",
+      "translation": ""
+    },
+    {
+      "term": "spitroast",
+      "translation": ""
+    },
+    {
+      "term": "reverse spitroast",
+      "translation": ""
+    },
+    {
+      "term": "spooning",
+      "translation": ""
+    },
+    {
+      "term": "on side",
+      "translation": ""
+    },
+    {
+      "term": "girl on top",
+      "translation": ""
+    },
+    {
+      "term": "cowgirl position",
+      "translation": ""
+    },
+    {
+      "term": "amazon position",
+      "translation": ""
+    },
+    {
+      "term": "reverse cowgirl position",
+      "translation": ""
+    },
+    {
+      "term": "reverse upright straddle",
+      "translation": ""
+    },
+    {
+      "term": "upright straddle",
+      "translation": ""
+    },
+    {
+      "term": "folded",
+      "translation": ""
+    },
+    {
+      "term": "boy on top",
+      "translation": ""
+    },
+    {
+      "term": "anvil position",
+      "translation": ""
+    },
+    {
+      "term": "knees to chest",
+      "translation": ""
+    },
+    {
+      "term": "legs over head",
+      "translation": ""
+    },
+    {
+      "term": "legs up",
+      "translation": ""
+    },
+    {
+      "term": "suspended congress",
+      "translation": ""
+    },
+    {
+      "term": "mating press",
+      "translation": ""
+    },
+    {
+      "term": "missionary",
+      "translation": ""
+    },
+    {
+      "term": "reverse suspended congress",
+      "translation": ""
+    },
+    {
+      "term": "full nelson",
+      "translation": ""
+    },
+    {
+      "term": "piledriver",
+      "translation": ""
+    },
+    {
+      "term": "bound feet",
+      "translation": ""
+    },
+    {
+      "term": "bound arms",
+      "translation": ""
+    },
+    {
+      "term": "bound legs",
+      "translation": ""
+    },
+    {
+      "term": "bound calves",
+      "translation": ""
+    },
+    {
+      "term": "bound knees",
+      "translation": ""
+    },
+    {
+      "term": "bound thighs",
+      "translation": ""
+    },
+    {
+      "term": "bound torso",
+      "translation": ""
+    },
+    {
+      "term": "bound wrists",
+      "translation": ""
+    },
+    {
+      "term": "box tie",
+      "translation": ""
+    },
+    {
+      "term": "frogtie",
+      "translation": ""
+    },
+    {
+      "term": "hogtie",
+      "translation": ""
+    },
+    {
+      "term": "separated arms",
+      "translation": ""
+    },
+    {
+      "term": "separated legs",
+      "translation": ""
+    },
+    {
+      "term": "separated wrists",
+      "translation": ""
+    },
+    {
+      "term": "shrimp tie",
+      "translation": ""
+    },
+    {
+      "term": "strappado",
+      "translation": ""
+    },
+    {
+      "term": "suspension",
+      "translation": ""
+    },
+    {
+      "term": "cuffs-to-collar",
+      "translation": ""
+    }
+  ],
+  "Sleeves": [
+    {
+      "term": "aqua sleeves",
+      "translation": ""
+    },
+    {
+      "term": "black sleeves",
+      "translation": ""
+    },
+    {
+      "term": "blue sleeves",
+      "translation": ""
+    },
+    {
+      "term": "brown sleeves",
+      "translation": ""
+    },
+    {
+      "term": "green sleeves",
+      "translation": ""
+    },
+    {
+      "term": "grey sleeves",
+      "translation": ""
+    },
+    {
+      "term": "orange sleeves",
+      "translation": ""
+    },
+    {
+      "term": "pink sleeves",
+      "translation": ""
+    },
+    {
+      "term": "purple sleeves",
+      "translation": ""
+    },
+    {
+      "term": "red sleeves",
+      "translation": ""
+    },
+    {
+      "term": "white sleeves",
+      "translation": ""
+    },
+    {
+      "term": "yellow sleeves",
+      "translation": ""
+    },
+    {
+      "term": "checkered sleeves",
+      "translation": ""
+    },
+    {
+      "term": "plaid sleeves",
+      "translation": ""
+    },
+    {
+      "term": "polka dot sleeves",
+      "translation": ""
+    },
+    {
+      "term": "striped sleeves",
+      "translation": ""
+    },
+    {
+      "term": "short sleeves",
+      "translation": ""
+    },
+    {
+      "term": "long sleeves",
+      "translation": ""
+    },
+    {
+      "term": "sleeves past wrists",
+      "translation": ""
+    },
+    {
+      "term": "sleeves past fingers",
+      "translation": ""
+    },
+    {
+      "term": "sleeves past elbows",
+      "translation": ""
+    },
+    {
+      "term": "sleeves pushed up",
+      "translation": ""
+    },
+    {
+      "term": "sleeves rolled up",
+      "translation": ""
+    },
+    {
+      "term": "feather-trimmed sleeves",
+      "translation": ""
+    },
+    {
+      "term": "frilled sleeves",
+      "translation": ""
+    },
+    {
+      "term": "fur-trimmed sleeves",
+      "translation": ""
+    },
+    {
+      "term": "lace-trimmed sleeves",
+      "translation": ""
+    },
+    {
+      "term": "ribbon-trimmed sleeves",
+      "translation": ""
+    },
+    {
+      "term": "uneven sleeves",
+      "translation": ""
+    },
+    {
+      "term": "bell sleeves",
+      "translation": ""
+    },
+    {
+      "term": "detached sleeves",
+      "translation": ""
+    },
+    {
+      "term": "compression sleeve",
+      "translation": ""
+    },
+    {
+      "term": "elbow sleeve",
+      "translation": ""
+    },
+    {
+      "term": "single detached sleeve",
+      "translation": ""
+    },
+    {
+      "term": "lace-up sleeves",
+      "translation": ""
+    },
+    {
+      "term": "layered sleeves",
+      "translation": ""
+    },
+    {
+      "term": "mismatched sleeves",
+      "translation": ""
+    },
+    {
+      "term": "puff and slash sleeves",
+      "translation": ""
+    },
+    {
+      "term": "puffy sleeves",
+      "translation": ""
+    },
+    {
+      "term": "puffy detached sleeves",
+      "translation": ""
+    },
+    {
+      "term": "puffy long sleeves",
+      "translation": ""
+    },
+    {
+      "term": "puffy short sleeves",
+      "translation": ""
+    },
+    {
+      "term": "raglan sleeves",
+      "translation": ""
+    },
+    {
+      "term": "ribbed sleeves",
+      "translation": ""
+    },
+    {
+      "term": "see-through sleeves",
+      "translation": ""
+    },
+    {
+      "term": "wide sleeves",
+      "translation": ""
+    },
+    {
+      "term": "short over long sleeves",
+      "translation": ""
+    },
+    {
+      "term": "torn sleeves",
+      "translation": ""
+    },
+    {
+      "term": "sleeveless",
+      "translation": ""
+    },
+    {
+      "term": "sleeveless shirt",
+      "translation": ""
+    },
+    {
+      "term": "sleeveless dress",
+      "translation": ""
+    },
+    {
+      "term": "sleeveless duster",
+      "translation": ""
+    },
+    {
+      "term": "sleeveless hoodie",
+      "translation": ""
+    },
+    {
+      "term": "sleeveless jacket",
+      "translation": ""
+    },
+    {
+      "term": "sleeveless kimono",
+      "translation": ""
+    },
+    {
+      "term": "sleeveless turtleneck",
+      "translation": ""
+    },
+    {
+      "term": "nipple sleeves",
+      "translation": ""
+    },
+    {
+      "term": "sleeve cuffs",
+      "translation": ""
+    },
+    {
+      "term": "no detached sleeves",
+      "translation": ""
+    },
+    {
+      "term": "single sleeve",
+      "translation": ""
+    },
+    {
+      "term": "up sleeve",
+      "translation": ""
+    }
+  ],
+  "Styles and Techniques": [
+    {
+      "term": "abstract",
+      "translation": ""
+    },
+    {
+      "term": "art deco",
+      "translation": ""
+    },
+    {
+      "term": "art nouveau",
+      "translation": ""
+    },
+    {
+      "term": "fine art parody",
+      "translation": ""
+    },
+    {
+      "term": "flame painter",
+      "translation": ""
+    },
+    {
+      "term": "impressionism",
+      "translation": ""
+    },
+    {
+      "term": "ligne claire",
+      "translation": ""
+    },
+    {
+      "term": "nihonga",
+      "translation": ""
+    },
+    {
+      "term": "sumi-e",
+      "translation": ""
+    },
+    {
+      "term": "ukiyo-e",
+      "translation": ""
+    },
+    {
+      "term": "minimalism",
+      "translation": ""
+    },
+    {
+      "term": "realistic",
+      "translation": ""
+    },
+    {
+      "term": "photorealistic",
+      "translation": ""
+    },
+    {
+      "term": "sketch",
+      "translation": ""
+    },
+    {
+      "term": "style parody",
+      "translation": ""
+    },
+    {
+      "term": "list of style parodies",
+      "translation": ""
+    },
+    {
+      "term": "surreal",
+      "translation": ""
+    },
+    {
+      "term": "traditional media",
+      "translation": ""
+    },
+    {
+      "term": "*",
+      "translation": "medium"
+    },
+    {
+      "term": "faux traditional media",
+      "translation": ""
+    },
+    {
+      "term": "unfinished",
+      "translation": ""
+    },
+    {
+      "term": "backlighting",
+      "translation": ""
+    },
+    {
+      "term": "blending",
+      "translation": ""
+    },
+    {
+      "term": "bloom",
+      "translation": ""
+    },
+    {
+      "term": "bokeh",
+      "translation": ""
+    },
+    {
+      "term": "chiaroscuro",
+      "translation": ""
+    },
+    {
+      "term": "caustics",
+      "translation": ""
+    },
+    {
+      "term": "chromatic aberration",
+      "translation": ""
+    },
+    {
+      "term": "chromatic aberration abuse",
+      "translation": ""
+    },
+    {
+      "term": "diffraction spikes",
+      "translation": ""
+    },
+    {
+      "term": "depth of field",
+      "translation": ""
+    },
+    {
+      "term": "dithering",
+      "translation": ""
+    },
+    {
+      "term": "drop shadow",
+      "translation": ""
+    },
+    {
+      "term": "emphasis lines",
+      "translation": ""
+    },
+    {
+      "term": "film grain",
+      "translation": ""
+    },
+    {
+      "term": "foreshortening",
+      "translation": ""
+    },
+    {
+      "term": "gradient",
+      "translation": ""
+    },
+    {
+      "term": "halftone",
+      "translation": ""
+    },
+    {
+      "term": "double exposure",
+      "translation": ""
+    },
+    {
+      "term": "lens flare",
+      "translation": ""
+    },
+    {
+      "term": "lens flare abuse",
+      "translation": ""
+    },
+    {
+      "term": "motion blur",
+      "translation": ""
+    },
+    {
+      "term": "motion lines",
+      "translation": ""
+    },
+    {
+      "term": "multiple monochrome",
+      "translation": ""
+    },
+    {
+      "term": "optical illusion",
+      "translation": ""
+    },
+    {
+      "term": "anaglyph",
+      "translation": ""
+    },
+    {
+      "term": "exif thumbnail surprise",
+      "translation": ""
+    },
+    {
+      "term": "open in internet explorer",
+      "translation": ""
+    },
+    {
+      "term": "open in winamp",
+      "translation": ""
+    },
+    {
+      "term": "stereogram",
+      "translation": ""
+    },
+    {
+      "term": "scanlines",
+      "translation": ""
+    },
+    {
+      "term": "silhouette",
+      "translation": ""
+    },
+    {
+      "term": "speed lines",
+      "translation": ""
+    },
+    {
+      "term": "vignetting",
+      "translation": ""
+    }
+  ],
+  "Swimsuits and Bodysuits": [
+    {
+      "term": "bikesuit",
+      "translation": ""
+    },
+    {
+      "term": "racing suit",
+      "translation": ""
+    },
+    {
+      "term": "bodystocking",
+      "translation": ""
+    },
+    {
+      "term": "bodysuit",
+      "translation": ""
+    },
+    {
+      "term": "jumpsuit",
+      "translation": ""
+    },
+    {
+      "term": "short jumpsuit",
+      "translation": ""
+    },
+    {
+      "term": "leotard",
+      "translation": ""
+    },
+    {
+      "term": "see-through leotard",
+      "translation": ""
+    },
+    {
+      "term": "strapless leotard",
+      "translation": ""
+    },
+    {
+      "term": "playboy bunny",
+      "translation": ""
+    },
+    {
+      "term": "swimsuit",
+      "translation": ""
+    },
+    {
+      "term": "competition swimsuit",
+      "translation": ""
+    },
+    {
+      "term": "slingshot swimsuit",
+      "translation": ""
+    },
+    {
+      "term": "school swimsuit",
+      "translation": ""
+    },
+    {
+      "term": "bikini",
+      "translation": ""
+    },
+    {
+      "term": "leaf bikini",
+      "translation": ""
+    },
+    {
+      "term": "string bikini",
+      "translation": ""
+    },
+    {
+      "term": "micro bikini",
+      "translation": ""
+    },
+    {
+      "term": "side-tie bikini bottom",
+      "translation": ""
+    },
+    {
+      "term": "lowleg bikini",
+      "translation": ""
+    },
+    {
+      "term": "thong bikini",
+      "translation": ""
+    },
+    {
+      "term": "venus bikini",
+      "translation": ""
+    },
+    {
+      "term": "sports bikini",
+      "translation": ""
+    },
+    {
+      "term": "tankini",
+      "translation": ""
+    },
+    {
+      "term": "criss-cross halter",
+      "translation": ""
+    },
+    {
+      "term": "swim briefs",
+      "translation": ""
+    },
+    {
+      "term": "robe",
+      "translation": ""
+    },
+    {
+      "term": "bathrobe",
+      "translation": ""
+    },
+    {
+      "term": "open robe",
+      "translation": ""
+    },
+    {
+      "term": "kesa",
+      "translation": ""
+    },
+    {
+      "term": "romper",
+      "translation": ""
+    },
+    {
+      "term": "sarong",
+      "translation": ""
+    },
+    {
+      "term": "tunic",
+      "translation": ""
+    },
+    {
+      "term": "unitard",
+      "translation": ""
+    }
+  ],
+  "Tails": [
+    {
+      "term": "demon tail",
+      "translation": ""
+    },
+    {
+      "term": "dragon tail",
+      "translation": ""
+    },
+    {
+      "term": "ghost tail",
+      "translation": ""
+    },
+    {
+      "term": "tail",
+      "translation": ""
+    },
+    {
+      "term": "multiple tails",
+      "translation": ""
+    },
+    {
+      "term": "no tail",
+      "translation": ""
+    },
+    {
+      "term": "fiery tail",
+      "translation": ""
+    },
+    {
+      "term": "pikachu tail",
+      "translation": ""
+    },
+    {
+      "term": "snake head tail",
+      "translation": ""
+    },
+    {
+      "term": "bear tail",
+      "translation": ""
+    },
+    {
+      "term": "rabbit tail",
+      "translation": ""
+    },
+    {
+      "term": "cat tail",
+      "translation": ""
+    },
+    {
+      "term": "cow tail",
+      "translation": ""
+    },
+    {
+      "term": "deer tail",
+      "translation": ""
+    },
+    {
+      "term": "dog tail",
+      "translation": ""
+    },
+    {
+      "term": "ermine tail",
+      "translation": ""
+    },
+    {
+      "term": "fox tail",
+      "translation": ""
+    },
+    {
+      "term": "horse tail",
+      "translation": ""
+    },
+    {
+      "term": "leopard tail",
+      "translation": ""
+    },
+    {
+      "term": "lion tail",
+      "translation": ""
+    },
+    {
+      "term": "monkey tail",
+      "translation": ""
+    },
+    {
+      "term": "mouse tail",
+      "translation": ""
+    },
+    {
+      "term": "pig tail",
+      "translation": ""
+    },
+    {
+      "term": "sheep tail",
+      "translation": ""
+    },
+    {
+      "term": "wolf tail",
+      "translation": ""
+    },
+    {
+      "term": "squirrel tail",
+      "translation": ""
+    },
+    {
+      "term": "tiger tail",
+      "translation": ""
+    },
+    {
+      "term": "crocodilian tail",
+      "translation": ""
+    },
+    {
+      "term": "fish tail",
+      "translation": ""
+    },
+    {
+      "term": "scorpion tail",
+      "translation": ""
+    },
+    {
+      "term": "snake tail",
+      "translation": ""
+    },
+    {
+      "term": "tadpole tail",
+      "translation": ""
+    },
+    {
+      "term": "tail bell",
+      "translation": ""
+    },
+    {
+      "term": "tail bow",
+      "translation": ""
+    },
+    {
+      "term": "tail ornament",
+      "translation": ""
+    },
+    {
+      "term": "tail piercing",
+      "translation": ""
+    },
+    {
+      "term": "tail ribbon",
+      "translation": ""
+    },
+    {
+      "term": "tail ring",
+      "translation": ""
+    },
+    {
+      "term": "anal tail",
+      "translation": ""
+    },
+    {
+      "term": "butt plug tail",
+      "translation": ""
+    },
+    {
+      "term": "penis tail",
+      "translation": ""
+    },
+    {
+      "term": "tailjob",
+      "translation": ""
+    },
+    {
+      "term": "tail masturbation",
+      "translation": ""
+    },
+    {
+      "term": "tail rape",
+      "translation": ""
+    },
+    {
+      "term": "biting another's tail",
+      "translation": ""
+    },
+    {
+      "term": "mutual tail biting",
+      "translation": ""
+    },
+    {
+      "term": "biting own tail",
+      "translation": ""
+    },
+    {
+      "term": "fake tail",
+      "translation": ""
+    },
+    {
+      "term": "heart tail",
+      "translation": ""
+    },
+    {
+      "term": "heart tail duo",
+      "translation": ""
+    },
+    {
+      "term": "holding another's tail",
+      "translation": ""
+    },
+    {
+      "term": "holding own tail",
+      "translation": ""
+    },
+    {
+      "term": "holding with tail",
+      "translation": ""
+    },
+    {
+      "term": "intertwined tails",
+      "translation": ""
+    },
+    {
+      "term": "panties around tail",
+      "translation": ""
+    },
+    {
+      "term": "prehensile tail",
+      "translation": ""
+    },
+    {
+      "term": "spiked tail",
+      "translation": ""
+    },
+    {
+      "term": "stiff tail",
+      "translation": ""
+    },
+    {
+      "term": "tail between legs",
+      "translation": ""
+    },
+    {
+      "term": "tail censor",
+      "translation": ""
+    },
+    {
+      "term": "tail grab",
+      "translation": ""
+    },
+    {
+      "term": "tail fondling",
+      "translation": ""
+    },
+    {
+      "term": "tail pull",
+      "translation": ""
+    },
+    {
+      "term": "tail raised",
+      "translation": ""
+    },
+    {
+      "term": "tail stand",
+      "translation": ""
+    },
+    {
+      "term": "tail wagging",
+      "translation": ""
+    },
+    {
+      "term": "tail wrap",
+      "translation": ""
+    }
+  ],
+  "Topwear": [
+    {
+      "term": "blouse",
+      "translation": ""
+    },
+    {
+      "term": "frilled shirt",
+      "translation": ""
+    },
+    {
+      "term": "sleeveless shirt",
+      "translation": ""
+    },
+    {
+      "term": "bustier",
+      "translation": ""
+    },
+    {
+      "term": "crop top",
+      "translation": ""
+    },
+    {
+      "term": "camisole",
+      "translation": ""
+    },
+    {
+      "term": "cardigan",
+      "translation": ""
+    },
+    {
+      "term": "cardigan vest",
+      "translation": ""
+    },
+    {
+      "term": "coat",
+      "translation": ""
+    },
+    {
+      "term": "duffel coat",
+      "translation": ""
+    },
+    {
+      "term": "fur coat",
+      "translation": ""
+    },
+    {
+      "term": "fur-trimmed coat",
+      "translation": ""
+    },
+    {
+      "term": "long coat",
+      "translation": ""
+    },
+    {
+      "term": "overcoat",
+      "translation": ""
+    },
+    {
+      "term": "peacoat",
+      "translation": ""
+    },
+    {
+      "term": "raincoat",
+      "translation": ""
+    },
+    {
+      "term": "yellow raincoat",
+      "translation": ""
+    },
+    {
+      "term": "transparent raincoat",
+      "translation": ""
+    },
+    {
+      "term": "trenchcoat",
+      "translation": ""
+    },
+    {
+      "term": "winter coat",
+      "translation": ""
+    },
+    {
+      "term": "compression shirt",
+      "translation": ""
+    },
+    {
+      "term": "dress",
+      "translation": ""
+    },
+    {
+      "term": "halterneck",
+      "translation": ""
+    },
+    {
+      "term": "corset",
+      "translation": ""
+    },
+    {
+      "term": "criss-cross halter",
+      "translation": ""
+    },
+    {
+      "term": "hoodie",
+      "translation": ""
+    },
+    {
+      "term": "jacket",
+      "translation": ""
+    },
+    {
+      "term": "blazer",
+      "translation": ""
+    },
+    {
+      "term": "cropped jacket",
+      "translation": ""
+    },
+    {
+      "term": "letterman jacket",
+      "translation": ""
+    },
+    {
+      "term": "safari jacket",
+      "translation": ""
+    },
+    {
+      "term": "suit jacket",
+      "translation": ""
+    },
+    {
+      "term": "sukajan",
+      "translation": ""
+    },
+    {
+      "term": "poncho",
+      "translation": ""
+    },
+    {
+      "term": "raglan sleeves",
+      "translation": ""
+    },
+    {
+      "term": "sash",
+      "translation": ""
+    },
+    {
+      "term": "shoulder sash",
+      "translation": ""
+    },
+    {
+      "term": "stole",
+      "translation": ""
+    },
+    {
+      "term": "shirt",
+      "translation": ""
+    },
+    {
+      "term": "collared shirt",
+      "translation": ""
+    },
+    {
+      "term": "dress shirt",
+      "translation": ""
+    },
+    {
+      "term": "off-shoulder shirt",
+      "translation": ""
+    },
+    {
+      "term": "striped shirt",
+      "translation": ""
+    },
+    {
+      "term": "t-shirt",
+      "translation": ""
+    },
+    {
+      "term": "shrug",
+      "translation": ""
+    },
+    {
+      "term": "surcoat",
+      "translation": ""
+    },
+    {
+      "term": "sweater",
+      "translation": ""
+    },
+    {
+      "term": "turtleneck sweater",
+      "translation": ""
+    },
+    {
+      "term": "sleeveless turtleneck",
+      "translation": ""
+    },
+    {
+      "term": "sweater dress",
+      "translation": ""
+    },
+    {
+      "term": "ribbed sweater",
+      "translation": ""
+    },
+    {
+      "term": "aran sweater",
+      "translation": ""
+    },
+    {
+      "term": "tabard",
+      "translation": ""
+    },
+    {
+      "term": "tailcoat",
+      "translation": ""
+    },
+    {
+      "term": "tank top",
+      "translation": ""
+    },
+    {
+      "term": "stringer",
+      "translation": ""
+    },
+    {
+      "term": "tube top",
+      "translation": ""
+    },
+    {
+      "term": "bandeau",
+      "translation": ""
+    },
+    {
+      "term": "underbust",
+      "translation": ""
+    },
+    {
+      "term": "vest",
+      "translation": ""
+    },
+    {
+      "term": "sweater vest",
+      "translation": ""
+    },
+    {
+      "term": "waistcoat",
+      "translation": ""
+    },
+    {
+      "term": "sleeveless",
+      "translation": ""
+    }
+  ],
+  "Wings": [
+    {
+      "term": "wings",
+      "translation": ""
+    },
+    {
+      "term": "alternate wings",
+      "translation": ""
+    },
+    {
+      "term": "multiple wings",
+      "translation": ""
+    },
+    {
+      "term": "no wings",
+      "translation": ""
+    },
+    {
+      "term": "single wing",
+      "translation": ""
+    },
+    {
+      "term": "large wings",
+      "translation": ""
+    },
+    {
+      "term": "mini wings",
+      "translation": ""
+    },
+    {
+      "term": "angel wings",
+      "translation": ""
+    },
+    {
+      "term": "demon wings",
+      "translation": ""
+    },
+    {
+      "term": "dragon wings",
+      "translation": ""
+    },
+    {
+      "term": "fairy wings",
+      "translation": ""
+    },
+    {
+      "term": "insect wings",
+      "translation": ""
+    },
+    {
+      "term": "butterfly wings",
+      "translation": ""
+    },
+    {
+      "term": "dragonfly wings",
+      "translation": ""
+    },
+    {
+      "term": "ladybug wings",
+      "translation": ""
+    },
+    {
+      "term": "moth wings",
+      "translation": ""
+    },
+    {
+      "term": "crystal wings",
+      "translation": ""
+    },
+    {
+      "term": "energy wings",
+      "translation": ""
+    },
+    {
+      "term": "fiery wings",
+      "translation": ""
+    },
+    {
+      "term": "ice wings",
+      "translation": ""
+    },
+    {
+      "term": "light hawk wings",
+      "translation": ""
+    },
+    {
+      "term": "liquid wings",
+      "translation": ""
+    },
+    {
+      "term": "artificial wings",
+      "translation": ""
+    },
+    {
+      "term": "fake wings",
+      "translation": ""
+    },
+    {
+      "term": "bat wings",
+      "translation": ""
+    },
+    {
+      "term": "hair wings",
+      "translation": ""
+    },
+    {
+      "term": "mechanical wings",
+      "translation": ""
+    },
+    {
+      "term": "metal wings",
+      "translation": ""
+    },
+    {
+      "term": "plant wings",
+      "translation": ""
+    },
+    {
+      "term": "feathered wings",
+      "translation": ""
+    },
+    {
+      "term": "gradient wings",
+      "translation": ""
+    },
+    {
+      "term": "black wings",
+      "translation": ""
+    },
+    {
+      "term": "red wings",
+      "translation": ""
+    },
+    {
+      "term": "white wings",
+      "translation": ""
+    },
+    {
+      "term": "blue wings",
+      "translation": ""
+    },
+    {
+      "term": "green wings",
+      "translation": ""
+    },
+    {
+      "term": "brown wings",
+      "translation": ""
+    },
+    {
+      "term": "transparent wings",
+      "translation": ""
+    },
+    {
+      "term": "yellow wings",
+      "translation": ""
+    },
+    {
+      "term": "pink wings",
+      "translation": ""
+    },
+    {
+      "term": "rainbow wings",
+      "translation": ""
+    },
+    {
+      "term": "grey wings",
+      "translation": ""
+    },
+    {
+      "term": "ankle wings",
+      "translation": ""
+    },
+    {
+      "term": "detached wings",
+      "translation": ""
+    },
+    {
+      "term": "head wings",
+      "translation": ""
+    },
+    {
+      "term": "low wings",
+      "translation": ""
+    },
+    {
+      "term": "leg wings",
+      "translation": ""
+    },
+    {
+      "term": "wrist wings",
+      "translation": ""
+    },
+    {
+      "term": "wing ears",
+      "translation": ""
+    },
+    {
+      "term": "winged arms",
+      "translation": ""
+    },
+    {
+      "term": "winged bag",
+      "translation": ""
+    },
+    {
+      "term": "winged hat",
+      "translation": ""
+    },
+    {
+      "term": "winged helmet",
+      "translation": ""
+    },
+    {
+      "term": "winged footwear",
+      "translation": ""
+    },
+    {
+      "term": "asymmetrical wings",
+      "translation": ""
+    },
+    {
+      "term": "bloody wings",
+      "translation": ""
+    },
+    {
+      "term": "bowed wings",
+      "translation": ""
+    },
+    {
+      "term": "flapping",
+      "translation": ""
+    },
+    {
+      "term": "heart wings",
+      "translation": ""
+    },
+    {
+      "term": "glowing wings",
+      "translation": ""
+    },
+    {
+      "term": "torn wings",
+      "translation": ""
+    },
+    {
+      "term": "wing censor",
+      "translation": ""
+    },
+    {
+      "term": "grabbing another's wing",
+      "translation": ""
+    },
+    {
+      "term": "wing hug",
+      "translation": ""
+    },
+    {
+      "term": "wing umbrella",
+      "translation": ""
+    },
+    {
+      "term": "wingjob",
+      "translation": ""
+    },
+    {
+      "term": "wing ribbon",
+      "translation": ""
+    }
+  ],
+  "View Angle": [
+    {
+      "term": "from above",
+      "translation": ""
+    },
+    {
+      "term": "from behind",
+      "translation": ""
+    },
+    {
+      "term": "dutch angle",
+      "translation": ""
+    },
+    {
+      "term": "from below",
+      "translation": ""
+    },
+    {
+      "term": "from side",
+      "translation": ""
+    },
+    {
+      "term": "sideways",
+      "translation": ""
+    },
+    {
+      "term": "straight-on",
+      "translation": ""
+    },
+    {
+      "term": "upside-down",
+      "translation": ""
+    },
+    {
+      "term": "atmospheric perspective",
+      "translation": ""
+    },
+    {
+      "term": "fisheye",
+      "translation": ""
+    },
+    {
+      "term": "perspective",
+      "translation": ""
+    },
+    {
+      "term": "panorama",
+      "translation": ""
+    },
+    {
+      "term": "vanishing point",
+      "translation": ""
+    },
+    {
+      "term": "afterimage",
+      "translation": ""
+    },
+    {
+      "term": "border",
+      "translation": ""
+    },
+    {
+      "term": "framed",
+      "translation": ""
+    },
+    {
+      "term": "outside border",
+      "translation": ""
+    },
+    {
+      "term": "fading border",
+      "translation": ""
+    },
+    {
+      "term": "viewfinder",
+      "translation": ""
+    },
+    {
+      "term": "rounded corners",
+      "translation": ""
+    },
+    {
+      "term": "chart",
+      "translation": ""
+    },
+    {
+      "term": "bust chart",
+      "translation": ""
+    },
+    {
+      "term": "character chart",
+      "translation": ""
+    },
+    {
+      "term": "reference sheet",
+      "translation": ""
+    },
+    {
+      "term": "diagram",
+      "translation": ""
+    },
+    {
+      "term": "move chart",
+      "translation": ""
+    },
+    {
+      "term": "relationship graph",
+      "translation": ""
+    },
+    {
+      "term": "seating chart",
+      "translation": ""
+    },
+    {
+      "term": "stats",
+      "translation": ""
+    },
+    {
+      "term": "collage",
+      "translation": ""
+    },
+    {
+      "term": "out of frame",
+      "translation": ""
+    },
+    {
+      "term": "fake scrollbar",
+      "translation": ""
+    },
+    {
+      "term": "column lineup",
+      "translation": ""
+    },
+    {
+      "term": "head out of frame",
+      "translation": ""
+    },
+    {
+      "term": "out-of-frame censoring",
+      "translation": ""
+    },
+    {
+      "term": "from outside",
+      "translation": ""
+    },
+    {
+      "term": "glitch",
+      "translation": ""
+    },
+    {
+      "term": "isometric",
+      "translation": ""
+    },
+    {
+      "term": "letterboxed",
+      "translation": ""
+    },
+    {
+      "term": "pillarboxed",
+      "translation": ""
+    },
+    {
+      "term": "lineup",
+      "translation": ""
+    },
+    {
+      "term": "mosaic art",
+      "translation": ""
+    },
+    {
+      "term": "photomosaic",
+      "translation": ""
+    },
+    {
+      "term": "negative space",
+      "translation": ""
+    },
+    {
+      "term": "omake",
+      "translation": ""
+    },
+    {
+      "term": "partially underwater shot",
+      "translation": ""
+    },
+    {
+      "term": "pov",
+      "translation": ""
+    },
+    {
+      "term": "social media composition",
+      "translation": ""
+    },
+    {
+      "term": "symmetry",
+      "translation": ""
+    },
+    {
+      "term": "polar opposites",
+      "translation": ""
+    },
+    {
+      "term": "rotational symmetry",
+      "translation": ""
+    },
+    {
+      "term": "tachi-e",
+      "translation": ""
+    },
+    {
+      "term": "trim marks",
+      "translation": ""
+    },
+    {
+      "term": "zoom layer",
+      "translation": ""
+    },
+    {
+      "term": "projected inset",
+      "translation": ""
+    }
+  ],
+  "画师串": [
+    {
+      "name": "quasarcake",
+      "description": "线条细腻，有水彩厚涂的质感，光影强烈，艺术感强烈，很强的压迫感和张力"
+    },
+    {
+      "name": "mika pikazo",
+      "description": "超强色彩，强烈对比，强烈张力的艺术画师"
+    },
+    {
+      "name": "rei (sanbonzakura)",
+      "description": "画面非常有张力，镜头语言大胆，色彩明快"
+    },
+    {
+      "name": "agm",
+      "description": "肢体线条系的大师，对腿足刻画很生动，画面肉感有张力，色彩明快，画面略高饱和"
+    },
+    {
+      "name": "possummachin",
+      "description": "细腻可爱，简单线条，很萌的风格"
+    },
+    {
+      "name": "Kase daiki",
+      "description": "加濑大辉，细腻写实，对丝袜服装等贴身衣物表现很足，肉感十足。非常擅长肢体刻画和表达。腿控和丝袜领域大神"
+    },
+    {
+      "name": "ningen mame",
+      "description": "柔和可爱的色调，线条细腻扎实"
+    },
+    {
+      "name": "akita hika",
+      "description": "画面非常精细，色彩非常扎实，人物刻画很棒，基本功扎实的二次元画师"
+    },
+    {
+      "name": "nanaken nana",
+      "description": "画面光感强烈，肉感十足，擅长通过光影和细腻线条表达人物，人体大师"
+    },
+    {
+      "name": "ciloranko",
+      "description": "顶级的萌系色彩大师，画面极其精细，色彩充沛，元素多样"
+    },
+    {
+      "name": "tianliang duohe fangdongye",
+      "description": "知名萝莉大师，线条扎实，色彩过度非常朴实，简单就是萌！纯粹就是可爱！对手脚刻画也非常到位"
+    },
+    {
+      "name": "artist:ixy",
+      "description": "色彩简单明快，画面单纯的萌系画师，可以用于直观表达角色"
+    },
+    {
+      "name": "as109",
+      "description": "画面昏暗，厚涂明显，基本功扎实，低饱和下张力十足，擅长表达悲情主义画面"
+    },
+    {
+      "name": "By parororo",
+      "description": "欧美的灰调萌系画师，画风q弹，主要以黑调为主的色彩反差"
+    },
+    {
+      "name": "by anna dittmann",
+      "description": "欧美艺术插画界大师，擅长各种超现实艺术画和人物肖像"
+    },
+    {
+      "name": "by raikoart",
+      "description": "欧美3d拟真风格的插画大师"
+    },
+    {
+      "name": "Endou Okito",
+      "description": "超精细化线条，融合日式插画和欧美油画的超级大师，画面细节极其丰富"
+    },
+    {
+      "name": "Yoneyama Mai",
+      "description": "一代经典的二次元插画师，擅长大量风格，画面色彩基本功非常扎实"
+    },
+    {
+      "name": "Demizu Posuka",
+      "description": "擅长各种幻想画面的色彩大师，对色彩和画面运镜的运用已经出神入化"
+    },
+    {
+      "name": "sushineko8",
+      "description": "色彩低饱和，光影柔和，有一点水彩质感，线条温柔细腻治愈的插画师，让人内心平静"
+    },
+    {
+      "name": "fuzichoco",
+      "description": "高饱和，强烈色彩的华丽系插画师，画面极其惊艳，用色大胆"
+    },
+    {
+      "name": "momozu komamochi",
+      "description": "经典的萌系画师，线条细腻，色彩温润，非常可爱"
+    },
+    {
+      "name": "qys3",
+      "description": "画面酷炫的插画师，擅长各种经典角色的帅气打造，运动感强烈"
+    },
+    {
+      "name": "wlop",
+      "description": "厚涂系代表级别的插画大神，画面构图非常有魄力"
+    },
+    {
+      "name": "Mochirong",
+      "description": "画面很有肉感，让角色显得很q弹的画师"
+    },
+    {
+      "name": "cui_(jidanhaidaitang)",
+      "description": "光影细腻，色彩扎实的精致系插画师，光感控制到位"
+    },
+    {
+      "name": "kedama_milk",
+      "description": "日常系萌系画师，线条精细，角色表达明快"
+    },
+    {
+      "name": "miv4t",
+      "description": "低饱和，精细线条，顶级光影的插画大师，对画面把控已经出神入化"
+    },
+    {
+      "name": "Swav",
+      "description": "明日方舟的原画师，擅长精细线条，低饱和，强烈科技质感的末日风格，对角色结构和线条控制非常到位"
+    },
+    {
+      "name": "Blankk",
+      "description": "线条狂气，对比度强烈的画师，光影深厚，质感强烈"
+    },
+    {
+      "name": "betabeet",
+      "description": "细腻的线条和强对比度的光影，画面深沉有质感，光影极其深邃真实，尘埃和朦胧感把握极佳"
+    },
+    {
+      "name": "john kafka",
+      "description": "色彩失真，线条精细，压迫感很强的画风，非常震撼的画师"
+    },
+    {
+      "name": "nixeu",
+      "description": "3d化拟真风格插画师，画面非常惊艳"
+    },
+    {
+      "name": "Nyalia",
+      "description": "2.5d化的超精细画师，色彩非常扎实，可以配合`<lora:nyalia:0.8>`一起使用，效果更好"
+    },
+    {
+      "name": "Wanke",
+      "description": "低饱和强光影的线条画师，画面质感很棒"
+    },
+    {
+      "name": "pigeon666",
+      "description": "低光影，强色彩的艺术插画师，画面表现力十足"
+    },
+    {
+      "name": "konya karasue",
+      "description": "光影质感强烈，用色扎实的插画大师，对光源的把控出神入化"
+    },
+    {
+      "name": "Yuzuyomogi",
+      "description": "色彩均匀的可爱系插画师，线条扎实，画面表达纯粹"
+    },
+    {
+      "name": "matsunaga kouyou",
+      "description": "经典的GAL插画师，画面肉感，线条精细，角色肢体动作刻画非常熟练"
+    },
+    {
+      "name": "hiten",
+      "description": "韩系光影插画师，线条精细，色彩略低饱和"
+    },
+    {
+      "name": "artist:akizero1510",
+      "description": "超精细的插画大师，角色色调，光影控制都非常均一，非常精致"
+    },
+    {
+      "name": "artist:say hana",
+      "description": "艺术感强，用色大胆，低光影低饱和但仍旧色彩强烈的插画师，画面极其繁复"
+    },
+    {
+      "name": "artist:mafuyu_(chibi21)",
+      "description": "线条精细的可爱系画师"
+    },
+    {
+      "name": "artist:ke-ta",
+      "description": "色彩明快，高饱和的萌系画师，一种跃然画面的可爱感觉"
+    },
+    {
+      "name": "kuzuvine",
+      "description": "线条细腻，低饱和，粉彩质感，刻画精细的画师"
+    },
+    {
+      "name": "ask (askzy)",
+      "description": "画面扎实，精细，色彩光影都很棒的综合系画师"
+    },
+    {
+      "name": "gorgeous_mushroom",
+      "description": "色彩明快略有肉感的可爱系日常画师"
+    },
+    {
+      "name": "noyu_(noyu23386566)",
+      "description": "华丽精细可爱系的画师，色彩很棒"
+    },
+    {
+      "name": "artist:sy4",
+      "description": "线条很扎实的日系插画师，画面很明快干净"
+    },
+    {
+      "name": "artist:onineko",
+      "description": "线条精细，画面非常繁复的华丽系二次元画师，真的很惊艳"
+    },
+    {
+      "name": "artist:hito komoru",
+      "description": "灰调，精细线条，低饱和，复古，低色彩，擅长人物肖像刻画"
+    },
+    {
+      "name": "artist:reoen",
+      "description": "线条扎实，用色均衡，质感光影把控非常到位，画面简洁有魄力，精致系的二次元画师，风格从质朴到华丽皆有涉猎"
+    },
+    {
+      "name": "kaede (sayappa)",
+      "description": "强调肉感和肢体张力的日系插画师，对人物的肢体刻画非常饱满色气。尤其擅长御姐系和诱惑系"
+    },
+    {
+      "name": "Sheya",
+      "description": "精致华丽系画师，米哈游系的签约画师，线条精细，哥特系等极繁主义也很擅长"
+    },
+    {
+      "name": "Henreader",
+      "description": "萝莉系四天王级别的超级泰斗画师，擅长极其精细的萝莉刻画，非常强大"
+    },
+    {
+      "name": "dishwasher1910",
+      "description": "画面优雅精细的日系插画师，角色表现非常有质感，构图和光影使用非常娴熟"
+    },
+    {
+      "name": "terada tera",
+      "description": "简单线条，明快色块，超级可爱的独特画风，呆萌的感觉"
+    },
+    {
+      "name": "Hitomaru",
+      "description": "暗黑系，线条精致，质感强，萌中透着狂气的感觉，画过很多惊悚悬疑系的galgame"
+    },
+    {
+      "name": "alphonse (white datura)",
+      "description": "擅长半写实系的萝莉画师，光影和质感非常好，肢体动作刻画到位"
+    },
+    {
+      "name": "Liduke",
+      "description": "精细质感的画师，色彩略微低饱和，光影很扎实，有点伪3d的感觉，画风很棒"
+    },
+    {
+      "name": "Asanagi",
+      "description": "雌堕界的天花板大师之一，非常擅长刻画高傲冷酷狂气的女性角色，却恰当好处的在角色肢体里表现出一种潜在的母猪雌堕感觉。线条扎实，色彩明快，画面略带肉感而流畅"
+    },
+    {
+      "name": "Aki99",
+      "description": "非常3d化的画师，画出来的画面3d感强烈，但又不会过于写实，画风独特，适合配合别的画师一起使用"
+    },
+    {
+      "name": "U u zan",
+      "description": "冷色调系的画师，画面非常精细，光影也很惊艳，质感很强"
+    },
+    {
+      "name": "bee (deadflow)",
+      "description": "萝莉系的大师，非常擅长三无萝莉，肢体画的非常精细，线条扎实，冷色调，但是却透出格外的色气"
+    },
+    {
+      "name": "Toi8",
+      "description": "老牌插画大师，各方面都很均衡，画面精细，光影到位"
+    },
+    {
+      "name": "Fishine",
+      "description": "肉感系的画师，色彩明快，线条简约精致，对大腿和小腹等等的肉感表现很厉害"
+    },
+    {
+      "name": "tsukareta san",
+      "description": "这是一个线稿画师，因此可以作为线稿类需求时单独使用"
+    },
+    {
+      "name": "Stu dts",
+      "description": "超细腻线条，灰调，优秀的人体结构，新生代画师，非常惊艳的低饱和风格"
+    },
+    {
+      "name": "Kyokucho",
+      "description": "人称“厂长”，新生代色情漫画大师级人物，非常擅长表现角色的肢体动作，画面明快，色彩线条均衡，总是能在非常中正的画面里表现出淡淡的色情感，很强"
+    },
+    {
+      "name": "Ebimomo",
+      "description": "画风非常独特的画师，所有的肢体都会显得“很粗”，从而表现出一种呆萌的感觉，非常有意思的画师，适合单独使用。线条光影也很扎实"
+    },
+    {
+      "name": "Urushihara Satoshi",
+      "description": "漆原智志，日本画师界传奇一般的人物，线条领域巅峰泰斗之一，因为过于精细的画面而拖垮了好几个动画公司而闻名…如果作为Tag使用只需要单画师tag就能呈现极致精细的线条画面效果"
+    },
+    {
+      "name": "yt (wai-tei)",
+      "description": "色彩简单，线条流畅，有点像马克笔涂鸦一般的特殊画风，非常的可爱！"
+    },
+    {
+      "name": "kotorai",
+      "description": "q版涂鸦系画风，非常可爱流畅的色彩，线条同样很细腻"
+    }
+  ],
+  "画师串使用示例": [
+    {
+      "title": "一个精细、保留了艺术感，又不失可爱的画师串组合",
+      "combination": "artist:ningenmame, artist:ciloranko, artist:sho{{sho_lwlw}}, artist:tianliang_duohe_fangdongye, artist:as109"
+    },
+    {
+      "title": "一个暗黑欧美风但是又透着质感和可爱的画师串组合",
+      "combination": "By parororo, by anna dittmann, by raikoart"
+    },
+    {
+      "title": "一个拥有强烈画面张力和线条质感，给人压迫感的画师串组合",
+      "combination": "artist:betabeet, artist:john_kafka, artist:nixeu, artist:quasarcake"
+    },
+    {
+      "title": "一个超精细的彩绘铅笔组合画风串",
+      "combination": "halftone, (grayscale:0.9), (traditional_media:2), (colored_(pencil:0.8)_(medium):2)"
+    }
+  ]
+}

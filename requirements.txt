@@ -1,0 +1,6 @@
+discord.py
+aiohttp
+openai
+python-dotenv
+Pillow
+httpx

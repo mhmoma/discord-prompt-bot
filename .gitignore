@@ -1,0 +1,17 @@
+# 忽略环境变量文件，保护你的秘密！
+.env
+
+# 忽略Python的虚拟环境文件夹
+.venv/
+
+# 忽略Python的缓存文件
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 忽略日志文件
+*.log
+
+# 忽略Excel等办公文件
+*.xlsx

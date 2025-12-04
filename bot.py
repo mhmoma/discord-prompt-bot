@@ -255,9 +255,16 @@ async def comment_on_image_when_awakened(image_data: bytes, author_mention: str,
 ```
 """
                 response = await client_openai.chat.completions.create(model=MODEL_NAME, messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": [{"type": "image_url", "image_url": {"url": image_url}}]}], response_format={"type": "json_object"})
-                result_json = json.loads(response.choices[0].message.content)
-                analysis = result_json.get("analysis", "嘿嘿...本哈的CPU烧了，分析不过来...")
-                comment = result_json.get("comment", "啧啧...不可说，不可说...")
+                raw_content = response.choices[0].message.content
+                try:
+                    result_json = json.loads(raw_content)
+                    analysis = result_json.get("analysis", "嘿嘿...本哈的CPU烧了，分析不过来...")
+                    comment = result_json.get("comment", "啧啧...不可说，不可说...")
+                except json.JSONDecodeError:
+                    print(f"⚠️ NSFW 评论 JSON 解析失败，原始响应: {raw_content}")
+                    analysis = "❌ JSON 解析失败，API返回了非JSON内容。"
+                    comment = "本哈的脑子被门夹了，没能理解API的回复！"
+                
                 intro_message = f"（小哈的眼睛突然亮了起来，鬼鬼祟祟地左看右看）\n咳咳...{author_mention}，你发的这张图...很有“深度”嘛！让本哈来给你“鉴赏”一下！"
                 final_title = "**本哈的‘深度’剖析**"
                 final_comment_title = "**本哈的‘鉴赏’心得**"
@@ -287,9 +294,16 @@ async def comment_on_image_when_awakened(image_data: bytes, author_mention: str,
 ```
 """
                 response = await client_openai.chat.completions.create(model=MODEL_NAME, messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": [{"type": "image_url", "image_url": {"url": image_url}}]}], response_format={"type": "json_object"})
-                result_json = json.loads(response.choices[0].message.content)
-                analysis = result_json.get("analysis", "本哈的脑子被门夹了，分析不出来...")
-                comment = result_json.get("comment", "嗷呜...本哈词穷了！")
+                raw_content = response.choices[0].message.content
+                try:
+                    result_json = json.loads(raw_content)
+                    analysis = result_json.get("analysis", "本哈的脑子被门夹了，分析不出来...")
+                    comment = result_json.get("comment", "嗷呜...本哈词穷了！")
+                except json.JSONDecodeError:
+                    print(f"⚠️ 评论 JSON 解析失败，原始响应: {raw_content}")
+                    analysis = "❌ JSON 解析失败，API返回了非JSON内容。"
+                    comment = "本哈的脑子被门夹了，没能理解API的回复！"
+                
                 intro_message = f"来了来了！{author_mention}，让本哈给你说道说道！"
                 final_title = "**本哈的专业分析**"
                 final_comment_title = "**本哈的内心OS**"
@@ -349,9 +363,15 @@ async def analyze_image_with_openai(image_data: bytes, author_mention: str, chan
 ```
 """
                 response = await client_openai.chat.completions.create(model=MODEL_NAME, messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": [{"type": "image_url", "image_url": {"url": image_url}}]}], response_format={"type": "json_object"})
-                result_json = json.loads(response.choices[0].message.content)
-                final_prompt = result_json.get("prompt", "嘿嘿...灵感太多，卡住了...").replace('_', ' ')
-                intro_message = result_json.get("response_text", f"嘿嘿嘿...{author_mention}，你懂的！")
+                raw_content = response.choices[0].message.content
+                try:
+                    result_json = json.loads(raw_content)
+                    final_prompt = result_json.get("prompt", "嘿嘿...灵感太多，卡住了...").replace('_', ' ')
+                    intro_message = result_json.get("response_text", f"嘿嘿嘿...{author_mention}，你懂的！")
+                except json.JSONDecodeError:
+                    print(f"⚠️ NSFW 反推 JSON 解析失败，原始响应: {raw_content}")
+                    final_prompt = "JSON 解析失败，请重试或联系管理员。"
+                    intro_message = f"嗷呜！本哈的脑子被门夹了，没能理解API的回复！"
             else:
                 system_prompt = f"""
 你是一个专业的AI绘画提示词分析师，但你是一只名叫“小哈”的哈士奇。

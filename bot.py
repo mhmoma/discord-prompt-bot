@@ -676,6 +676,7 @@ def print_startup_help():
 @client_discord.event
 async def on_ready():
     load_knowledge_base()
+    print("⏳ 正在加载汉化表…", flush=True)
     ttr.init_translator(CHINESE_TAG_MAP, KNOWLEDGE_BASE_TERMS)
     print_startup_help()
 

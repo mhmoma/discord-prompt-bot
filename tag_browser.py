@@ -14,7 +14,6 @@ import tag_translate as ttr
 MAP_FILE = "danbooru_category_map.json"
 TAGS_PER_PAGE = min(int(os.getenv("DANBOORU_TAGS_PER_PAGE", "15")), 15)
 VIEW_TIMEOUT = int(os.getenv("DANBOORU_VIEW_TIMEOUT", "600"))
-V2_FLAGS = discord.MessageFlags(components_v2=True)
 
 _category_map = None
 _browser_sessions = {}
@@ -222,7 +221,7 @@ class ListPageButton(discord.ui.Button):
             self.parent_layout.openai_client,
             self.parent_layout.model_name,
         )
-        await interaction.message.edit(view=new_layout, flags=V2_FLAGS)
+        await interaction.message.edit(view=new_layout)
 
 
 class ListHomeButton(discord.ui.Button):
@@ -238,7 +237,7 @@ class ListHomeButton(discord.ui.Button):
             return
         set_session(self.user_id, {"layer": "home"})
         view = HomeView(self.user_id, self.openai_client, self.model_name)
-        await interaction.response.edit_message(embed=build_home_embed(), view=view, flags=discord.MessageFlags())
+        await interaction.response.edit_message(embed=build_home_embed(), view=view)
 
 
 class HomeView(discord.ui.View):
@@ -269,7 +268,7 @@ class CategorySelect(discord.ui.Select):
         category = next(c for c in data["categories"] if c["id"] == cat_id)
         set_session(self.home_view.user_id, {"layer": "sub", "category_id": cat_id})
         view = SubCategoryView(self.home_view.user_id, category, self.home_view.openai_client, self.home_view.model_name)
-        await interaction.response.edit_message(embed=build_sub_embed(category), view=view, flags=discord.MessageFlags())
+        await interaction.response.edit_message(embed=build_sub_embed(category), view=view)
 
 
 class SubCategoryView(discord.ui.View):
@@ -311,7 +310,7 @@ class SubCategoryView(discord.ui.View):
             "tags": tags,
         })
         layout = TagListLayout(self.user_id, sub, tags, page, self.openai_client, self.model_name)
-        await interaction.message.edit(embed=None, view=layout, flags=V2_FLAGS)
+        await interaction.message.edit(embed=None, view=layout)
 
 
 class SubCategorySelect(discord.ui.Select):
@@ -341,7 +340,7 @@ class HomeButton(discord.ui.Button):
             return
         set_session(self.user_id, {"layer": "home"})
         view = HomeView(self.user_id, self.openai_client, self.model_name)
-        await interaction.response.edit_message(embed=build_home_embed(), view=view, flags=discord.MessageFlags())
+        await interaction.response.edit_message(embed=build_home_embed(), view=view)
 
 
 async def open_browser(channel, user_id: int, openai_client=None, model_name=None):
@@ -388,4 +387,4 @@ async def open_category_text(channel, user_id: int, cat_label: str, sub_label: s
         "tags": tags,
     })
     layout = TagListLayout(user_id, child, tags, page_idx, openai_client, model_name)
-    await loading.edit(content=None, embed=None, view=layout, flags=V2_FLAGS)
+    await loading.edit(content=None, embed=None, view=layout)

@@ -1059,34 +1059,54 @@ async def _is_directed_at_bot(message, bot_user) -> bool:
         return True
     if bot_user.name and bot_user.name in content:
         return True
+    for alias in _bot_name_aliases(bot_user):
+        if alias != bot_user.name and alias in content:
+            return True
     ref = await _resolve_reference(message)
     if ref and getattr(ref, "author", None) and ref.author.id == bot_user.id:
         return True
     return False
 
 
-def _strip_bot_wake_text(text: str, bot_name: str) -> str:
-    """去掉 @小哈 / 小哈 等唤醒前缀，留下实际要说的事。"""
+def _bot_name_aliases(bot_user) -> list[str]:
+    names: list[str] = []
+    if not bot_user:
+        return names
+    for attr in ("name", "display_name", "global_name"):
+        v = getattr(bot_user, attr, None)
+        if v and str(v).strip():
+            names.append(str(v).strip())
+    # 去重（忽略大小写）
+    seen = set()
+    out = []
+    for n in names:
+        key = n.lower()
+        if key not in seen:
+            seen.add(key)
+            out.append(n)
+    return out
+
+
+def _strip_bot_wake_text(text: str, bot_user) -> str:
+    """去掉 @、各版本 bot 名字，留下实际要说的事。"""
     t = (text or "").strip()
     t = re.sub(r"<@!?\d+>", " ", t).strip()
-    if bot_name:
-        t = re.sub(rf"@?\s*{re.escape(bot_name)}\s*", " ", t, flags=re.IGNORECASE)
+    for name in _bot_name_aliases(bot_user):
+        t = re.sub(rf"@?\s*{re.escape(name)}\s*", " ", t, flags=re.IGNORECASE)
     t = re.sub(r"\s+", " ", t).strip(" ，,、")
     return t
 
 
-def _is_pure_wake_call(text: str, bot_name: str) -> bool:
+def _is_pure_wake_call(text: str, bot_user) -> bool:
     """只有呼叫、没有具体事项（在吗 / 小哈）。"""
-    intent = _strip_bot_wake_text(text, bot_name)
+    intent = _strip_bot_wake_text(text, bot_user)
     if not intent:
         return True
-    pure = {"在吗", "在不在", "在么", "哈喽", "hello", "hi", "嗨", "喂", "啊", "呀", "呢", "哦"}
+    pure = {"在吗", "在不在", "在么", "哈喽", "hello", "hi", "嗨", "喂", "啊", "呀", "呢", "哦", "小哈"}
     return intent.lower() in pure or len(intent) <= 2
 
 
-def _extract_art_generation_idea(text: str, bot_name: str) -> str | None:
-    """提取生图描述。支持「画 …」「画一个…」「生成…」等，不误伤「画风不错」类闲聊。"""
-    intent = _strip_bot_wake_text(text, bot_name)
+def _parse_art_idea_from_intent(intent: str) -> str | None:
     if not intent:
         return None
     if intent.startswith("画 "):
@@ -1105,6 +1125,24 @@ def _extract_art_generation_idea(text: str, bot_name: str) -> str | None:
         if intent.startswith(prefix):
             rest = intent[len(prefix):].strip(" ：:")
             return rest or None
+    return None
+
+
+def _extract_art_generation_idea(text: str, bot_user) -> str | None:
+    """提取生图描述。支持「画 …」「画一个…」「生成…」；兼容「无敌哈士奇 生成…」。"""
+    intent = _strip_bot_wake_text(text, bot_user)
+    if not intent:
+        return None
+    parsed = _parse_art_idea_from_intent(intent)
+    if parsed:
+        return parsed
+    # 名字没剥干净时，「无敌哈士奇 生成…」→ 从关键词处再切
+    for kw in ("生成", "画一个", "画个", "画张", "帮我画", "给我画", "画 "):
+        idx = intent.find(kw)
+        if idx >= 0:
+            parsed = _parse_art_idea_from_intent(intent[idx:])
+            if parsed:
+                return parsed
     return None
 
 
@@ -1247,12 +1285,13 @@ def _pick_corpus_fewshot(tone: str, count: int = 2) -> str:
 async def generate_smart_response(message, history, is_awakened, *, is_final_reply: bool = False):
     """微信式短回复；等完整生成后再一次性发送。"""
     try:
-        bot_name = client_discord.user.name
-        bot_id = client_discord.user.id if client_discord.user else None
+        bot_user = client_discord.user
+        bot_name = bot_user.name if bot_user else "小哈"
+        bot_id = bot_user.id if bot_user else None
         user_name = message.author.display_name
         user_text = message.clean_content or ""
-        user_intent = _strip_bot_wake_text(user_text, bot_name)
-        pure_wake = _is_pure_wake_call(user_text, bot_name)
+        user_intent = _strip_bot_wake_text(user_text, bot_user)
+        pure_wake = _is_pure_wake_call(user_text, bot_user)
         combined_text = _collect_chat_text(message, history)
         art_topic = _is_art_topic(combined_text)
         chat_tone = _detect_chat_tone(message, history)
@@ -1360,7 +1399,8 @@ async def on_message(message):
     content_lower = content.lower()
 
     # --- 1. High-Priority Command Handling ---
-    art_idea = _extract_art_generation_idea(message.clean_content or content, bot_name)
+    bot_user = client_discord.user
+    art_idea = _extract_art_generation_idea(message.clean_content or content, bot_user)
     if art_idea:
         if author_id in user_states:
             del user_states[author_id]
@@ -1530,6 +1570,14 @@ async def on_message(message):
 
         # 会话中只回应明确 @/喊名字/回复小哈 的消息
         if not directed_at_bot:
+            return
+
+        # 会话中若实际是生图/生成请求，走提示词（防止别名未识别时误进闲聊）
+        art_idea = _extract_art_generation_idea(message.clean_content or content, bot_user)
+        if art_idea:
+            if author_id in user_states:
+                del user_states[author_id]
+            await generate_art_prompt(art_idea, message.author.mention, message.channel)
             return
 
         try:

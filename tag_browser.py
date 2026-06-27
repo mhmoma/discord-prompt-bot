@@ -75,6 +75,24 @@ def build_home_embed() -> discord.Embed:
     return embed
 
 
+async def _edit_message_embed_view(message: discord.Message, embed: discord.Embed, view: discord.ui.View):
+    """Components V2 消息切回经典 Embed 模式（须显式清除 IS_COMPONENTS_V2）。"""
+    from discord.http import handle_message_parameters
+
+    message._state.prevent_view_updates_for(message.id)
+    flags = discord.MessageFlags._from_value(0)
+    with handle_message_parameters(
+        content=None,
+        embed=embed,
+        view=view,
+        flags=flags,
+        attachments=[],
+    ) as params:
+        await message._state.http.edit_message(message.channel.id, message.id, params=params)
+    if view and not view.is_finished() and view.is_dispatchable():
+        message._state.store_view(view, message.id)
+
+
 def build_sub_embed(category: dict) -> discord.Embed:
     lines = [f"{c['label']} → `{c['tag_group']}`" for c in category.get("children", [])]
     embed = discord.Embed(
@@ -237,7 +255,8 @@ class ListHomeButton(discord.ui.Button):
             return
         set_session(self.user_id, {"layer": "home"})
         view = HomeView(self.user_id, self.openai_client, self.model_name)
-        await interaction.response.edit_message(embed=build_home_embed(), view=view)
+        await interaction.response.defer()
+        await _edit_message_embed_view(interaction.message, build_home_embed(), view)
 
 
 class HomeView(discord.ui.View):

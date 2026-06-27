@@ -3,6 +3,7 @@ import asyncio
 import json
 import os
 import re
+from pathlib import Path
 
 import aiohttp
 from dotenv import load_dotenv
@@ -137,6 +138,11 @@ async def main():
             seen.add(cid)
 
     result = {"version": 3, "source": "danbooru wiki tag_groups", "categories": cat_list}
+    cn_file = Path(__file__).resolve().parent / "subcategory_cn_map.json"
+    if cn_file.exists():
+        from apply_subcategory_cn import apply_cn_map
+        cn_map = json.loads(cn_file.read_text(encoding="utf-8"))
+        apply_cn_map(result, cn_map)
     with open(OUT_FILE, "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
 

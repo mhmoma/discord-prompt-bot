@@ -31,6 +31,16 @@ def load_category_map():
     return _category_map
 
 
+def child_display_label(child: dict) -> str:
+    return (child.get("label_cn") or child.get("label") or "").strip()
+
+
+def child_matches_label(child: dict, label: str) -> bool:
+    label = label.strip()
+    keys = {child.get("id"), child.get("label"), child.get("label_cn"), child.get("tag_group")}
+    return label in {k for k in keys if k}
+
+
 def find_category(label: str):
     data = load_category_map()
     label = label.strip()
@@ -38,7 +48,7 @@ def find_category(label: str):
         if label in {cat["label"], cat["id"]}:
             return cat, None
         for child in cat.get("children", []):
-            if label in {child["label"], child["id"]}:
+            if child_matches_label(child, label):
                 return cat, child
     return None, None
 
@@ -49,7 +59,7 @@ def find_subcategory(cat_id: str, sub_label: str):
         if cat["id"] != cat_id:
             continue
         for child in cat.get("children", []):
-            if sub_label in {child["label"], child["id"]}:
+            if child_matches_label(child, sub_label):
                 return child
     return None
 
@@ -79,7 +89,7 @@ def build_home_embed() -> discord.Embed:
         ),
         color=0x5865F2,
     )
-    embed.set_footer(text="指令：D浏览 | 快捷：D类 画面与风格 Backgrounds")
+    embed.set_footer(text="指令：D浏览 | 快捷：D类 画面与风格 背景")
     return embed
 
 
@@ -106,7 +116,10 @@ def build_sub_embed(category: dict, sub_page: int = 0) -> discord.Embed:
     total_pages = max(1, math.ceil(len(children) / SUBCATS_PER_PAGE))
     start = sub_page * SUBCATS_PER_PAGE
     page_items = children[start:start + SUBCATS_PER_PAGE]
-    lines = [f"{c['label']} → `{c['tag_group']}`" for c in page_items]
+    lines = [
+        f"{child_display_label(c)} · `{c['tag_group']}`"
+        for c in page_items
+    ]
     embed = discord.Embed(
         title=f"{category.get('icon', '📁')} {category['label']} · 选子分类",
         description="\n".join(lines) if lines else "暂无子分类",
@@ -200,7 +213,7 @@ class TagListLayout(discord.ui.LayoutView):
         container = discord.ui.Container(accent_color=discord.Color(0xFEE75C))
 
         header = (
-            f"## 📂 {self.sub['label']}\n"
+            f"## 📂 {child_display_label(self.sub)}\n"
             f"`{self.sub['tag_group']}`\n"
             f"第 **{self.page + 1}/{self.total_pages}** 页 · 共 **{len(self.tags)}** 个 tag"
         )
@@ -326,7 +339,7 @@ class SubCategoryView(discord.ui.View):
         start = sub_page * SUBCATS_PER_PAGE
         page_children = children[start:start + SUBCATS_PER_PAGE]
         options = [
-            discord.SelectOption(label=c["label"][:100], value=c["id"])
+            discord.SelectOption(label=child_display_label(c)[:100], value=c["id"])
             for c in page_children
         ]
         self.add_item(SubCategorySelect(options, self))
@@ -356,7 +369,7 @@ class SubCategoryView(discord.ui.View):
             "category_id": self.category["id"],
             "sub_id": sub["id"],
             "tag_group": sub["tag_group"],
-            "sub_label": sub["label"],
+            "sub_label": child_display_label(sub),
             "page": page,
             "tags": tags,
         })
@@ -433,11 +446,11 @@ async def open_category_text(channel, user_id: int, cat_label: str, sub_label: s
     if not child:
         await channel.send(
             f"❌ 未找到子分类「{sub_label}」。大类 **{cat['label']}** 下可选："
-            + "、".join(c["label"] for c in cat.get("children", []))
+            + "、".join(child_display_label(c) for c in cat.get("children", [])[:30])
         )
         return
 
-    loading = await channel.send(f"⏳ 正在加载 **{child['label']}**…")
+    loading = await channel.send(f"⏳ 正在加载 **{child_display_label(child)}**…")
     try:
         async with aiohttp.ClientSession() as session:
             tags = await dapi.get_group_tags_sorted(session, child["tag_group"])
@@ -456,7 +469,7 @@ async def open_category_text(channel, user_id: int, cat_label: str, sub_label: s
         "category_id": cat["id"],
         "sub_id": child["id"],
         "tag_group": child["tag_group"],
-        "sub_label": child["label"],
+        "sub_label": child_display_label(child),
         "page": page_idx,
         "tags": tags,
     })

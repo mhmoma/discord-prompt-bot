@@ -8,7 +8,6 @@
 # 忽略备份
 *.bak
 tag_cn_cache.json
-danbooru_translation_ref.csv
 
 # 忽略Python的虚拟环境文件夹
 .venv/

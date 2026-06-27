@@ -1,19 +1,87 @@
 import json
 import os
-import re
+import urllib.request
 from typing import Dict, List, Optional
 
 TAG_CN_CACHE_FILE = os.getenv("TAG_CN_CACHE_FILE", "tag_cn_cache.json")
 TAG_TRANSLATE_AI = os.getenv("TAG_TRANSLATE_AI", "true").lower() == "true"
+BOORU_TAG_CSV_PATH = os.getenv("BOORU_TAG_CSV_PATH", "danbooru_translation_ref.csv")
+BOORU_TAG_CSV_URL = os.getenv(
+    "BOORU_TAG_CSV_URL",
+    "https://raw.githubusercontent.com/xhoxye/BooruTagCart/refs/heads/main/assets/danbooru_翻译参考文档.csv",
+)
 
 _cn_cache: Dict[str, str] = {}
 _reverse_cn_map: Dict[str, str] = {}
+_booru_cart_map: Dict[str, str] = {}
 _initialized = False
 
 
+def _normalize_key(tag_name: str) -> str:
+    return tag_name.strip().lower().replace("_", " ")
+
+
+def _store_booru_entry(en_tag: str, cn_text: str):
+    cn = cn_text.strip()
+    if not cn:
+        return
+    primary = cn.split("|")[0].strip()
+    if not primary:
+        return
+    key = _normalize_key(en_tag)
+    _booru_cart_map.setdefault(key, primary)
+    _booru_cart_map.setdefault(en_tag.strip().lower(), primary)
+
+
+def _download_csv(url: str, dest: str) -> bool:
+    try:
+        print(f"📥 正在下载 BooruTagCart 汉化参考表…")
+        req = urllib.request.Request(url, headers={"User-Agent": "xiaoha-bot/1.0"})
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            data = resp.read()
+        with open(dest, "wb") as f:
+            f.write(data)
+        print(f"✅ 已保存到 {dest}（{len(data) // 1024} KB）")
+        return True
+    except Exception as e:
+        print(f"⚠️ 下载汉化参考表失败: {e}")
+        return False
+
+
+def load_booru_cart_csv(path: Optional[str] = None) -> int:
+    """加载 BooruTagCart 的 danbooru 翻译参考 CSV。返回载入条数。"""
+    global _booru_cart_map
+    path = path or BOORU_TAG_CSV_PATH
+    if not os.path.exists(path) and BOORU_TAG_CSV_URL:
+        _download_csv(BOORU_TAG_CSV_URL, path)
+    if not os.path.exists(path):
+        return 0
+
+    count = 0
+    try:
+        with open(path, "r", encoding="utf-8-sig") as f:
+            for line in f:
+                line = line.strip()
+                if not line or line.startswith("#"):
+                    continue
+                parts = line.split(",", 2)
+                if len(parts) < 2:
+                    continue
+                en_tag, cn_text = parts[0].strip(), parts[1].strip()
+                if not en_tag or not cn_text:
+                    continue
+                _store_booru_entry(en_tag, cn_text)
+                count += 1
+    except Exception as e:
+        print(f"⚠️ 读取汉化参考表失败: {e}")
+        return 0
+    return count
+
+
 def init_translator(chinese_tag_map: dict, knowledge_base_terms: dict):
-    global _initialized, _reverse_cn_map
+    global _initialized, _reverse_cn_map, _booru_cart_map
     _reverse_cn_map = {}
+    _booru_cart_map = {}
     for cn_label, en_tags in (chinese_tag_map or {}).items():
         for tag in en_tags:
             key = tag.strip().lower()
@@ -25,6 +93,9 @@ def init_translator(chinese_tag_map: dict, knowledge_base_terms: dict):
             if trans:
                 _reverse_cn_map.setdefault(term_lower, trans)
     _load_cache_file()
+    loaded = load_booru_cart_csv()
+    if loaded:
+        print(f"📖 BooruTagCart 汉化参考表: {loaded} 条（内存索引 {len(_booru_cart_map)}）")
     _initialized = True
 
 
@@ -48,17 +119,17 @@ def _save_cache_file():
         print(f"⚠️ 无法写入 tag 汉化缓存: {e}")
 
 
-def _normalize_key(tag_name: str) -> str:
-    return tag_name.strip().lower().replace("_", " ")
-
-
 def lookup_cn(tag_name: str) -> Optional[str]:
     key = _normalize_key(tag_name)
     if key in _cn_cache:
         return _cn_cache[key]
+    if key in _booru_cart_map:
+        return _booru_cart_map[key]
     if key in _reverse_cn_map:
         return _reverse_cn_map[key]
     alt = key.replace(" ", "_")
+    if alt in _booru_cart_map:
+        return _booru_cart_map[alt]
     if alt in _reverse_cn_map:
         return _reverse_cn_map[alt]
     return None

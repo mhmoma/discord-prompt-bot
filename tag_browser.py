@@ -176,7 +176,7 @@ class TagListLayout(discord.ui.LayoutView):
         if copy_tags:
             container.add_item(discord.ui.TextDisplay(f"📋 本页复制\n```{copy_tags[:900]}```"))
 
-        container.add_item(discord.ui.Separator(divider=True, spacing=discord.SeparatorSpacing.small))
+        container.add_item(discord.ui.Separator(visible=True, spacing=discord.SeparatorSpacing.small))
 
         for idx, tag in enumerate(page_tags):
             num = self.page * TAGS_PER_PAGE + idx + 1

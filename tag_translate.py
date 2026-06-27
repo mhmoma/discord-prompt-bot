@@ -194,7 +194,9 @@ async def _ai_translate_batch(client, model_name: str, tag_names: List[str]) -> 
             temperature=0.2,
             response_format={"type": "json_object"},
         )
-        raw = resp.choices[0].message.content or "{}"
+        raw = (resp.choices[0].message.content or "").strip()
+        if not raw:
+            return {}
         data = json.loads(raw)
         if isinstance(data, dict) and "tags" in data and isinstance(data["tags"], dict):
             data = data["tags"]

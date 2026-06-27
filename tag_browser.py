@@ -103,7 +103,7 @@ def build_list_embed(sub: dict, tags: list[dict], page: int, total_pages: int) -
     return embed
 
 
-def build_detail_embed(tag: dict, wiki: str) -> discord.Embed:
+def build_detail_embed(tag: dict, wiki: str, preview_url: Optional[str] = None) -> discord.Embed:
     cat_id = tag.get("category", 0)
     cat_name = dapi.CATEGORY_NAMES.get(cat_id, str(cat_id))
     title = ttr.format_tag_title(tag["name"], tag.get("cn"))
@@ -113,7 +113,14 @@ def build_detail_embed(tag: dict, wiki: str) -> discord.Embed:
     if wiki:
         embed.add_field(name="Wiki 摘要", value=wiki[:900] or "—", inline=False)
     embed.add_field(name="英文 tag（复制）", value=f"```{tag['name']}```", inline=False)
-    embed.add_field(name="链接", value=f"[Danbooru 看图]({dapi.danbooru_post_url(tag['name'])}) · [Wiki]({dapi.danbooru_wiki_url(tag['name'])})", inline=False)
+    embed.add_field(
+        name="链接",
+        value=f"[Danbooru 看图]({dapi.danbooru_post_url(tag['name'])}) · [Wiki]({dapi.danbooru_wiki_url(tag['name'])})",
+        inline=False,
+    )
+    if preview_url:
+        embed.set_image(url=preview_url)
+        embed.set_footer(text="预览图来自 Danbooru 高分示例 · 点击链接查看原帖")
     return embed
 
 
@@ -253,20 +260,31 @@ class TagDetailSelect(discord.ui.Select):
         tag_name = self.values[0]
         tag = next(t for t in self.parent_view.tags if t["name"] == tag_name)
         await interaction.response.defer()
+        preview_url = None
+        post_url = dapi.danbooru_post_url(tag_name)
         try:
             async with aiohttp.ClientSession() as session:
                 wiki = await dapi.fetch_wiki_summary(session, tag_name)
+                sample = await dapi.fetch_sample_post(session, tag_name)
+                if sample:
+                    preview_url = sample.get("preview_url")
+                    if sample.get("post_url"):
+                        post_url = sample["post_url"]
         except Exception:
             wiki = ""
         if not tag.get("cn"):
             tag["cn"] = ttr.lookup_cn(tag_name)
-        view = TagDetailView(self.parent_view.user_id, self.parent_view.sub, tag, self.parent_view.tags, self.parent_view.page, self.parent_view.openai_client, self.parent_view.model_name)
-        embed = build_detail_embed(tag, wiki)
+        view = TagDetailView(
+            self.parent_view.user_id, self.parent_view.sub, tag, self.parent_view.tags,
+            self.parent_view.page, self.parent_view.openai_client, self.parent_view.model_name,
+            post_url=post_url,
+        )
+        embed = build_detail_embed(tag, wiki, preview_url)
         await interaction.message.edit(embed=embed, view=view)
 
 
 class TagDetailView(discord.ui.View):
-    def __init__(self, user_id: int, sub: dict, tag: dict, tags: list[dict], page: int, openai_client=None, model_name: str | None = None):
+    def __init__(self, user_id: int, sub: dict, tag: dict, tags: list[dict], page: int, openai_client=None, model_name=None, post_url: Optional[str] = None):
         super().__init__(timeout=VIEW_TIMEOUT)
         self.user_id = user_id
         self.sub = sub
@@ -275,6 +293,8 @@ class TagDetailView(discord.ui.View):
         self.page = page
         self.openai_client = openai_client
         self.model_name = model_name
+        if post_url:
+            self.add_item(discord.ui.Button(label="🔗 查看示例图", style=discord.ButtonStyle.link, url=post_url))
         self.add_item(BackToListButton(self))
         self.add_item(HomeButton(user_id, openai_client, model_name))
 

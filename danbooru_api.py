@@ -15,6 +15,7 @@ PROXY_URL = os.getenv("HTTP_PROXY") or os.getenv("HTTPS_PROXY")
 
 _group_cache = {}  # tag_group -> {"tags": [...], "fetched_at": float}
 _wiki_cache = {}   # tag_name -> {"body": str, "fetched_at": float}
+_post_preview_cache = {}  # tag_name -> {"data": dict, "fetched_at": float}
 
 CATEGORY_NAMES = {
     0: "general",
@@ -169,3 +170,34 @@ def danbooru_post_url(tag_name: str) -> str:
 
 def danbooru_wiki_url(tag_name: str) -> str:
     return f"{DANBOORU_BASE}/wiki_pages/{quote(tag_name.replace(' ', '_'))}"
+
+
+async def fetch_sample_post(session: aiohttp.ClientSession, tag_name: str) -> Optional[dict]:
+    """取该 tag 下一条代表性帖子，用于预览图。"""
+    cache_key = tag_name.lower()
+    cached = _cache_get(_post_preview_cache, cache_key)
+    if cached is not None:
+        return cached
+
+    params = {
+        "tags": tag_name.replace(" ", "_"),
+        "limit": 1,
+        "search[parent]": "false",
+        "search[order]": "score",
+    }
+    try:
+        posts = await _get_json(session, "/posts.json", params)
+        if not posts:
+            return None
+        post = posts[0]
+        info = {
+            "id": post.get("id"),
+            "preview_url": post.get("preview_file_url") or post.get("large_file_url") or post.get("file_url"),
+            "post_url": f"{DANBOORU_BASE}/posts/{post.get('id')}",
+        }
+        if info.get("preview_url"):
+            _cache_set(_post_preview_cache, cache_key, info)
+        return info
+    except Exception as e:
+        print(f"⚠️ 获取 tag 预览图失败 ({tag_name}): {e}")
+        return None

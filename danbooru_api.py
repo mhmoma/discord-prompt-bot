@@ -57,33 +57,34 @@ async def _get_json(session: aiohttp.ClientSession, path: str, params: dict | No
         return await resp.json()
 
 
-async def fetch_tag_group_members(session: aiohttp.ClientSession, tag_group: str) -> List[str]:
-    cached = _cache_get(_group_cache, tag_group)
+async def fetch_tag_group_members(session: aiohttp.ClientSession, wiki_slug: str) -> List[str]:
+    cached = _cache_get(_group_cache, wiki_slug)
     if cached is not None:
         return [t["name"] for t in cached]
 
     names = set()
-    page = 1
-    while page <= 20:
-        params = {
-            "search[antecedent_name]": tag_group,
-            "search[status]": "active",
-            "limit": 1000,
-            "page": page,
-        }
-        batch = await _get_json(session, "/tag_implications.json", params)
-        if not batch:
-            break
-        for row in batch:
-            name = (row.get("consequent_name") or row.get("name") or "").strip()
-            if name and not name.startswith("tag_group:"):
-                names.add(name)
-        if len(batch) < 1000:
-            break
-        page += 1
+    if wiki_slug.startswith("tag_group:"):
+        page = 1
+        while page <= 20:
+            params = {
+                "search[antecedent_name]": wiki_slug,
+                "search[status]": "active",
+                "limit": 1000,
+                "page": page,
+            }
+            batch = await _get_json(session, "/tag_implications.json", params)
+            if not batch:
+                break
+            for row in batch:
+                name = (row.get("consequent_name") or row.get("name") or "").strip()
+                if name and not name.startswith("tag_group:"):
+                    names.add(name)
+            if len(batch) < 1000:
+                break
+            page += 1
 
     if not names:
-        wiki_names = await _parse_wiki_tag_links(session, tag_group)
+        wiki_names = await _parse_wiki_tag_links(session, wiki_slug)
         names.update(wiki_names)
 
     tag_list = sorted(names)
@@ -92,14 +93,13 @@ async def fetch_tag_group_members(session: aiohttp.ClientSession, tag_group: str
 
     infos = await fetch_tags_info(session, tag_list)
     infos.sort(key=lambda x: x.get("post_count", 0), reverse=True)
-    _cache_set(_group_cache, tag_group, infos, field="tags")
+    _cache_set(_group_cache, wiki_slug, infos, field="tags")
     return [t["name"] for t in infos]
 
 
-async def _parse_wiki_tag_links(session: aiohttp.ClientSession, tag_group: str) -> set[str]:
-    slug = tag_group.replace("tag_group:", "tag_group:")
+async def _parse_wiki_tag_links(session: aiohttp.ClientSession, wiki_slug: str) -> set[str]:
     try:
-        data = await _get_json(session, f"/wiki_pages/{quote(slug, safe='')}.json")
+        data = await _get_json(session, f"/wiki_pages/{quote(wiki_slug, safe='')}.json")
     except Exception:
         return set()
     body = data.get("body") or ""

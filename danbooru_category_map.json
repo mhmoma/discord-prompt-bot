@@ -1,15 +1,114 @@
 {
-  "version": 2,
+  "version": 3,
+  "source": "danbooru wiki tag_groups",
   "categories": [
     {
-      "id": "pose",
-      "label": "姿势",
-      "icon": "🧍",
+      "id": "visual",
+      "label": "画面与风格",
+      "icon": "🎨",
       "children": [
-        { "id": "posture", "label": "日常姿势", "tag_group": "tag_group:posture" },
-        { "id": "gestures", "label": "手势动作", "tag_group": "tag_group:gestures" },
-        { "id": "sexual_positions", "label": "性姿势", "tag_group": "tag_group:sexual_positions" },
-        { "id": "simulated_sex_acts", "label": "模拟性行为", "tag_group": "tag_group:simulated_sex_acts" }
+        {
+          "id": "tag_group_artistic_license",
+          "label": "Artistic license",
+          "tag_group": "tag_group:artistic_license",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_image_composition",
+          "label": "Image composition",
+          "tag_group": "tag_group:image_composition",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_backgrounds",
+          "label": "Backgrounds",
+          "tag_group": "tag_group:backgrounds",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_censorship",
+          "label": "Censorship",
+          "tag_group": "tag_group:censorship",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_colors",
+          "label": "Colors",
+          "tag_group": "tag_group:colors",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_fine_art_parody",
+          "label": "Fine art parody",
+          "tag_group": "tag_group:fine_art_parody",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_character_count",
+          "label": "Character count",
+          "tag_group": "tag_group:character_count",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_focus_tags",
+          "label": "Focus tags",
+          "tag_group": "tag_group:focus_tags",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_lighting",
+          "label": "Lighting",
+          "tag_group": "tag_group:lighting",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_prints",
+          "label": "Prints",
+          "tag_group": "tag_group:prints",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "list_of_style_parodies",
+          "label": "style parodies",
+          "tag_group": "list_of_style_parodies",
+          "wiki_type": "list"
+        },
+        {
+          "id": "tag_group_visual_aesthetic",
+          "label": "Visual aesthetic",
+          "tag_group": "tag_group:visual_aesthetic",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_patterns",
+          "label": "Patterns",
+          "tag_group": "tag_group:patterns",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_symbols",
+          "label": "Symbols",
+          "tag_group": "tag_group:symbols",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_text",
+          "label": "Text",
+          "tag_group": "tag_group:text",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_japanese_dialects",
+          "label": "Japanese dialects",
+          "tag_group": "tag_group:japanese_dialects",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_year_tags",
+          "label": "Year tags",
+          "tag_group": "tag_group:year_tags",
+          "wiki_type": "tag_group"
+        }
       ]
     },
     {
@@ -17,34 +116,241 @@
       "label": "身体",
       "icon": "👤",
       "children": [
-        { "id": "hair", "label": "头发", "tag_group": "tag_group:hair" },
-        { "id": "eyes_tags", "label": "眼睛", "tag_group": "tag_group:eyes_tags" },
-        { "id": "face_tags", "label": "面部", "tag_group": "tag_group:face_tags" },
-        { "id": "breasts_tags", "label": "胸部", "tag_group": "tag_group:breasts_tags" },
-        { "id": "hands", "label": "手部", "tag_group": "tag_group:hands" },
-        { "id": "feet", "label": "脚部", "tag_group": "tag_group:feet" }
+        {
+          "id": "tag_group_body_parts",
+          "label": "Body parts",
+          "tag_group": "tag_group:body_parts",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_ass",
+          "label": "Ass",
+          "tag_group": "tag_group:ass",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_breasts_tags",
+          "label": "Breasts tags",
+          "tag_group": "tag_group:breasts_tags",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_face_tags",
+          "label": "Face tags",
+          "tag_group": "tag_group:face_tags",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_ears_tags",
+          "label": "Ears tags",
+          "tag_group": "tag_group:ears_tags",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_eyes_tags",
+          "label": "Eyes tags",
+          "tag_group": "tag_group:eyes_tags",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "eyebrows",
+          "label": "Eyebrows",
+          "tag_group": "eyebrows",
+          "wiki_type": "wiki"
+        },
+        {
+          "id": "nose",
+          "label": "Nose",
+          "tag_group": "nose",
+          "wiki_type": "wiki"
+        },
+        {
+          "id": "tag_group_hair",
+          "label": "Hair",
+          "tag_group": "tag_group:hair",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_hair_color",
+          "label": "Hair color",
+          "tag_group": "tag_group:hair_color",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_hair_styles",
+          "label": "Hair styles",
+          "tag_group": "tag_group:hair_styles",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_hands",
+          "label": "Hands",
+          "tag_group": "tag_group:hands",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_gestures",
+          "label": "Gestures",
+          "tag_group": "tag_group:gestures",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_feet",
+          "label": "Feet",
+          "tag_group": "tag_group:feet",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_neck_and_neckwear",
+          "label": "Neck and neckwear",
+          "tag_group": "tag_group:neck_and_neckwear",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "on",
+          "label": "on",
+          "tag_group": "on",
+          "wiki_type": "wiki"
+        },
+        {
+          "id": "tag_group_posture",
+          "label": "Posture",
+          "tag_group": "tag_group:posture",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_pussy",
+          "label": "Pussy",
+          "tag_group": "tag_group:pussy",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_shoulders",
+          "label": "Shoulders",
+          "tag_group": "tag_group:shoulders",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_skin_color",
+          "label": "Skin color",
+          "tag_group": "tag_group:skin_color",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_wings",
+          "label": "Wings",
+          "tag_group": "tag_group:wings",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "injury",
+          "label": "Injury",
+          "tag_group": "injury",
+          "wiki_type": "wiki"
+        }
       ]
     },
     {
       "id": "attire",
-      "label": "服装",
+      "label": "服装与配饰",
       "icon": "👗",
       "children": [
-        { "id": "attire", "label": "一般服装", "tag_group": "tag_group:attire" },
-        { "id": "legwear", "label": "裤袜鞋袜", "tag_group": "tag_group:legwear" },
-        { "id": "headwear", "label": "头饰", "tag_group": "tag_group:headwear" },
-        { "id": "accessories", "label": "配饰", "tag_group": "tag_group:accessories" },
-        { "id": "sexual_attire", "label": "情趣服装", "tag_group": "tag_group:sexual_attire" }
-      ]
-    },
-    {
-      "id": "scene",
-      "label": "场景构图",
-      "icon": "🌆",
-      "children": [
-        { "id": "backgrounds", "label": "背景", "tag_group": "tag_group:backgrounds" },
-        { "id": "image_composition", "label": "画面构图", "tag_group": "tag_group:image_composition" },
-        { "id": "focus_tags", "label": "焦点镜头", "tag_group": "tag_group:focus_tags" }
+        {
+          "id": "tag_group_accessories",
+          "label": "Accessories",
+          "tag_group": "tag_group:accessories",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_attire",
+          "label": "Attire",
+          "tag_group": "tag_group:attire",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_handwear",
+          "label": "Handwear",
+          "tag_group": "tag_group:handwear",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_headwear",
+          "label": "Headwear",
+          "tag_group": "tag_group:headwear",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_legwear",
+          "label": "Legwear",
+          "tag_group": "tag_group:legwear",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "mask",
+          "label": "Mask",
+          "tag_group": "mask",
+          "wiki_type": "wiki"
+        },
+        {
+          "id": "tag_group_neck_and_neckwear",
+          "label": "Neck and neckwear",
+          "tag_group": "tag_group:neck_and_neckwear",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_sexual_attire",
+          "label": "Sexual attire",
+          "tag_group": "tag_group:sexual_attire",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_sleeves",
+          "label": "Sleeves",
+          "tag_group": "tag_group:sleeves",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "swimsuit",
+          "label": "Swimsuit",
+          "tag_group": "swimsuit",
+          "wiki_type": "wiki"
+        },
+        {
+          "id": "tag_group_embellishment",
+          "label": "Embellishment",
+          "tag_group": "tag_group:embellishment",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_eyewear",
+          "label": "Eyewear",
+          "tag_group": "tag_group:eyewear",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_fashion_style",
+          "label": "Fashion style",
+          "tag_group": "tag_group:fashion_style",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_makeup",
+          "label": "Makeup",
+          "tag_group": "tag_group:makeup",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_covering",
+          "label": "Covering",
+          "tag_group": "tag_group:covering",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_nudity",
+          "label": "Nudity",
+          "tag_group": "tag_group:nudity",
+          "wiki_type": "tag_group"
+        }
       ]
     },
     {
@@ -52,8 +358,916 @@
       "label": "Sex",
       "icon": "🔞",
       "children": [
-        { "id": "sex_acts", "label": "性行为", "tag_group": "tag_group:sex_acts" },
-        { "id": "sex_objects", "label": "性相关道具", "tag_group": "tag_group:sex_objects" }
+        {
+          "id": "tag_group_sex_acts",
+          "label": "Sex acts",
+          "tag_group": "tag_group:sex_acts",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_simulated_sex_acts",
+          "label": "Simulated sex acts",
+          "tag_group": "tag_group:simulated_sex_acts",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_sexual_positions",
+          "label": "Sexual positions",
+          "tag_group": "tag_group:sexual_positions",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_bdsm_and_torture",
+          "label": "BDSM and torture",
+          "tag_group": "tag_group:bdsm_and_torture",
+          "wiki_type": "tag_group"
+        }
+      ]
+    },
+    {
+      "id": "objects",
+      "label": "物体",
+      "icon": "📦",
+      "children": [
+        {
+          "id": "computer",
+          "label": "Computer",
+          "tag_group": "computer",
+          "wiki_type": "wiki"
+        },
+        {
+          "id": "list_of_airplanes",
+          "label": "airplanes",
+          "tag_group": "list_of_airplanes",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_armor",
+          "label": "armor",
+          "tag_group": "list_of_armor",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_ground_vehicles",
+          "label": "ground vehicles",
+          "tag_group": "list_of_ground_vehicles",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_helicopters",
+          "label": "helicopters",
+          "tag_group": "list_of_helicopters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_pokemon_objects",
+          "label": "Pokemon objects",
+          "tag_group": "list_of_pokemon_objects",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_ships",
+          "label": "ships",
+          "tag_group": "list_of_ships",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_weapons",
+          "label": "weapons",
+          "tag_group": "list_of_weapons",
+          "wiki_type": "list"
+        },
+        {
+          "id": "tag_group_audio_tags",
+          "label": "Audio tags",
+          "tag_group": "tag_group:audio_tags",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_holding_tags",
+          "label": "Holding tags",
+          "tag_group": "tag_group:holding_tags",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_cards",
+          "label": "Cards",
+          "tag_group": "tag_group:cards",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "list_of_playing_card_faces",
+          "label": "playing card faces",
+          "tag_group": "list_of_playing_card_faces",
+          "wiki_type": "list"
+        },
+        {
+          "id": "tag_group_doors_and_gates",
+          "label": "Doors and Gates",
+          "tag_group": "tag_group:doors_and_gates",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_eyewear",
+          "label": "Eyewear",
+          "tag_group": "tag_group:eyewear",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_piercings",
+          "label": "Piercings",
+          "tag_group": "tag_group:piercings",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_sex_objects",
+          "label": "Sex objects",
+          "tag_group": "tag_group:sex_objects",
+          "wiki_type": "tag_group"
+        }
+      ]
+    },
+    {
+      "id": "creatures",
+      "label": "生物",
+      "icon": "🐾",
+      "children": [
+        {
+          "id": "list_of_animals",
+          "label": "animals",
+          "tag_group": "list_of_animals",
+          "wiki_type": "list"
+        },
+        {
+          "id": "tag_group_birds",
+          "label": "Birds",
+          "tag_group": "tag_group:birds",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_cats",
+          "label": "Cats",
+          "tag_group": "tag_group:cats",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_dogs",
+          "label": "Dogs",
+          "tag_group": "tag_group:dogs",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_legendary_creatures",
+          "label": "Legendary creatures",
+          "tag_group": "tag_group:legendary_creatures",
+          "wiki_type": "tag_group"
+        }
+      ]
+    },
+    {
+      "id": "plants",
+      "label": "植物",
+      "icon": "🌿",
+      "children": [
+        {
+          "id": "plant",
+          "label": "Plant",
+          "tag_group": "plant",
+          "wiki_type": "wiki"
+        },
+        {
+          "id": "tree",
+          "label": "Tree",
+          "tag_group": "tree",
+          "wiki_type": "wiki"
+        },
+        {
+          "id": "tag_group_flowers",
+          "label": "Flowers",
+          "tag_group": "tag_group:flowers",
+          "wiki_type": "tag_group"
+        }
+      ]
+    },
+    {
+      "id": "games",
+      "label": "游戏",
+      "icon": "🎮",
+      "children": [
+        {
+          "id": "list_of_game_activities",
+          "label": "game activities",
+          "tag_group": "list_of_game_activities",
+          "wiki_type": "list"
+        },
+        {
+          "id": "tag_group_board_games",
+          "label": "Board games",
+          "tag_group": "tag_group:board_games",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_sports",
+          "label": "Sports",
+          "tag_group": "tag_group:sports",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_video_game",
+          "label": "Video game",
+          "tag_group": "tag_group:video_game",
+          "wiki_type": "tag_group"
+        }
+      ]
+    },
+    {
+      "id": "real_world",
+      "label": "现实",
+      "icon": "🌍",
+      "children": [
+        {
+          "id": "tag_group_companies_and_brand_names",
+          "label": "Companies and brand names",
+          "tag_group": "tag_group:companies_and_brand_names",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_holidays_and_celebrations",
+          "label": "Holidays and celebrations",
+          "tag_group": "tag_group:holidays_and_celebrations",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_jobs",
+          "label": "Jobs",
+          "tag_group": "tag_group:jobs",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_locations",
+          "label": "Locations",
+          "tag_group": "tag_group:locations",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_people",
+          "label": "People",
+          "tag_group": "tag_group:people",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_real_world_locations",
+          "label": "Real world locations",
+          "tag_group": "tag_group:real_world_locations",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_history",
+          "label": "History",
+          "tag_group": "tag_group:history",
+          "wiki_type": "tag_group"
+        }
+      ]
+    },
+    {
+      "id": "more",
+      "label": "其他",
+      "icon": "📎",
+      "children": [
+        {
+          "id": "tag_group_dances",
+          "label": "Dances",
+          "tag_group": "tag_group:dances",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_family_relationships",
+          "label": "Family relationships",
+          "tag_group": "tag_group:family_relationships",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_food_tags",
+          "label": "Food tags",
+          "tag_group": "tag_group:food_tags",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_fire",
+          "label": "Fire",
+          "tag_group": "tag_group:fire",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_groups",
+          "label": "Groups",
+          "tag_group": "tag_group:groups",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_phrases",
+          "label": "Phrases",
+          "tag_group": "tag_group:phrases",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_subjective",
+          "label": "Subjective",
+          "tag_group": "tag_group:subjective",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_technology",
+          "label": "Technology",
+          "tag_group": "tag_group:technology",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_theme",
+          "label": "Theme",
+          "tag_group": "tag_group:theme",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_verbs_and_gerunds",
+          "label": "Verbs and Gerunds",
+          "tag_group": "tag_group:verbs_and_gerunds",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_water",
+          "label": "Water",
+          "tag_group": "tag_group:water",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_transgender",
+          "label": "Transgender",
+          "tag_group": "tag_group:transgender",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_gender_nonconformity",
+          "label": "Gender Nonconformity",
+          "tag_group": "tag_group:gender_nonconformity",
+          "wiki_type": "tag_group"
+        }
+      ]
+    },
+    {
+      "id": "game_genres",
+      "label": "游戏类型",
+      "icon": "🕹️",
+      "children": [
+        {
+          "id": "tag_group_fighting_games",
+          "label": "Fighting games",
+          "tag_group": "tag_group:fighting_games",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_platform_games",
+          "label": "Platform games",
+          "tag_group": "tag_group:platform_games",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_role_playing_games",
+          "label": "Role-playing games",
+          "tag_group": "tag_group:role-playing_games",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_shooter_games",
+          "label": "Shooter games",
+          "tag_group": "tag_group:shooter_games",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_visual_novel_games",
+          "label": "Visual novel games",
+          "tag_group": "tag_group:visual_novel_games",
+          "wiki_type": "tag_group"
+        }
+      ]
+    },
+    {
+      "id": "artists",
+      "label": "画师与项目",
+      "icon": "✏️",
+      "children": [
+        {
+          "id": "list_of_named_drawfags",
+          "label": "named drawfags",
+          "tag_group": "list_of_named_drawfags",
+          "wiki_type": "list"
+        },
+        {
+          "id": "tag_group_pixiv_projects",
+          "label": "Pixiv projects",
+          "tag_group": "tag_group:pixiv_projects",
+          "wiki_type": "tag_group"
+        }
+      ]
+    },
+    {
+      "id": "characters",
+      "label": "角色列表",
+      "icon": "👥",
+      "children": [
+        {
+          "id": "list_of_genderswapped_characters",
+          "label": "genderswapped characters",
+          "tag_group": "list_of_genderswapped_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_official_mascots",
+          "label": "official mascots",
+          "tag_group": "list_of_official_mascots",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_real_life_racehorses",
+          "label": "Real Life Racehorses",
+          "tag_group": "list_of_real_life_racehorses",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_ace_attorney_characters",
+          "label": "Ace Attorney characters",
+          "tag_group": "list_of_ace_attorney_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_arknights_characters",
+          "label": "Arknights characters",
+          "tag_group": "list_of_arknights_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_atelier_characters",
+          "label": "Atelier characters",
+          "tag_group": "list_of_atelier_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_azur_lane_characters",
+          "label": "Azur Lane characters",
+          "tag_group": "list_of_azur_lane_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_bemani_characters",
+          "label": "Bemani characters",
+          "tag_group": "list_of_bemani_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_bleach_characters",
+          "label": "Bleach characters",
+          "tag_group": "list_of_bleach_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_bokujou_monogatari_characters",
+          "label": "Bokujou Monogatari characters",
+          "tag_group": "list_of_bokujou_monogatari_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_brave_girl_ravens_characters",
+          "label": "Brave Girl Ravens characters",
+          "tag_group": "list_of_brave_girl_ravens_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_cardcaptor_sakura_characters",
+          "label": "Cardcaptor Sakura characters",
+          "tag_group": "list_of_cardcaptor_sakura_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_cookie_run_characters",
+          "label": "Cookie Run characters",
+          "tag_group": "list_of_cookie_run_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_danganronpa_characters",
+          "label": "Danganronpa characters",
+          "tag_group": "list_of_danganronpa_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_digimon",
+          "label": "Digimon",
+          "tag_group": "list_of_digimon",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_digimon_characters",
+          "label": "Digimon characters",
+          "tag_group": "list_of_digimon_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_dragon_ball_characters",
+          "label": "Dragon Ball characters",
+          "tag_group": "list_of_dragon_ball_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_dragon_quest_characters",
+          "label": "Dragon Quest characters",
+          "tag_group": "list_of_dragon_quest_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_fate_series_characters",
+          "label": "Fate Series characters",
+          "tag_group": "list_of_fate_series_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_final_fantasy_characters",
+          "label": "Final Fantasy characters",
+          "tag_group": "list_of_final_fantasy_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_fire_emblem_characters",
+          "label": "Fire Emblem characters",
+          "tag_group": "list_of_fire_emblem_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_flower_knight_girl_characters",
+          "label": "Flower Knight Girl characters",
+          "tag_group": "list_of_flower_knight_girl_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_gensou_suikoden_characters",
+          "label": "Gensou Suikoden characters",
+          "tag_group": "list_of_gensou_suikoden_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_girls_frontline_characters",
+          "label": "Girls' Frontline characters",
+          "tag_group": "list_of_girls'_frontline_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_girls_und_panzer_characters",
+          "label": "Girls und Panzer characters",
+          "tag_group": "list_of_girls_und_panzer_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_gundam_mechas",
+          "label": "Gundam mechas",
+          "tag_group": "list_of_gundam_mechas",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_hunter_x_hunter_characters",
+          "label": "Hunter x Hunter characters",
+          "tag_group": "list_of_hunter_x_hunter_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_identity_v_characters",
+          "label": "Identity V characters",
+          "tag_group": "list_of_identity_v_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_jojo_no_kimyou_na_bouken_characters",
+          "label": "JoJo no Kimyou na Bouken characters",
+          "tag_group": "list_of_jojo_no_kimyou_na_bouken_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_kamen_rider_characters",
+          "label": "Kamen Rider characters",
+          "tag_group": "list_of_kamen_rider_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_kantai_collection_characters",
+          "label": "Kantai Collection characters",
+          "tag_group": "list_of_kantai_collection_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_kingdom_hearts_characters",
+          "label": "Kingdom Hearts characters",
+          "tag_group": "list_of_kingdom_hearts_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_mahou_sensei_negima_characters",
+          "label": "Mahou Sensei Negima characters",
+          "tag_group": "list_of_mahou_sensei_negima_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_meitantei_conan_characters",
+          "label": "Meitantei Conan characters",
+          "tag_group": "list_of_meitantei_conan_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_minecraft_characters",
+          "label": "Minecraft characters",
+          "tag_group": "list_of_minecraft_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_minecraft_youtubers",
+          "label": "Minecraft YouTubers",
+          "tag_group": "list_of_minecraft_youtubers",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_my_little_pony_characters",
+          "label": "My Little Pony characters",
+          "tag_group": "list_of_my_little_pony_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_naruto_characters",
+          "label": "Naruto characters",
+          "tag_group": "list_of_naruto_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_nippon_ichi_characters",
+          "label": "Nippon Ichi characters",
+          "tag_group": "list_of_nippon_ichi_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_one_piece_characters",
+          "label": "One Piece characters",
+          "tag_group": "list_of_one_piece_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_oshiro_project_characters",
+          "label": "Oshiro Project characters",
+          "tag_group": "list_of_oshiro_project_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_pokemon_characters",
+          "label": "Pokemon characters",
+          "tag_group": "list_of_pokemon_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_elite_four_members",
+          "label": "Elite Four Members",
+          "tag_group": "list_of_elite_four_members",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_gym_leaders",
+          "label": "Gym Leaders",
+          "tag_group": "list_of_gym_leaders",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_families_of_pokemon_main_characters",
+          "label": "families of Pokemon main characters",
+          "tag_group": "list_of_families_of_pokemon_main_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_pokemon_ranger_characters",
+          "label": "Pokemon Ranger characters",
+          "tag_group": "list_of_pokemon_ranger_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_pokemon_trainer_classes",
+          "label": "Pokemon Trainer classes",
+          "tag_group": "list_of_pokemon_trainer_classes",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_pokemon",
+          "label": "Pokemon",
+          "tag_group": "list_of_pokemon",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_pretty_cure_characters",
+          "label": "Pretty Cure characters",
+          "tag_group": "list_of_pretty_cure_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_ragnarok_online_characters",
+          "label": "Ragnarok Online characters",
+          "tag_group": "list_of_ragnarok_online_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_reverse_1999_characters",
+          "label": "Reverse:1999 characters",
+          "tag_group": "list_of_reverse:1999_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_rosenkreuzstilette_characters",
+          "label": "Rosenkreuzstilette characters",
+          "tag_group": "list_of_rosenkreuzstilette_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_sailor_moon_characters",
+          "label": "Sailor Moon characters",
+          "tag_group": "list_of_sailor_moon_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_sanrio_characters",
+          "label": "Sanrio characters",
+          "tag_group": "list_of_sanrio_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_street_fighter_characters",
+          "label": "Street Fighter characters",
+          "tag_group": "list_of_street_fighter_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_super_smash_bros_characters",
+          "label": "Super Smash Bros. characters",
+          "tag_group": "list_of_super_smash_bros._characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_tales_of_characters",
+          "label": "Tales of... characters",
+          "tag_group": "list_of_tales_of..._characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_toaru_majutsu_no_index_characters",
+          "label": "Toaru Majutsu no Index characters",
+          "tag_group": "list_of_toaru_majutsu_no_index_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_touhou_characters",
+          "label": "Touhou characters",
+          "tag_group": "list_of_touhou_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_touken_ranbu_characters",
+          "label": "Touken Ranbu characters",
+          "tag_group": "list_of_touken_ranbu_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_ultra_series_characters",
+          "label": "Ultra Series characters",
+          "tag_group": "list_of_ultra_series_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_umamusume_characters",
+          "label": "Umamusume characters",
+          "tag_group": "list_of_umamusume_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_vocaloid_characters",
+          "label": "Vocaloid characters",
+          "tag_group": "list_of_vocaloid_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_world_witches_series_characters",
+          "label": "World Witches Series characters",
+          "tag_group": "list_of_world_witches_series_characters",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_yu_gi_oh_characters",
+          "label": "Yu-Gi-Oh! characters",
+          "tag_group": "list_of_yu-gi-oh!_characters",
+          "wiki_type": "list"
+        }
+      ]
+    },
+    {
+      "id": "copyright_more",
+      "label": "版权与其他",
+      "icon": "📋",
+      "children": [
+        {
+          "id": "list_of_disambiguation_pages",
+          "label": "disambiguation pages",
+          "tag_group": "list_of_disambiguation_pages",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_magazine_publications",
+          "label": "magazine publications",
+          "tag_group": "list_of_magazine_publications",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_pokemon_media",
+          "label": "Pokemon media",
+          "tag_group": "list_of_pokemon_media",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_special_moves",
+          "label": "special moves",
+          "tag_group": "list_of_special_moves",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_tagged_songs",
+          "label": "tagged songs",
+          "tag_group": "list_of_tagged_songs",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_uniforms",
+          "label": "uniforms",
+          "tag_group": "list_of_uniforms",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_vocaloid_derivatives",
+          "label": "Vocaloid derivatives",
+          "tag_group": "list_of_vocaloid_derivatives",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_vocaloid_songs",
+          "label": "Vocaloid songs",
+          "tag_group": "list_of_vocaloid_songs",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_vocal_synthesizers",
+          "label": "vocal synthesizers",
+          "tag_group": "list_of_vocal_synthesizers",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_vocal_synth_derivatives",
+          "label": "vocal synth derivatives",
+          "tag_group": "list_of_vocal_synth_derivatives",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_vocal_synth_songs",
+          "label": "vocal synth songs",
+          "tag_group": "list_of_vocal_synth_songs",
+          "wiki_type": "list"
+        },
+        {
+          "id": "list_of_deemo_songs",
+          "label": "DeeMo songs",
+          "tag_group": "list_of_deemo_songs",
+          "wiki_type": "list"
+        },
+        {
+          "id": "tag_group_metatags",
+          "label": "metatags",
+          "tag_group": "tag_group:metatags",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "tag_group_drawing_software",
+          "label": "Drawing Software",
+          "tag_group": "tag_group:drawing_software",
+          "wiki_type": "tag_group"
+        },
+        {
+          "id": "pool_groups",
+          "label": "Pool Groups",
+          "tag_group": "pool_groups",
+          "wiki_type": "wiki"
+        },
+        {
+          "id": "list_of_meta_wikis",
+          "label": "Meta-Wikis",
+          "tag_group": "list_of_meta-wikis",
+          "wiki_type": "list"
+        }
       ]
     }
   ]

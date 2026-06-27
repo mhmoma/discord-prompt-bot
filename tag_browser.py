@@ -15,6 +15,7 @@ MAP_FILE = "danbooru_category_map.json"
 # Components V2 单消息最多 40 个子组件；每行 Section+按钮约占 3，留页眉/复制/翻页后每页最多 10 条
 LAYOUT_MAX_TAGS = 10
 TAGS_PER_PAGE = min(int(os.getenv("DANBOORU_TAGS_PER_PAGE", "10")), LAYOUT_MAX_TAGS)
+SUBCATS_PER_PAGE = 25
 VIEW_TIMEOUT = int(os.getenv("DANBOORU_VIEW_TIMEOUT", "600"))
 
 _category_map = None
@@ -66,12 +67,19 @@ def set_session(user_id: int, data: dict):
 
 
 def build_home_embed() -> discord.Embed:
+    data = load_category_map()
+    n_cat = len(data.get("categories", []))
+    n_sub = sum(len(c.get("children", [])) for c in data.get("categories", []))
     embed = discord.Embed(
         title="📂 Danbooru 标签浏览器",
-        description="从下拉菜单选择**大类**，再选**子分类**，即可浏览 tag 列表。\n每行右侧点 **查看**，弹出详情与预览图。",
+        description=(
+            f"同步 [Danbooru tag groups](https://danbooru.donmai.us/wiki_pages/tag_groups) wiki。\n"
+            f"**{n_cat}** 个大类 · **{n_sub}** 个子分类/列表\n"
+            "选大类 → 子分类 → 点 **查看** 看详情与预览图。"
+        ),
         color=0x5865F2,
     )
-    embed.set_footer(text="指令：D浏览 | 快捷：D类 姿势 性姿势")
+    embed.set_footer(text="指令：D浏览 | 快捷：D类 画面与风格 Backgrounds")
     return embed
 
 
@@ -93,14 +101,20 @@ async def _edit_message_embed_view(message: discord.Message, embed: discord.Embe
         message._state.store_view(view, message.id)
 
 
-def build_sub_embed(category: dict) -> discord.Embed:
-    lines = [f"{c['label']} → `{c['tag_group']}`" for c in category.get("children", [])]
+def build_sub_embed(category: dict, sub_page: int = 0) -> discord.Embed:
+    children = category.get("children", [])
+    total_pages = max(1, math.ceil(len(children) / SUBCATS_PER_PAGE))
+    start = sub_page * SUBCATS_PER_PAGE
+    page_items = children[start:start + SUBCATS_PER_PAGE]
+    lines = [f"{c['label']} → `{c['tag_group']}`" for c in page_items]
     embed = discord.Embed(
         title=f"{category.get('icon', '📁')} {category['label']} · 选子分类",
         description="\n".join(lines) if lines else "暂无子分类",
         color=0x57F287,
     )
-    embed.set_footer(text="🏠 可点「主菜单」返回")
+    embed.set_footer(
+        text=f"第 {sub_page + 1}/{total_pages} 页 · 共 {len(children)} 项 · 🏠 主菜单返回"
+    )
     return embed
 
 
@@ -286,22 +300,40 @@ class CategorySelect(discord.ui.Select):
         data = load_category_map()
         category = next(c for c in data["categories"] if c["id"] == cat_id)
         set_session(self.home_view.user_id, {"layer": "sub", "category_id": cat_id})
-        view = SubCategoryView(self.home_view.user_id, category, self.home_view.openai_client, self.home_view.model_name)
-        await interaction.response.edit_message(embed=build_sub_embed(category), view=view)
+        view = SubCategoryView(
+            self.home_view.user_id, category, self.home_view.openai_client, self.home_view.model_name, sub_page=0
+        )
+        await interaction.response.edit_message(embed=build_sub_embed(category, 0), view=view)
 
 
 class SubCategoryView(discord.ui.View):
-    def __init__(self, user_id: int, category: dict, openai_client=None, model_name=None):
+    def __init__(
+        self,
+        user_id: int,
+        category: dict,
+        openai_client=None,
+        model_name=None,
+        sub_page: int = 0,
+    ):
         super().__init__(timeout=VIEW_TIMEOUT)
         self.user_id = user_id
         self.category = category
         self.openai_client = openai_client
         self.model_name = model_name
+        self.sub_page = sub_page
+        children = category.get("children", [])
+        self.sub_total_pages = max(1, math.ceil(len(children) / SUBCATS_PER_PAGE))
+        start = sub_page * SUBCATS_PER_PAGE
+        page_children = children[start:start + SUBCATS_PER_PAGE]
         options = [
             discord.SelectOption(label=c["label"][:100], value=c["id"])
-            for c in category.get("children", [])[:25]
+            for c in page_children
         ]
         self.add_item(SubCategorySelect(options, self))
+        if sub_page > 0:
+            self.add_item(SubCatPageButton("prev", self))
+        if sub_page < self.sub_total_pages - 1:
+            self.add_item(SubCatPageButton("next", self))
         self.add_item(HomeButton(user_id, openai_client, model_name))
 
     async def load_tag_list(self, interaction: discord.Interaction, sub: dict, page: int = 0):
@@ -344,6 +376,29 @@ class SubCategorySelect(discord.ui.Select):
         sub_id = self.values[0]
         sub = next(c for c in self.parent_view.category["children"] if c["id"] == sub_id)
         await self.parent_view.load_tag_list(interaction, sub, page=0)
+
+
+class SubCatPageButton(discord.ui.Button):
+    def __init__(self, direction: str, parent: SubCategoryView):
+        label = "◀ 上页分类" if direction == "prev" else "下页分类 ▶"
+        super().__init__(style=discord.ButtonStyle.secondary, label=label, row=3)
+        self.direction = direction
+        self.parent_view = parent
+
+    async def callback(self, interaction: discord.Interaction):
+        if interaction.user.id != self.parent_view.user_id:
+            await interaction.response.send_message("这是别人的面板哦～", ephemeral=True)
+            return
+        delta = -1 if self.direction == "prev" else 1
+        new_page = max(0, min(self.parent_view.sub_page + delta, self.parent_view.sub_total_pages - 1))
+        view = SubCategoryView(
+            self.parent_view.user_id,
+            self.parent_view.category,
+            self.parent_view.openai_client,
+            self.parent_view.model_name,
+            sub_page=new_page,
+        )
+        await interaction.response.edit_message(embed=build_sub_embed(self.parent_view.category, new_page), view=view)
 
 
 class HomeButton(discord.ui.Button):

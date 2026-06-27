@@ -650,6 +650,7 @@ def print_startup_help():
     print("\n🎨 【绘画提示词】")
     print("  反推              回复含图消息并发送，深度分析图片并生成专业 tag 提示词")
     print("  画 <想法>         根据文字描述构思详细绘画提示词")
+    print(f"  @{bot_name} 生成…  同上，@ 后直接说「生成/画…」即可")
     print("  例：画 赛博朋克雨夜街头")
 
     print("\n📚 【知识库 / Danbooru】")
@@ -1067,6 +1068,7 @@ async def _is_directed_at_bot(message, bot_user) -> bool:
 def _strip_bot_wake_text(text: str, bot_name: str) -> str:
     """去掉 @小哈 / 小哈 等唤醒前缀，留下实际要说的事。"""
     t = (text or "").strip()
+    t = re.sub(r"<@!?\d+>", " ", t).strip()
     if bot_name:
         t = re.sub(rf"@?\s*{re.escape(bot_name)}\s*", " ", t, flags=re.IGNORECASE)
     t = re.sub(r"\s+", " ", t).strip(" ，,、")
@@ -1080,6 +1082,26 @@ def _is_pure_wake_call(text: str, bot_name: str) -> bool:
         return True
     pure = {"在吗", "在不在", "在么", "哈喽", "hello", "hi", "嗨", "喂", "啊", "呀", "呢", "哦"}
     return intent.lower() in pure or len(intent) <= 2
+
+
+def _extract_art_generation_idea(text: str, bot_name: str) -> str | None:
+    """@/喊名字 + 生成/画… → 提取生图描述，走「画」指令流程。"""
+    intent = _strip_bot_wake_text(text, bot_name)
+    if not intent:
+        return None
+    if intent.startswith("画 "):
+        return intent[2:].strip() or None
+    if intent.startswith("画") and len(intent) > 1:
+        rest = intent[1:].strip(" ：:")
+        return rest or None
+    for prefix in (
+        "生成", "来一张", "帮我画", "帮我生成", "给我画", "给我生成",
+        "出一张", "做一张", "绘制", "整一张", "弄一张",
+    ):
+        if intent.startswith(prefix):
+            rest = intent[len(prefix):].strip(" ：:")
+            return rest or None
+    return None
 
 
 async def _should_skip_random_chime(message, bot_user) -> bool:
@@ -1457,6 +1479,15 @@ async def on_message(message):
 
     # --- 3. New Conversation / Mention Handling ---
     directed_at_bot = await _is_directed_at_bot(message, client_discord.user)
+
+    # @/喊名字 + 「生成/画…」→ 生图提示词（与「画 xxx」指令相同，不走闲聊）
+    if directed_at_bot:
+        art_idea = _extract_art_generation_idea(message.clean_content or content, bot_name)
+        if art_idea:
+            if author_id in user_states:
+                del user_states[author_id]
+            await generate_art_prompt(art_idea, message.author.mention, message.channel)
+            return
 
     # Initialize a new chat session if @/喊名字且尚未在会话中
     if directed_at_bot and user_states.get(author_id, {}).get('state') != 'chatting':

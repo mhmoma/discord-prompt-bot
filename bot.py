@@ -14,6 +14,9 @@ import re
 import time
 import asyncio
 
+import tag_browser
+import tag_translate as ttr
+
 # 加载环境变量
 load_dotenv()
 
@@ -85,6 +88,19 @@ NSFW_TEXT_KEYWORDS = {"nsfw", "裸", "胸", "屁股", "淫", "骚", "色", "逼"
 
 # --- 代理配置 ---
 PROXY_URL = os.getenv("HTTP_PROXY") or os.getenv("HTTPS_PROXY")
+
+# --- Danbooru API 配置（在线查词）---
+DANBOORU_API_BASE = os.getenv("DANBOORU_API_BASE", "https://danbooru.donmai.us").rstrip("/")
+DANBOORU_API_USER = os.getenv("DANBOORU_API_USER", "").strip()
+DANBOORU_API_KEY = os.getenv("DANBOORU_API_KEY", "").strip()
+DANBOORU_TAG_CATEGORIES = {
+    0: "general",
+    1: "artist",
+    3: "copyright",
+    4: "character",
+    5: "meta",
+    6: "deprecated",
+}
 
 # 创建异步 OpenAI 客户端
 http_client = httpx.AsyncClient(proxy=PROXY_URL)
@@ -381,6 +397,181 @@ def format_kb_tags_for_prompt(results):
         lines.append(f"- {item['term']}{note} [{item['category']}]")
     return "\n".join(lines)
 
+def resolve_online_search_terms(query: str) -> list:
+    """将用户输入展开为 Danbooru 可检索的英文关键词列表。"""
+    query = query.strip()
+    if not query:
+        return []
+    terms = []
+    seen = set()
+    if not _has_cjk(query):
+        key = query.lower()
+        if key not in seen:
+            seen.add(key)
+            terms.append(query)
+    for en_tag, _ in resolve_chinese_mappings(query):
+        key = en_tag.lower()
+        if key not in seen:
+            seen.add(key)
+            terms.append(en_tag)
+    return terms
+
+def _danbooru_auth():
+    if DANBOORU_API_USER and DANBOORU_API_KEY:
+        return aiohttp.BasicAuth(DANBOORU_API_USER, DANBOORU_API_KEY)
+    return None
+
+async def _fetch_danbooru_tag_list(session, params: dict) -> list:
+    url = f"{DANBOORU_API_BASE}/tags.json"
+    async with session.get(
+        url,
+        params=params,
+        proxy=PROXY_URL,
+        auth=_danbooru_auth(),
+        timeout=aiohttp.ClientTimeout(total=15),
+    ) as resp:
+        if resp.status != 200:
+            text = (await resp.text())[:200]
+            raise RuntimeError(f"HTTP {resp.status}: {text}")
+        data = await resp.json()
+        return data if isinstance(data, list) else []
+
+async def search_danbooru_tags(query: str, limit: int = 10) -> list:
+    """调用 Danbooru /tags.json：先精确名，再模糊匹配，按 post 数排序。"""
+    query = query.strip()
+    if not query:
+        return []
+    cap = min(max(limit, 1), 20)
+    async with aiohttp.ClientSession() as session:
+        exact = await _fetch_danbooru_tag_list(
+            session, {"search[name]": query, "limit": cap}
+        )
+        if exact:
+            return exact[:cap]
+        fuzzy = await _fetch_danbooru_tag_list(
+            session,
+            {
+                "search[name_matches]": f"*{query}*",
+                "search[order]": "count",
+                "limit": cap,
+            },
+        )
+        return fuzzy[:cap]
+
+async def search_danbooru_tags_for_query(query: str, limit: int = 10) -> list:
+    """合并多关键词检索结果（中文对照会展开为多个英文 tag）。"""
+    terms = resolve_online_search_terms(query)
+    if not terms:
+        return []
+    merged = []
+    seen = set()
+    per_term = max(3, limit // len(terms))
+    async with aiohttp.ClientSession() as session:
+        for term in terms:
+            exact = await _fetch_danbooru_tag_list(
+                session, {"search[name]": term, "limit": per_term}
+            )
+            for tag in exact:
+                name = tag.get("name", "").lower()
+                if name and name not in seen:
+                    seen.add(name)
+                    merged.append(tag)
+            if len(merged) >= limit:
+                break
+            fuzzy = await _fetch_danbooru_tag_list(
+                session,
+                {
+                    "search[name_matches]": f"*{term}*",
+                    "search[order]": "count",
+                    "limit": per_term,
+                },
+            )
+            for tag in fuzzy:
+                name = tag.get("name", "").lower()
+                if name and name not in seen:
+                    seen.add(name)
+                    merged.append(tag)
+            if len(merged) >= limit:
+                break
+    merged.sort(key=lambda t: t.get("post_count", 0), reverse=True)
+    return merged[:limit]
+
+def format_danbooru_search_results(tags: list, query: str = "") -> str:
+    if not tags:
+        hint = f"「{query}」" if query else "该关键词"
+        if query and _has_cjk(query) and not resolve_online_search_terms(query):
+            return (
+                f"🔍 Danbooru 未找到与 {hint} 匹配的 tag。\n"
+                "纯中文词需先在 `chinese_tag_map.json` 里配置对照，或直接搜英文 tag。"
+            )
+        return f"🔍 Danbooru 未找到与 {hint} 匹配的 tag。试试更具体的英文 tag。"
+    header = f"🌐 **Danbooru 在线检索**（{len(tags)} 条）"
+    if query:
+        header += f" · `{query}`"
+    lines = [header, ""]
+    for tag in tags:
+        name = tag.get("name", "?")
+        count = tag.get("post_count", 0)
+        cn = ttr.lookup_cn(name)
+        if cn:
+            lines.append(f"- {ttr.format_tag_line(name, count, cn)}")
+        else:
+            cat_id = tag.get("category")
+            cat = DANBOORU_TAG_CATEGORIES.get(cat_id, str(cat_id))
+            lines.append(f"- [{cat}] `{name}` · {count:,} posts")
+    return "\n".join(lines)
+
+def _parse_tag_search_query(raw: str) -> tuple:
+    """解析查词参数，支持尾部或头部 --live / --online。"""
+    q = raw.strip()
+    online = False
+    for flag in ("--live", "--online"):
+        if q.lower().endswith(flag):
+            online = True
+            q = q[: -len(flag)].strip()
+            break
+        if q.lower().startswith(flag):
+            online = True
+            q = q[len(flag):].strip()
+            break
+    return q, online
+
+async def handle_tag_search(message, raw_query: str, *, online_only: bool = False):
+    query, force_online = _parse_tag_search_query(raw_query)
+    if not query:
+        example = "在线查词 red_hair" if online_only else "查词 红发"
+        await message.reply(f"请在指令后输入关键词，例如：`{example}`")
+        return
+
+    parts = []
+    local_results = []
+    if not online_only and KNOWLEDGE_BASE:
+        local_results = search_knowledge_base(query, limit=10)
+        if local_results:
+            parts.append(format_kb_search_results(local_results, query))
+
+    use_online = online_only or force_online or (not online_only and not local_results)
+    if use_online:
+        if _has_cjk(query) and not resolve_online_search_terms(query):
+            parts.append(
+                "⚠️ 纯中文且未命中对照表，无法在线检索。请用英文 tag，或在 `chinese_tag_map.json` 添加对照。"
+            )
+        else:
+            try:
+                db_tags = await search_danbooru_tags_for_query(query, limit=10)
+                db_tags = await ttr.enrich_tags_cn(db_tags, client_openai, MODEL_NAME)
+                parts.append(format_danbooru_search_results(db_tags, query))
+            except Exception as e:
+                parts.append(f"⚠️ Danbooru 检索失败：{e}")
+
+    if not parts:
+        parts.append(format_kb_search_results([], query))
+
+    footer = ""
+    if not online_only and not force_online and local_results:
+        footer = "\n\n💡 需要 Danbooru 实时数据：`查词 <词> --live` 或 `在线查词 <词>`"
+    await message.reply("\n\n".join(parts) + footer)
+
 def resolve_primary_welcome_channel(guild):
     if WELCOME_CHANNEL_ID:
         channel = guild.get_channel(WELCOME_CHANNEL_ID)
@@ -404,7 +595,9 @@ async def on_member_join(member):
             f"🖼️ **反推**：回复一张图并说 `反推`，本哈深度分析并生成专业提示词\n"
             f"🎨 **画**：`画 <你的想法>`，根据描述构思详细绘画提示词\n"
             f"📚 **查词**：`查词 <关键词>`，在知识库里搜 tag（中英皆可）\n"
-            f"📂 **标签目录**：发送 `打开标签目录` 浏览分类 tag\n\n"
+            f"🌐 **在线查词**：`在线查词 <关键词>`，查 Danbooru 实时 tag\n"
+            f"📂 **D浏览**：Danbooru 分类面板（姿势/服装等，含中文）\n"
+            f"📂 **标签目录**：发送 `打开标签目录` 浏览本地分类 tag\n\n"
             "**图片互动**\n"
             f"💬 **@我 + 图**：模块化分析 + 艺术锐评\n"
             f"🌈 **只发图**：有机会触发彩虹屁，本哈会随机夸你一句~\n\n"
@@ -449,9 +642,13 @@ def print_startup_help():
     print("  画 <想法>         根据文字描述构思详细绘画提示词")
     print("  例：画 赛博朋克雨夜街头")
 
-    print("\n📚 【知识库】")
+    print("\n📚 【知识库 / Danbooru】")
     print("  查词 <关键词>     搜索 tag（支持中文/英文，模糊匹配）")
-    print("  打开标签目录      浏览分类目录，回复序号或名称查看 tag 列表")
+    print("  查词 <词> --live  本地无结果时强制走 Danbooru 在线检索")
+    print("  在线查词 <关键词> 直接查 Danbooru（含 post 数、分类）")
+    print("  D浏览 / 标签面板  Danbooru 分类浏览（按钮+下拉，含汉化）")
+    print("  D类 <大类> <子类> [页码]  快捷打开某分类 tag 列表")
+    print("  打开标签目录      浏览本地分类目录")
     print("  取消              退出标签目录浏览")
 
     print("\n🖼️ 【图片互动】")
@@ -479,6 +676,7 @@ def print_startup_help():
 @client_discord.event
 async def on_ready():
     load_knowledge_base()
+    ttr.init_translator(CHINESE_TAG_MAP, KNOWLEDGE_BASE_TERMS)
     print_startup_help()
 
 def image_to_base64(image_data: bytes) -> str:
@@ -922,18 +1120,50 @@ async def on_message(message):
     if content_lower == "彩虹屁模式 轻量": COMPLIMENT_MODE = "lite"; await message.reply("✅ 彩虹屁已切换为 **轻量 AI** 模式（贴图一句话）。"); return
     if content_lower == "彩虹屁模式 静态": COMPLIMENT_MODE = "static"; await message.reply("✅ 彩虹屁已切换为 **静态文案** 模式（零 API 消耗）。"); return
     
+    if content_lower.startswith("在线查词 "):
+        if author_id in user_states:
+            del user_states[author_id]
+        await handle_tag_search(message, content[5:].strip(), online_only=True)
+        return
+
+    if content_lower in {"d浏览", "标签面板"}:
+        if author_id in user_states:
+            del user_states[author_id]
+        try:
+            await tag_browser.open_browser(message.channel, author_id, client_openai, MODEL_NAME)
+        except FileNotFoundError:
+            await message.reply("❌ 缺少 `danbooru_category_map.json`，无法打开浏览面板。")
+        except Exception as e:
+            await message.reply(f"❌ 打开浏览面板失败：{e}")
+        return
+
+    if content_lower.startswith("d类 "):
+        if author_id in user_states:
+            del user_states[author_id]
+        args = content[3:].strip().split()
+        if len(args) < 2:
+            await message.reply("用法：`D类 姿势 性姿势` 或 `D类 姿势 日常姿势 2`（页码可选）")
+            return
+        page = 1
+        if args[-1].isdigit():
+            page = int(args[-1])
+            args = args[:-1]
+        if len(args) < 2:
+            await message.reply("请指定大类和子类，例如：`D类 姿势 性姿势`")
+            return
+        cat_label, sub_label = args[0], args[1]
+        try:
+            await tag_browser.open_category_text(
+                message.channel, author_id, cat_label, sub_label, page, client_openai, MODEL_NAME
+            )
+        except Exception as e:
+            await message.reply(f"❌ 打开分类失败：{e}")
+        return
+
     if content_lower.startswith("查词 "):
         if author_id in user_states:
             del user_states[author_id]
-        query = content[3:].strip()
-        if not query:
-            await message.reply("请在「查词」后输入关键词，例如：`查词 红发` 或 `查词 cowboy shot`")
-            return
-        if not KNOWLEDGE_BASE:
-            await message.reply("知识库尚未加载，请稍后再试。")
-            return
-        results = search_knowledge_base(query, limit=10)
-        await message.reply(format_kb_search_results(results, query))
+        await handle_tag_search(message, content[3:].strip(), online_only=False)
         return
 
     if content_lower == "打开标签目录":

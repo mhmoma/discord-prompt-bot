@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "categories": [
+    {
+      "id": "pose",
+      "label": "姿势",
+      "icon": "🧍",
+      "children": [
+        { "id": "posture", "label": "日常姿势", "tag_group": "tag_group:posture" },
+        { "id": "sexual_positions", "label": "性姿势", "tag_group": "tag_group:sexual_positions" },
+        { "id": "simulated_sex_acts", "label": "模拟性行为", "tag_group": "tag_group:simulated_sex_acts" }
+      ]
+    },
+    {
+      "id": "body",
+      "label": "身体",
+      "icon": "👤",
+      "children": [
+        { "id": "hair", "label": "头发", "tag_group": "tag_group:hair" },
+        { "id": "eyes", "label": "眼睛", "tag_group": "tag_group:eyes" },
+        { "id": "breasts", "label": "胸部", "tag_group": "tag_group:breasts_tags" },
+        { "id": "hands", "label": "手部", "tag_group": "tag_group:hands" },
+        { "id": "legs", "label": "腿部", "tag_group": "tag_group:legs" }
+      ]
+    },
+    {
+      "id": "attire",
+      "label": "服装",
+      "icon": "👗",
+      "children": [
+        { "id": "clothing", "label": "一般服装", "tag_group": "tag_group:clothing" },
+        { "id": "underwear", "label": "内衣", "tag_group": "tag_group:underwear" },
+        { "id": "sexual_attire", "label": "情趣服装", "tag_group": "tag_group:sexual_attire" },
+        { "id": "headwear", "label": "头饰", "tag_group": "tag_group:headwear" }
+      ]
+    },
+    {
+      "id": "expression",
+      "label": "表情",
+      "icon": "😊",
+      "children": [
+        { "id": "expressions", "label": "面部表情", "tag_group": "tag_group:expressions" }
+      ]
+    },
+    {
+      "id": "scene",
+      "label": "场景",
+      "icon": "🌆",
+      "children": [
+        { "id": "backgrounds", "label": "背景", "tag_group": "tag_group:backgrounds" },
+        { "id": "camera", "label": "构图镜头", "tag_group": "tag_group:camera" }
+      ]
+    },
+    {
+      "id": "sex",
+      "label": "Sex",
+      "icon": "🔞",
+      "children": [
+        { "id": "sex_acts", "label": "性行为", "tag_group": "tag_group:sex_acts" },
+        { "id": "sex_objects", "label": "性相关道具", "tag_group": "tag_group:sex_objects" }
+      ]
+    }
+  ]
+}

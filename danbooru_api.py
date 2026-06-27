@@ -41,8 +41,10 @@ def _cache_set(store: dict, key: str, data, field="data"):
 
 
 def _danbooru_auth():
-    if DANBOORU_API_USER and DANBOORU_API_KEY:
-        return aiohttp.BasicAuth(DANBOORU_API_USER, DANBOORU_API_KEY)
+    user = os.getenv("DANBOORU_API_USER", "").strip()
+    key = os.getenv("DANBOORU_API_KEY", "").strip()
+    if user and key:
+        return aiohttp.BasicAuth(user, key)
     return None
 
 

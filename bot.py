@@ -1,10 +1,14 @@
 # bot_final.py - 全能版图片反推与创意生成机器人 (OpenAI-Compatible)
 import os
+from dotenv import load_dotenv
+
+# 必须在导入 tag_browser / danbooru_api 之前加载 .env
+load_dotenv()
+
 import discord
 import aiohttp
 import httpx
 from openai import AsyncOpenAI
-from dotenv import load_dotenv
 from PIL import Image
 import io
 import base64
@@ -16,9 +20,6 @@ import asyncio
 
 import tag_browser
 import tag_translate as ttr
-
-# 加载环境变量
-load_dotenv()
 
 # --- 彩虹屁配置 ---
 COMPLIMENTS = {
@@ -633,6 +634,12 @@ def print_startup_help():
     print(f"💡 使用模型：{MODEL_NAME}")
     print(f"📚 知识库：{kb_status}" + (f"（{kb_cats} 个分类）" if kb_cats else ""))
     print(f"👋 欢迎频道：{welcome_ch}")
+    danb_user = os.getenv("DANBOORU_API_USER", "").strip()
+    danb_key = os.getenv("DANBOORU_API_KEY", "").strip()
+    if danb_user and danb_key:
+        print(f"🌐 Danbooru API：已认证（login={danb_user}）")
+    else:
+        print("🌐 Danbooru API：未配置密钥（匿名访问，限速更严）")
     print("\n" + "=" * 48)
     print("🎉 小哈功能与指令一览 🎉".center(48))
     print("=" * 48)

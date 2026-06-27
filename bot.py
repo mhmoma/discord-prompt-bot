@@ -1085,17 +1085,21 @@ def _is_pure_wake_call(text: str, bot_name: str) -> bool:
 
 
 def _extract_art_generation_idea(text: str, bot_name: str) -> str | None:
-    """@/喊名字 + 生成/画… → 提取生图描述，走「画」指令流程。"""
+    """提取生图描述。支持「画 …」「画一个…」「生成…」等，不误伤「画风不错」类闲聊。"""
     intent = _strip_bot_wake_text(text, bot_name)
     if not intent:
         return None
     if intent.startswith("画 "):
-        return intent[2:].strip() or None
-    if intent.startswith("画") and len(intent) > 1:
-        rest = intent[1:].strip(" ：:")
+        rest = intent[2:].strip()
         return rest or None
     for prefix in (
-        "生成", "来一张", "帮我画", "帮我生成", "给我画", "给我生成",
+        "画一个", "画个", "画张", "画幅", "来张", "帮我画", "给我画",
+    ):
+        if intent.startswith(prefix):
+            rest = intent[len(prefix):].strip(" ：:")
+            return rest or None
+    for prefix in (
+        "生成", "来一张", "帮我生成", "给我生成",
         "出一张", "做一张", "绘制", "整一张", "弄一张",
     ):
         if intent.startswith(prefix):
@@ -1356,27 +1360,30 @@ async def on_message(message):
     content_lower = content.lower()
 
     # --- 1. High-Priority Command Handling ---
-    if content_lower.startswith("画 ") or content_lower == "反推":
-        if author_id in user_states: del user_states[author_id]
-        if content_lower.startswith("画 "):
-            user_idea = content[2:].strip()
-            if not user_idea: await message.reply("请在“画”指令后输入您的想法，例如：`画 一个赛博朋克风格的雨夜街头`"); return
-            await generate_art_prompt(user_idea, message.author.mention, message.channel)
-        elif content_lower == "反推":
-            target_message = message
-            if message.reference:
-                try: target_message = await message.channel.fetch_message(message.reference.message_id)
-                except (discord.NotFound, discord.HTTPException): await message.reply("❌ 无法找到引用的消息。"); return
-            if not target_message.attachments: await message.reply("请在“反推”指令中附带图片，或回复一条包含图片的消息。"); return
-            attachment = target_message.attachments[0]
-            if not attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.webp', '.gif')): await message.reply("❌ 文件格式不支持，请上传图片。"); return
-            try:
-                async with aiohttp.ClientSession() as session:
-                    async with session.get(attachment.url, proxy=PROXY_URL) as resp:
-                        if resp.status != 200: await message.reply(f"❌ 无法从 Discord 下载图片，状态码：{resp.status}"); return
-                        image_data = await resp.read()
-                await analyze_image_with_openai(image_data, message.author.mention, message.channel)
-            except Exception as e: await message.reply(f"❌ 处理图片时发生未知错误：{str(e)}")
+    art_idea = _extract_art_generation_idea(message.clean_content or content, bot_name)
+    if art_idea:
+        if author_id in user_states:
+            del user_states[author_id]
+        await generate_art_prompt(art_idea, message.author.mention, message.channel)
+        return
+
+    if content_lower == "反推":
+        if author_id in user_states:
+            del user_states[author_id]
+        target_message = message
+        if message.reference:
+            try: target_message = await message.channel.fetch_message(message.reference.message_id)
+            except (discord.NotFound, discord.HTTPException): await message.reply("❌ 无法找到引用的消息。"); return
+        if not target_message.attachments: await message.reply("请在“反推”指令中附带图片，或回复一条包含图片的消息。"); return
+        attachment = target_message.attachments[0]
+        if not attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.webp', '.gif')): await message.reply("❌ 文件格式不支持，请上传图片。"); return
+        try:
+            async with aiohttp.ClientSession() as session:
+                async with session.get(attachment.url, proxy=PROXY_URL) as resp:
+                    if resp.status != 200: await message.reply(f"❌ 无法从 Discord 下载图片，状态码：{resp.status}"); return
+                    image_data = await resp.read()
+            await analyze_image_with_openai(image_data, message.author.mention, message.channel)
+        except Exception as e: await message.reply(f"❌ 处理图片时发生未知错误：{str(e)}")
         return
 
     if content_lower == "聊天开启": CHAT_ENABLED = True; await message.reply("✅ 智能聊天功能已开启。"); print("✅ 智能聊天功能已由用户开启。"); return
@@ -1479,15 +1486,6 @@ async def on_message(message):
 
     # --- 3. New Conversation / Mention Handling ---
     directed_at_bot = await _is_directed_at_bot(message, client_discord.user)
-
-    # @/喊名字 + 「生成/画…」→ 生图提示词（与「画 xxx」指令相同，不走闲聊）
-    if directed_at_bot:
-        art_idea = _extract_art_generation_idea(message.clean_content or content, bot_name)
-        if art_idea:
-            if author_id in user_states:
-                del user_states[author_id]
-            await generate_art_prompt(art_idea, message.author.mention, message.channel)
-            return
 
     # Initialize a new chat session if @/喊名字且尚未在会话中
     if directed_at_bot and user_states.get(author_id, {}).get('state') != 'chatting':

@@ -201,3 +201,17 @@ async def fetch_sample_post(session: aiohttp.ClientSession, tag_name: str) -> Op
     except Exception as e:
         print(f"⚠️ 获取 tag 预览图失败 ({tag_name}): {e}")
         return None
+
+
+async def fetch_sample_posts_batch(session: aiohttp.ClientSession, tag_names: List[str]) -> Dict[str, dict]:
+    if not tag_names:
+        return {}
+    results = await asyncio.gather(
+        *[fetch_sample_post(session, name) for name in tag_names],
+        return_exceptions=True,
+    )
+    out: Dict[str, dict] = {}
+    for name, res in zip(tag_names, results):
+        if isinstance(res, dict) and res.get("preview_url"):
+            out[name] = res
+    return out

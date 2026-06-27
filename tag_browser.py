@@ -209,7 +209,7 @@ class SubCategoryView(discord.ui.View):
         })
         embed = build_list_embed(sub, tags, page, total_pages)
         view = TagListView(self.user_id, sub, tags, page, self.openai_client, self.model_name)
-        await interaction.message.edit(content=None, embed=embed, embeds=[], view=view)
+        await interaction.message.edit(content=None, embeds=[embed], view=view)
 
 
 class SubCategorySelect(discord.ui.Select):
@@ -279,7 +279,7 @@ class TagListView(discord.ui.View):
         set_session(self.user_id, {**get_session(self.user_id), "page": new_page})
         embed = build_list_embed(self.sub, self.tags, new_page, self.total_pages)
         view = TagListView(self.user_id, self.sub, self.tags, new_page, self.openai_client, self.model_name)
-        await interaction.message.edit(embed=embed, embeds=[], view=view)
+        await interaction.message.edit(embeds=[embed], view=view)
 
 
 class PageButton(discord.ui.Button):
@@ -310,7 +310,7 @@ class HomeButton(discord.ui.Button):
             return
         set_session(self.user_id, {"layer": "home"})
         view = HomeView(self.user_id, self.openai_client, self.model_name)
-        await interaction.response.edit_message(embed=build_home_embed(), embeds=[], view=view)
+        await interaction.response.edit_message(embeds=[build_home_embed()], view=view)
 
 
 async def open_browser(channel, user_id: int, openai_client=None, model_name=None):

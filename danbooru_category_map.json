@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "categories": [
     {
       "id": "pose",
@@ -7,6 +7,7 @@
       "icon": "🧍",
       "children": [
         { "id": "posture", "label": "日常姿势", "tag_group": "tag_group:posture" },
+        { "id": "gestures", "label": "手势动作", "tag_group": "tag_group:gestures" },
         { "id": "sexual_positions", "label": "性姿势", "tag_group": "tag_group:sexual_positions" },
         { "id": "simulated_sex_acts", "label": "模拟性行为", "tag_group": "tag_group:simulated_sex_acts" }
       ]
@@ -17,10 +18,11 @@
       "icon": "👤",
       "children": [
         { "id": "hair", "label": "头发", "tag_group": "tag_group:hair" },
-        { "id": "eyes", "label": "眼睛", "tag_group": "tag_group:eyes" },
-        { "id": "breasts", "label": "胸部", "tag_group": "tag_group:breasts_tags" },
+        { "id": "eyes_tags", "label": "眼睛", "tag_group": "tag_group:eyes_tags" },
+        { "id": "face_tags", "label": "面部", "tag_group": "tag_group:face_tags" },
+        { "id": "breasts_tags", "label": "胸部", "tag_group": "tag_group:breasts_tags" },
         { "id": "hands", "label": "手部", "tag_group": "tag_group:hands" },
-        { "id": "legs", "label": "腿部", "tag_group": "tag_group:legs" }
+        { "id": "feet", "label": "脚部", "tag_group": "tag_group:feet" }
       ]
     },
     {
@@ -28,27 +30,21 @@
       "label": "服装",
       "icon": "👗",
       "children": [
-        { "id": "clothing", "label": "一般服装", "tag_group": "tag_group:clothing" },
-        { "id": "underwear", "label": "内衣", "tag_group": "tag_group:underwear" },
-        { "id": "sexual_attire", "label": "情趣服装", "tag_group": "tag_group:sexual_attire" },
-        { "id": "headwear", "label": "头饰", "tag_group": "tag_group:headwear" }
-      ]
-    },
-    {
-      "id": "expression",
-      "label": "表情",
-      "icon": "😊",
-      "children": [
-        { "id": "expressions", "label": "面部表情", "tag_group": "tag_group:expressions" }
+        { "id": "attire", "label": "一般服装", "tag_group": "tag_group:attire" },
+        { "id": "legwear", "label": "裤袜鞋袜", "tag_group": "tag_group:legwear" },
+        { "id": "headwear", "label": "头饰", "tag_group": "tag_group:headwear" },
+        { "id": "accessories", "label": "配饰", "tag_group": "tag_group:accessories" },
+        { "id": "sexual_attire", "label": "情趣服装", "tag_group": "tag_group:sexual_attire" }
       ]
     },
     {
       "id": "scene",
-      "label": "场景",
+      "label": "场景构图",
       "icon": "🌆",
       "children": [
         { "id": "backgrounds", "label": "背景", "tag_group": "tag_group:backgrounds" },
-        { "id": "camera", "label": "构图镜头", "tag_group": "tag_group:camera" }
+        { "id": "image_composition", "label": "画面构图", "tag_group": "tag_group:image_composition" },
+        { "id": "focus_tags", "label": "焦点镜头", "tag_group": "tag_group:focus_tags" }
       ]
     },
     {

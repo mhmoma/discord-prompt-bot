@@ -693,6 +693,27 @@ async def on_ready():
 def image_to_base64(image_data: bytes) -> str:
     return base64.b64encode(image_data).decode('utf-8')
 
+
+def _parse_llm_json(raw_content: str) -> dict:
+    """解析模型 JSON；兼容纯 JSON 与 ```json ... ``` 包裹。"""
+    text = (raw_content or "").strip()
+    if not text:
+        raise json.JSONDecodeError("empty response", text, 0)
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        pass
+    block = re.search(r"```(?:json)?\s*\n?(.*?)\n?```", text, re.DOTALL | re.IGNORECASE)
+    if block:
+        try:
+            return json.loads(block.group(1).strip())
+        except json.JSONDecodeError:
+            pass
+    start, end = text.find("{"), text.rfind("}")
+    if start >= 0 and end > start:
+        return json.loads(text[start : end + 1])
+    raise json.JSONDecodeError("no json object found", text, 0)
+
 def pick_static_compliment(channel_id: int) -> str:
     recent = compliment_recent.get(channel_id, [])
     pool = [line for line in COMPLIMENT_ALL if line not in recent] or COMPLIMENT_ALL
@@ -816,7 +837,7 @@ async def comment_on_image_when_awakened(image_data: bytes, author_mention: str,
                 response = await client_openai.chat.completions.create(model=MODEL_NAME, messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": [{"type": "image_url", "image_url": {"url": image_url}}]}], response_format={"type": "json_object"})
                 raw_content = response.choices[0].message.content
                 try:
-                    result_json = json.loads(raw_content)
+                    result_json = _parse_llm_json(raw_content)
                     analysis = result_json.get("analysis", "嘿嘿...本哈的CPU烧了，分析不过来...")
                     comment = result_json.get("comment", "啧啧...不可说，不可说...")
                 except json.JSONDecodeError:
@@ -855,7 +876,7 @@ async def comment_on_image_when_awakened(image_data: bytes, author_mention: str,
                 response = await client_openai.chat.completions.create(model=MODEL_NAME, messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": [{"type": "image_url", "image_url": {"url": image_url}}]}], response_format={"type": "json_object"})
                 raw_content = response.choices[0].message.content
                 try:
-                    result_json = json.loads(raw_content)
+                    result_json = _parse_llm_json(raw_content)
                     analysis = result_json.get("analysis", "本哈的脑子被门夹了，分析不出来...")
                     comment = result_json.get("comment", "嗷呜...本哈词穷了！")
                 except json.JSONDecodeError:
@@ -924,7 +945,7 @@ async def analyze_image_with_openai(image_data: bytes, author_mention: str, chan
                 response = await client_openai.chat.completions.create(model=MODEL_NAME, messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": [{"type": "image_url", "image_url": {"url": image_url}}]}], response_format={"type": "json_object"})
                 raw_content = response.choices[0].message.content
                 try:
-                    result_json = json.loads(raw_content)
+                    result_json = _parse_llm_json(raw_content)
                     final_prompt = result_json.get("prompt", "嘿嘿...灵感太多，卡住了...").replace('_', ' ')
                     intro_message = result_json.get("response_text", f"嘿嘿嘿...{author_mention}，你懂的！")
                 except json.JSONDecodeError:

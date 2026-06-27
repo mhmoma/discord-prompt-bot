@@ -16,6 +16,7 @@ MAP_FILE = "danbooru_category_map.json"
 LAYOUT_MAX_TAGS = 10
 TAGS_PER_PAGE = min(int(os.getenv("DANBOORU_TAGS_PER_PAGE", "10")), LAYOUT_MAX_TAGS)
 SUBCATS_PER_PAGE = 25
+SUBCATS_BUTTONS_PER_ROW = 5  # 每行多个按钮，避免超过 V2 的 40 组件上限
 VIEW_TIMEOUT = int(os.getenv("DANBOORU_VIEW_TIMEOUT", "600"))
 
 _category_map = None
@@ -84,21 +85,14 @@ def build_home_text() -> str:
         f"## 📂 Danbooru 标签浏览器\n\n"
         f"同步 [Danbooru tag groups](https://danbooru.donmai.us/wiki_pages/tag_groups) wiki。\n"
         f"**{n_cat}** 个大类 · **{n_sub}** 个子分类/列表\n\n"
-        f"选大类 → 子分类 → 点 **查看** 看详情与预览图。"
+        f"**点击下方大类** → 子分类 → 点击 tag 名称看详情与预览图。"
     )
 
 
-def build_sub_text(category: dict, sub_page: int = 0) -> str:
-    children = category.get("children", [])
-    total_pages = max(1, math.ceil(len(children) / SUBCATS_PER_PAGE))
-    start = sub_page * SUBCATS_PER_PAGE
-    page_items = children[start:start + SUBCATS_PER_PAGE]
-    lines = [f"- {child_display_label(c)} · `{c['tag_group']}`" for c in page_items]
-    body = "\n".join(lines) if lines else "暂无子分类"
+def build_sub_header(category: dict, sub_page: int, total_pages: int, total: int) -> str:
     return (
         f"## {category.get('icon', '📁')} {category['label']} · 选子分类\n\n"
-        f"{body}\n\n"
-        f"-# 第 {sub_page + 1}/{total_pages} 页 · 共 {len(children)} 项"
+        f"-# 第 **{sub_page + 1}/{total_pages}** 页 · 共 **{total}** 项 · **点击下方名称**"
     )
 
 
@@ -107,58 +101,212 @@ def _page_tags(tags: list[dict], page: int) -> list[dict]:
     return tags[start:start + TAGS_PER_PAGE]
 
 
-def _format_tag_line(index: int, tag: dict) -> str:
+def _is_artist_tag(tag: dict) -> bool:
+    return tag.get("category") == 1
+
+
+def _tag_button_label(index: int, tag: dict) -> str:
     name = tag["name"]
     cn = tag.get("cn") or ttr.lookup_cn(name)
     count = tag.get("post_count", 0)
-    label = f"{cn} · `{name}`" if cn else f"`{name}`"
-    return f"**{index}.** {label} — **{count:,}** 帖"
+    prefix = "🎨 " if _is_artist_tag(tag) else ""
+    if cn:
+        base = f"{prefix}{index}. {cn} · {name}"
+    else:
+        base = f"{prefix}{index}. {name}"
+    label = f"{base} — {count:,}帖"
+    return label if len(label) <= 80 else label[:77] + "…"
 
 
-def build_detail_embed(tag: dict, sample: Optional[dict] = None) -> discord.Embed:
+def build_detail_text(
+    tag: dict,
+    sample: Optional[dict] = None,
+    *,
+    prompt_expanded: bool = False,
+) -> str:
     name = tag["name"]
     cn = tag.get("cn") or ttr.lookup_cn(name)
     count = tag.get("post_count", 0)
-    title = f"{cn} · `{name}`" if cn else f"`{name}`"
-    post_url = (sample or {}).get("post_url") or dapi.danbooru_post_url(name)
-    embed = discord.Embed(
-        title=title,
-        description=f"**{count:,}** 帖",
-        url=post_url,
-        color=0x5865F2,
-    )
-    embed.add_field(name="🔗 Danbooru", value=f"[搜索此 tag]({post_url})", inline=False)
-    if sample and sample.get("post_url"):
-        embed.add_field(name="🖼 示例帖", value=f"[打开示例图]({sample['post_url']})", inline=False)
-    preview = (sample or {}).get("preview_url")
-    if preview:
-        embed.set_image(url=preview)
-    return embed
+    is_artist = _is_artist_tag(tag)
+    if is_artist:
+        title = f"🎨 画师 · {cn} · `{name}`" if cn else f"🎨 画师 · `{name}`"
+    else:
+        title = f"{cn} · `{name}`" if cn else f"`{name}`"
+    search_url = dapi.danbooru_post_url(name)
+    post_url = (sample or {}).get("post_url") or search_url
+
+    lines = [f"## {title}", f"**{count:,}** 帖 · [搜索此 tag]({search_url})"]
+    if sample:
+        meta = []
+        if sample.get("score") is not None:
+            meta.append(f"🔥 热度 **{sample['score']:,}**")
+        if sample.get("fav_count") is not None:
+            meta.append(f"❤️ **{sample['fav_count']:,}** 收藏")
+        if meta:
+            lines.append(" · ".join(meta))
+        if sample.get("post_url"):
+            lines.append(f"[打开示例原帖]({post_url})")
+        tag_string = sample.get("tag_string") or ""
+        if tag_string:
+            prompt = tag_string.replace("_", " ")
+            if prompt_expanded:
+                if len(prompt) > 900:
+                    prompt = prompt[:897] + "…"
+                lines.append(f"\n**📝 提示词**\n```\n{prompt}\n```")
+            else:
+                lines.append(f"\n-# 📝 提示词已折叠（{len(prompt.split())} 个 tag）· 点击下方 **展开提示词**")
+    elif is_artist and count == 0:
+        lines.append("\n-# 该名称在 Danbooru 暂无 artist 作品")
+    return "\n".join(lines)
 
 
-class TagDetailButton(discord.ui.Button):
-    def __init__(self, tag: dict, user_id: int):
-        super().__init__(style=discord.ButtonStyle.primary, label="查看")
+class TagOpenButton(discord.ui.Button):
+    """点击后在原面板内打开词条详情。"""
+
+    def __init__(self, tag: dict, list_layout: TagListLayout, index: int):
+        super().__init__(
+            style=discord.ButtonStyle.secondary,
+            label=_tag_button_label(index, tag),
+        )
         self.tag = tag
-        self.user_id = user_id
+        self.list_layout = list_layout
 
     async def callback(self, interaction: discord.Interaction):
-        if interaction.user.id != self.user_id:
+        if interaction.user.id != self.list_layout.user_id:
             await interaction.response.send_message("这是别人的面板哦～", ephemeral=True)
             return
-        await interaction.response.defer(ephemeral=True)
+        name = self.tag["name"]
+        await interaction.response.edit_message(
+            view=LoadingLayout(f"## ⏳ 正在加载\n\n`{name}`\n\n-# 拉取作品预览…")
+        )
         try:
             async with aiohttp.ClientSession() as session:
-                sample = await dapi.fetch_sample_post(session, self.tag["name"])
+                fresh = await dapi._fetch_single_tag(session, self.tag["name"])
+                tag = {**self.tag, **fresh}
+                sample = None
+                if tag.get("post_count", 0) > 0:
+                    sample = await dapi.fetch_sample_post(session, tag["name"])
         except Exception as e:
-            await interaction.followup.send(f"❌ 加载预览失败：{e}", ephemeral=True)
+            await interaction.message.edit(
+                view=LoadingLayout(f"## ❌ 加载失败\n\n`{name}`\n\n{e}")
+            )
             return
-        embed = build_detail_embed(self.tag, sample)
-        await interaction.followup.send(embed=embed, ephemeral=True)
+        ll = self.list_layout
+        set_session(ll.user_id, {
+            **get_session(ll.user_id),
+            "layer": "detail",
+            "detail_tag": tag,
+            "detail_sample": sample,
+        })
+        layout = TagDetailLayout(
+            ll.user_id, ll.sub, ll.tags, ll.page, tag, sample,
+            openai_client=ll.openai_client, model_name=ll.model_name,
+        )
+        try:
+            await interaction.message.edit(view=layout)
+        except Exception as e:
+            await interaction.followup.send(f"❌ 详情面板渲染失败：{e}", ephemeral=True)
+
+
+class TagDetailLayout(discord.ui.LayoutView):
+    def __init__(
+        self,
+        user_id: int,
+        sub: dict,
+        tags: list[dict],
+        page: int,
+        tag: dict,
+        sample: Optional[dict] = None,
+        prompt_expanded: bool = False,
+        openai_client=None,
+        model_name=None,
+    ):
+        super().__init__(timeout=VIEW_TIMEOUT)
+        self.user_id = user_id
+        self.sub = sub
+        self.tags = tags
+        self.page = page
+        self.tag = tag
+        self.sample = sample
+        self.prompt_expanded = prompt_expanded
+        self.openai_client = openai_client
+        self.model_name = model_name
+        self._build()
+
+    def _build(self):
+        container = discord.ui.Container(accent_color=discord.Color(0x5865F2))
+        container.add_item(
+            discord.ui.TextDisplay(
+                build_detail_text(self.tag, self.sample, prompt_expanded=self.prompt_expanded)
+            )
+        )
+        nav = discord.ui.ActionRow(DetailBackButton(self))
+        tag_string = (self.sample or {}).get("tag_string") or ""
+        if tag_string:
+            label = "收起提示词" if self.prompt_expanded else "📝 展开提示词"
+            nav.add_item(TogglePromptButton(self, label))
+        post_url = (self.sample or {}).get("post_url")
+        if post_url:
+            nav.add_item(
+                discord.ui.Button(style=discord.ButtonStyle.link, label="打开原帖", url=post_url)
+            )
+        container.add_item(nav)
+        self.add_item(container)
+
+        image_url = (self.sample or {}).get("image_url") or (self.sample or {}).get("preview_url")
+        if image_url:
+            gallery = discord.ui.MediaGallery()
+            gallery.add_item(media=image_url, description=self.tag["name"][:256])
+            self.add_item(gallery)
+
+
+class DetailBackButton(discord.ui.Button):
+    def __init__(self, parent: TagDetailLayout):
+        super().__init__(style=discord.ButtonStyle.primary, label="◀ 返回列表")
+        self.parent_layout = parent
+
+    async def callback(self, interaction: discord.Interaction):
+        if interaction.user.id != self.parent_layout.user_id:
+            await interaction.response.send_message("这是别人的面板哦～", ephemeral=True)
+            return
+        p = self.parent_layout
+        set_session(p.user_id, {**get_session(p.user_id), "layer": "list"})
+        await interaction.response.edit_message(
+            view=TagListLayout(
+                p.user_id, p.sub, p.tags, p.page, p.openai_client, p.model_name
+            )
+        )
+
+
+class TogglePromptButton(discord.ui.Button):
+    def __init__(self, parent: TagDetailLayout, label: str):
+        super().__init__(style=discord.ButtonStyle.secondary, label=label[:80])
+        self.parent_layout = parent
+
+    async def callback(self, interaction: discord.Interaction):
+        if interaction.user.id != self.parent_layout.user_id:
+            await interaction.response.send_message("这是别人的面板哦～", ephemeral=True)
+            return
+        p = self.parent_layout
+        await interaction.response.edit_message(
+            view=TagDetailLayout(
+                p.user_id, p.sub, p.tags, p.page, p.tag, p.sample,
+                prompt_expanded=not p.prompt_expanded,
+                openai_client=p.openai_client, model_name=p.model_name,
+            )
+        )
+
+
+class LoadingLayout(discord.ui.LayoutView):
+    def __init__(self, text: str):
+        super().__init__(timeout=VIEW_TIMEOUT)
+        container = discord.ui.Container(accent_color=discord.Color(0x5865F2))
+        container.add_item(discord.ui.TextDisplay(text))
+        self.add_item(container)
 
 
 class TagListLayout(discord.ui.LayoutView):
-    """Components V2：每行 tag 右侧内嵌「查看」按钮。"""
+    """Components V2：每行 tag 名称为可点击按钮，点开看详情与预览图。"""
 
     def __init__(
         self,
@@ -187,6 +335,7 @@ class TagListLayout(discord.ui.LayoutView):
             f"## 📂 {child_display_label(self.sub)}\n"
             f"`{self.sub['tag_group']}`\n"
             f"第 **{self.page + 1}/{self.total_pages}** 页 · 共 **{len(self.tags)}** 个 tag"
+            f"\n\n-# 按 Danbooru **作品数** 降序 · 点击名称在同一面板查看详情"
         )
         copy_tags = ", ".join(t["name"] for t in page_tags)
         if copy_tags:
@@ -196,12 +345,7 @@ class TagListLayout(discord.ui.LayoutView):
 
         for idx, tag in enumerate(page_tags):
             num = self.page * TAGS_PER_PAGE + idx + 1
-            container.add_item(
-                discord.ui.Section(
-                    _format_tag_line(num, tag),
-                    accessory=TagDetailButton(tag, self.user_id),
-                )
-            )
+            container.add_item(discord.ui.ActionRow(TagOpenButton(tag, self, num)))
 
         nav = discord.ui.ActionRow()
         if self.page > 0:
@@ -257,9 +401,12 @@ class ListHomeButton(discord.ui.Button):
         )
 
 
-class HomeCategorySelect(discord.ui.Select):
-    def __init__(self, user_id: int, openai_client, model_name, options):
-        super().__init__(placeholder="选择大类…", min_values=1, max_values=1, options=options)
+class HomeCategoryButton(discord.ui.Button):
+    def __init__(self, category: dict, user_id: int, openai_client=None, model_name=None):
+        icon = category.get("icon", "📁")
+        label = f"{icon} {category['label']}"[:80]
+        super().__init__(style=discord.ButtonStyle.secondary, label=label)
+        self.category = category
         self.user_id = user_id
         self.openai_client = openai_client
         self.model_name = model_name
@@ -268,12 +415,11 @@ class HomeCategorySelect(discord.ui.Select):
         if interaction.user.id != self.user_id:
             await interaction.response.send_message("这是别人的面板哦～", ephemeral=True)
             return
-        cat_id = self.values[0]
-        data = load_category_map()
-        category = next(c for c in data["categories"] if c["id"] == cat_id)
-        set_session(self.user_id, {"layer": "sub", "category_id": cat_id})
+        set_session(self.user_id, {"layer": "sub", "category_id": self.category["id"]})
         await interaction.response.edit_message(
-            view=SubCategoryLayout(self.user_id, category, self.openai_client, self.model_name, sub_page=0)
+            view=SubCategoryLayout(
+                self.user_id, self.category, self.openai_client, self.model_name, sub_page=0
+            )
         )
 
 
@@ -281,17 +427,19 @@ class HomeLayout(discord.ui.LayoutView):
     def __init__(self, user_id: int, openai_client=None, model_name=None):
         super().__init__(timeout=VIEW_TIMEOUT)
         data = load_category_map()
-        options = [
-            discord.SelectOption(label=f"{c.get('icon', '')} {c['label']}"[:100], value=c["id"])
-            for c in data.get("categories", [])[:25]
-        ]
+        categories = data.get("categories", [])
         container = discord.ui.Container(accent_color=discord.Color(0x5865F2))
         container.add_item(discord.ui.TextDisplay(build_home_text()))
-        container.add_item(
-            discord.ui.ActionRow(
-                HomeCategorySelect(user_id, openai_client, model_name, options)
+        for i in range(0, len(categories), 5):
+            chunk = categories[i:i + 5]
+            container.add_item(
+                discord.ui.ActionRow(
+                    *[
+                        HomeCategoryButton(c, user_id, openai_client, model_name)
+                        for c in chunk
+                    ]
+                )
             )
-        )
         self.add_item(container)
 
 
@@ -314,14 +462,20 @@ class SubCategoryLayout(discord.ui.LayoutView):
         self.sub_total_pages = max(1, math.ceil(len(children) / SUBCATS_PER_PAGE))
         start = sub_page * SUBCATS_PER_PAGE
         page_children = children[start:start + SUBCATS_PER_PAGE]
-        options = [
-            discord.SelectOption(label=child_display_label(c)[:100], value=c["id"])
-            for c in page_children
-        ]
 
         container = discord.ui.Container(accent_color=discord.Color(0x57F287))
-        container.add_item(discord.ui.TextDisplay(build_sub_text(category, sub_page)))
-        container.add_item(discord.ui.ActionRow(SubCategorySelect(options, self)))
+        container.add_item(
+            discord.ui.TextDisplay(
+                build_sub_header(category, sub_page, self.sub_total_pages, len(children))
+            )
+        )
+        for i in range(0, len(page_children), SUBCATS_BUTTONS_PER_ROW):
+            chunk = page_children[i:i + SUBCATS_BUTTONS_PER_ROW]
+            container.add_item(
+                discord.ui.ActionRow(
+                    *[SubCategoryOpenButton(sub, self) for sub in chunk]
+                )
+            )
 
         nav = discord.ui.ActionRow()
         if sub_page > 0:
@@ -333,7 +487,10 @@ class SubCategoryLayout(discord.ui.LayoutView):
         self.add_item(container)
 
     async def load_tag_list(self, interaction: discord.Interaction, sub: dict, page: int = 0):
-        await interaction.response.defer()
+        label = child_display_label(sub)
+        await interaction.response.edit_message(
+            view=LoadingLayout(f"## ⏳ 正在加载\n\n**{label}**\n`{sub['tag_group']}`\n\n-# 首次约需几秒，之后会走缓存")
+        )
         try:
             async with aiohttp.ClientSession() as session:
                 tags = await dapi.get_group_tags_sorted(session, sub["tag_group"])
@@ -351,27 +508,31 @@ class SubCategoryLayout(discord.ui.LayoutView):
             "layer": "list",
             "category_id": self.category["id"],
             "sub_id": sub["id"],
+            "sub": sub,
             "tag_group": sub["tag_group"],
-            "sub_label": child_display_label(sub),
+            "sub_label": label,
             "page": page,
             "tags": tags,
         })
         layout = TagListLayout(self.user_id, sub, tags, page, self.openai_client, self.model_name)
-        await interaction.message.edit(view=layout)
+        try:
+            await interaction.message.edit(view=layout)
+        except Exception as e:
+            await interaction.followup.send(f"❌ 面板渲染失败：{e}", ephemeral=True)
 
 
-class SubCategorySelect(discord.ui.Select):
-    def __init__(self, options, parent: SubCategoryLayout):
-        super().__init__(placeholder="选择子分类…", min_values=1, max_values=1, options=options)
+class SubCategoryOpenButton(discord.ui.Button):
+    def __init__(self, sub: dict, parent: SubCategoryLayout):
+        label = child_display_label(sub)[:80]
+        super().__init__(style=discord.ButtonStyle.secondary, label=label)
+        self.sub = sub
         self.parent_layout = parent
 
     async def callback(self, interaction: discord.Interaction):
         if interaction.user.id != self.parent_layout.user_id:
             await interaction.response.send_message("这是别人的面板哦～", ephemeral=True)
             return
-        sub_id = self.values[0]
-        sub = next(c for c in self.parent_layout.category["children"] if c["id"] == sub_id)
-        await self.parent_layout.load_tag_list(interaction, sub, page=0)
+        await self.parent_layout.load_tag_list(interaction, self.sub, page=0)
 
 
 class SubCatPageButton(discord.ui.Button):
@@ -453,10 +614,11 @@ async def open_category_text(channel, user_id: int, cat_label: str, sub_label: s
         "layer": "list",
         "category_id": cat["id"],
         "sub_id": child["id"],
+        "sub": child,
         "tag_group": child["tag_group"],
         "sub_label": child_display_label(child),
         "page": page_idx,
         "tags": tags,
     })
     layout = TagListLayout(user_id, child, tags, page_idx, openai_client, model_name)
-    await loading.edit(content=None, embed=None, view=layout)
+    await loading.edit(content=None, view=layout)

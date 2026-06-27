@@ -873,7 +873,7 @@
           "label": "named drawfags",
           "tag_group": "list_of_named_drawfags",
           "wiki_type": "list",
-          "label_cn": "知名画师列表"
+          "label_cn": "具名 drawfag 列表"
         },
         {
           "id": "tag_group_pixiv_projects",

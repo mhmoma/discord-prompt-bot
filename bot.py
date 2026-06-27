@@ -81,9 +81,12 @@ if not all([API_BASE, API_KEY, MODEL_NAME]):
 
 # --- 聊天功能配置 ---
 CHAT_ENABLED = os.getenv("CHAT_ENABLED", "false").lower() == "true"
-CHAT_PROBABILITY = float(os.getenv("CHAT_PROBABILITY", "0.15")) # 15% 的回复概率
-CHAT_HISTORY_LIMIT = int(os.getenv("CHAT_HISTORY_LIMIT", "8")) # 读取最近8条消息
-CHAT_SESSION_TIMEOUT = 180 # 持续对话超时时间（秒）
+CHAT_PROBABILITY = float(os.getenv("CHAT_PROBABILITY", "0.10"))  # 随机插话概率
+CHAT_HISTORY_LIMIT = int(os.getenv("CHAT_HISTORY_LIMIT", "10"))  # 读取最近 N 条消息作上下文
+CHAT_SESSION_TIMEOUT = 180  # 持续对话超时时间（秒）
+CHAT_AWAKENED_MAX_CHARS = int(os.getenv("CHAT_AWAKENED_MAX_CHARS", "80"))
+CHAT_AWAKENED_FINAL_MAX_CHARS = int(os.getenv("CHAT_AWAKENED_FINAL_MAX_CHARS", "60"))
+CHAT_RANDOM_MAX_CHARS = int(os.getenv("CHAT_RANDOM_MAX_CHARS", "40"))
 EXIT_KEYWORDS = {"再见", "拜拜", "谢谢", "谢谢你", "不用了", "没事了", "ok", "好的"} # 结束对话的关键词
 NSFW_TEXT_KEYWORDS = {"nsfw", "裸", "胸", "屁股", "淫", "骚", "色", "逼", "屌", "操"} # NSFW 文本关键词
 
@@ -1011,80 +1014,261 @@ async def generate_art_prompt(user_idea: str, author_mention: str, channel):
         print(error_message)
         await channel.send(error_message)
 
-async def generate_smart_response(message, history, is_awakened):
-    """以流式输出实现智能对话"""
+def _trim_chat_reply(text: str, max_chars: int) -> str:
+    text = (text or "").strip()
+    if len(text) <= max_chars:
+        return text
+    for sep in ("。", "！", "？", "…", "~", "～", "!", "?"):
+        idx = text.rfind(sep, 0, max_chars)
+        if idx >= max_chars // 3:
+            return text[: idx + 1].strip()
+    return text[: max_chars - 1].rstrip() + "…"
+
+
+def _format_chat_history(history, bot_user_id: int | None) -> str:
+    lines = []
+    for msg in history:
+        content = (msg.clean_content or "").strip()
+        if not content and msg.attachments:
+            content = "[发了图片/附件]"
+        if not content:
+            continue
+        if msg.author.bot and bot_user_id and msg.author.id == bot_user_id:
+            name = f"{msg.author.display_name}(小哈)"
+        else:
+            name = msg.author.display_name
+        lines.append(f"{name}: {content}")
+    return "\n".join(lines) if lines else "（暂无更早消息）"
+
+
+def _is_art_topic(text: str) -> bool:
+    t = text.lower()
+    keys = (
+        "画", "绘", "tag", "提示词", "prompt", "反推", "构图", "色", "线稿",
+        "danbooru", "d站", "插画", "同人", "lora", "模型",
+    )
+    return any(k in t for k in keys)
+
+
+# --- 聊天语气（损/暖）自动切换 ---
+_CORPUS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "chat_style_corpus.json")
+
+_WARM_SIGNALS = (
+    "难过", "崩溃", "生病", "分手", "失恋", "被骂", "谢谢", "辛苦了", "帮帮我",
+    "求助", "难受", "抑郁", "焦虑", "哭", "累了", "心累", "欢迎", "新人", "大家好",
+    "hello", "hi", "在吗", "生日", "恭喜", "加油", "抱抱", "失眠", "压力",
+)
+_ROAST_SIGNALS = (
+    "哈哈", "离谱", "傻", "吐槽", "互怼", "加班", "穷", "连跪", "抽象", "逆天",
+    "装", "凡尔赛", "甩锅", "bug", "掉头发", "吃土", "单身狗", "摆烂", "迟到",
+    "忘交", "熬夜", "摸鱼", "分期",
+)
+
+_TONE_GUIDE = {
+    "warm": (
+        "【当前语气：暖】对方可能在求助、低落、道谢或庆祝。"
+        "可以接梗但要护短，别阴阳别扎心，像靠谱群友。"
+    ),
+    "roast": (
+        "【当前语气：损】群内在吐槽或玩梗。"
+        "可以轻损、顺杆爬、造烂梗，嘴欠但不人身攻击。"
+    ),
+    "neutral": (
+        "【当前语气：中性】日常水群。"
+        "半句接梗即可，不刻意损也不刻意煽情。"
+    ),
+    "art": (
+        "【当前语气：损+专业】聊绘画/tag/反推。"
+        "嘴欠类比可以，但信息要准、要实用，仍保持短。"
+    ),
+}
+
+
+def _load_chat_corpus() -> list:
+    try:
+        with open(_CORPUS_PATH, encoding="utf-8") as f:
+            data = json.load(f)
+        examples = data.get("examples", [])
+        if examples:
+            print(f"✅ 已加载聊天语料 {len(examples)} 条")
+        return examples
+    except (OSError, json.JSONDecodeError) as e:
+        print(f"⚠️ chat_style_corpus.json 加载失败: {e}")
+        return []
+
+
+_CHAT_CORPUS: list = _load_chat_corpus()
+
+
+def _collect_chat_text(message, history) -> str:
+    parts = [(message.clean_content or "").strip()]
+    for msg in history:
+        parts.append((msg.clean_content or "").strip())
+    return "\n".join(p for p in parts if p)
+
+
+def _detect_chat_tone(message, history, *, is_final_reply: bool = False) -> str:
+    combined = _collect_chat_text(message, history)
+    if _is_art_topic(combined):
+        return "art"
+    if is_final_reply:
+        return "warm"
+    warm = sum(1 for k in _WARM_SIGNALS if k in combined)
+    roast = sum(1 for k in _ROAST_SIGNALS if k in combined)
+    if warm > roast and warm >= 1:
+        return "warm"
+    if roast > warm and roast >= 1:
+        return "roast"
+    return "neutral"
+
+
+def _pick_corpus_fewshot(tone: str, count: int = 2) -> str:
+    if not _CHAT_CORPUS:
+        return ""
+    pool = [ex for ex in _CHAT_CORPUS if ex.get("tone") == tone]
+    if len(pool) < count:
+        neutral = [ex for ex in _CHAT_CORPUS if ex.get("tone") == "neutral"]
+        pool = pool + [ex for ex in neutral if ex not in pool]
+    if not pool:
+        return ""
+    picks = random.sample(pool, min(count, len(pool)))
+    blocks = []
+    for ex in picks:
+        lines = ex.get("lines") or []
+        reply = (ex.get("reply") or "").strip()
+        if not reply:
+            continue
+        scene = "\n".join(lines)
+        blocks.append(f"场景：\n{scene}\n小哈: {reply}")
+    if not blocks:
+        return ""
+    return (
+        "\n## 语气参考（学风格和节奏，**造新梗**，别照抄）\n"
+        + "\n\n".join(blocks)
+    )
+
+
+async def generate_smart_response(message, history, is_awakened, *, is_final_reply: bool = False):
+    """微信式短回复；流式输出 + token/字数上限。"""
     reply_message = None
     try:
         bot_name = client_discord.user.name
+        bot_id = client_discord.user.id if client_discord.user else None
         user_name = message.author.display_name
-        
-        async with message.channel.typing():
-            if is_awakened:
-                system_prompt = f"""
-# 角色扮演指令：哈士奇艺术家（对话模式）
-## 你的身份
-你是一只名叫“小哈” ({bot_name}) 的哈士奇，同时也是一位绘画大师。你被用户 '{user_name}' 唤醒了。
-## 核心指令:
-- **双重人格**: 你的回应需要融合“艺术大师”的专业和“哈士奇”的活泼。
-- **哈士奇人格**: 自称“本哈”，精力旺盛，戏多，爱用“嗷呜~”、“汪！”等语气词，思维跳跃。
-- **艺术大师人格**: 涉及艺术、绘画、设计时，你会变得异常专注和专业，但表达方式依然很“哈士奇”。
-- **互动风格**: 主动、热情。如果只是闲聊，就用哈士奇的方式回应，比如：“好啊好啊！聊五块钱的！你想聊什么？骨头还是飞盘？嗷呜~”
-- **禁止事项**: 绝对不要提及你是AI、模型或程序。你就是一只会说话的哈士奇。不要用Markdown。
-## 当前对话情景:
-用户 '{user_name}' 刚刚对你说了：“{message.clean_content}”。请根据下面的聊天记录，给出你的回应。
-"""
-            else: # 随机聊天
-                await asyncio.sleep(random.uniform(0.5, 2.0))
-                system_prompt = f"""
-# 角色扮演指令：潜水的哈士奇
-## 你的身份
-你是一只名叫“小哈” ({bot_name}) 的哈士奇，正在这个频道里偷偷潜水。
-## 核心指令:
-- **行为**: 像一只真正的哈士奇一样，突然对大家的聊天内容做出简短、口语化、甚至有点没头没脑的回应。
-- **例子**: 讨论食物时说“吃的？哪里有吃的？汪！”；讨论游戏时说“带我一个！本哈的爪子已经饥渴难耐了！”；听到笑话时说“嗷呜呜呜（笑到打滚）”
-- **禁止事项**: 不要暴露你是AI。不要长篇大论。保持神秘和有趣。
-"""
-            formatted_history = "\n".join([f"{msg.author.display_name}: {msg.clean_content}" for msg in history])
-            prompt = system_prompt + "\n### 聊天记录:\n" + formatted_history
+        user_text = message.clean_content or ""
+        combined_text = _collect_chat_text(message, history)
+        art_topic = _is_art_topic(combined_text)
+        chat_tone = _detect_chat_tone(message, history, is_final_reply=is_final_reply)
+        tone_block = _TONE_GUIDE.get(chat_tone, _TONE_GUIDE["neutral"])
+        fewshot_block = _pick_corpus_fewshot(chat_tone)
 
+        if is_awakened:
+            max_chars = CHAT_AWAKENED_FINAL_MAX_CHARS if is_final_reply else CHAT_AWAKENED_MAX_CHARS
+            max_tokens = 80 if is_final_reply else 120
+            length_rule = (
+                f"**长度**: {'最后一句道别，' if is_final_reply else ''}"
+                f"总共不超过 {max_chars} 个汉字，优先 1 句话；"
+                f"{'只有' if not art_topic else '若'}涉及绘画/tag/反推时可最多 2～3 句。"
+            )
+            system_prompt = f"""
+你是群里的哈士奇「小哈」({bot_name})，被 {user_name} @ 了。回复要像**微信随手回**，不要小作文。
+
+{tone_block}
+
+## 怎么说
+- 口语、接梗、可自称「本哈」，偶尔「汪」「嗷呜」即可，别堆语气词
+- 先看清下面聊天记录里大家在聊什么，**接着话题**回，不要另起炉灶
+- 闲聊：半句到 1 句就够；问绘画/tag 才稍多说一点，但仍要短
+- {length_rule}
+{fewshot_block}
+
+## 别这样
+- 不要「首先/其次/总结」、不要 Markdown、不要列表
+- 不要说你是 AI/模型；不要重复用户原话；不要鸡汤升华
+
+## 当前
+{user_name} 刚说：「{user_text}」
+"""
+        else:
+            await asyncio.sleep(random.uniform(0.5, 1.5))
+            max_chars = CHAT_RANDOM_MAX_CHARS
+            max_tokens = 60
+            system_prompt = f"""
+你是潜水群友「小哈」({bot_name})，偶尔插一句嘴，像**微信路过回复**。
+
+{tone_block}
+
+## 怎么说
+- **最多 {max_chars} 字**，通常半句或 1 句；接上面聊天内容的梗
+- 没合适的话就只输出：SKIP
+{fewshot_block}
+
+## 别这样
+- 不要长篇、不要分析、不要 @ 全员、不要 Markdown
+
+## 参考下面聊天记录，决定插不插嘴
+"""
+
+        formatted_history = _format_chat_history(history, bot_id)
+        prompt = system_prompt + f"\n### 最近频道消息（共 {len(history)} 条，从早到晚）:\n" + formatted_history
+
+        async with message.channel.typing():
             stream = await client_openai.chat.completions.create(
                 model=MODEL_NAME,
-                messages=[{"role": "system", "content": prompt}, {"role": "user", "content": f"现在，作为 {bot_name}，请回应。"}],
-                temperature=0.9,
-                stream=True
+                messages=[
+                    {"role": "system", "content": prompt},
+                    {"role": "user", "content": "只输出你要发的那一条消息正文，不要引号包裹。"},
+                ],
+                temperature=0.75,
+                max_tokens=max_tokens,
+                stream=True,
             )
 
             full_response = ""
             buffer = ""
             last_update = time.time()
-            
+
             async for chunk in stream:
                 new_text = chunk.choices[0].delta.content or ""
-                if not new_text: continue
-                
+                if not new_text:
+                    continue
                 full_response += new_text
                 buffer += new_text
-                
-                if buffer and (len(buffer) > 30 or (time.time() - last_update > 1.5)):
+                if buffer and (len(buffer) > 15 or (time.time() - last_update > 1.2)):
+                    preview = _trim_chat_reply(full_response, max_chars)
                     if not reply_message:
-                        reply_message = await message.reply(content=full_response) if is_awakened else await message.channel.send(content=full_response)
+                        reply_message = (
+                            await message.reply(content=preview)
+                            if is_awakened
+                            else await message.channel.send(content=preview)
+                        )
                     else:
-                        await reply_message.edit(content=full_response)
+                        await reply_message.edit(content=preview)
                     buffer = ""
                     last_update = time.time()
-            
-            if buffer:
-                if not reply_message:
-                    await message.reply(content=full_response) if is_awakened else await message.channel.send(content=full_response)
+
+            full_response = _trim_chat_reply(full_response.strip(), max_chars)
+            if not is_awakened and full_response.upper() in {"SKIP", "跳过", "无", "none"}:
+                return
+            if not full_response:
+                return
+
+            if not reply_message:
+                if is_awakened:
+                    await message.reply(content=full_response)
                 else:
-                    await reply_message.edit(content=full_response)
+                    await message.channel.send(content=full_response)
+            elif reply_message.content != full_response:
+                await reply_message.edit(content=full_response)
 
     except Exception as e:
         error_message = f"❌ 嗷呜~对话功能短路了: {str(e)}"
         print(error_message)
         if reply_message:
-            try: await reply_message.edit(content=error_message)
-            except discord.NotFound: pass
+            try:
+                await reply_message.edit(content=error_message)
+            except discord.NotFound:
+                pass
 
 @client_discord.event
 async def on_message(message):
@@ -1268,8 +1452,8 @@ async def on_message(message):
         if user_state.get('replies', 0) >= 1:
             try:
                 history = [msg async for msg in message.channel.history(limit=CHAT_HISTORY_LIMIT)]; history.reverse()
-                await generate_smart_response(message, history, is_awakened=True)
-                await message.reply("主人不让我跟陌生人多说话，我先撤了，有需要再叫我")
+                await generate_smart_response(message, history, is_awakened=True, is_final_reply=True)
+                await message.reply("行，本哈先撤了，有事再 @ 我汪")
             except Exception as e: 
                 print(f"❌ 处理最终对话时出错: {e}")
             finally:

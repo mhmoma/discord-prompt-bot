@@ -150,7 +150,13 @@ def format_tag_title(tag_name: str, cn: Optional[str] = None) -> str:
     return f"`{tag_name}`"
 
 
-async def enrich_tags_cn(session_tags: List[dict], openai_client=None, model_name: Optional[str] = None) -> List[dict]:
+async def enrich_tags_cn(
+    session_tags: List[dict],
+    openai_client=None,
+    model_name: Optional[str] = None,
+    *,
+    allow_ai: bool = True,
+) -> List[dict]:
     """为 tag 列表补充 cn 字段；缺译时可批量 AI 翻译并写入缓存。"""
     missing = []
     for tag in session_tags:
@@ -160,7 +166,7 @@ async def enrich_tags_cn(session_tags: List[dict], openai_client=None, model_nam
         if not cn:
             missing.append(name)
 
-    if not missing or not TAG_TRANSLATE_AI or not openai_client or not model_name:
+    if not missing or not allow_ai or not TAG_TRANSLATE_AI or not openai_client or not model_name:
         return session_tags
 
     chunk_size = 25
@@ -195,9 +201,12 @@ async def _ai_translate_batch(client, model_name: str, tag_names: List[str]) -> 
             response_format={"type": "json_object"},
         )
         raw = (resp.choices[0].message.content or "").strip()
-        if not raw:
+        if not raw or raw[0] not in "{[":
             return {}
-        data = json.loads(raw)
+        try:
+            data = json.loads(raw)
+        except json.JSONDecodeError:
+            return {}
         if isinstance(data, dict) and "tags" in data and isinstance(data["tags"], dict):
             data = data["tags"]
         result = {}

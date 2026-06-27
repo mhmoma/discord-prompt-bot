@@ -12,7 +12,9 @@ import danbooru_api as dapi
 import tag_translate as ttr
 
 MAP_FILE = "danbooru_category_map.json"
-TAGS_PER_PAGE = min(int(os.getenv("DANBOORU_TAGS_PER_PAGE", "15")), 15)
+# Components V2 单消息最多 40 个子组件；每行 Section+按钮约占 3，留页眉/复制/翻页后每页最多 10 条
+LAYOUT_MAX_TAGS = 10
+TAGS_PER_PAGE = min(int(os.getenv("DANBOORU_TAGS_PER_PAGE", "10")), LAYOUT_MAX_TAGS)
 VIEW_TIMEOUT = int(os.getenv("DANBOORU_VIEW_TIMEOUT", "600"))
 
 _category_map = None
@@ -170,13 +172,11 @@ class TagListLayout(discord.ui.LayoutView):
             f"`{self.sub['tag_group']}`\n"
             f"第 **{self.page + 1}/{self.total_pages}** 页 · 共 **{len(self.tags)}** 个 tag"
         )
-        container.add_item(discord.ui.TextDisplay(header))
-
         copy_tags = ", ".join(t["name"] for t in page_tags)
         if copy_tags:
-            container.add_item(discord.ui.TextDisplay(f"📋 本页复制\n```{copy_tags[:900]}```"))
+            header += f"\n\n📋 本页复制\n```{copy_tags[:700]}```"
 
-        container.add_item(discord.ui.Separator(visible=True, spacing=discord.SeparatorSpacing.small))
+        container.add_item(discord.ui.TextDisplay(header))
 
         for idx, tag in enumerate(page_tags):
             num = self.page * TAGS_PER_PAGE + idx + 1
@@ -290,7 +290,7 @@ class SubCategoryView(discord.ui.View):
         try:
             async with aiohttp.ClientSession() as session:
                 tags = await dapi.get_group_tags_sorted(session, sub["tag_group"])
-                tags = await ttr.enrich_tags_cn(tags, self.openai_client, self.model_name)
+                tags = await ttr.enrich_tags_cn(tags, self.openai_client, self.model_name, allow_ai=False)
                 if not tags:
                     await interaction.followup.send(f"🤔 `{sub['tag_group']}` 下未找到 tag。", ephemeral=True)
                     return
@@ -367,7 +367,7 @@ async def open_category_text(channel, user_id: int, cat_label: str, sub_label: s
     try:
         async with aiohttp.ClientSession() as session:
             tags = await dapi.get_group_tags_sorted(session, child["tag_group"])
-            tags = await ttr.enrich_tags_cn(tags, openai_client, model_name)
+            tags = await ttr.enrich_tags_cn(tags, openai_client, model_name, allow_ai=False)
             if not tags:
                 await loading.edit(content=f"🤔 `{child['tag_group']}` 下没有 tag。")
                 return

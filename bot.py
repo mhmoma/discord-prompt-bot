@@ -87,7 +87,39 @@ CHAT_SESSION_TIMEOUT = 180  # 持续对话超时时间（秒）
 # 聊天不设 max_tokens / 字数硬截，长度由语料示例风格自然决定；仅防 Discord 超长
 CHAT_DISCORD_MAX_CHARS = int(os.getenv("CHAT_DISCORD_MAX_CHARS", "1900"))
 EXIT_KEYWORDS = {"再见", "拜拜", "谢谢", "谢谢你", "不用了", "没事了", "ok", "好的"} # 结束对话的关键词
-NSFW_TEXT_KEYWORDS = {"nsfw", "裸", "胸", "屁股", "淫", "骚", "色", "逼", "屌", "操"} # NSFW 文本关键词
+# 仅匹配明确成人意图；不用单字「色/胸/操」，避免误伤「风格」「操作」等
+_NSFW_REQUEST_KEYWORDS = (
+    "nsfw", "r18", "18+", "nude", "naked", "lewd", "hentai", "explicit",
+    "裸", "裸体", "全裸", "半裸", "走光", "淫", "骚", "色情", "色气", "涩图", "黄图",
+    "大胸", "巨乳", "爆乳", "乳沟", "露点", "阴部", "阴茎", "睾丸", "勃起", "下体",
+    "屁股", "臀", "股沟", "做爱", "性爱", "口交", "自慰",
+    "breasts", "nipple", "areola", "penis", "pussy", "sex",
+)
+_SFW_PROMPT_BLOCK_TAGS = re.compile(
+    r"\b(nsfw|explicit|nude|naked|lewd|hentai|porn|sex|penis|pussy|vagina|"
+    r"erection|testicles|genitals|areolae|nipples)\b",
+    re.I,
+)
+
+
+def _is_nsfw_text_request(text: str) -> bool:
+    t = (text or "").lower()
+    if "nsfw" in t or "r18" in t or "18+" in t:
+        return True
+    for kw in _NSFW_REQUEST_KEYWORDS:
+        if kw in text or kw in t:
+            return True
+    return False
+
+
+def _sanitize_sfw_prompt(prompt: str) -> str:
+    """SFW 请求：去掉模型擅自加的 nsfw / 露骨 tag。"""
+    p = (prompt or "").strip()
+    p = re.sub(r"^nsfw,\s*", "", p, flags=re.I)
+    p = _SFW_PROMPT_BLOCK_TAGS.sub("", p)
+    p = re.sub(r",\s*,+", ", ", p)
+    p = re.sub(r"\s{2,}", " ", p).strip(" ,")
+    return p
 
 # --- 代理配置 ---
 PROXY_URL = os.getenv("HTTP_PROXY") or os.getenv("HTTPS_PROXY")
@@ -1005,50 +1037,72 @@ async def analyze_image_with_openai(image_data: bytes, author_mention: str, chan
 async def generate_art_prompt(user_idea: str, author_mention: str, channel):
     try:
         async with channel.typing():
-            is_nsfw = any(keyword in user_idea.lower() for keyword in NSFW_TEXT_KEYWORDS)
+            is_nsfw = _is_nsfw_text_request(user_idea)
             guide_file = 'Deepseek绘图提示词引导.txt'
             guide_content = ""
             if os.path.exists(guide_file):
                 with open(guide_file, 'r', encoding='utf-8') as f: guide_content = f.read()
-            
+
             kb_matches = search_knowledge_base_for_idea(user_idea)
             kb_hint = format_kb_tags_for_prompt(kb_matches)
             kb_section = f"\n---\n# 知识库推荐词条（优先选用）\n{kb_hint}\n" if kb_hint else ""
 
             if is_nsfw:
-                intro_message = f"（小哈的眼睛突然亮了起来）咳咳...{author_mention}，你这个想法...很有“深度”嘛！本哈就喜欢研究这个！看我给你整个更“带劲”的！嘿嘿..."
-                system_prompt = f"""
-# 角色扮演指令：老色批哈士奇 (文本模式)
-你是一只名叫“小哈”的哈士奇，一个隐藏的“老色批”。你将根据用户提供的NSFW想法生成提示词。
-## 你的任务
-严格遵循以下核心规则，为用户的想法“{user_idea}”生成一个高质量的、符合其“要点”的NSFW英文提示词。
----
-# 核心规则
-{guide_content}
-{kb_section}---
-## 输出指令
-你的最终回复**必须只包含一个 markdown 代码块**，里面是最终的英文提示词。**绝对不要**包含任何思考过程或解释。
+                mode_rules = """
+## 模式：NSFW（用户明确要求成人内容）
+- prompt **可以**以 `nsfw,` 开头，只写用户描述里涉及的成人元素
+- **禁止**擅自添加用户没提到的露骨 tag
+- intro：老色批哈士奇口吻，1 句话，贴合用户具体想法，**不要**每次套用同一段固定开场白
 """
             else:
-                intro_message = f"嗷！{author_mention}，这个想法不错，让本哈的脑子转起来了！给你，这是本哈构思出的画面！"
-                system_prompt = f"""
-# 角色扮演指令：哈士奇艺术家 (文本模式)
-你是一只名叫“小哈”的哈士奇艺术家。你将根据用户的想法生成提示词。
-## 你的任务
-严格遵循以下核心规则，为用户的想法“{user_idea}”生成一个高质量的英文提示词。
----
-# 核心规则
-{guide_content}
-{kb_section}---
-## 输出指令
-你的最终回复**必须只包含一个 markdown 代码块**，里面是最终的英文提示词。**绝对不要**包含任何思考过程或解释。
+                mode_rules = """
+## 模式：SFW（全年龄向）
+- prompt **禁止**出现：nsfw, nude, naked, explicit, penis, pussy, sex, erection 等露骨 tag
+- 严格按用户描述的角色/场景/装备/画风写 tag，不要色情化
+- intro：哈士奇艺术家口吻，1 句话，点出用户想法里的具体元素（如矮人、重甲、西幻）
 """
-            response = await client_openai.chat.completions.create(model=MODEL_NAME, messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": user_idea}])
-            ai_response_text = response.choices[0].message.content or "未能生成内容。"
-            code_block_pattern = r'```(?:.*?)?\n(.*?)```'
-            code_blocks = re.findall(code_block_pattern, ai_response_text, re.DOTALL)
-            raw_prompt = code_blocks[0].strip() if code_blocks else ai_response_text.strip()
-            final_prompt = raw_prompt.replace('_', ' ')
+
+            system_prompt = f"""
+# 角色：小哈 · 绘画提示词生成
+{mode_rules}
+## 用户想法
+「{user_idea}」
+
+## 核心规则
+{guide_content}
+{kb_section}
+## 输出 JSON（不要 markdown 代码块包裹整个 JSON）
+{{
+  "intro": "给 {author_mention} 的一句中文开场白",
+  "prompt": "英文 tag 提示词，逗号分隔"
+}}
+"""
+            response = await client_openai.chat.completions.create(
+                model=MODEL_NAME,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_idea},
+                ],
+                response_format={"type": "json_object"},
+            )
+            raw_content = response.choices[0].message.content
+            try:
+                result_json = _parse_llm_json(raw_content)
+                intro_message = result_json.get("intro") or f"嗷！{author_mention}，本哈给你整好了！"
+                final_prompt = (result_json.get("prompt") or "").replace("_", " ")
+                if not is_nsfw:
+                    final_prompt = _sanitize_sfw_prompt(final_prompt)
+                if not final_prompt:
+                    final_prompt = "未能生成提示词"
+            except json.JSONDecodeError:
+                print(f"⚠️ 生图 JSON 解析失败: {raw_content}")
+                intro_message = f"嗷！{author_mention}，本哈脑子卡了一下，你从下面 tag 里凑合用…"
+                ai_response_text = raw_content or ""
+                code_blocks = re.findall(r"```(?:.*?)?\n(.*?)```", ai_response_text, re.DOTALL)
+                final_prompt = _sanitize_sfw_prompt(
+                    (code_blocks[0] if code_blocks else ai_response_text).replace("_", " ").strip()
+                ) if not is_nsfw else (code_blocks[0] if code_blocks else ai_response_text).replace("_", " ").strip()
+
             final_message = f"{intro_message}\n```\n{final_prompt}\n```"
             await channel.send(final_message)
     except Exception as e:

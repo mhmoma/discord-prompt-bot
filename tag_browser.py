@@ -12,8 +12,8 @@ import danbooru_api as dapi
 import tag_translate as ttr
 
 MAP_FILE = "danbooru_category_map.json"
-# Discord 单条消息最多 10 个 embed：1 个页眉 + 9 个带缩略图的 tag
-TAGS_PER_PAGE = min(int(os.getenv("DANBOORU_TAGS_PER_PAGE", "9")), 9)
+# 每页最多 15 条：3 行 × 5 个「查看」按钮 + 翻页 + 主菜单 = 5 行上限
+TAGS_PER_PAGE = min(int(os.getenv("DANBOORU_TAGS_PER_PAGE", "15")), 15)
 VIEW_TIMEOUT = int(os.getenv("DANBOORU_VIEW_TIMEOUT", "600"))
 
 _category_map = None
@@ -67,7 +67,7 @@ def set_session(user_id: int, data: dict):
 def build_home_embed() -> discord.Embed:
     embed = discord.Embed(
         title="📂 Danbooru 标签浏览器",
-        description="从下拉菜单选择**大类**，再选**子分类**，即可浏览 tag 列表。\n每条 tag 带缩略图，**点击标题**打开 Danbooru 示例图。",
+        description="从下拉菜单选择**大类**，再选**子分类**，即可浏览 tag 列表。\n点每条 tag 旁的 **查看** 按钮，弹出详情与预览图。",
         color=0x5865F2,
     )
     embed.set_footer(text="指令：D浏览 | 快捷：D类 姿势 性姿势")
@@ -90,52 +90,52 @@ def _page_tags(tags: list[dict], page: int) -> list[dict]:
     return tags[start:start + TAGS_PER_PAGE]
 
 
-def build_list_embeds(
-    sub: dict,
-    tags: list[dict],
-    page: int,
-    total_pages: int,
-    previews: Optional[dict] = None,
-) -> List[discord.Embed]:
-    previews = previews or {}
+def build_list_embed(sub: dict, tags: list[dict], page: int, total_pages: int) -> discord.Embed:
     page_tags = _page_tags(tags, page)
-    copy_tags = ", ".join(t["name"] for t in page_tags)
-
-    header = discord.Embed(
-        title=f"📂 {sub['label']}",
-        description=f"`{sub['tag_group']}`\n第 **{page + 1}/{total_pages}** 页 · 共 **{len(tags)}** 个 tag",
-        color=0xFEE75C,
-    )
-    if copy_tags:
-        header.add_field(name="📋 本页复制", value=f"```{copy_tags[:950]}```", inline=False)
-    header.set_footer(text="点击 tag 标题查看 Danbooru 示例 · ◀▶ 翻页（每页最多 9 条带预览）")
-    embeds: List[discord.Embed] = [header]
-
+    lines: List[str] = []
     for i, tag in enumerate(page_tags, start=page * TAGS_PER_PAGE + 1):
         name = tag["name"]
         cn = tag.get("cn") or ttr.lookup_cn(name)
         count = tag.get("post_count", 0)
         label = f"{cn} · `{name}`" if cn else f"`{name}`"
-        sample = previews.get(name, {})
-        post_url = sample.get("post_url") or dapi.danbooru_post_url(name)
-        card = discord.Embed(
-            title=f"{i}. {label}"[:256],
-            description=f"**{count:,}** 帖 · [打开示例图]({post_url})",
-            url=post_url,
-            color=0x5865F2,
-        )
-        thumb = sample.get("preview_url")
-        if thumb:
-            card.set_thumbnail(url=thumb)
-        embeds.append(card)
-        if len(embeds) >= 10:
-            break
-    return embeds
+        lines.append(f"**{i}.** {label} — **{count:,}** 帖")
+
+    copy_tags = ", ".join(t["name"] for t in page_tags)
+    embed = discord.Embed(
+        title=f"📂 {sub['label']}",
+        description=f"`{sub['tag_group']}`\n第 **{page + 1}/{total_pages}** 页 · 共 **{len(tags)}** 个 tag",
+        color=0xFEE75C,
+    )
+    if lines:
+        body = "\n".join(lines)
+        if len(body) > 3900:
+            body = body[:3890] + "\n…"
+        embed.add_field(name="标签列表", value=body, inline=False)
+    if copy_tags:
+        embed.add_field(name="📋 本页复制", value=f"```{copy_tags[:950]}```", inline=False)
+    embed.set_footer(text="点下方编号按钮「查看」详情与预览 · ◀▶ 翻页")
+    return embed
 
 
-async def _fetch_previews_for_page(session: aiohttp.ClientSession, tags: list[dict], page: int) -> dict:
-    names = [t["name"] for t in _page_tags(tags, page)]
-    return await dapi.fetch_sample_posts_batch(session, names)
+def build_detail_embed(tag: dict, sample: Optional[dict] = None) -> discord.Embed:
+    name = tag["name"]
+    cn = tag.get("cn") or ttr.lookup_cn(name)
+    count = tag.get("post_count", 0)
+    title = f"{cn} · `{name}`" if cn else f"`{name}`"
+    post_url = (sample or {}).get("post_url") or dapi.danbooru_post_url(name)
+    embed = discord.Embed(
+        title=title,
+        description=f"**{count:,}** 帖",
+        url=post_url,
+        color=0x5865F2,
+    )
+    embed.add_field(name="🔗 Danbooru", value=f"[搜索此 tag]({post_url})", inline=False)
+    if sample and sample.get("post_url"):
+        embed.add_field(name="🖼 示例帖", value=f"[打开示例图]({sample['post_url']})", inline=False)
+    preview = (sample or {}).get("preview_url")
+    if preview:
+        embed.set_image(url=preview)
+    return embed
 
 
 class HomeView(discord.ui.View):
@@ -194,7 +194,6 @@ class SubCategoryView(discord.ui.View):
                     return
                 total_pages = max(1, math.ceil(len(tags) / TAGS_PER_PAGE))
                 page = max(0, min(page, total_pages - 1))
-                previews = await _fetch_previews_for_page(session, tags, page)
         except Exception as e:
             await interaction.followup.send(f"❌ 拉取 Danbooru 失败：{e}", ephemeral=True)
             return
@@ -208,9 +207,9 @@ class SubCategoryView(discord.ui.View):
             "page": page,
             "tags": tags,
         })
-        embeds = build_list_embeds(sub, tags, page, total_pages, previews)
+        embed = build_list_embed(sub, tags, page, total_pages)
         view = TagListView(self.user_id, sub, tags, page, self.openai_client, self.model_name)
-        await interaction.message.edit(embeds=embeds, view=view)
+        await interaction.message.edit(content=None, embed=embed, embeds=[], view=view)
 
 
 class SubCategorySelect(discord.ui.Select):
@@ -227,6 +226,31 @@ class SubCategorySelect(discord.ui.Select):
         await self.parent_view.load_tag_list(interaction, sub, page=0)
 
 
+class TagViewButton(discord.ui.Button):
+    def __init__(self, index: int, tag: dict, row: int, user_id: int):
+        cn = (tag.get("cn") or "").strip()
+        short = cn[:8] if cn else tag["name"][:10]
+        label = f"{index}·{short}"[:80]
+        super().__init__(style=discord.ButtonStyle.secondary, label=label, row=min(row, 2))
+        self.tag = tag
+        self.user_id = user_id
+
+    async def callback(self, interaction: discord.Interaction):
+        if interaction.user.id != self.user_id:
+            await interaction.response.send_message("这是别人的面板哦～", ephemeral=True)
+            return
+        await interaction.response.defer(ephemeral=True)
+        sample = None
+        try:
+            async with aiohttp.ClientSession() as session:
+                sample = await dapi.fetch_sample_post(session, self.tag["name"])
+        except Exception as e:
+            await interaction.followup.send(f"❌ 加载预览失败：{e}", ephemeral=True)
+            return
+        embed = build_detail_embed(self.tag, sample)
+        await interaction.followup.send(embed=embed, ephemeral=True)
+
+
 class TagListView(discord.ui.View):
     def __init__(self, user_id: int, sub: dict, tags: list[dict], page: int, openai_client=None, model_name=None):
         super().__init__(timeout=VIEW_TIMEOUT)
@@ -238,6 +262,11 @@ class TagListView(discord.ui.View):
         self.model_name = model_name
         self.total_pages = max(1, math.ceil(len(tags) / TAGS_PER_PAGE))
 
+        page_tags = _page_tags(tags, page)
+        for idx, tag in enumerate(page_tags):
+            num = page * TAGS_PER_PAGE + idx + 1
+            self.add_item(TagViewButton(num, tag, idx // 5, user_id))
+
         if page > 0:
             self.add_item(PageButton("prev", self))
         if page < self.total_pages - 1:
@@ -248,21 +277,15 @@ class TagListView(discord.ui.View):
         await interaction.response.defer()
         new_page = max(0, min(new_page, self.total_pages - 1))
         set_session(self.user_id, {**get_session(self.user_id), "page": new_page})
-        try:
-            async with aiohttp.ClientSession() as session:
-                previews = await _fetch_previews_for_page(session, self.tags, new_page)
-        except Exception as e:
-            await interaction.followup.send(f"❌ 加载预览图失败：{e}", ephemeral=True)
-            return
-        embeds = build_list_embeds(self.sub, self.tags, new_page, self.total_pages, previews)
+        embed = build_list_embed(self.sub, self.tags, new_page, self.total_pages)
         view = TagListView(self.user_id, self.sub, self.tags, new_page, self.openai_client, self.model_name)
-        await interaction.message.edit(embeds=embeds, view=view)
+        await interaction.message.edit(embed=embed, embeds=[], view=view)
 
 
 class PageButton(discord.ui.Button):
     def __init__(self, direction: str, parent: TagListView):
         label = "◀ 上页" if direction == "prev" else "下页 ▶"
-        super().__init__(style=discord.ButtonStyle.secondary, label=label)
+        super().__init__(style=discord.ButtonStyle.secondary, label=label, row=3)
         self.direction = direction
         self.parent_view = parent
 
@@ -287,7 +310,7 @@ class HomeButton(discord.ui.Button):
             return
         set_session(self.user_id, {"layer": "home"})
         view = HomeView(self.user_id, self.openai_client, self.model_name)
-        await interaction.response.edit_message(embeds=[build_home_embed()], view=view)
+        await interaction.response.edit_message(embed=build_home_embed(), embeds=[], view=view)
 
 
 async def open_browser(channel, user_id: int, openai_client=None, model_name=None):
@@ -310,7 +333,7 @@ async def open_category_text(channel, user_id: int, cat_label: str, sub_label: s
         )
         return
 
-    loading = await channel.send(f"⏳ 正在加载 **{child['label']}** 的 tag 与预览图…")
+    loading = await channel.send(f"⏳ 正在加载 **{child['label']}**…")
     try:
         async with aiohttp.ClientSession() as session:
             tags = await dapi.get_group_tags_sorted(session, child["tag_group"])
@@ -320,7 +343,6 @@ async def open_category_text(channel, user_id: int, cat_label: str, sub_label: s
                 return
             total_pages = max(1, math.ceil(len(tags) / TAGS_PER_PAGE))
             page_idx = max(0, min(page - 1, total_pages - 1))
-            previews = await _fetch_previews_for_page(session, tags, page_idx)
     except Exception as e:
         await loading.edit(content=f"❌ Danbooru 请求失败：{e}")
         return
@@ -334,6 +356,6 @@ async def open_category_text(channel, user_id: int, cat_label: str, sub_label: s
         "page": page_idx,
         "tags": tags,
     })
-    embeds = build_list_embeds(child, tags, page_idx, total_pages, previews)
+    embed = build_list_embed(child, tags, page_idx, total_pages)
     view = TagListView(user_id, child, tags, page_idx, openai_client, model_name)
-    await loading.edit(content=None, embeds=embeds, view=view)
+    await loading.edit(content=None, embed=embed, view=view)

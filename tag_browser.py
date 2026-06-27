@@ -12,9 +12,9 @@ import danbooru_api as dapi
 import tag_translate as ttr
 
 MAP_FILE = "danbooru_category_map.json"
-# 每页最多 15 条：3 行 × 5 个「查看」按钮 + 翻页 + 主菜单 = 5 行上限
 TAGS_PER_PAGE = min(int(os.getenv("DANBOORU_TAGS_PER_PAGE", "15")), 15)
 VIEW_TIMEOUT = int(os.getenv("DANBOORU_VIEW_TIMEOUT", "600"))
+V2_FLAGS = discord.MessageFlags(components_v2=True)
 
 _category_map = None
 _browser_sessions = {}
@@ -67,7 +67,7 @@ def set_session(user_id: int, data: dict):
 def build_home_embed() -> discord.Embed:
     embed = discord.Embed(
         title="📂 Danbooru 标签浏览器",
-        description="从下拉菜单选择**大类**，再选**子分类**，即可浏览 tag 列表。\n点每条 tag 旁的 **查看** 按钮，弹出详情与预览图。",
+        description="从下拉菜单选择**大类**，再选**子分类**，即可浏览 tag 列表。\n每行右侧点 **查看**，弹出详情与预览图。",
         color=0x5865F2,
     )
     embed.set_footer(text="指令：D浏览 | 快捷：D类 姿势 性姿势")
@@ -90,31 +90,12 @@ def _page_tags(tags: list[dict], page: int) -> list[dict]:
     return tags[start:start + TAGS_PER_PAGE]
 
 
-def build_list_embed(sub: dict, tags: list[dict], page: int, total_pages: int) -> discord.Embed:
-    page_tags = _page_tags(tags, page)
-    lines: List[str] = []
-    for i, tag in enumerate(page_tags, start=page * TAGS_PER_PAGE + 1):
-        name = tag["name"]
-        cn = tag.get("cn") or ttr.lookup_cn(name)
-        count = tag.get("post_count", 0)
-        label = f"{cn} · `{name}`" if cn else f"`{name}`"
-        lines.append(f"**{i}.** {label} — **{count:,}** 帖")
-
-    copy_tags = ", ".join(t["name"] for t in page_tags)
-    embed = discord.Embed(
-        title=f"📂 {sub['label']}",
-        description=f"`{sub['tag_group']}`\n第 **{page + 1}/{total_pages}** 页 · 共 **{len(tags)}** 个 tag",
-        color=0xFEE75C,
-    )
-    if lines:
-        body = "\n".join(lines)
-        if len(body) > 3900:
-            body = body[:3890] + "\n…"
-        embed.add_field(name="标签列表", value=body, inline=False)
-    if copy_tags:
-        embed.add_field(name="📋 本页复制", value=f"```{copy_tags[:950]}```", inline=False)
-    embed.set_footer(text="点下方编号按钮「查看」详情与预览 · ◀▶ 翻页")
-    return embed
+def _format_tag_line(index: int, tag: dict) -> str:
+    name = tag["name"]
+    cn = tag.get("cn") or ttr.lookup_cn(name)
+    count = tag.get("post_count", 0)
+    label = f"{cn} · `{name}`" if cn else f"`{name}`"
+    return f"**{index}.** {label} — **{count:,}** 帖"
 
 
 def build_detail_embed(tag: dict, sample: Optional[dict] = None) -> discord.Embed:
@@ -136,6 +117,128 @@ def build_detail_embed(tag: dict, sample: Optional[dict] = None) -> discord.Embe
     if preview:
         embed.set_image(url=preview)
     return embed
+
+
+class TagDetailButton(discord.ui.Button):
+    def __init__(self, tag: dict, user_id: int):
+        super().__init__(style=discord.ButtonStyle.primary, label="查看")
+        self.tag = tag
+        self.user_id = user_id
+
+    async def callback(self, interaction: discord.Interaction):
+        if interaction.user.id != self.user_id:
+            await interaction.response.send_message("这是别人的面板哦～", ephemeral=True)
+            return
+        await interaction.response.defer(ephemeral=True)
+        try:
+            async with aiohttp.ClientSession() as session:
+                sample = await dapi.fetch_sample_post(session, self.tag["name"])
+        except Exception as e:
+            await interaction.followup.send(f"❌ 加载预览失败：{e}", ephemeral=True)
+            return
+        embed = build_detail_embed(self.tag, sample)
+        await interaction.followup.send(embed=embed, ephemeral=True)
+
+
+class TagListLayout(discord.ui.LayoutView):
+    """Components V2：每行 tag 右侧内嵌「查看」按钮。"""
+
+    def __init__(
+        self,
+        user_id: int,
+        sub: dict,
+        tags: list[dict],
+        page: int,
+        openai_client=None,
+        model_name=None,
+    ):
+        super().__init__(timeout=VIEW_TIMEOUT)
+        self.user_id = user_id
+        self.sub = sub
+        self.tags = tags
+        self.page = page
+        self.openai_client = openai_client
+        self.model_name = model_name
+        self.total_pages = max(1, math.ceil(len(tags) / TAGS_PER_PAGE))
+        self._build()
+
+    def _build(self):
+        page_tags = _page_tags(self.tags, self.page)
+        container = discord.ui.Container(accent_color=discord.Color(0xFEE75C))
+
+        header = (
+            f"## 📂 {self.sub['label']}\n"
+            f"`{self.sub['tag_group']}`\n"
+            f"第 **{self.page + 1}/{self.total_pages}** 页 · 共 **{len(self.tags)}** 个 tag"
+        )
+        container.add_item(discord.ui.TextDisplay(header))
+
+        copy_tags = ", ".join(t["name"] for t in page_tags)
+        if copy_tags:
+            container.add_item(discord.ui.TextDisplay(f"📋 本页复制\n```{copy_tags[:900]}```"))
+
+        container.add_item(discord.ui.Separator(divider=True, spacing=discord.SeparatorSpacing.small))
+
+        for idx, tag in enumerate(page_tags):
+            num = self.page * TAGS_PER_PAGE + idx + 1
+            container.add_item(
+                discord.ui.Section(
+                    _format_tag_line(num, tag),
+                    accessory=TagDetailButton(tag, self.user_id),
+                )
+            )
+
+        nav = discord.ui.ActionRow()
+        if self.page > 0:
+            nav.add_item(ListPageButton("prev", self))
+        if self.page < self.total_pages - 1:
+            nav.add_item(ListPageButton("next", self))
+        nav.add_item(ListHomeButton(self.user_id, self.openai_client, self.model_name))
+        container.add_item(nav)
+
+        self.add_item(container)
+
+
+class ListPageButton(discord.ui.Button):
+    def __init__(self, direction: str, parent: TagListLayout):
+        label = "◀ 上页" if direction == "prev" else "下页 ▶"
+        super().__init__(style=discord.ButtonStyle.secondary, label=label)
+        self.direction = direction
+        self.parent_layout = parent
+
+    async def callback(self, interaction: discord.Interaction):
+        if interaction.user.id != self.parent_layout.user_id:
+            await interaction.response.send_message("这是别人的面板哦～", ephemeral=True)
+            return
+        await interaction.response.defer()
+        delta = -1 if self.direction == "prev" else 1
+        new_page = max(0, min(self.parent_layout.page + delta, self.parent_layout.total_pages - 1))
+        set_session(self.parent_layout.user_id, {**get_session(self.parent_layout.user_id), "page": new_page})
+        new_layout = TagListLayout(
+            self.parent_layout.user_id,
+            self.parent_layout.sub,
+            self.parent_layout.tags,
+            new_page,
+            self.parent_layout.openai_client,
+            self.parent_layout.model_name,
+        )
+        await interaction.message.edit(view=new_layout, flags=V2_FLAGS)
+
+
+class ListHomeButton(discord.ui.Button):
+    def __init__(self, user_id: int, openai_client=None, model_name=None):
+        super().__init__(style=discord.ButtonStyle.primary, label="🏠 主菜单")
+        self.user_id = user_id
+        self.openai_client = openai_client
+        self.model_name = model_name
+
+    async def callback(self, interaction: discord.Interaction):
+        if interaction.user.id != self.user_id:
+            await interaction.response.send_message("这是别人的面板哦～", ephemeral=True)
+            return
+        set_session(self.user_id, {"layer": "home"})
+        view = HomeView(self.user_id, self.openai_client, self.model_name)
+        await interaction.response.edit_message(embed=build_home_embed(), view=view, flags=discord.MessageFlags())
 
 
 class HomeView(discord.ui.View):
@@ -166,7 +269,7 @@ class CategorySelect(discord.ui.Select):
         category = next(c for c in data["categories"] if c["id"] == cat_id)
         set_session(self.home_view.user_id, {"layer": "sub", "category_id": cat_id})
         view = SubCategoryView(self.home_view.user_id, category, self.home_view.openai_client, self.home_view.model_name)
-        await interaction.response.edit_message(embed=build_sub_embed(category), view=view)
+        await interaction.response.edit_message(embed=build_sub_embed(category), view=view, flags=discord.MessageFlags())
 
 
 class SubCategoryView(discord.ui.View):
@@ -207,9 +310,8 @@ class SubCategoryView(discord.ui.View):
             "page": page,
             "tags": tags,
         })
-        embed = build_list_embed(sub, tags, page, total_pages)
-        view = TagListView(self.user_id, sub, tags, page, self.openai_client, self.model_name)
-        await interaction.message.edit(content=None, embeds=[embed], view=view)
+        layout = TagListLayout(self.user_id, sub, tags, page, self.openai_client, self.model_name)
+        await interaction.message.edit(embed=None, view=layout, flags=V2_FLAGS)
 
 
 class SubCategorySelect(discord.ui.Select):
@@ -226,77 +328,6 @@ class SubCategorySelect(discord.ui.Select):
         await self.parent_view.load_tag_list(interaction, sub, page=0)
 
 
-class TagViewButton(discord.ui.Button):
-    def __init__(self, index: int, tag: dict, row: int, user_id: int):
-        cn = (tag.get("cn") or "").strip()
-        short = cn[:8] if cn else tag["name"][:10]
-        label = f"{index}·{short}"[:80]
-        super().__init__(style=discord.ButtonStyle.secondary, label=label, row=min(row, 2))
-        self.tag = tag
-        self.user_id = user_id
-
-    async def callback(self, interaction: discord.Interaction):
-        if interaction.user.id != self.user_id:
-            await interaction.response.send_message("这是别人的面板哦～", ephemeral=True)
-            return
-        await interaction.response.defer(ephemeral=True)
-        sample = None
-        try:
-            async with aiohttp.ClientSession() as session:
-                sample = await dapi.fetch_sample_post(session, self.tag["name"])
-        except Exception as e:
-            await interaction.followup.send(f"❌ 加载预览失败：{e}", ephemeral=True)
-            return
-        embed = build_detail_embed(self.tag, sample)
-        await interaction.followup.send(embed=embed, ephemeral=True)
-
-
-class TagListView(discord.ui.View):
-    def __init__(self, user_id: int, sub: dict, tags: list[dict], page: int, openai_client=None, model_name=None):
-        super().__init__(timeout=VIEW_TIMEOUT)
-        self.user_id = user_id
-        self.sub = sub
-        self.tags = tags
-        self.page = page
-        self.openai_client = openai_client
-        self.model_name = model_name
-        self.total_pages = max(1, math.ceil(len(tags) / TAGS_PER_PAGE))
-
-        page_tags = _page_tags(tags, page)
-        for idx, tag in enumerate(page_tags):
-            num = page * TAGS_PER_PAGE + idx + 1
-            self.add_item(TagViewButton(num, tag, idx // 5, user_id))
-
-        if page > 0:
-            self.add_item(PageButton("prev", self))
-        if page < self.total_pages - 1:
-            self.add_item(PageButton("next", self))
-        self.add_item(HomeButton(user_id, openai_client, model_name))
-
-    async def refresh(self, interaction: discord.Interaction, new_page: int):
-        await interaction.response.defer()
-        new_page = max(0, min(new_page, self.total_pages - 1))
-        set_session(self.user_id, {**get_session(self.user_id), "page": new_page})
-        embed = build_list_embed(self.sub, self.tags, new_page, self.total_pages)
-        view = TagListView(self.user_id, self.sub, self.tags, new_page, self.openai_client, self.model_name)
-        await interaction.message.edit(embeds=[embed], view=view)
-
-
-class PageButton(discord.ui.Button):
-    def __init__(self, direction: str, parent: TagListView):
-        label = "◀ 上页" if direction == "prev" else "下页 ▶"
-        super().__init__(style=discord.ButtonStyle.secondary, label=label, row=3)
-        self.direction = direction
-        self.parent_view = parent
-
-    async def callback(self, interaction: discord.Interaction):
-        if interaction.user.id != self.parent_view.user_id:
-            await interaction.response.send_message("这是别人的面板哦～", ephemeral=True)
-            return
-        new_page = self.parent_view.page + (-1 if self.direction == "prev" else 1)
-        await self.parent_view.refresh(interaction, new_page)
-
-
 class HomeButton(discord.ui.Button):
     def __init__(self, user_id: int, openai_client=None, model_name=None):
         super().__init__(style=discord.ButtonStyle.primary, label="🏠 主菜单", row=4)
@@ -310,7 +341,7 @@ class HomeButton(discord.ui.Button):
             return
         set_session(self.user_id, {"layer": "home"})
         view = HomeView(self.user_id, self.openai_client, self.model_name)
-        await interaction.response.edit_message(embeds=[build_home_embed()], view=view)
+        await interaction.response.edit_message(embed=build_home_embed(), view=view, flags=discord.MessageFlags())
 
 
 async def open_browser(channel, user_id: int, openai_client=None, model_name=None):
@@ -356,6 +387,5 @@ async def open_category_text(channel, user_id: int, cat_label: str, sub_label: s
         "page": page_idx,
         "tags": tags,
     })
-    embed = build_list_embed(child, tags, page_idx, total_pages)
-    view = TagListView(user_id, child, tags, page_idx, openai_client, model_name)
-    await loading.edit(content=None, embed=embed, view=view)
+    layout = TagListLayout(user_id, child, tags, page_idx, openai_client, model_name)
+    await loading.edit(content=None, embed=None, view=layout, flags=V2_FLAGS)

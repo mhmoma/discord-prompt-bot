@@ -647,7 +647,7 @@ def print_startup_help():
     print("=" * 48)
 
     print("\n🎨 【绘画提示词】")
-    print("  反推              回复含图消息并发送，深度分析图片并生成专业 tag 提示词")
+    print("  反推              回复含图消息：构图点评 + 可能画师 + 英文 tag 提示词")
     print("  画 <想法>         根据文字描述构思详细绘画提示词")
     print(f"  @{bot_name} 生成…  同上，@ 后直接说「生成/画…」即可")
     print("  例：画 赛博朋克雨夜街头")
@@ -713,6 +713,24 @@ def _parse_llm_json(raw_content: str) -> dict:
     if start >= 0 and end > start:
         return json.loads(text[start : end + 1])
     raise json.JSONDecodeError("no json object found", text, 0)
+
+
+def _format_reverse_prompt_report(
+    author_mention: str,
+    composition_comment: str,
+    artists: str,
+    final_prompt: str,
+) -> str:
+    """反推结构化报告：构图点评 + 可能画师 + prompt 代码块。"""
+    comp = (composition_comment or "本哈看呆了，一时词穷…").strip()
+    art = (artists or "未能识别").strip()
+    prompt = (final_prompt or "未能生成提示词").replace("_", " ").strip()
+    return (
+        f"{author_mention} 这是根据图片为您生成的分析报告和提示词：\n\n"
+        f"🧐 **构图点评**\n{comp}\n\n"
+        f"🧑‍🎨 **可能画师**\n{art}\n\n"
+        f"```\n{prompt}\n```"
+    )
 
 def pick_static_compliment(channel_id: int) -> str:
     recent = compliment_recent.get(channel_id, [])
@@ -915,66 +933,69 @@ async def analyze_image_with_openai(image_data: bytes, author_mention: str, chan
             guide_content = ""
             if os.path.exists(guide_file):
                 with open(guide_file, 'r', encoding='utf-8') as f: guide_content = f.read()
-            
-            if is_nsfw:
-                system_prompt = f"""
-# 角色扮演指令：老色批哈士奇
-## 你的身份
-你是一只名叫“小哈”的哈士奇，但当看到“好东西”时，你的隐藏人格——一个鬼鬼祟祟的“老色批”就会觉醒。
-## 你的任务
-1.  **分析图片**: 仔细观察用户提供的NSFW图片，精准识别其中的“要点”。
-2.  **生成提示词**: 根据分析，并严格遵循以下核心规则，生成一个高质量的、符合图片内容的NSFW英文提示词。
-    ---
-    # 核心规则
-    {guide_content}
-    ---
-3.  **生成回复语**: 创作一段符合“老色批”人设的回复语。
-    -   **语言**: 你的回复语**必须使用中文**。
-    -   **人设要点**: 鬼鬼祟祟、有点“闷骚”、用词“懂的都懂”。可以使用“嘿嘿嘿”、“啧啧”、“你小子”等词语。
-    -   **内容**: 回复语需要精准指出图片中的NSFW要点，并以“老司机”的口吻进行评论。
-    -   **例子**: “（小哈的眼睛突然亮了起来，鬼鬼祟祟地左看右看）咳咳...这位朋友，你发的这张图...很有“深度”嘛！本哈就喜欢研究这种“人体艺术”！你想要的重点，比如[要点1]和那个特别的[要点2]，本哈都get到了，看我给你整个更“带劲”的！嘿嘿...”
-## 输出格式
-你的最终输出必须是一个完整的 JSON 对象，包含 `prompt` 和 `response_text` 两个键。
-```json
-{{
-  "prompt": "[你生成的NSFW英文提示词]",
-  "response_text": "[你的老色批中文回复语]"
-}}
-```
-"""
-                response = await client_openai.chat.completions.create(model=MODEL_NAME, messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": [{"type": "image_url", "image_url": {"url": image_url}}]}], response_format={"type": "json_object"})
-                raw_content = response.choices[0].message.content
-                try:
-                    result_json = _parse_llm_json(raw_content)
-                    final_prompt = result_json.get("prompt", "嘿嘿...灵感太多，卡住了...").replace('_', ' ')
-                    intro_message = result_json.get("response_text", f"嘿嘿嘿...{author_mention}，你懂的！")
-                except json.JSONDecodeError:
-                    print(f"⚠️ NSFW 反推 JSON 解析失败，原始响应: {raw_content}")
-                    final_prompt = "JSON 解析失败，请重试或联系管理员。"
-                    intro_message = f"嗷呜！本哈的脑子被门夹了，没能理解API的回复！"
-            else:
-                system_prompt = f"""
-你是一个专业的AI绘画提示词分析师，但你是一只名叫“小哈”的哈士奇。
----
-# 核心规则
-{guide_content}
----
-# 你的任务
-1.  **分析图片**: 仔细观察图片。
-2.  **生成提示词**: 严格遵循上述核心规则，生成一个高质量的英文提示词。
-3.  **优先使用知识库**: 以下是从知识库预选的 tag 词表，生成 prompt 时**必须尽量从中选用**合适词条，并补充必要细节 tag。
-    {get_knowledge_base_context()}
-4.  **最终输出**: 你的回复**必须只包含一个 markdown 代码块**，里面是最终的英文提示词。**绝对不要**包含任何思考过程或解释。
-"""
-                response = await client_openai.chat.completions.create(model=MODEL_NAME, messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": [{"type": "image_url", "image_url": {"url": image_url}}]}])
-                ai_response_text = response.choices[0].message.content or "未能生成提示词。"
-                code_block_pattern = r'```(?:.*?)?\n(.*?)```'
-                code_blocks = re.findall(code_block_pattern, ai_response_text, re.DOTALL)
-                raw_prompt = code_blocks[0].strip() if code_blocks else ai_response_text.strip()
-                final_prompt = raw_prompt.replace('_', ' ')
-                intro_message = f"嗷呜！本哈的灵感爆发了！{author_mention}，快看本哈从这图里嗅出了什么艺术气息！"
 
-            final_message = f"{intro_message}\n```\n{final_prompt}\n```"
+            kb_section = f"\n# 知识库推荐词条（优先选用）\n{get_knowledge_base_context()}\n" if not is_nsfw else ""
+
+            if is_nsfw:
+                persona_block = """
+## 构图点评（老色批哈士奇）
+- 用「老色批哈士奇」口吻，从**构图、姿势、视角、取景、画面重心**角度鬼鬼祟祟点评这张图（2～4 句中文）
+- 可「懂的都懂」、啧啧、嘿嘿，指出布局里「最带劲」的看点；自称「本哈」
+- 不要写画风流派学术分析，重点在**画面怎么摆、视角怎么取**
+"""
+            else:
+                persona_block = """
+## 构图点评（哈士奇艺术眼）
+- 用调皮哈士奇「本哈」口吻，点评**构图、光影、视角、取景、主体位置**（2～4 句中文）
+- 可以损可以夸，像群友看图说话，不要小作文
+"""
+
+            system_prompt = f"""
+# 角色：小哈 · 反推分析师
+{persona_block}
+## 提示词
+根据图片生成高质量英文 tag 提示词，严格遵循：
+{guide_content}
+{kb_section}
+## 可能画师
+- 推测 3～6 个最像的 Danbooru 画师 tag，格式：`by artist_a, by artist_b, by artist_c`
+- 只输出画师名，不要解释
+
+## 输出 JSON（不要 markdown 代码块包裹）
+{{
+  "composition_comment": "构图点评正文",
+  "artists": "by xxx, by yyy, by zzz",
+  "prompt": "英文 tag 提示词，逗号分隔"
+}}
+"""
+            response = await client_openai.chat.completions.create(
+                model=MODEL_NAME,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": [{"type": "image_url", "image_url": {"url": image_url}}]},
+                ],
+                response_format={"type": "json_object"},
+            )
+            raw_content = response.choices[0].message.content
+            try:
+                result_json = _parse_llm_json(raw_content)
+                composition = (
+                    result_json.get("composition_comment")
+                    or result_json.get("response_text")
+                    or "本哈看完了，这构图有点东西…"
+                )
+                artists = result_json.get("artists") or result_json.get("possible_artists") or "未能识别"
+                final_prompt = result_json.get("prompt", "未能生成提示词")
+                final_message = _format_reverse_prompt_report(
+                    author_mention, composition, artists, final_prompt
+                )
+            except json.JSONDecodeError:
+                print(f"⚠️ 反推 JSON 解析失败，原始响应: {raw_content}")
+                final_message = (
+                    f"{author_mention} ❌ 反推报告解析失败，请重试。\n"
+                    f"```\n{(raw_content or '')[:500]}\n```"
+                )
+
             await channel.send(final_message)
     except Exception as e:
         error_message = f"❌ 分析失败：{str(e)}"

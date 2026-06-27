@@ -18,24 +18,54 @@ import asyncio
 load_dotenv()
 
 # --- 彩虹屁配置 ---
-COMPLIMENTS = [
-    "嗷呜~ 这图！本哈的狼血沸腾了！太好看了！",
-    "这是什么神仙图，美到本哈想拆家庆祝一下！",
-    "大佬！大佬！这光影，这构图，本哈的狗眼看呆了！",
-    "你的审美太绝了，本哈宣布你是我今天最想一起刨坑的伙伴！",
-    "绝了绝了！这氛围感，让本哈想在雪地里打滚！",
-    "好喜欢这色调，感觉像是藏在沙发底下的零食一样美好！",
-    "这张图完美戳中了本哈的心巴！汪！",
-    "救命！怎么会有这么好看的图，我直接用爪子按住保存了！",
-    "这细节！比本哈藏起来的骨头还多！无可挑剔！",
-    "屏幕都装不下这图的美了！是不是该换个更大的显示器了，嗷！",
-    "这是可以直接挂在卢浮宫……隔壁宠物店的顶级画作！",
-    "看到这图，本哈今天拆家的疲惫都消失了！",
-    "完美！这创意，这执行力，就像……就像一根完美的肉骨头！",
-    "我宣布，这张图是今天最美的风景，比邻居家的萨摩耶还美！",
-    "这张图有种魔力，让本哈想安静地趴在你脚边……三秒钟！",
-    "你是不是用魔法棒画的？快！给本哈也变一根！"
-]
+COMPLIMENTS = {
+    "通用": [
+        "嗷呜~ 这图！本哈的狼血沸腾了！太好看了！",
+        "这是什么神仙图，美到本哈想拆家庆祝一下！",
+        "你的审美太绝了，本哈宣布你是我今天最想一起刨坑的伙伴！",
+        "这张图完美戳中了本哈的心巴！汪！",
+        "救命！怎么会有这么好看的图，我直接用爪子按住保存了！",
+        "看到这图，本哈今天拆家的疲惫都消失了！",
+    ],
+    "色调": [
+        "好喜欢这色调，感觉像是藏在沙发底下的零食一样美好！",
+        "绝了绝了！这氛围感，让本哈想在雪地里打滚！",
+        "这配色！比本哈最爱的肉骨头包装还讲究！",
+        "色调整体太舒服了，本哈盯着看半天都忘了拆家！",
+    ],
+    "构图": [
+        "大佬！大佬！这光影，这构图，本哈的狗眼看呆了！",
+        "这构图！卢浮宫……隔壁宠物店都要给本哈办个展！",
+        "屏幕都装不下这图的美了！是不是该换个更大的显示器了，嗷！",
+        "这透视和取景，本哈用爪子比划半天都没学会！",
+    ],
+    "细节": [
+        "这细节！比本哈藏起来的骨头还多！无可挑剔！",
+        "完美！这创意，这执行力，就像……就像一根完美的肉骨头！",
+        "我宣布，这张图是今天最美的风景，比邻居家的萨摩耶还美！",
+        "越放大越能打，本哈把鼻子贴在屏幕上都看不够！",
+    ],
+    "玩梗": [
+        "你是不是用魔法棒画的？快！给本哈也变一根！",
+        "这张图有种魔力，让本哈想安静地趴在你脚边……三秒钟！",
+        "本哈怀疑你在偷偷开挂，这完成度不合理啊汪！",
+        "发布！立刻发布！本哈已经准备好当第一个粉丝了！",
+    ],
+}
+COMPLIMENT_ALL = [line for lines in COMPLIMENTS.values() for line in lines]
+
+COMPLIMENT_ENABLED = os.getenv("COMPLIMENT_ENABLED", "true").lower() == "true"
+COMPLIMENT_PROBABILITY = float(os.getenv("COMPLIMENT_PROBABILITY", "0.3"))
+COMPLIMENT_COOLDOWN = int(os.getenv("COMPLIMENT_COOLDOWN", "60"))
+COMPLIMENT_MODE = os.getenv("COMPLIMENT_MODE", "lite").lower()  # lite | static
+if COMPLIMENT_MODE not in {"lite", "static"}:
+    COMPLIMENT_MODE = "lite"
+compliment_cooldowns = {}  # channel_id -> timestamp
+compliment_recent = {}  # channel_id -> [最近用过的文案]
+
+# --- 欢迎消息配置 ---
+_welcome_ch_id = os.getenv("WELCOME_CHANNEL_ID", "1442454462730993697").strip()
+WELCOME_CHANNEL_ID = int(_welcome_ch_id) if _welcome_ch_id.isdigit() else None
 
 # --- OpenAI 兼容 API 配置 ---
 API_BASE = os.getenv("OPENAI_API_BASE")
@@ -73,7 +103,19 @@ client_discord = discord.Client(intents=intents, proxy=PROXY_URL)
 # --- 知识库配置 ---
 KNOWLEDGE_BASE = None
 KNOWLEDGE_BASE_TERMS = {}  # 用于快速查找的词条索引
+PROMPT_KB_TERMS = {}  # 绘图相关分类的子索引（模糊搜索只用这份，更快）
+CACHED_KB_CONTEXT = ""  # 启动时预构建，反推/画图直接注入
+CHINESE_TAG_MAP = {}  # 中文关键词 -> 英文 tag 列表
 user_states = {} # 用于跟踪用户对话状态, e.g. {12345: {'state': 'chatting', 'timestamp': 1678886400, 'replies': 0}}
+
+# 用于 prompt 参考的分类（排除角色名/未归类 bulk tag）
+PROMPT_KB_CATEGORIES = {
+    '身体部位', '服装/饰品', '脸部/表情', '头发', '动作/姿势',
+    '背景/环境', '摄像机/构图', '风格/效果', '耳朵', '舌头', '尾巴', '翅膀', '画师',
+}
+BROWSE_LAST_CATEGORIES = {'未分类', '角色/作品'}
+KB_CONTEXT_MAX_CATEGORIES = 20
+KB_CONTEXT_TERMS_PER_CAT = 30
 
 def load_knowledge_base():
     """加载知识库，优先加载分类后的版本"""
@@ -135,48 +177,239 @@ def load_knowledge_base():
                     })
                     total_terms += 1
         print(f"📊 知识库统计: {len(KNOWLEDGE_BASE)} 个分类, {total_terms} 个词条")
+        rebuild_kb_cache()
     except Exception as e:
         print(f"⚠️ 加载知识库时出错: {e}")
         KNOWLEDGE_BASE = {}
         KNOWLEDGE_BASE_TERMS = {}
+        rebuild_kb_cache()
+    load_chinese_tag_map()
 
-def get_knowledge_base_context():
-    if not KNOWLEDGE_BASE: return ""
+def rebuild_kb_cache():
+    """预构建 prompt 注入文本与绘图专用索引，避免每次请求遍历全库。"""
+    global PROMPT_KB_TERMS, CACHED_KB_CONTEXT
+    PROMPT_KB_TERMS = {}
+    for term, items in KNOWLEDGE_BASE_TERMS.items():
+        filtered = [i for i in items if i['category'] in PROMPT_KB_CATEGORIES]
+        if filtered:
+            PROMPT_KB_TERMS[term] = filtered
+
+    if not KNOWLEDGE_BASE:
+        CACHED_KB_CONTEXT = ""
+        return
+
     context_parts = []
-    sample_categories = list(KNOWLEDGE_BASE.keys())[:10]
-    for category in sample_categories:
-        items = KNOWLEDGE_BASE[category][:20]
+    categories = [c for c in KNOWLEDGE_BASE.keys() if c in PROMPT_KB_CATEGORIES]
+    for category in categories[:KB_CONTEXT_MAX_CATEGORIES]:
+        items = KNOWLEDGE_BASE.get(category, [])[:KB_CONTEXT_TERMS_PER_CAT]
         terms = [item.get('term', '') for item in items if item.get('term')]
         if terms:
-            context_parts.append(f"{category}: {', '.join(terms[:10])}")
-    return "\n".join(context_parts) if context_parts else ""
+            context_parts.append(f"{category}: {', '.join(terms)}")
+    CACHED_KB_CONTEXT = "\n".join(context_parts)
+    print(f"📎 知识库 prompt 缓存: {len(PROMPT_KB_TERMS)} 索引词条, {sum(len(p.split(', ')) for p in context_parts)} 条注入样例")
 
-def search_knowledge_base(query, limit=5):
-    if not KNOWLEDGE_BASE_TERMS: return []
-    query_lower = query.lower()
-    results = []
-    if query_lower in KNOWLEDGE_BASE_TERMS:
-        results.extend(KNOWLEDGE_BASE_TERMS[query_lower])
-    for term, items in KNOWLEDGE_BASE_TERMS.items():
-        if query_lower in term or term in query_lower:
-            results.extend(items)
-            if len(results) >= limit * 2: break
+def load_chinese_tag_map():
+    global CHINESE_TAG_MAP
+    map_file = 'chinese_tag_map.json'
+    try:
+        if os.path.exists(map_file):
+            with open(map_file, 'r', encoding='utf-8') as f:
+                CHINESE_TAG_MAP = json.load(f)
+            print(f"✅ 已加载中文对照表: {len(CHINESE_TAG_MAP)} 条")
+        else:
+            CHINESE_TAG_MAP = {}
+    except Exception as e:
+        print(f"⚠️ 加载中文对照表时出错: {e}")
+        CHINESE_TAG_MAP = {}
+
+def _has_cjk(text: str) -> bool:
+    return bool(re.search(r'[\u4e00-\u9fff]', text))
+
+def resolve_chinese_mappings(query: str) -> list:
+    """将中文查询展开为 [(english_tag, chinese_label), ...]"""
+    query = query.strip()
+    if not query or not CHINESE_TAG_MAP:
+        return []
+
+    mappings = []
     seen = set()
-    unique_results = [item for item in results if (item['term'], item['category']) not in seen and not seen.add((item['term'], item['category']))]
-    return unique_results[:limit]
+
+    def add(cn_key: str, tags: list):
+        for tag in tags:
+            key = tag.strip().lower()
+            if key and key not in seen:
+                seen.add(key)
+                mappings.append((tag.strip(), cn_key))
+
+    if query in CHINESE_TAG_MAP:
+        add(query, CHINESE_TAG_MAP[query])
+
+    if _has_cjk(query):
+        for cn_key, tags in CHINESE_TAG_MAP.items():
+            if cn_key == query:
+                continue
+            if len(query) >= 2 and (query in cn_key or cn_key in query or cn_key.startswith(query)):
+                add(cn_key, tags)
+
+    return mappings
+
+def _search_kb_single(query_lower: str, limit: int, categories=None) -> list:
+    results = []
+    # 精确匹配走全库 O(1)
+    if query_lower in KNOWLEDGE_BASE_TERMS:
+        for item in KNOWLEDGE_BASE_TERMS[query_lower]:
+            if categories is None or item['category'] in categories:
+                results.append(item)
+    if len(results) >= limit:
+        return results[:limit]
+
+    # 模糊匹配只在绘图子索引里扫（~4.8 万，而非 14 万）
+    fuzzy_index = PROMPT_KB_TERMS if PROMPT_KB_TERMS else KNOWLEDGE_BASE_TERMS
+    for term, items in fuzzy_index.items():
+        term_match = query_lower in term or term in query_lower
+        for item in items:
+            if categories is not None and item['category'] not in categories:
+                continue
+            trans = (item.get('translation') or '').lower()
+            trans_match = query_lower in trans if trans else False
+            if term_match or trans_match:
+                results.append(item)
+        if len(results) >= limit * 2:
+            break
+    return results[:limit * 2]
+
+# get_browse_categories 等依赖 KNOWLEDGE_BASE，定义在 load 之后
+
+def get_browse_categories():
+    if not KNOWLEDGE_BASE:
+        return []
+    cats = list(KNOWLEDGE_BASE.keys())
+    primary = [c for c in cats if c not in BROWSE_LAST_CATEGORIES]
+    trailing = [c for c in cats if c in BROWSE_LAST_CATEGORIES]
+    return primary + trailing
+
+def get_knowledge_base_context():
+    return CACHED_KB_CONTEXT
+
+def search_knowledge_base(query, limit=5, categories=None):
+    if not KNOWLEDGE_BASE_TERMS and not CHINESE_TAG_MAP:
+        return []
+    query = query.strip()
+    query_lower = query.lower()
+    if not query_lower:
+        return []
+
+    results = []
+    seen = set()
+
+    def add_item(item, priority=0):
+        key = (item['term'], item.get('category', ''))
+        if key in seen:
+            return
+        seen.add(key)
+        results.append((priority, item))
+
+    # 1) 中文对照表 → 精确英文 tag 优先
+    cn_mappings = resolve_chinese_mappings(query)
+    for en_tag, cn_label in cn_mappings:
+        tag_lower = en_tag.lower()
+        if KNOWLEDGE_BASE_TERMS and tag_lower in KNOWLEDGE_BASE_TERMS:
+            for item in KNOWLEDGE_BASE_TERMS[tag_lower]:
+                if categories is None or item['category'] in categories:
+                    enriched = dict(item)
+                    if not enriched.get('translation'):
+                        enriched['translation'] = cn_label
+                    add_item(enriched, priority=0)
+        else:
+            add_item({'term': en_tag, 'category': '对照表', 'translation': cn_label}, priority=1)
+
+    # 2) 对照表 + 精确命中已够则跳过慢速模糊搜索
+    need_fuzzy = len(results) < limit
+    if need_fuzzy:
+        search_terms = [query_lower] + [t.lower() for t, _ in cn_mappings]
+        for term in search_terms:
+            for item in _search_kb_single(term, limit, categories):
+                add_item(item, priority=2)
+            if len(results) >= limit:
+                break
+
+    results.sort(key=lambda x: x[0])
+    return [item for _, item in results[:limit]]
+
+def search_knowledge_base_for_idea(user_idea: str, limit=15):
+    """从用户描述中提取关键词并检索相关 tag。"""
+    if not KNOWLEDGE_BASE_TERMS and not CHINESE_TAG_MAP:
+        return []
+    segments = re.split(r'[\s,，、/|；;]+', user_idea)
+    segments = [s.strip() for s in segments if len(s.strip()) >= 2]
+    if user_idea.strip() and user_idea.strip() not in segments:
+        segments.insert(0, user_idea.strip())
+    seen = set()
+    collected = []
+    for seg in segments:
+        for item in search_knowledge_base(seg, limit=5, categories=PROMPT_KB_CATEGORIES):
+            key = (item['term'], item['category'])
+            if key in seen:
+                continue
+            seen.add(key)
+            collected.append(item)
+            if len(collected) >= limit:
+                return collected
+    return collected
+
+def format_kb_search_results(results, query=""):
+    if not results:
+        hint = f"「{query}」" if query else "该关键词"
+        return f"🔍 未在知识库中找到与 {hint} 匹配的标签。试试更具体的英文 tag 或中文描述（如：红发、赛博朋克、雨夜）。"
+    mapped = resolve_chinese_mappings(query) if query else []
+    header = f"🔍 **标签搜索结果**（{len(results)} 条）"
+    if mapped:
+        cn_keys = sorted({cn for _, cn in mapped})
+        header += f"\n📎 对照表命中：{', '.join(cn_keys)}"
+    lines = [header + "\n"]
+    for item in results:
+        trans = item.get('translation') or '—'
+        lines.append(f"- [{item['category']}] {trans} (`{item['term']}`)")
+    return "\n".join(lines)
+
+def format_kb_tags_for_prompt(results):
+    if not results:
+        return ""
+    lines = []
+    for item in results:
+        note = f" ({item['translation']})" if item.get('translation') else ""
+        lines.append(f"- {item['term']}{note} [{item['category']}]")
+    return "\n".join(lines)
+
+def resolve_primary_welcome_channel(guild):
+    if WELCOME_CHANNEL_ID:
+        channel = guild.get_channel(WELCOME_CHANNEL_ID)
+        if channel:
+            return channel
+        print(f"⚠️ 未找到欢迎频道 ID {WELCOME_CHANNEL_ID}，回退名称匹配")
+    return next(
+        (ch for ch in guild.text_channels if "general" in ch.name.lower() or "欢迎" in ch.name),
+        guild.system_channel,
+    )
 
 @client_discord.event
 async def on_member_join(member):
     bot_name = client_discord.user.name
-    primary_channel = next((ch for ch in member.guild.text_channels if "general" in ch.name.lower() or "欢迎" in ch.name), member.guild.system_channel)
+    primary_channel = resolve_primary_welcome_channel(member.guild)
     if primary_channel:
         welcome_message_formal = (
             f"🎉 欢迎新朋友 {member.mention} 加入服务器！\n\n"
-            f"我是 **{bot_name}**，一只懂艺术的哈士奇，很高兴认识你！汪！\n\n"
-            "你可以随时找本哈玩，比如：\n"
-            f"🖼️ **图片反推**: 回复一张图片并说 `反推`，本哈帮你分析生成提示词。\n"
-            f"🎨 **创意构思**: 对我说 `画 <你的创意>`，本哈帮你构思绘画提示词。\n"
-            f"💬 **聊天吐槽**: 直接`@{bot_name}`，我们可以一起聊天，或者让本哈给你评论一下图片！\n\n"
+            f"我是 **{bot_name}**，一只懂绘画 tag 的哈士奇，很高兴认识你！汪！\n\n"
+            "**核心玩法**\n"
+            f"🖼️ **反推**：回复一张图并说 `反推`，本哈深度分析并生成专业提示词\n"
+            f"🎨 **画**：`画 <你的想法>`，根据描述构思详细绘画提示词\n"
+            f"📚 **查词**：`查词 <关键词>`，在知识库里搜 tag（中英皆可）\n"
+            f"📂 **标签目录**：发送 `打开标签目录` 浏览分类 tag\n\n"
+            "**图片互动**\n"
+            f"💬 **@我 + 图**：模块化分析 + 艺术锐评\n"
+            f"🌈 **只发图**：有机会触发彩虹屁，本哈会随机夸你一句~\n\n"
+            "**聊天**\n"
+            f"💭 **@我**（无图）：跟本哈聊两句，我会联系上下文回复\n\n"
             "希望你在这里玩得开心！嗷呜~"
         )
         try:
@@ -187,30 +420,147 @@ async def on_member_join(member):
     chat_channel = discord.utils.get(member.guild.text_channels, name="聊天")
     if chat_channel:
         welcome_message_chat = (
-            f"嗷呜！快看谁来了！是新伙伴 {member.mention}！\n\n"
-            f"你好呀！本哈是 **{bot_name}**，一只会画画会聊天的哈士奇！以后请多指教，有什么好玩的图记得`@{bot_name}`，本哈给你锐评一下！汪！"
+            f"嗷呜！新伙伴 {member.mention} 来啦！\n\n"
+            f"本哈是 **{bot_name}**，会反推、会写 prompt、还会彩虹屁~\n"
+            f"发图试试 `@我` 锐评，或直接 `反推` / `画 xxx` / `查词 xxx`；"
+            f"只贴图也有机会被本哈夸！汪！"
         )
         try:
             await chat_channel.send(welcome_message_chat)
         except Exception as e:
             print(f"❌ 在 #聊天 频道发送消息时出错: {e}")
 
+def print_startup_help():
+    bot_name = client_discord.user.name if client_discord.user else "小哈"
+    kb_status = "已加载" if KNOWLEDGE_BASE else "未加载"
+    kb_cats = len(get_browse_categories()) if KNOWLEDGE_BASE else 0
+    welcome_ch = f"ID {WELCOME_CHANNEL_ID}" if WELCOME_CHANNEL_ID else "名称匹配 / 系统频道"
+
+    print(f"✅ 机器人已登录：{client_discord.user}")
+    print(f"💡 使用模型：{MODEL_NAME}")
+    print(f"📚 知识库：{kb_status}" + (f"（{kb_cats} 个分类）" if kb_cats else ""))
+    print(f"👋 欢迎频道：{welcome_ch}")
+    print("\n" + "=" * 48)
+    print("🎉 小哈功能与指令一览 🎉".center(48))
+    print("=" * 48)
+
+    print("\n🎨 【绘画提示词】")
+    print("  反推              回复含图消息并发送，深度分析图片并生成专业 tag 提示词")
+    print("  画 <想法>         根据文字描述构思详细绘画提示词")
+    print("  例：画 赛博朋克雨夜街头")
+
+    print("\n📚 【知识库】")
+    print("  查词 <关键词>     搜索 tag（支持中文/英文，模糊匹配）")
+    print("  打开标签目录      浏览分类目录，回复序号或名称查看 tag 列表")
+    print("  取消              退出标签目录浏览")
+
+    print("\n🖼️ 【图片互动】")
+    print(f"  @{bot_name} + 图   模块化分析 + 艺术锐评（需 @ 或喊名字）")
+    compliment_on = "开启" if COMPLIMENT_ENABLED else "关闭"
+    print(f"  只发图            彩虹屁（{compliment_on}，模式 {COMPLIMENT_MODE}，"
+          f"概率 {COMPLIMENT_PROBABILITY * 100:.0f}%，冷却 {COMPLIMENT_COOLDOWN}s）")
+
+    print("\n💬 【聊天】")
+    print(f"  @{bot_name}        唤醒对话，联系上下文回复（会话超时 {CHAT_SESSION_TIMEOUT}s，限 2 轮）")
+    print(f"  喊「{bot_name}」     同上（消息中含机器人名字即可）")
+    chat_on = "开启" if CHAT_ENABLED else "关闭"
+    print(f"  随机插话          {chat_on}（概率 {CHAT_PROBABILITY * 100:.1f}%）")
+    print(f"  结束对话          发送：{', '.join(sorted(EXIT_KEYWORDS))}")
+
+    print("\n⚙️ 【管理员命令】")
+    print("  聊天开启 / 聊天关闭")
+    print("  彩虹屁开启 / 彩虹屁关闭")
+    print("  彩虹屁模式 轻量 / 彩虹屁模式 静态")
+
+    print("\n📌 【其他】")
+    print("  新成员加入        自动发送欢迎语（见 WELCOME_CHANNEL_ID）")
+    print("\n" + "=" * 48)
+
 @client_discord.event
 async def on_ready():
     load_knowledge_base()
-    print(f"✅ 机器人已登录：{client_discord.user}")
-    print(f"💡 使用模型：{MODEL_NAME}")
-    print("\n" + "="*40); print("🎉 功能列表 🎉".center(40)); print("="*40)
-    print("\n🎨 **核心功能**"); print("  - `反推` (回复图片): 深度分析图片，并根据规则生成专业绘画提示词。"); print("  - `画 <你的想法>`: 根据你的文本描述，创作出详细的绘画提示词。")
-    print("\n🖼️ **图片交互**"); print(f"  - `@我/喊我名字 + 图片`: 我会对图片进行模块化分析和专业评论。"); print("  - `发送任何图片`: 我会随机对图片进行“彩虹屁”式赞美。")
-    print("\n💬 **聊天功能**"); print(f"  - `@我/喊我名字` (无图片): 与我进行深度对话，我会联系上下文回复。")
-    if CHAT_ENABLED: print(f"  - `随机聊天`: 已开启，我会以 {CHAT_PROBABILITY*100:.1f}% 的概率随机加入对话。")
-    else: print(f"  - `随机聊天`: 已关闭。")
-    print("\n⚙️ **控制命令**"); print("  - `聊天开启`: 开启随机聊天功能。"); print("  - `聊天关闭`: 关闭随机聊天功能（不影响唤醒对话）。")
-    print("\n" + "="*40)
+    print_startup_help()
 
 def image_to_base64(image_data: bytes) -> str:
     return base64.b64encode(image_data).decode('utf-8')
+
+def pick_static_compliment(channel_id: int) -> str:
+    recent = compliment_recent.get(channel_id, [])
+    pool = [line for line in COMPLIMENT_ALL if line not in recent] or COMPLIMENT_ALL
+    choice = random.choice(pool)
+    compliment_recent[channel_id] = (recent + [choice])[-5:]
+    return choice
+
+def should_send_compliment(message) -> bool:
+    if not COMPLIMENT_ENABLED:
+        return False
+    if message.author.bot:
+        return False
+    if not message.attachments:
+        return False
+    if message.reference:
+        return False
+    content_lower = message.content.strip().lower()
+    if content_lower in {"反推"} or content_lower.startswith("画 "):
+        return False
+    bot_user = client_discord.user
+    if bot_user and (bot_user.mentioned_in(message) or bot_user.name.lower() in content_lower):
+        return False
+    if author_in_chat_state(message.author.id):
+        return False
+    if random.random() >= COMPLIMENT_PROBABILITY:
+        return False
+    last = compliment_cooldowns.get(message.channel.id, 0)
+    if time.time() - last < COMPLIMENT_COOLDOWN:
+        return False
+    return True
+
+def author_in_chat_state(author_id: int) -> bool:
+    state = user_states.get(author_id)
+    return isinstance(state, dict) and state.get('state') == 'chatting'
+
+async def generate_lite_compliment(image_data: bytes) -> str:
+    base64_image = image_to_base64(image_data)
+    image_url = f"data:image/jpeg;base64,{base64_image}"
+    system_prompt = (
+        "你是名叫「小哈」的哈士奇。请根据图片写一句中文彩虹屁（35-50字）。"
+        "必须提到画面中至少一个具体元素（如颜色、主体、构图、氛围）；"
+        "调皮热情，自称「本哈」；只输出这一句话，不要分析、不要 tag、不要 markdown。"
+    )
+    response = await client_openai.chat.completions.create(
+        model=MODEL_NAME,
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": [{"type": "image_url", "image_url": {"url": image_url}}]},
+        ],
+        max_tokens=120,
+        temperature=0.9,
+    )
+    text = (response.choices[0].message.content or "").strip()
+    text = re.sub(r'^["\'「」]|["\'「」]$', '', text)
+    return text[:120]
+
+async def send_rainbow_compliment(message):
+    if not should_send_compliment(message):
+        return
+    compliment_cooldowns[message.channel.id] = time.time()
+    mention = message.author.mention
+    attachment = message.attachments[0]
+
+    if COMPLIMENT_MODE == "lite":
+        try:
+            async with aiohttp.ClientSession() as session:
+                async with session.get(attachment.url, proxy=PROXY_URL) as resp:
+                    if resp.status == 200:
+                        image_data = await resp.read()
+                        text = await generate_lite_compliment(image_data)
+                        if text:
+                            await message.channel.send(f"{mention} {text}")
+                            return
+        except Exception as e:
+            print(f"⚠️ 轻量彩虹屁失败，回退静态: {e}")
+
+    await message.channel.send(f"{mention} {pick_static_compliment(message.channel.id)}")
 
 async def comment_on_image_when_awakened(image_data: bytes, author_mention: str, channel):
     loading_message = None
@@ -382,7 +732,7 @@ async def analyze_image_with_openai(image_data: bytes, author_mention: str, chan
 # 你的任务
 1.  **分析图片**: 仔细观察图片。
 2.  **生成提示词**: 严格遵循上述核心规则，生成一个高质量的英文提示词。
-3.  **优先使用知识库**: 优先从以下知识库示例中选择合适的词条。
+3.  **优先使用知识库**: 以下是从知识库预选的 tag 词表，生成 prompt 时**必须尽量从中选用**合适词条，并补充必要细节 tag。
     {get_knowledge_base_context()}
 4.  **最终输出**: 你的回复**必须只包含一个 markdown 代码块**，里面是最终的英文提示词。**绝对不要**包含任何思考过程或解释。
 """
@@ -410,6 +760,10 @@ async def generate_art_prompt(user_idea: str, author_mention: str, channel):
             if os.path.exists(guide_file):
                 with open(guide_file, 'r', encoding='utf-8') as f: guide_content = f.read()
             
+            kb_matches = search_knowledge_base_for_idea(user_idea)
+            kb_hint = format_kb_tags_for_prompt(kb_matches)
+            kb_section = f"\n---\n# 知识库推荐词条（优先选用）\n{kb_hint}\n" if kb_hint else ""
+
             if is_nsfw:
                 intro_message = f"（小哈的眼睛突然亮了起来）咳咳...{author_mention}，你这个想法...很有“深度”嘛！本哈就喜欢研究这个！看我给你整个更“带劲”的！嘿嘿..."
                 system_prompt = f"""
@@ -420,7 +774,7 @@ async def generate_art_prompt(user_idea: str, author_mention: str, channel):
 ---
 # 核心规则
 {guide_content}
----
+{kb_section}---
 ## 输出指令
 你的最终回复**必须只包含一个 markdown 代码块**，里面是最终的英文提示词。**绝对不要**包含任何思考过程或解释。
 """
@@ -434,7 +788,7 @@ async def generate_art_prompt(user_idea: str, author_mention: str, channel):
 ---
 # 核心规则
 {guide_content}
----
+{kb_section}---
 ## 输出指令
 你的最终回复**必须只包含一个 markdown 代码块**，里面是最终的英文提示词。**绝对不要**包含任何思考过程或解释。
 """
@@ -528,7 +882,7 @@ async def generate_smart_response(message, history, is_awakened):
 
 @client_discord.event
 async def on_message(message):
-    global CHAT_ENABLED, user_states
+    global CHAT_ENABLED, COMPLIMENT_ENABLED, COMPLIMENT_MODE, user_states
     if message.author.bot: return
 
     author_id = message.author.id
@@ -562,11 +916,30 @@ async def on_message(message):
 
     if content_lower == "聊天开启": CHAT_ENABLED = True; await message.reply("✅ 智能聊天功能已开启。"); print("✅ 智能聊天功能已由用户开启。"); return
     if content_lower == "聊天关闭": CHAT_ENABLED = False; await message.reply("☑️ 智能聊天功能已关闭。"); print("☑️ 智能聊天功能已由用户关闭。"); return
+
+    if content_lower == "彩虹屁开启": COMPLIMENT_ENABLED = True; await message.reply("✅ 彩虹屁已开启。"); return
+    if content_lower == "彩虹屁关闭": COMPLIMENT_ENABLED = False; await message.reply("☑️ 彩虹屁已关闭。"); return
+    if content_lower == "彩虹屁模式 轻量": COMPLIMENT_MODE = "lite"; await message.reply("✅ 彩虹屁已切换为 **轻量 AI** 模式（贴图一句话）。"); return
+    if content_lower == "彩虹屁模式 静态": COMPLIMENT_MODE = "static"; await message.reply("✅ 彩虹屁已切换为 **静态文案** 模式（零 API 消耗）。"); return
     
+    if content_lower.startswith("查词 "):
+        if author_id in user_states:
+            del user_states[author_id]
+        query = content[3:].strip()
+        if not query:
+            await message.reply("请在「查词」后输入关键词，例如：`查词 红发` 或 `查词 cowboy shot`")
+            return
+        if not KNOWLEDGE_BASE:
+            await message.reply("知识库尚未加载，请稍后再试。")
+            return
+        results = search_knowledge_base(query, limit=10)
+        await message.reply(format_kb_search_results(results, query))
+        return
+
     if content_lower == "打开标签目录":
         if not KNOWLEDGE_BASE: await message.reply("知识库尚未加载，请稍后再试。"); return
-        categories = list(KNOWLEDGE_BASE.keys())
-        response_text = "📚 **知识库标签目录** 📚\n\n" + "\n".join(f"{i+1}. {cat}" for i, cat in enumerate(categories)) + "\n\n请回复您想查阅的目录 **序号** 或 **完整名称**："
+        categories = get_browse_categories()
+        response_text = "📚 **知识库标签目录** 📚\n\n" + "\n".join(f"{i+1}. {cat} ({len(KNOWLEDGE_BASE[cat])})" for i, cat in enumerate(categories)) + "\n\n请回复您想查阅的目录 **序号** 或 **完整名称**："
         await message.reply(response_text)
         user_states[author_id] = "awaiting_category_choice"
         return
@@ -582,7 +955,7 @@ async def on_message(message):
     
     if user_state and user_state == "awaiting_category_choice":
         try:
-            categories = list(KNOWLEDGE_BASE.keys())
+            categories = get_browse_categories()
             chosen_category = None
             try:
                 choice_index = int(content_lower) - 1
@@ -596,7 +969,8 @@ async def on_message(message):
                 else:
                     response_parts = []; current_part = f"📜 **{chosen_category}** 目录下的标签：\n"
                     for tag in tags:
-                        line = f"- {tag.get('translation', 'N/A')} (`{tag.get('term', 'N/A')}`)\n"
+                        trans = tag.get('translation') or '—'
+                        line = f"- {trans} (`{tag.get('term', 'N/A')}`)\n"
                         if len(current_part) + len(line) > 1900: response_parts.append(current_part); current_part = ""
                         current_part += line
                     response_parts.append(current_part)
@@ -681,7 +1055,7 @@ async def on_message(message):
     if message.attachments:
         attachment = message.attachments[0]
         if attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.webp', '.gif')):
-            await message.channel.send(f"{message.author.mention} {random.choice(COMPLIMENTS)}")
+            await send_rainbow_compliment(message)
             return
 
     if CHAT_ENABLED and not message.attachments and random.random() < CHAT_PROBABILITY:
@@ -692,13 +1066,19 @@ async def on_message(message):
         return
 
 # --- 启动机器人 ---
-DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
-if not DISCORD_TOKEN:
-    raise ValueError("未找到 DISCORD_TOKEN，请检查 .env 文件")
+def start_bot():
+    """启动 Discord 机器人"""
+    DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
+    if not DISCORD_TOKEN:
+        raise ValueError("未找到 DISCORD_TOKEN，请检查 .env 文件")
 
-try:
-    client_discord.run(DISCORD_TOKEN)
-except discord.errors.LoginFailure:
-    print("❌ Discord Token 无效，请检查 .env 文件中的 DISCORD_TOKEN 是否正确。")
-except Exception as e:
-    print(f"❌ 启动机器人时发生错误: {e}")
+    try:
+        print("🚀 正在尝试启动机器人...")
+        client_discord.run(DISCORD_TOKEN)
+    except discord.errors.LoginFailure:
+        print("❌ Discord Token 无效，请检查 .env 文件中的 DISCORD_TOKEN 是否正确。")
+    except Exception as e:
+        print(f"❌ 启动机器人时发生严重错误: {e}")
+
+if __name__ == "__main__":
+    start_bot()

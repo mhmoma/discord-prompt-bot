@@ -813,12 +813,11 @@ async def generate_lite_compliment(image_data: bytes) -> str:
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": [{"type": "image_url", "image_url": {"url": image_url}}]},
         ],
-        max_tokens=120,
         temperature=0.9,
     )
     text = (response.choices[0].message.content or "").strip()
     text = re.sub(r'^["\'「」]|["\'「」]$', '', text)
-    return text[:120]
+    return text[:CHAT_DISCORD_MAX_CHARS]
 
 async def send_rainbow_compliment(message):
     if not should_send_compliment(message):

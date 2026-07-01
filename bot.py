@@ -1690,7 +1690,9 @@ class _PublishChannelSelect(Select):
         # 删除原频道中用户发布的图片消息
         try:
             await self._original_message.delete()
-        except (discord.Forbidden, discord.NotFound):
+        except discord.Forbidden:
+            print(f"⚠️ 无法删除原图消息（缺少 Manage Messages 权限），频道: {self._original_message.channel}")
+        except discord.NotFound:
             pass
 
         self.view.stop()

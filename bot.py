@@ -1590,29 +1590,37 @@ async def _generate_one_videocode() -> str | None:
         return None
 
 async def _handle_checkin(message):
-    """每日签到：每天 1 次，奖励 1 个视频码。"""
+    """每日签到：每天 1 次，奖励 1 个视频码（私发）。"""
     uid = message.author.id
     if _has_checked_in_today(uid):
-        await message.reply("🐾 你今天已经签到过了，明天再来吧~")
+        await message.reply("🐾 你今天已经签到过了，明天再来吧~", delete_after=10)
         return
     code = await _generate_one_videocode()
     if not code:
-        await message.reply("❌ 签到失败：视频码生成服务暂时不可用，请稍后再试。")
+        await message.reply("❌ 签到失败：视频码生成服务暂时不可用，请稍后再试。", delete_after=10)
         return
     _record_checkin(uid, code)
-    await message.reply(
-        f"✅ **签到成功！**\n"
-        f"🎬 获得视频码（72h有效）：\n```{code}```\n"
-        f"在 [ComfyUI Web](https://comfyui-web-89u.pages.dev) 生成视频时输入。"
-    )
+    try:
+        await message.author.send(
+            f"✅ **签到成功！**\n"
+            f"🎬 获得视频码（72h有效）：\n```{code}```\n"
+            f"在 [ComfyUI Web](https://comfyui-web-89u.pages.dev) 生成视频时输入。"
+        )
+        await message.reply("✅ 签到成功！视频码已私信发送，请查看 DM 📬", delete_after=10)
+    except discord.Forbidden:
+        await message.reply(
+            f"✅ 签到成功！但无法私信你，请打开 DM 权限。\n||{code}||",
+            delete_after=30,
+        )
 
 
 class _PublishChannelSelect(Select):
     """频道选择下拉菜单，用于发布作品。"""
 
-    def __init__(self, channels: list[discord.TextChannel], author: discord.Member, image_url: str):
+    def __init__(self, channels: list[discord.TextChannel], author: discord.Member, image_url: str, original_message: discord.Message):
         self._author = author
         self._image_url = image_url
+        self._original_message = original_message
         options = [
             discord.SelectOption(label=f"#{ch.name}", value=str(ch.id))
             for ch in channels[:25]
@@ -1662,19 +1670,28 @@ class _PublishChannelSelect(Select):
                     f"✅ 作品已发布到 <#{channel_id}>！\n"
                     f"🎬 获得视频码（72h有效）：\n```{code}```\n"
                     f"今日发布奖励 {new_count}/3",
+                    ephemeral=True,
                 )
             else:
                 _record_publish(uid, channel_id, "")
                 await interaction.response.send_message(
                     f"✅ 作品已发布到 <#{channel_id}>！\n"
                     f"⚠️ 视频码生成暂时不可用，但发布已成功。",
+                    ephemeral=True,
                 )
         else:
             _record_publish(uid, channel_id, "")
             await interaction.response.send_message(
                 f"✅ 作品已发布到 <#{channel_id}>！\n"
                 f"📌 今日发布奖励已达上限（3/3），不再发放视频码。",
+                ephemeral=True,
             )
+
+        # 删除原频道中用户发布的图片消息
+        try:
+            await self._original_message.delete()
+        except (discord.Forbidden, discord.NotFound):
+            pass
 
         self.view.stop()
 
@@ -1708,9 +1725,9 @@ async def _handle_publish(message):
         return
 
     view = View(timeout=60)
-    select = _PublishChannelSelect(channels, message.author, attachment.url)
+    select = _PublishChannelSelect(channels, message.author, attachment.url, message)
     view.add_item(select)
-    await message.reply("🖼️ 请选择要发布到的频道：", view=view)
+    await message.reply("🖼️ 请选择要发布到的频道：", view=view, delete_after=60)
 
 
 async def _handle_videocode_command(message, content):

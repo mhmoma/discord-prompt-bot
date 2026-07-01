@@ -1516,8 +1516,8 @@ def _cleanup_old_records():
     cutoff = time.time() - DB_CLEANUP_DAYS * 86400
     del_checkins = conn.execute("DELETE FROM checkins WHERE created_at < ?", (cutoff,)).rowcount
     del_publishes = conn.execute("DELETE FROM publishes WHERE created_at < ?", (cutoff,)).rowcount
-    conn.execute("VACUUM")
     conn.commit()
+    conn.execute("VACUUM")
     conn.close()
     if del_checkins or del_publishes:
         print(f"🗑️ 数据库清理: 删除 {del_checkins} 条签到 + {del_publishes} 条发布记录（>{DB_CLEANUP_DAYS}天）")

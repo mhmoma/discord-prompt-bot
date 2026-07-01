@@ -1460,6 +1460,47 @@ async def generate_smart_response(message, history, is_awakened, *, is_final_rep
         error_message = f"❌ 嗷呜~对话功能短路了: {str(e)}"
         print(error_message)
 
+VIDEOCODE_API_URL = os.getenv("VIDEOCODE_API_URL", "https://comfyui-web-89u.pages.dev/api/nai/videocode")
+VIDEOCODE_ADMIN_KEY = os.getenv("VIDEOCODE_ADMIN_KEY", "")
+
+async def _handle_videocode_command(message, content):
+    if not VIDEOCODE_ADMIN_KEY:
+        await message.reply("❌ 视频码功能未配置（缺少 VIDEOCODE_ADMIN_KEY）。")
+        return
+    parts = content.split()
+    count = 1
+    if len(parts) >= 2 and parts[1].isdigit():
+        count = min(int(parts[1]), 10)
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.post(
+                VIDEOCODE_API_URL,
+                headers={
+                    "Content-Type": "application/json",
+                    "X-Admin-Key": VIDEOCODE_ADMIN_KEY,
+                },
+                json={"count": count, "ttl_hours": 24},
+                proxy=PROXY_URL,
+            ) as resp:
+                if resp.status != 200:
+                    err = await resp.text()
+                    await message.reply(f"❌ 生成失败 ({resp.status}): {err}")
+                    return
+                data = await resp.json()
+    except Exception as e:
+        await message.reply(f"❌ 请求失败: {e}")
+        return
+    codes = data.get("codes", [])
+    if not codes:
+        await message.reply("❌ 没有生成任何视频码。")
+        return
+    ttl = data.get("ttl_hours", 24)
+    code_list = "\n".join(f"```{c}```" for c in codes)
+    await message.reply(
+        f"🎬 **视频码** ({ttl}小时有效，单次使用)\n{code_list}\n"
+        f"在 [ComfyUI Web](https://comfyui-web-89u.pages.dev) 生成视频时输入视频码。"
+    )
+
 @client_discord.event
 async def on_message(message):
     global CHAT_ENABLED, COMPLIMENT_ENABLED, COMPLIMENT_MODE, user_states
@@ -1503,6 +1544,10 @@ async def on_message(message):
 
     if content_lower == "彩虹屁开启": COMPLIMENT_ENABLED = True; await message.reply("✅ 彩虹屁已开启。"); return
     if content_lower == "彩虹屁关闭": COMPLIMENT_ENABLED = False; await message.reply("☑️ 彩虹屁已关闭。"); return
+
+    if content_lower.startswith("视频码"):
+        await _handle_videocode_command(message, content)
+        return
     if content_lower == "彩虹屁模式 轻量": COMPLIMENT_MODE = "lite"; await message.reply("✅ 彩虹屁已切换为 **轻量 AI** 模式（贴图一句话）。"); return
     if content_lower == "彩虹屁模式 静态": COMPLIMENT_MODE = "static"; await message.reply("✅ 彩虹屁已切换为 **静态文案** 模式（零 API 消耗）。"); return
     

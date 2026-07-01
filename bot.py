@@ -1812,6 +1812,28 @@ async def on_message(message):
     if content_lower == "彩虹屁开启": COMPLIMENT_ENABLED = True; await message.reply("✅ 彩虹屁已开启。"); return
     if content_lower == "彩虹屁关闭": COMPLIMENT_ENABLED = False; await message.reply("☑️ 彩虹屁已关闭。"); return
 
+    if content_lower == "帮忙":
+        await message.reply(
+            "🐾 嗨～ 我是小哈！一只会画画的哈士奇 🎨\n\n"
+            "这是我能做的事：\n\n"
+            "🖼️ **【绘画提示词】**\n"
+            "• `反推` — 回复一张图 + 发「反推」，深度分析生成英文 tag\n"
+            "• `画 <想法>` — 根据描述构思详细绘画提示词\n\n"
+            "📖 **【标签词典】**\n"
+            "• `查词 <关键词>` — 搜索 Danbooru 标签\n"
+            "• `在线查词 <关键词>` — 联网搜索标签\n"
+            "• `d浏览` / `标签面板` — 打开标签分类浏览\n"
+            "• `打开标签目录` — 查看知识库标签分类\n\n"
+            "🎬 **【视频码】**\n"
+            "• `签到` — 每日签到获得 1 个视频码（私信发送）\n"
+            "• `发布作品` + 图片 — 发布到展示频道，每日最多获 3 个视频码\n\n"
+            "💬 **【聊天】**\n"
+            "• @我 或直接跟我说话就行~\n"
+            "• `再见` / `拜拜` / `谢谢` — 结束当前对话\n\n"
+            "✨ 有问题随时叫我！汪！"
+        )
+        return
+
     if content_lower == "签到":
         await _handle_checkin(message)
         return

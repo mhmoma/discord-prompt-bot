@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 import discord
+from discord.ui import View, Select
 import aiohttp
 import httpx
 from openai import AsyncOpenAI
@@ -17,6 +18,8 @@ import json
 import re
 import time
 import asyncio
+import sqlite3
+from datetime import date
 
 import tag_browser
 import tag_translate as ttr
@@ -710,6 +713,10 @@ def print_startup_help():
     print("  聊天开启 / 聊天关闭")
     print("  彩虹屁开启 / 彩虹屁关闭")
     print("  彩虹屁模式 轻量 / 彩虹屁模式 静态")
+
+    print("\n🎁 【签到 / 发布作品】")
+    print("  签到              每日签到获得 1 个视频码")
+    print("  发布作品 + 图片   发布图片到指定频道，每日最多获 3 个视频码")
 
     print("\n📌 【其他】")
     print("  新成员加入        自动发送欢迎语（见 WELCOME_CHANNEL_ID）")
@@ -1463,6 +1470,222 @@ async def generate_smart_response(message, history, is_awakened, *, is_final_rep
 VIDEOCODE_API_URL = os.getenv("VIDEOCODE_API_URL", "https://comfyui-web-89u.pages.dev/api/nai/videocode")
 VIDEOCODE_ADMIN_KEY = os.getenv("VIDEOCODE_ADMIN_KEY", "")
 
+# --- SQLite 签到 / 发布作品 ---
+_DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "user_rewards.db")
+PUBLISH_CATEGORY_ID = 1452165276333506652
+
+def _init_db():
+    conn = sqlite3.connect(_DB_PATH)
+    c = conn.cursor()
+    c.execute("""CREATE TABLE IF NOT EXISTS checkins (
+        user_id INTEGER NOT NULL,
+        day TEXT NOT NULL,
+        code TEXT NOT NULL,
+        created_at REAL NOT NULL,
+        PRIMARY KEY (user_id, day)
+    )""")
+    c.execute("""CREATE TABLE IF NOT EXISTS publishes (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER NOT NULL,
+        day TEXT NOT NULL,
+        channel_id INTEGER NOT NULL,
+        code TEXT NOT NULL,
+        created_at REAL NOT NULL
+    )""")
+    conn.commit()
+    conn.close()
+
+_init_db()
+
+
+def _has_checked_in_today(user_id: int) -> bool:
+    conn = sqlite3.connect(_DB_PATH)
+    row = conn.execute(
+        "SELECT 1 FROM checkins WHERE user_id=? AND day=?",
+        (user_id, date.today().isoformat()),
+    ).fetchone()
+    conn.close()
+    return row is not None
+
+
+def _record_checkin(user_id: int, code: str):
+    conn = sqlite3.connect(_DB_PATH)
+    conn.execute(
+        "INSERT INTO checkins (user_id, day, code, created_at) VALUES (?, ?, ?, ?)",
+        (user_id, date.today().isoformat(), code, time.time()),
+    )
+    conn.commit()
+    conn.close()
+
+
+def _publish_count_today(user_id: int) -> int:
+    conn = sqlite3.connect(_DB_PATH)
+    row = conn.execute(
+        "SELECT COUNT(*) FROM publishes WHERE user_id=? AND day=?",
+        (user_id, date.today().isoformat()),
+    ).fetchone()
+    conn.close()
+    return row[0] if row else 0
+
+
+def _record_publish(user_id: int, channel_id: int, code: str):
+    conn = sqlite3.connect(_DB_PATH)
+    conn.execute(
+        "INSERT INTO publishes (user_id, day, channel_id, code, created_at) VALUES (?, ?, ?, ?, ?)",
+        (user_id, date.today().isoformat(), channel_id, code, time.time()),
+    )
+    conn.commit()
+    conn.close()
+
+
+async def _generate_one_videocode() -> str | None:
+    """调用 videocode API 生成 1 个视频码，返回码字符串或 None。"""
+    if not VIDEOCODE_ADMIN_KEY:
+        return None
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.post(
+                VIDEOCODE_API_URL,
+                headers={
+                    "Content-Type": "application/json",
+                    "X-Admin-Key": VIDEOCODE_ADMIN_KEY,
+                },
+                json={"count": 1, "ttl_hours": 72},
+                proxy=PROXY_URL,
+            ) as resp:
+                if resp.status != 200:
+                    return None
+                data = await resp.json()
+                codes = data.get("codes", [])
+                return codes[0] if codes else None
+    except Exception as e:
+        print(f"⚠️ 生成视频码失败: {e}")
+        return None
+
+async def _handle_checkin(message):
+    """每日签到：每天 1 次，奖励 1 个视频码。"""
+    uid = message.author.id
+    if _has_checked_in_today(uid):
+        await message.reply("🐾 你今天已经签到过了，明天再来吧~")
+        return
+    code = await _generate_one_videocode()
+    if not code:
+        await message.reply("❌ 签到失败：视频码生成服务暂时不可用，请稍后再试。")
+        return
+    _record_checkin(uid, code)
+    await message.reply(
+        f"✅ **签到成功！**\n"
+        f"🎬 获得视频码（72h有效）：\n```{code}```\n"
+        f"在 [ComfyUI Web](https://comfyui-web-89u.pages.dev) 生成视频时输入。"
+    )
+
+
+class _PublishChannelSelect(Select):
+    """频道选择下拉菜单，用于发布作品。"""
+
+    def __init__(self, channels: list[discord.TextChannel], author: discord.Member, image_url: str):
+        self._author = author
+        self._image_url = image_url
+        options = [
+            discord.SelectOption(label=f"#{ch.name}", value=str(ch.id))
+            for ch in channels[:25]
+        ]
+        super().__init__(placeholder="选择发布频道…", options=options, min_values=1, max_values=1)
+
+    async def callback(self, interaction: discord.Interaction):
+        if interaction.user.id != self._author.id:
+            await interaction.response.send_message("这不是你的操作哦~", ephemeral=True)
+            return
+        channel_id = int(self.values[0])
+        guild = interaction.guild
+        target_ch = guild.get_channel(channel_id) if guild else None
+        if not target_ch:
+            await interaction.response.send_message("❌ 找不到该频道。", ephemeral=True)
+            return
+
+        uid = self._author.id
+        today_count = _publish_count_today(uid)
+
+        # 发布图片到目标频道
+        try:
+            async with aiohttp.ClientSession() as session:
+                async with session.get(self._image_url, proxy=PROXY_URL) as resp:
+                    if resp.status != 200:
+                        await interaction.response.send_message("❌ 下载图片失败。", ephemeral=True)
+                        return
+                    img_data = await resp.read()
+            filename = self._image_url.split("/")[-1].split("?")[0] or "artwork.png"
+            file = discord.File(io.BytesIO(img_data), filename=filename)
+            embed = discord.Embed(
+                description=f"由 {self._author.mention} 发布",
+                color=discord.Color.blue(),
+            )
+            embed.set_image(url=f"attachment://{filename}")
+            await target_ch.send(embed=embed, file=file)
+        except Exception as e:
+            await interaction.response.send_message(f"❌ 发布失败: {e}", ephemeral=True)
+            return
+
+        if today_count < 3:
+            code = await _generate_one_videocode()
+            if code:
+                _record_publish(uid, channel_id, code)
+                new_count = today_count + 1
+                await interaction.response.send_message(
+                    f"✅ 作品已发布到 <#{channel_id}>！\n"
+                    f"🎬 获得视频码（72h有效）：\n```{code}```\n"
+                    f"今日发布奖励 {new_count}/3",
+                )
+            else:
+                _record_publish(uid, channel_id, "")
+                await interaction.response.send_message(
+                    f"✅ 作品已发布到 <#{channel_id}>！\n"
+                    f"⚠️ 视频码生成暂时不可用，但发布已成功。",
+                )
+        else:
+            _record_publish(uid, channel_id, "")
+            await interaction.response.send_message(
+                f"✅ 作品已发布到 <#{channel_id}>！\n"
+                f"📌 今日发布奖励已达上限（3/3），不再发放视频码。",
+            )
+
+        self.view.stop()
+
+
+async def _handle_publish(message):
+    """发布作品：附带图片 → 选择频道 → 转发 → 奖励视频码（每日最多 3 个）。"""
+    if not message.attachments:
+        await message.reply("📷 请在发送「发布作品」时附带一张图片。")
+        return
+    attachment = message.attachments[0]
+    if not attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.webp', '.gif')):
+        await message.reply("❌ 只支持图片格式（png/jpg/webp/gif）。")
+        return
+
+    guild = message.guild
+    if not guild:
+        await message.reply("❌ 该功能仅在服务器中可用。")
+        return
+
+    category = guild.get_channel(PUBLISH_CATEGORY_ID)
+    if not category or not isinstance(category, discord.CategoryChannel):
+        await message.reply("❌ 找不到发布类别频道，请联系管理员。")
+        return
+
+    channels = [
+        ch for ch in category.text_channels
+        if ch.permissions_for(guild.me).send_messages
+    ]
+    if not channels:
+        await message.reply("❌ 该类别下没有可用的文字频道。")
+        return
+
+    view = View(timeout=60)
+    select = _PublishChannelSelect(channels, message.author, attachment.url)
+    view.add_item(select)
+    await message.reply("🖼️ 请选择要发布到的频道：", view=view)
+
+
 async def _handle_videocode_command(message, content):
     if not VIDEOCODE_ADMIN_KEY:
         await message.reply("❌ 视频码功能未配置（缺少 VIDEOCODE_ADMIN_KEY）。")
@@ -1544,6 +1767,14 @@ async def on_message(message):
 
     if content_lower == "彩虹屁开启": COMPLIMENT_ENABLED = True; await message.reply("✅ 彩虹屁已开启。"); return
     if content_lower == "彩虹屁关闭": COMPLIMENT_ENABLED = False; await message.reply("☑️ 彩虹屁已关闭。"); return
+
+    if content_lower == "签到":
+        await _handle_checkin(message)
+        return
+
+    if content_lower == "发布作品" or content_lower.startswith("发布作品"):
+        await _handle_publish(message)
+        return
 
     if content_lower.startswith("视频码"):
         await _handle_videocode_command(message, content)

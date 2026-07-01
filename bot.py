@@ -722,12 +722,23 @@ def print_startup_help():
     print("  新成员加入        自动发送欢迎语（见 WELCOME_CHANNEL_ID）")
     print("\n" + "=" * 48)
 
+async def _periodic_db_cleanup():
+    """每 24 小时自动清理过期数据库记录。"""
+    await client_discord.wait_until_ready()
+    while not client_discord.is_closed():
+        await asyncio.sleep(86400)
+        try:
+            _cleanup_old_records()
+        except Exception as e:
+            print(f"⚠️ 定时清理失败: {e}")
+
 @client_discord.event
 async def on_ready():
     load_knowledge_base()
     print("⏳ 正在加载汉化表…", flush=True)
     ttr.init_translator(CHINESE_TAG_MAP, KNOWLEDGE_BASE_TERMS)
     print_startup_help()
+    client_discord.loop.create_task(_periodic_db_cleanup())
 
 def image_to_base64(image_data: bytes) -> str:
     return base64.b64encode(image_data).decode('utf-8')
@@ -1496,6 +1507,22 @@ def _init_db():
     conn.close()
 
 _init_db()
+
+DB_CLEANUP_DAYS = 3
+
+def _cleanup_old_records():
+    """删除超过 DB_CLEANUP_DAYS 天的签到和发布记录。"""
+    conn = sqlite3.connect(_DB_PATH)
+    cutoff = time.time() - DB_CLEANUP_DAYS * 86400
+    del_checkins = conn.execute("DELETE FROM checkins WHERE created_at < ?", (cutoff,)).rowcount
+    del_publishes = conn.execute("DELETE FROM publishes WHERE created_at < ?", (cutoff,)).rowcount
+    conn.execute("VACUUM")
+    conn.commit()
+    conn.close()
+    if del_checkins or del_publishes:
+        print(f"🗑️ 数据库清理: 删除 {del_checkins} 条签到 + {del_publishes} 条发布记录（>{DB_CLEANUP_DAYS}天）")
+
+_cleanup_old_records()
 
 
 def _has_checked_in_today(user_id: int) -> bool:

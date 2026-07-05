@@ -1208,38 +1208,30 @@ def _is_pure_wake_call(text: str, bot_user) -> bool:
     return intent.lower() in pure or len(intent) <= 2
 
 
+_ART_PROMPT_PREFIXES = ("画 ", "生成 ")
+
+
 def _parse_art_idea_from_intent(intent: str) -> str | None:
+    """仅识别「画 <描述>」「生成 <描述>」（关键词后必须有空格）。"""
     if not intent:
         return None
-    if intent.startswith("画 "):
-        rest = intent[2:].strip()
-        return rest or None
-    for prefix in (
-        "画一个", "画个", "画张", "画幅", "来张", "帮我画", "给我画",
-    ):
+    for prefix in _ART_PROMPT_PREFIXES:
         if intent.startswith(prefix):
-            rest = intent[len(prefix):].strip(" ：:")
-            return rest or None
-    for prefix in (
-        "生成", "来一张", "帮我生成", "给我生成",
-        "出一张", "做一张", "绘制", "整一张", "弄一张",
-    ):
-        if intent.startswith(prefix):
-            rest = intent[len(prefix):].strip(" ：:")
+            rest = intent[len(prefix):].strip()
             return rest or None
     return None
 
 
 def _extract_art_generation_idea(text: str, bot_user) -> str | None:
-    """提取生图描述。支持「画 …」「画一个…」「生成…」；兼容「无敌哈士奇 生成…」。"""
+    """提取生图描述。仅支持「画 …」「生成 …」（关键词后必须有空格）。"""
     intent = _strip_bot_wake_text(text, bot_user)
     if not intent:
         return None
     parsed = _parse_art_idea_from_intent(intent)
     if parsed:
         return parsed
-    # 名字没剥干净时，「无敌哈士奇 生成…」→ 从关键词处再切
-    for kw in ("生成", "画一个", "画个", "画张", "帮我画", "给我画", "画 "):
+    # 名字没剥干净时，「无敌哈士奇 生成 …」→ 从关键词处再切
+    for kw in _ART_PROMPT_PREFIXES:
         idx = intent.find(kw)
         if idx >= 0:
             parsed = _parse_art_idea_from_intent(intent[idx:])

@@ -1,0 +1,148 @@
+"""新成员欢迎：目的选择 + 私密指引。"""
+
+from __future__ import annotations
+
+import json
+import os
+import time
+from datetime import datetime, timezone
+from typing import Optional
+
+import discord
+
+_CONFIG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "onboarding_config.json")
+_VIEW_TIMEOUT = None  # 持久 View，重启后在 on_ready 重新注册
+_CUSTOM_NOTIFY_COOLDOWN = 86400  # 24h 内同一人只通知管理员一次
+
+_config: dict | None = None
+_custom_notify_at: dict[int, float] = {}
+
+
+def _admin_id() -> int | None:
+    raw = os.getenv("ONBOARDING_ADMIN_ID", "1413949409917534268").strip()
+    return int(raw) if raw.isdigit() else None
+
+
+def load_config() -> dict:
+    global _config
+    if _config is not None:
+        return _config
+    with open(_CONFIG_FILE, "r", encoding="utf-8") as f:
+        _config = json.load(f)
+    return _config
+
+
+def get_purpose(purpose_id: str) -> dict | None:
+    for item in load_config().get("purposes", []):
+        if item.get("id") == purpose_id:
+            return item
+    return None
+
+
+def _build_link_view(purpose: dict) -> discord.ui.View | None:
+    url = (purpose.get("url") or "").strip()
+    if not url:
+        return None
+    view = discord.ui.View()
+    view.add_item(
+        discord.ui.Button(
+            label=(purpose.get("button_label") or "打开链接")[:80],
+            url=url,
+            style=discord.ButtonStyle.link,
+        )
+    )
+    return view
+
+
+async def _notify_admin_custom(client: discord.Client, user: discord.abc.User, guild: discord.Guild | None):
+    admin_id = _admin_id()
+    if not admin_id:
+        print("⚠️ 未配置 ONBOARDING_ADMIN_ID，跳过定制通知")
+        return
+
+    now = time.time()
+    last = _custom_notify_at.get(user.id, 0)
+    if now - last < _CUSTOM_NOTIFY_COOLDOWN:
+        return
+    _custom_notify_at[user.id] = now
+
+    guild_name = guild.name if guild else "未知服务器"
+    ts = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    text = (
+        "🔔 **新用户选择了「免费定制」**\n\n"
+        f"用户：{user.mention} (`{user.id}`)\n"
+        f"服务器：**{guild_name}**\n"
+        f"时间：{ts}\n\n"
+        "请主动私聊对接~"
+    )
+    try:
+        admin = await client.fetch_user(admin_id)
+        await admin.send(text)
+    except discord.Forbidden:
+        print(f"⚠️ 无法 DM 管理员 {admin_id}（请打开 Bot 私信权限）")
+    except Exception as e:
+        print(f"⚠️ 定制通知发送失败: {e}")
+
+
+class OnboardingPurposeSelect(discord.ui.Select):
+    def __init__(self):
+        options = []
+        for item in load_config().get("purposes", []):
+            label = item.get("label", "")[:100]
+            desc = (item.get("description") or "")[:100]
+            emoji = item.get("emoji")
+            options.append(
+                discord.SelectOption(
+                    label=label,
+                    value=item["id"],
+                    description=desc or None,
+                    emoji=emoji or None,
+                )
+            )
+        super().__init__(
+            custom_id="onboarding:purpose",
+            placeholder="选一个你来的目的…",
+            min_values=1,
+            max_values=1,
+            options=options,
+        )
+
+    async def callback(self, interaction: discord.Interaction):
+        purpose = get_purpose(self.values[0])
+        if not purpose:
+            await interaction.response.send_message("❌ 选项无效，请重试。", ephemeral=True)
+            return
+
+        guide = (purpose.get("guide") or "").strip()
+        view = _build_link_view(purpose)
+
+        await interaction.response.send_message(guide, ephemeral=True, view=view)
+
+        if purpose.get("notify_admin"):
+            client = interaction.client
+            await _notify_admin_custom(client, interaction.user, interaction.guild)
+
+
+class OnboardingWelcomeView(discord.ui.View):
+    def __init__(self):
+        super().__init__(timeout=_VIEW_TIMEOUT)
+        self.add_item(OnboardingPurposeSelect())
+
+
+def register_views(client: discord.Client):
+    client.add_view(OnboardingWelcomeView())
+
+
+def build_welcome_content(member: discord.Member, bot_name: str) -> str:
+    return (
+        f"🎉 欢迎 {member.mention} 加入！我是 **{bot_name}**，一只会写 prompt 的哈士奇。\n\n"
+        "👇 **你来的目的是？** 从下面选一个，本哈只给你看对应指引（仅你可见）"
+    )
+
+
+async def send_member_welcome(
+    member: discord.Member,
+    channel: discord.abc.Messageable,
+    bot_name: str,
+) -> None:
+    await channel.send(build_welcome_content(member, bot_name), view=OnboardingWelcomeView())

@@ -21,6 +21,7 @@ import asyncio
 import sqlite3
 from datetime import date
 
+import onboarding
 import tag_browser
 import tag_translate as ttr
 
@@ -626,38 +627,18 @@ async def on_member_join(member):
     bot_name = client_discord.user.name
     primary_channel = resolve_primary_welcome_channel(member.guild)
     if primary_channel:
-        welcome_message_formal = (
-            f"🎉 欢迎新朋友 {member.mention} 加入服务器！\n\n"
-            f"我是 **{bot_name}**，一只懂绘画 tag 的哈士奇，很高兴认识你！汪！\n\n"
-            "**核心玩法**\n"
-            f"🖼️ **反推**：回复一张图并说 `反推`，本哈深度分析并生成专业提示词\n"
-            f"🎨 **画**：`画 <你的想法>`，根据描述构思详细绘画提示词\n"
-            f"📚 **查词**：`查词 <关键词>`，在知识库里搜 tag（中英皆可）\n"
-            f"🌐 **在线查词**：`在线查词 <关键词>`，查 Danbooru 实时 tag\n"
-            f"📂 **D浏览**：Danbooru 分类面板（姿势/服装等，含中文）\n"
-            f"📂 **标签目录**：发送 `打开标签目录` 浏览本地分类 tag\n\n"
-            "**图片互动**\n"
-            f"💬 **@我 + 图**：模块化分析 + 艺术锐评\n"
-            f"🌈 **只发图**：有机会触发彩虹屁，本哈会随机夸你一句~\n\n"
-            "**聊天**\n"
-            f"💭 **@我**（无图）：跟本哈聊两句，我会联系上下文回复\n\n"
-            "希望你在这里玩得开心！嗷呜~"
-        )
         try:
-            await primary_channel.send(welcome_message_formal)
+            await onboarding.send_member_welcome(member, primary_channel, bot_name)
         except Exception as e:
             print(f"❌ 在主欢迎频道发送消息时出错: {e}")
 
     chat_channel = discord.utils.get(member.guild.text_channels, name="聊天")
-    if chat_channel:
-        welcome_message_chat = (
-            f"嗷呜！新伙伴 {member.mention} 来啦！\n\n"
-            f"本哈是 **{bot_name}**，会反推、会写 prompt、还会彩虹屁~\n"
-            f"发图试试 `@我` 锐评，或直接 `反推` / `画 xxx` / `查词 xxx`；"
-            f"只贴图也有机会被本哈夸！汪！"
-        )
+    if chat_channel and chat_channel.id != getattr(primary_channel, "id", None):
         try:
-            await chat_channel.send(welcome_message_chat)
+            await chat_channel.send(
+                f"嗷呜！新伙伴 {member.mention} 来啦~ "
+                f"去 {primary_channel.mention if primary_channel else '欢迎频道'} 选个目的，本哈给你指路！汪！"
+            )
         except Exception as e:
             print(f"❌ 在 #聊天 频道发送消息时出错: {e}")
 
@@ -719,7 +700,7 @@ def print_startup_help():
     print("  发布作品 + 图片   发布图片到指定频道，每日最多获 3 个视频码")
 
     print("\n📌 【其他】")
-    print("  新成员加入        自动发送欢迎语（见 WELCOME_CHANNEL_ID）")
+    print("  新成员加入        目的选择欢迎（见 WELCOME_CHANNEL_ID / onboarding_config.json）")
     print("\n" + "=" * 48)
 
 async def _periodic_db_cleanup():
@@ -735,6 +716,8 @@ async def _periodic_db_cleanup():
 @client_discord.event
 async def on_ready():
     load_knowledge_base()
+    onboarding.load_config()
+    onboarding.register_views(client_discord)
     print("⏳ 正在加载汉化表…", flush=True)
     ttr.init_translator(CHINESE_TAG_MAP, KNOWLEDGE_BASE_TERMS)
     print_startup_help()

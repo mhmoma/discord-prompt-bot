@@ -167,7 +167,10 @@ class OnboardingPurposeSelect(discord.ui.Select):
         guide = (purpose.get("guide") or "").strip()
         view = _build_link_view(purpose)
 
-        await interaction.response.send_message(guide, ephemeral=True, view=view)
+        kwargs: dict = {"ephemeral": True}
+        if view is not None:
+            kwargs["view"] = view
+        await interaction.response.send_message(guide, **kwargs)
 
         if purpose.get("notify_admin"):
             ok = await _notify_admin_custom(

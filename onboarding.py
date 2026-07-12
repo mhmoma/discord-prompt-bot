@@ -197,9 +197,8 @@ def register_views(client: discord.Client):
     client.add_view(OnboardingWelcomeView())
 
 
-def build_welcome_content(member: discord.Member, bot_name: str) -> str:
+def _picker_body(bot_name: str) -> str:
     return (
-        f"🎉 欢迎 {member.mention} 加入！\n\n"
         f"我是 **{bot_name}** 🐺 — 会写 prompt、会反推、会查 Danbooru 标签、"
         f"会看图锐评/彩虹屁，还能签到换视频码的哈士奇。\n\n"
         "**我能帮你：**\n"
@@ -208,6 +207,23 @@ def build_welcome_content(member: discord.Member, bot_name: str) -> str:
         "👇 **你最主要想做什么？** 选一个，本哈给你专属指引（仅你可见）\n"
         "不确定就选最下面 **「功能大全 / 我是新人」**"
     )
+
+
+def build_welcome_content(member: discord.Member, bot_name: str) -> str:
+    return f"🎉 欢迎 {member.mention} 加入！\n\n{_picker_body(bot_name)}"
+
+
+def build_picker_content(user: discord.abc.User, bot_name: str) -> str:
+    mention = getattr(user, "mention", None) or f"**{getattr(user, 'display_name', user.name)}**"
+    return f"👋 {mention}，本哈再给你指路一次！\n\n{_picker_body(bot_name)}"
+
+
+async def send_purpose_picker(
+    channel: discord.abc.Messageable,
+    user: discord.abc.User,
+    bot_name: str,
+) -> None:
+    await channel.send(build_picker_content(user, bot_name), view=OnboardingWelcomeView())
 
 
 async def send_member_welcome(

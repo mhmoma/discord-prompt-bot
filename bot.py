@@ -701,6 +701,7 @@ def print_startup_help():
     print("  发布作品 + 图片   发布图片到指定频道，每日最多获 3 个视频码")
 
     print("\n📌 【其他】")
+    print("  指路 / 入门        重新弹出目的选择菜单（新手指引）")
     print("  新成员加入        目的选择欢迎（见 WELCOME_CHANNEL_ID / onboarding_config.json）")
     print("\n" + "=" * 48)
 
@@ -1790,6 +1791,13 @@ async def on_message(message):
     if content_lower == "彩虹屁开启": COMPLIMENT_ENABLED = True; await message.reply("✅ 彩虹屁已开启。"); return
     if content_lower == "彩虹屁关闭": COMPLIMENT_ENABLED = False; await message.reply("☑️ 彩虹屁已关闭。"); return
 
+    if content_lower in {"指路", "入门", "新手指引"}:
+        if author_id in user_states:
+            del user_states[author_id]
+        bot_name = client_discord.user.name if client_discord.user else "小哈"
+        await onboarding.send_purpose_picker(message.channel, message.author, bot_name)
+        return
+
     if content_lower == "帮忙":
         await message.reply(
             "🐾 嗨～ 我是小哈！一只会画画的哈士奇 🎨\n\n"
@@ -1808,6 +1816,8 @@ async def on_message(message):
             "💬 **【聊天】**\n"
             "• @我 或直接跟我说话就行~\n"
             "• `再见` / `拜拜` / `谢谢` — 结束当前对话\n\n"
+            "🧭 **【新手指引】**\n"
+            "• `指路` 或 `入门` — 重新打开目的选择菜单\n\n"
             "✨ 有问题随时叫我！汪！"
         )
         return

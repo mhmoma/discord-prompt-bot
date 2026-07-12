@@ -637,7 +637,8 @@ async def on_member_join(member):
         try:
             await chat_channel.send(
                 f"嗷呜！新伙伴 {member.mention} 来啦~ "
-                f"去 {primary_channel.mention if primary_channel else '欢迎频道'} 选个目的，本哈给你指路！汪！"
+                f"去 {primary_channel.mention if primary_channel else '欢迎频道'} "
+                f"选个目的（写词 / 反推 / 查标签 / 视频码…），本哈给你指路！汪！"
             )
         except Exception as e:
             print(f"❌ 在 #聊天 频道发送消息时出错: {e}")

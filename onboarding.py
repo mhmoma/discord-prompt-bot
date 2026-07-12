@@ -199,8 +199,14 @@ def register_views(client: discord.Client):
 
 def build_welcome_content(member: discord.Member, bot_name: str) -> str:
     return (
-        f"🎉 欢迎 {member.mention} 加入！我是 **{bot_name}**，一只会写 prompt 的哈士奇。\n\n"
-        "👇 **你来的目的是？** 从下面选一个，本哈只给你看对应指引（仅你可见）"
+        f"🎉 欢迎 {member.mention} 加入！\n\n"
+        f"我是 **{bot_name}** 🐺 — 会写 prompt、会反推、会查 Danbooru 标签、"
+        f"会看图锐评/彩虹屁，还能签到换视频码的哈士奇。\n\n"
+        "**我能帮你：**\n"
+        "🎨 写词 `画 xxx`　🖼️ 反推/点评　📖 查标签 `D浏览`\n"
+        "🎬 签到/发作品　💬 `@我` 聊天　✨ 免费定制\n\n"
+        "👇 **你最主要想做什么？** 选一个，本哈给你专属指引（仅你可见）\n"
+        "不确定就选最下面 **「功能大全 / 我是新人」**"
     )
 
 

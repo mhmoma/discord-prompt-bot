@@ -8,6 +8,8 @@ import time
 from datetime import datetime, timezone
 import discord
 
+import tag_browser
+
 _CONFIG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "onboarding_config.json")
 _VIEW_TIMEOUT = None  # 持久 View，重启后在 on_ready 重新注册
 _CUSTOM_NOTIFY_COOLDOWN = 86400  # 24h 内同一人只通知管理员一次
@@ -15,6 +17,8 @@ _BUTTONS_PER_ROW = 3
 
 _config: dict | None = None
 _custom_notify_at: dict[int, float] = {}
+_openai_client = None
+_model_name: str | None = None
 
 
 def _admin_id() -> int | None:
@@ -136,10 +140,33 @@ async def _notify_admin_custom(
     return False
 
 
+async def _open_tag_browser(interaction: discord.Interaction) -> None:
+    await interaction.response.defer(ephemeral=True)
+    try:
+        await tag_browser.open_browser(
+            interaction.channel,
+            interaction.user.id,
+            _openai_client,
+            _model_name,
+        )
+        await interaction.followup.send("📖 标签面板已打开，请在下方操作~", ephemeral=True)
+    except FileNotFoundError:
+        await interaction.followup.send(
+            "❌ 缺少 `danbooru_category_map.json`，无法打开浏览面板。",
+            ephemeral=True,
+        )
+    except Exception as e:
+        await interaction.followup.send(f"❌ 打开浏览面板失败：{e}", ephemeral=True)
+
+
 async def _respond_purpose(interaction: discord.Interaction, purpose_id: str) -> None:
     purpose = get_purpose(purpose_id)
     if not purpose:
         await interaction.response.send_message("❌ 选项无效，请重试。", ephemeral=True)
+        return
+
+    if purpose.get("action") == "tag_browser":
+        await _open_tag_browser(interaction)
         return
 
     guide = (purpose.get("guide") or "").strip()
@@ -165,21 +192,25 @@ async def _respond_purpose(interaction: discord.Interaction, purpose_id: str) ->
             )
 
 
+def _button_style(purpose: dict) -> discord.ButtonStyle:
+    purpose_id = purpose.get("id", "")
+    if purpose.get("featured"):
+        return discord.ButtonStyle.success
+    if purpose_id == "overview":
+        return discord.ButtonStyle.secondary
+    return discord.ButtonStyle.primary
+
+
 class OnboardingPurposeButton(discord.ui.Button):
     def __init__(self, purpose: dict, *, row: int):
         purpose_id = purpose["id"]
         label = (purpose.get("label") or purpose_id)[:80]
         emoji = purpose.get("emoji")
-        style = (
-            discord.ButtonStyle.success
-            if purpose_id == "overview"
-            else discord.ButtonStyle.primary
-        )
         super().__init__(
             custom_id=f"onboarding:btn:{purpose_id}",
             label=label,
             emoji=emoji,
-            style=style,
+            style=_button_style(purpose),
             row=row,
         )
         self._purpose_id = purpose_id
@@ -197,7 +228,10 @@ class OnboardingWelcomeView(discord.ui.View):
             self.add_item(OnboardingPurposeButton(purpose, row=row))
 
 
-def register_views(client: discord.Client):
+def register_views(client: discord.Client, *, openai_client=None, model_name: str | None = None):
+    global _openai_client, _model_name
+    _openai_client = openai_client
+    _model_name = model_name
     client.add_view(OnboardingWelcomeView())
 
 
@@ -207,7 +241,8 @@ def _purpose_panel_text() -> str:
         emoji = item.get("emoji") or "•"
         label = item.get("label") or item.get("id", "")
         desc = (item.get("description") or "").strip()
-        lines.append(f"{emoji} **{label}**" + (f" — {desc}" if desc else ""))
+        featured = " ⭐**【主推】**" if item.get("featured") else ""
+        lines.append(f"{emoji} **{label}**{featured}" + (f" — {desc}" if desc else ""))
     return "\n".join(lines)
 
 
@@ -216,7 +251,8 @@ def _picker_body(bot_name: str) -> str:
         f"我是 **{bot_name}** 🐺 — 会写 prompt、会反推、会查 Danbooru 标签、"
         f"会看图锐评/彩虹屁，还能签到换视频码的哈士奇。\n\n"
         f"{_purpose_panel_text()}\n\n"
-        "👇 **直接点按钮**，本哈给你专属指引（仅你可见）"
+        "👇 **直接点按钮**，本哈给你专属指引（仅你可见）\n"
+        "🟢 **绿色按钮** = 主推功能（绘画工具 & 可视化提示词 & 画师查询）"
     )
 
 

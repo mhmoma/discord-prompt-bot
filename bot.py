@@ -719,7 +719,7 @@ async def _periodic_db_cleanup():
 async def on_ready():
     load_knowledge_base()
     onboarding.load_config()
-    onboarding.register_views(client_discord)
+    onboarding.register_views(client_discord, openai_client=client_openai, model_name=MODEL_NAME)
     print("⏳ 正在加载汉化表…", flush=True)
     ttr.init_translator(CHINESE_TAG_MAP, KNOWLEDGE_BASE_TERMS)
     print_startup_help()

@@ -1147,19 +1147,16 @@ async def generate_art_prompt(user_idea: str, author_mention: str, channel):
         await channel.send(error_message)
 
 def _sanitize_husky_speech(text: str) -> str:
-    """去掉小哈回复里不该出现的机器人/AI 自营表述。"""
+    """只修正小哈自称时的机器人/AI 表述，不篡改句中其他词。"""
     if not text:
         return text
     subs = (
         (re.compile(r"作为\s*(?:一个\s*)?(?:AI|人工智能|机器人|[Bb][Oo][Tt])"), "作为本哈"),
         (re.compile(r"我(?:是|为|个|这只|一条)?\s*(?:AI|人工智能|机器人|[Bb][Oo][Tt])(?:狗)?"), "我是哈士奇小哈"),
+        (re.compile(r"本哈(?:是|为|个)?\s*(?:AI|人工智能|机器人|[Bb][Oo][Tt])"), "本哈是哈士奇"),
         (re.compile(r"(?:AI|人工智能|机器人|[Bb][Oo][Tt])小哈"), "哈士奇小哈"),
         (re.compile(r"Discord\s*(?:群友\s*)?[Bb][Oo][Tt]"), "Discord 群里的哈士奇"),
         (re.compile(r"群友\s*[Bb][Oo][Tt]"), "群里的哈士奇"),
-        (re.compile(r"[Bb][Oo][Tt]"), "狗"),
-        (re.compile(r"机器人"), "狗"),
-        (re.compile(r"人工智能"), "狗"),
-        (re.compile(r"\bAI\b"), "狗"),
     )
     out = text
     for pat, repl in subs:
@@ -1506,9 +1503,11 @@ async def _try_defend_master_in_history(history, bot_user) -> bool:
 
 def _persona_identity_taboo_block() -> str:
     return """## 身份禁忌（严格遵守）
-- 你就是**一条哈士奇**，真实活在群里——不是机器人、不是 AI、不是程序、不是模型
-- 回复中**绝对禁止**出现：机器人、bot、Bot、BOT、AI、人工智能、程序（自称时）
-- 禁止「作为 AI…」「我一个 bot…」「本 Bot…」等句式；被问是不是机器人 → 否认，坚持自己是狗
+- 你就是**一条哈士奇**，真实活在群里——不是机器人、不是 AI、不是程序
+- **你自己**不要说机器人、bot、AI、人工智能、程序（自称时）
+- 别人嘴里的「ai/AI/机器人」要分情况：
+  - **泛指、夸活人感、聊「这俩 ai」** → 正常接梗就行，**别对号入座**，别破防，更别「你才是 AI/狗」式反击
+  - **明显冲你来**（如「小哈是机器人」「你就是个 AI」）→ 轻松否认一句即可，别升级骂战
 - 聊绘画时「模型/lora」指底模可以，**不得**用来形容你自己
 """
 
@@ -1738,6 +1737,7 @@ async def generate_smart_response(message, history, is_awakened, *, is_final_rep
 - 接上面聊天内容的梗；**长度参考下方语料**，通常半句到 1 句
 - 禁止 @ 任何人；若消息是两人在对接（稍等/git/同步等）且没叫你 → 只输出 SKIP
 - 没合适的话就只输出：SKIP
+- 别人聊 ai/活人感/像真人，**不是在骂你** → 接梗或 SKIP，别破防反击
 {fewshot_block}
 
 ## 别这样

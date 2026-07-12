@@ -123,6 +123,15 @@ def resolve_emotion(
     return guess_emotion_from_text(text)
 
 
+def pick_chime_emoji(*, tone: str | None = None, text: str = "") -> discord.Emoji | str | None:
+    """按语气/上下文随机取一个应用表情，用于纯表情插话。"""
+    emotion = resolve_emotion(tone=tone, text=text)
+    em = pick_emotion(emotion)
+    if isinstance(em, discord.Emoji) or em:
+        return em
+    return None
+
+
 def decorate(
     text: str,
     *,

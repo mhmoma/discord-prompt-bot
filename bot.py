@@ -87,6 +87,7 @@ if not all([API_BASE, API_KEY, MODEL_NAME]):
 # --- 聊天功能配置 ---
 CHAT_ENABLED = os.getenv("CHAT_ENABLED", "false").lower() == "true"
 CHAT_PROBABILITY = float(os.getenv("CHAT_PROBABILITY", "0.10"))  # 随机插话概率
+CHAT_EMOJI_ONLY_PROBABILITY = float(os.getenv("CHAT_EMOJI_ONLY_PROBABILITY", "0.25"))  # 插话时纯表情概率
 CHAT_HISTORY_LIMIT = int(os.getenv("CHAT_HISTORY_LIMIT", "10"))  # 读取最近 N 条消息作上下文
 CHAT_SESSION_TIMEOUT = 180  # 持续对话超时时间（秒）
 # 聊天不设 max_tokens / 字数硬截，长度由语料示例风格自然决定；仅防 Discord 超长
@@ -690,7 +691,7 @@ def print_startup_help():
     print(f"  @{bot_name}        唤醒对话，联系上下文回复（会话超时 {CHAT_SESSION_TIMEOUT}s）")
     print(f"  喊「{bot_name}」     同上（消息中含机器人名字即可）")
     chat_on = "开启" if CHAT_ENABLED else "关闭"
-    print(f"  随机插话          {chat_on}（概率 {CHAT_PROBABILITY * 100:.1f}%）")
+    print(f"  随机插话          {chat_on}（概率 {CHAT_PROBABILITY * 100:.1f}%，纯表情 {CHAT_EMOJI_ONLY_PROBABILITY * 100:.1f}%）")
     print(f"  结束对话          发送：{', '.join(sorted(EXIT_KEYWORDS))}")
 
     print("\n⚙️ 【管理员命令】")
@@ -1376,6 +1377,18 @@ def _pick_corpus_fewshot(tone: str, count: int = 2) -> str:
     )
 
 
+async def _try_emoji_only_chime(message, history) -> bool:
+    """随机插话：只发一个应用表情（按频道语气/上下文选池）。"""
+    chat_tone = _detect_chat_tone(message, history)
+    context_text = _collect_chat_text(message, history)
+    em = app_emojis.pick_chime_emoji(tone=chat_tone, text=context_text)
+    if not em:
+        return False
+    content = str(em) if isinstance(em, discord.Emoji) else em
+    await message.channel.send(content)
+    return True
+
+
 async def generate_smart_response(message, history, is_awakened, *, is_final_reply: bool = False):
     """微信式短回复；等完整生成后再一次性发送。"""
     try:
@@ -2024,6 +2037,9 @@ async def on_message(message):
             return
         try:
             history = [msg async for msg in message.channel.history(limit=CHAT_HISTORY_LIMIT)]; history.reverse()
+            if random.random() < CHAT_EMOJI_ONLY_PROBABILITY:
+                if await _try_emoji_only_chime(message, history):
+                    return
             await generate_smart_response(message, history, is_awakened=False)
         except Exception as e: print(f"❌ 获取聊天记录或回复时出错: {e}")
         return

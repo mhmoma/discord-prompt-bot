@@ -11,6 +11,7 @@ import discord
 _CONFIG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "onboarding_config.json")
 _VIEW_TIMEOUT = None  # 持久 View，重启后在 on_ready 重新注册
 _CUSTOM_NOTIFY_COOLDOWN = 86400  # 24h 内同一人只通知管理员一次
+_BUTTONS_PER_ROW = 3
 
 _config: dict | None = None
 _custom_notify_at: dict[int, float] = {}
@@ -135,77 +136,87 @@ async def _notify_admin_custom(
     return False
 
 
-class OnboardingPurposeSelect(discord.ui.Select):
-    def __init__(self):
-        options = []
-        for item in load_config().get("purposes", []):
-            label = item.get("label", "")[:100]
-            desc = (item.get("description") or "")[:100]
-            emoji = item.get("emoji")
-            options.append(
-                discord.SelectOption(
-                    label=label,
-                    value=item["id"],
-                    description=desc or None,
-                    emoji=emoji or None,
-                )
-            )
-        super().__init__(
-            custom_id="onboarding:purpose",
-            placeholder="选一个你来的目的…",
-            min_values=1,
-            max_values=1,
-            options=options,
+async def _respond_purpose(interaction: discord.Interaction, purpose_id: str) -> None:
+    purpose = get_purpose(purpose_id)
+    if not purpose:
+        await interaction.response.send_message("❌ 选项无效，请重试。", ephemeral=True)
+        return
+
+    guide = (purpose.get("guide") or "").strip()
+    view = _build_link_view(purpose)
+
+    kwargs: dict = {"ephemeral": True}
+    if view is not None:
+        kwargs["view"] = view
+    await interaction.response.send_message(guide, **kwargs)
+
+    if purpose.get("notify_admin"):
+        ok = await _notify_admin_custom(
+            interaction.client,
+            interaction.user,
+            interaction.guild,
+            fallback_channel=interaction.channel,
         )
+        if not ok:
+            await interaction.followup.send(
+                "⚠️ 已记录你的需求，但管理员暂时收不到 Bot 通知。"
+                "请直接在成员列表 **私聊管理员**，或在此频道 @管理员 说明需求。",
+                ephemeral=True,
+            )
+
+
+class OnboardingPurposeButton(discord.ui.Button):
+    def __init__(self, purpose: dict, *, row: int):
+        purpose_id = purpose["id"]
+        label = (purpose.get("label") or purpose_id)[:80]
+        emoji = purpose.get("emoji")
+        style = (
+            discord.ButtonStyle.success
+            if purpose_id == "overview"
+            else discord.ButtonStyle.primary
+        )
+        super().__init__(
+            custom_id=f"onboarding:btn:{purpose_id}",
+            label=label,
+            emoji=emoji,
+            style=style,
+            row=row,
+        )
+        self._purpose_id = purpose_id
 
     async def callback(self, interaction: discord.Interaction):
-        purpose = get_purpose(self.values[0])
-        if not purpose:
-            await interaction.response.send_message("❌ 选项无效，请重试。", ephemeral=True)
-            return
-
-        guide = (purpose.get("guide") or "").strip()
-        view = _build_link_view(purpose)
-
-        kwargs: dict = {"ephemeral": True}
-        if view is not None:
-            kwargs["view"] = view
-        await interaction.response.send_message(guide, **kwargs)
-
-        if purpose.get("notify_admin"):
-            ok = await _notify_admin_custom(
-                interaction.client,
-                interaction.user,
-                interaction.guild,
-                fallback_channel=interaction.channel,
-            )
-            if not ok:
-                await interaction.followup.send(
-                    "⚠️ 已记录你的需求，但管理员暂时收不到 Bot 通知。"
-                    "请直接在成员列表 **私聊管理员**，或在此频道 @管理员 说明需求。",
-                    ephemeral=True,
-                )
+        await _respond_purpose(interaction, self._purpose_id)
 
 
 class OnboardingWelcomeView(discord.ui.View):
     def __init__(self):
         super().__init__(timeout=_VIEW_TIMEOUT)
-        self.add_item(OnboardingPurposeSelect())
+        purposes = load_config().get("purposes", [])
+        for index, purpose in enumerate(purposes):
+            row = index // _BUTTONS_PER_ROW
+            self.add_item(OnboardingPurposeButton(purpose, row=row))
 
 
 def register_views(client: discord.Client):
     client.add_view(OnboardingWelcomeView())
 
 
+def _purpose_panel_text() -> str:
+    lines = ["**📋 功能面板 — 点下方按钮查看指引：**", ""]
+    for item in load_config().get("purposes", []):
+        emoji = item.get("emoji") or "•"
+        label = item.get("label") or item.get("id", "")
+        desc = (item.get("description") or "").strip()
+        lines.append(f"{emoji} **{label}**" + (f" — {desc}" if desc else ""))
+    return "\n".join(lines)
+
+
 def _picker_body(bot_name: str) -> str:
     return (
         f"我是 **{bot_name}** 🐺 — 会写 prompt、会反推、会查 Danbooru 标签、"
         f"会看图锐评/彩虹屁，还能签到换视频码的哈士奇。\n\n"
-        "**我能帮你：**\n"
-        "🎨 写词 `画 xxx`　🖼️ 反推/点评　📖 查标签 `D浏览`\n"
-        "🎬 签到/发作品　💬 `@我` 聊天　✨ 免费定制\n\n"
-        "👇 **你最主要想做什么？** 选一个，本哈给你专属指引（仅你可见）\n"
-        "不确定就选最下面 **「功能大全 / 我是新人」**"
+        f"{_purpose_panel_text()}\n\n"
+        "👇 **直接点按钮**，本哈给你专属指引（仅你可见）"
     )
 
 

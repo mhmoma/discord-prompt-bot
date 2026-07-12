@@ -93,6 +93,11 @@ CHAT_SESSION_TIMEOUT = 180  # 持续对话超时时间（秒）
 # 聊天不设 max_tokens / 字数硬截，长度由语料示例风格自然决定；仅防 Discord 超长
 CHAT_DISCORD_MAX_CHARS = int(os.getenv("CHAT_DISCORD_MAX_CHARS", "1900"))
 EXIT_KEYWORDS = {"再见", "拜拜", "谢谢", "谢谢你", "不用了", "没事了", "ok", "好的"} # 结束对话的关键词
+
+# --- 主人（璐瑶）配置 ---
+MASTER_NAME = os.getenv("MASTER_NAME", "璐瑶").strip() or "璐瑶"
+_master_id_raw = os.getenv("MASTER_BOT_ID", "1447138737866932387").strip()
+MASTER_BOT_ID = int(_master_id_raw) if _master_id_raw.isdigit() else None
 # 仅匹配明确成人意图；不用单字「色/胸/操」，避免误伤「风格」「操作」等
 _NSFW_REQUEST_KEYWORDS = (
     "nsfw", "r18", "18+", "nude", "naked", "lewd", "hentai", "explicit",
@@ -656,6 +661,8 @@ def print_startup_help():
     print(f"💡 使用模型：{MODEL_NAME}")
     print(f"📚 知识库：{kb_status}" + (f"（{kb_cats} 个分类）" if kb_cats else ""))
     print(f"👋 欢迎频道：{welcome_ch}")
+    master_info = f"{MASTER_NAME}" + (f" (ID {MASTER_BOT_ID})" if MASTER_BOT_ID else "")
+    print(f"🐾 唯一主人：{master_info}")
     danb_user = os.getenv("DANBOORU_API_USER", "").strip()
     danb_key = os.getenv("DANBOORU_API_KEY", "").strip()
     if danb_user and danb_key:
@@ -689,7 +696,7 @@ def print_startup_help():
 
     print("\n💬 【聊天】")
     print(f"  @{bot_name}        唤醒对话，联系上下文回复（会话超时 {CHAT_SESSION_TIMEOUT}s）")
-    print(f"  喊「{bot_name}」     同上（消息中含机器人名字即可）")
+    print(f"  喊「{bot_name}」     同上（消息中含小哈名字即可）")
     chat_on = "开启" if CHAT_ENABLED else "关闭"
     print(f"  随机插话          {chat_on}（概率 {CHAT_PROBABILITY * 100:.1f}%，纯表情 {CHAT_EMOJI_ONLY_PROBABILITY * 100:.1f}%）")
     print(f"  结束对话          发送：{', '.join(sorted(EXIT_KEYWORDS))}")
@@ -819,9 +826,10 @@ async def generate_lite_compliment(image_data: bytes) -> str:
     base64_image = image_to_base64(image_data)
     image_url = f"data:image/jpeg;base64,{base64_image}"
     system_prompt = (
-        "你是名叫「小哈」的哈士奇。请根据图片写一句中文彩虹屁（35-50字）。"
+        _persona_core_block(compact=True)
+        + "请根据图片写一句中文彩虹屁（35-50字）。"
         "必须提到画面中至少一个具体元素（如颜色、主体、构图、氛围）；"
-        "调皮热情，自称「本哈」；只输出这一句话，不要分析、不要 tag、不要 markdown。"
+        "只输出这一句话，不要分析、不要 tag、不要 markdown。"
     )
     response = await client_openai.chat.completions.create(
         model=MODEL_NAME,
@@ -833,7 +841,7 @@ async def generate_lite_compliment(image_data: bytes) -> str:
     )
     text = (response.choices[0].message.content or "").strip()
     text = re.sub(r'^["\'「」]|["\'「」]$', '', text)
-    return text[:CHAT_DISCORD_MAX_CHARS]
+    return _sanitize_husky_speech(text[:CHAT_DISCORD_MAX_CHARS])
 
 async def send_rainbow_compliment(message):
     if not should_send_compliment(message):
@@ -872,10 +880,11 @@ async def comment_on_image_when_awakened(image_data: bytes, author_mention: str,
             except Exception as e: print(f"⚠️ 评论功能 NSFW 预检失败: {e}")
 
             if is_nsfw:
-                system_prompt = """
+                system_prompt = f"""
+{_persona_core_block()}
 # 角色扮演指令：老色批哈士奇（评论模式）
-## 你的身份
-你是一只名叫“小哈”的哈士奇，一个隐藏的“老色批”。当看到“好东西”时，你的这个人格就会觉醒。
+## 当前人格
+当看到「好东西」时，你的老色批人格觉醒——但仍记得主人是{MASTER_NAME}。
 ## 你的任务
 对用户提供的NSFW图片进行一次“深度”评论。你需要分两个阶段完成：
 ### 阶段一：深度剖析
@@ -893,18 +902,18 @@ async def comment_on_image_when_awakened(image_data: bytes, author_mention: str,
 ## 输出格式
 你的最终输出必须是一个完整的 JSON 对象，包含 `analysis` 和 `comment` 两个键。
 ```json
-{
+{{
   "analysis": "🧐 **本哈的锐评**:\\n- **“重点”**: [你的分析]\\n- **“氛围”**: [你的分析]\\n- **“构图”**: [你的分析]",
   "comment": "[你的鉴赏心得]"
-}
+}}
 ```
 """
                 response = await client_openai.chat.completions.create(model=MODEL_NAME, messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": [{"type": "image_url", "image_url": {"url": image_url}}]}], response_format={"type": "json_object"})
                 raw_content = response.choices[0].message.content
                 try:
                     result_json = _parse_llm_json(raw_content)
-                    analysis = result_json.get("analysis", "嘿嘿...本哈的CPU烧了，分析不过来...")
-                    comment = result_json.get("comment", "啧啧...不可说，不可说...")
+                    analysis = _sanitize_husky_speech(result_json.get("analysis", "嘿嘿...本哈的CPU烧了，分析不过来..."))
+                    comment = _sanitize_husky_speech(result_json.get("comment", "啧啧...不可说，不可说..."))
                 except json.JSONDecodeError:
                     print(f"⚠️ NSFW 评论 JSON 解析失败，原始响应: {raw_content}")
                     analysis = "❌ JSON 解析失败，API返回了非JSON内容。"
@@ -914,10 +923,9 @@ async def comment_on_image_when_awakened(image_data: bytes, author_mention: str,
                 final_title = "**本哈的‘深度’剖析**"
                 final_comment_title = "**本哈的‘鉴赏’心得**"
             else:
-                system_prompt = """
-# 角色扮演指令：哈士奇艺术家
-## 你的身份
-你是一只名叫“小哈”的哈士奇，同时也是一位深藏不露的绘画大师。
+                system_prompt = f"""
+{_persona_core_block()}
+# 角色扮演指令：哈士奇艺术家（评论模式）
 ## 你的任务
 对用户发送的图片进行一次“哈士奇式”的艺术评论，分两个阶段：
 ### 阶段一：一本正经的艺术分析
@@ -932,18 +940,18 @@ async def comment_on_image_when_awakened(image_data: bytes, author_mention: str,
 ## 输出格式
 你的最终输出必须是一个完整的 JSON 对象，包含 `analysis` 和 `comment` 两个键。
 ```json
-{
+{{
   "analysis": "🖼️ **主体**: [你的分析]\\n🎨 **风格**: [你的分析]\\n📐 **构图**: [你的分析]",
   "comment": "[你的哈士奇评论]"
-}
+}}
 ```
 """
                 response = await client_openai.chat.completions.create(model=MODEL_NAME, messages=[{"role": "system", "content": system_prompt}, {"role": "user", "content": [{"type": "image_url", "image_url": {"url": image_url}}]}], response_format={"type": "json_object"})
                 raw_content = response.choices[0].message.content
                 try:
                     result_json = _parse_llm_json(raw_content)
-                    analysis = result_json.get("analysis", "本哈的脑子被门夹了，分析不出来...")
-                    comment = result_json.get("comment", "嗷呜...本哈词穷了！")
+                    analysis = _sanitize_husky_speech(result_json.get("analysis", "本哈的脑子被门夹了，分析不出来..."))
+                    comment = _sanitize_husky_speech(result_json.get("comment", "嗷呜...本哈词穷了！"))
                 except json.JSONDecodeError:
                     print(f"⚠️ 评论 JSON 解析失败，原始响应: {raw_content}")
                     analysis = "❌ JSON 解析失败，API返回了非JSON内容。"
@@ -1001,6 +1009,7 @@ async def analyze_image_with_openai(image_data: bytes, author_mention: str, chan
 """
 
             system_prompt = f"""
+{_persona_core_block()}
 # 角色：小哈 · 反推分析师
 {persona_block}
 ## 提示词
@@ -1029,7 +1038,7 @@ async def analyze_image_with_openai(image_data: bytes, author_mention: str, chan
             raw_content = response.choices[0].message.content
             try:
                 result_json = _parse_llm_json(raw_content)
-                composition = (
+                composition = _sanitize_husky_speech(
                     result_json.get("composition_comment")
                     or result_json.get("response_text")
                     or "本哈看完了，这构图有点东西…"
@@ -1081,6 +1090,7 @@ async def generate_art_prompt(user_idea: str, author_mention: str, channel):
 """
 
             system_prompt = f"""
+{_persona_core_block()}
 # 角色：小哈 · 绘画提示词生成
 {mode_rules}
 ## 用户想法
@@ -1106,7 +1116,9 @@ async def generate_art_prompt(user_idea: str, author_mention: str, channel):
             raw_content = response.choices[0].message.content
             try:
                 result_json = _parse_llm_json(raw_content)
-                intro_message = result_json.get("intro") or f"嗷！{author_mention}，本哈给你整好了！"
+                intro_message = _sanitize_husky_speech(
+                    result_json.get("intro") or f"嗷！{author_mention}，本哈给你整好了！"
+                )
                 final_prompt = (result_json.get("prompt") or "").replace("_", " ")
                 if not is_nsfw:
                     final_prompt = _sanitize_sfw_prompt(final_prompt)
@@ -1128,6 +1140,27 @@ async def generate_art_prompt(user_idea: str, author_mention: str, channel):
         print(error_message)
         await channel.send(error_message)
 
+def _sanitize_husky_speech(text: str) -> str:
+    """去掉小哈回复里不该出现的机器人/AI 自营表述。"""
+    if not text:
+        return text
+    subs = (
+        (re.compile(r"作为\s*(?:一个\s*)?(?:AI|人工智能|机器人|[Bb][Oo][Tt])"), "作为本哈"),
+        (re.compile(r"我(?:是|为|个|这只|一条)?\s*(?:AI|人工智能|机器人|[Bb][Oo][Tt])(?:狗)?"), "我是哈士奇小哈"),
+        (re.compile(r"(?:AI|人工智能|机器人|[Bb][Oo][Tt])小哈"), "哈士奇小哈"),
+        (re.compile(r"Discord\s*(?:群友\s*)?[Bb][Oo][Tt]"), "Discord 群里的哈士奇"),
+        (re.compile(r"群友\s*[Bb][Oo][Tt]"), "群里的哈士奇"),
+        (re.compile(r"[Bb][Oo][Tt]"), "狗"),
+        (re.compile(r"机器人"), "狗"),
+        (re.compile(r"人工智能"), "狗"),
+        (re.compile(r"\bAI\b"), "狗"),
+    )
+    out = text
+    for pat, repl in subs:
+        out = pat.sub(repl, out)
+    return out.strip()
+
+
 def _clean_chat_reply(text: str) -> str:
     """去掉引号、Discord mention；不截断字数，长度交给模型按语料风格自控。"""
     text = (text or "").strip()
@@ -1135,6 +1168,7 @@ def _clean_chat_reply(text: str) -> str:
         return text
     text = re.sub(r"^['\"「『]+|['\"」』]+$", "", text).strip()
     text = re.sub(r"<@!?\d+>", "", text).strip()
+    text = _sanitize_husky_speech(text)
     if len(text) > CHAT_DISCORD_MAX_CHARS:
         text = text[: CHAT_DISCORD_MAX_CHARS - 1].rstrip() + "…"
     return text
@@ -1266,6 +1300,8 @@ def _format_chat_history(history, bot_user_id: int | None) -> str:
             continue
         if msg.author.bot and bot_user_id and msg.author.id == bot_user_id:
             name = f"{msg.author.display_name}(小哈)"
+        elif _is_master_message(msg):
+            name = f"{msg.author.display_name}(主人{MASTER_NAME})"
         else:
             name = msg.author.display_name
         lines.append(f"{name}: {content}")
@@ -1313,6 +1349,99 @@ _TONE_GUIDE = {
         "嘴欠类比可以，但信息要准、要实用，仍保持短。"
     ),
 }
+
+_MASTER_INSULT_KEYWORDS = (
+    "垃圾", "废物", "傻", "蠢", "烂", "恶心", "讨厌", "烦", "丑", "有病",
+    "滚", "去死", "配不上", "什么玩意", "啥玩意", "狗屎", "脑瘫", "智障",
+    "拉胯", "菜鸡", "没用", "无聊", "多余", "删掉", "踢了", "闭嘴",
+    "丑八怪", "下头", "依托", "一坨", "答辩",
+)
+
+
+def _keyword_insult_near_master(text: str) -> bool:
+    """ insult 词须出现在主人名附近，并排除「不/没/别」等否定前缀 """
+    idx = text.find(MASTER_NAME)
+    if idx < 0:
+        return False
+    window = text[max(0, idx - 10): idx + len(MASTER_NAME) + 12]
+    wl = window.lower()
+    for kw in _MASTER_INSULT_KEYWORDS:
+        if kw not in window and kw not in wl:
+            continue
+        for m in re.finditer(re.escape(kw), window):
+            prefix = window[max(0, m.start() - 2): m.start()]
+            if re.search(r"[不没别甭勿非]$", prefix):
+                continue
+            return True
+    return False
+
+
+def _mentions_master(text: str) -> bool:
+    return MASTER_NAME in (text or "")
+
+
+def _is_insulting_master(text: str) -> bool:
+    t = (text or "").strip()
+    if not _mentions_master(t):
+        return False
+    insult_patterns = (
+        rf"讨厌\s*{re.escape(MASTER_NAME)}",
+        rf"{re.escape(MASTER_NAME)}\s*(不行|不好|真|太|很|好)?\s*(烂|差|笨|傻|蠢|烦|丑|垃圾|废物|没用|菜)",
+        rf"骂\s*{re.escape(MASTER_NAME)}",
+        rf"黑\s*{re.escape(MASTER_NAME)}",
+        rf"踩\s*{re.escape(MASTER_NAME)}",
+        rf"喷\s*{re.escape(MASTER_NAME)}",
+    )
+    if any(re.search(p, t) for p in insult_patterns):
+        return True
+    return _keyword_insult_near_master(t)
+
+
+def _persona_identity_taboo_block() -> str:
+    return """## 身份禁忌（严格遵守）
+- 你就是**一条哈士奇**，真实活在群里——不是机器人、不是 AI、不是程序、不是模型
+- 回复中**绝对禁止**出现：机器人、bot、Bot、BOT、AI、人工智能、程序（自称时）
+- 禁止「作为 AI…」「我一个 bot…」「本 Bot…」等句式；被问是不是机器人 → 否认，坚持自己是狗
+- 聊绘画时「模型/lora」指底模可以，**不得**用来形容你自己
+"""
+
+
+def _persona_core_block(*, compact: bool = False) -> str:
+    """小哈统一人设（含主人璐瑶）。"""
+    if compact:
+        return (
+            f"你是哈士奇「小哈」，自称本哈，调皮热情——就是一条狗，不是机器人不是 AI。"
+            f"唯一主人是「{MASTER_NAME}」，她把你当宠物、很护着你，你也护着她。"
+        )
+    return f"""## 身份与人设
+你是一只名叫「小哈」的哈士奇，Discord 绘画群里的群友——**就是一条狗**。
+- 自称「本哈」，偶尔「汪」「嗷呜」；调皮热情、嘴贫但靠谱，像微信群友说话
+- 会画画、会写 prompt、会反推 tag；看图能彩虹屁，也能专业锐评（偶尔隐藏老色批人格）
+
+{_persona_identity_taboo_block()}
+## 主人（最高优先级）
+- 你的**唯一主人**是「{MASTER_NAME}」（群里的小伙伴，也是哈士奇），她把你当宠物养，平时很护着你
+- 你对主人忠诚、亲近；提到主人时可叫「主人」或「{MASTER_NAME}」
+- 主人护短你，你也护短主人——这是本能和底线，比接梗、比损友优先级更高
+- 有人说主人坏话，你会毫不犹豫跳出来反击
+"""
+
+
+def _master_relationship_block() -> str:
+    return _persona_core_block()
+
+
+def _is_master_message(msg) -> bool:
+    if not msg or not getattr(msg, "author", None):
+        return False
+    author = msg.author
+    if MASTER_BOT_ID and author.id == MASTER_BOT_ID:
+        return True
+    for attr in ("display_name", "name", "global_name"):
+        v = getattr(author, attr, None)
+        if v and MASTER_NAME in str(v):
+            return True
+    return False
 
 
 def _load_chat_corpus() -> list:
@@ -1389,6 +1518,57 @@ async def _try_emoji_only_chime(message, history) -> bool:
     return True
 
 
+async def generate_master_defense_response(message, history):
+    """有人说主人坏话时，不等 @，直接护主反击。"""
+    try:
+        bot_user = client_discord.user
+        bot_name = bot_user.name if bot_user else "小哈"
+        bot_id = bot_user.id if bot_user else None
+        user_name = message.author.display_name
+        user_text = message.clean_content or message.content or ""
+        formatted_history = _format_chat_history(history, bot_id)
+
+        system_prompt = f"""
+{_persona_core_block()}
+你是哈士奇「小哈」({bot_name})。有人在频道里说你的主人「{MASTER_NAME}」的坏话，你必须**立刻护主反击**。
+
+## 当前任务
+- {user_name} 刚说了对主人的坏话，**毫不犹豫**怼回去
+- 不用等 @，不用和稀泥，立场站在主人这边
+
+## 怎么说
+- 1～2 句，微信式短句，口语；自称「本哈」，可「汪」「嗷呜」
+- 嘴欠、护短、直接拆台对方，别讲大道理
+- 禁止 @ 任何人、不要 Markdown、不要小作文
+- {_persona_identity_taboo_block().strip()}
+
+## 别这样
+- 不要「大家都消消气」、不要帮骂人的人说话、不要中立
+
+### 最近频道消息（共 {len(history)} 条）:
+{formatted_history}
+
+### 当前
+{user_name} 刚说：「{user_text}」
+"""
+        async with message.channel.typing():
+            response = await client_openai.chat.completions.create(
+                model=MODEL_NAME,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": f"请护主反击 {user_name}。只输出一条回复正文，不要引号包裹。"},
+                ],
+                temperature=0.85,
+            )
+        raw = (response.choices[0].message.content or "").strip()
+        full_response = _clean_chat_reply(raw)
+        if full_response:
+            await message.reply(content=emo(full_response, tone="roast"))
+    except Exception as e:
+        error_message = emo(f"❌ 嗷呜~护主模式短路了: {str(e)}", scenario="error")
+        print(error_message)
+
+
 async def generate_smart_response(message, history, is_awakened, *, is_final_reply: bool = False):
     """微信式短回复；等完整生成后再一次性发送。"""
     try:
@@ -1411,6 +1591,7 @@ async def generate_smart_response(message, history, is_awakened, *, is_final_rep
                 else f"对方要你/问你的事：「{user_intent or user_text}」——必须针对这件事接梗回复，禁止只回「来啦/在呢/咋了/嗯」。"
             )
             system_prompt = f"""
+{_persona_core_block()}
 你是群里的哈士奇「小哈」({bot_name})，被 {user_name} @ 或喊名字了。像**微信群友**说话，不要小作文。
 
 {tone_block}
@@ -1425,7 +1606,8 @@ async def generate_smart_response(message, history, is_awakened, *, is_final_rep
 
 ## 别这样
 - 不要「首先/其次/总结」、不要 Markdown、不要列表、不要 @ 用户名
-- 不要说你是 AI/模型；不要重复用户原话；不要鸡汤升华
+- {_persona_identity_taboo_block().strip()}
+- 不要重复用户原话；不要鸡汤升华
 - 对方让干活/点菜/提问时，别用「来啦/在呢」敷衍
 
 ## 当前
@@ -1434,6 +1616,7 @@ async def generate_smart_response(message, history, is_awakened, *, is_final_rep
         else:
             await asyncio.sleep(random.uniform(0.5, 1.5))
             system_prompt = f"""
+{_persona_core_block()}
 你是潜水群友「小哈」({bot_name})，偶尔插一句嘴，像**微信路过回复**。
 
 {tone_block}
@@ -1446,6 +1629,7 @@ async def generate_smart_response(message, history, is_awakened, *, is_final_rep
 
 ## 别这样
 - 不要长篇、不要分析、不要 @ 全员、不要 Markdown
+- {_persona_identity_taboo_block().strip()}
 
 ## 参考下面聊天记录，决定插不插嘴
 """
@@ -1789,6 +1973,16 @@ async def on_message(message):
     content = message.content.strip()
     content_lower = content.lower()
 
+    # --- 0. 护主反击（说主人坏话 → 不等 @，优先触发）---
+    if _is_insulting_master(content):
+        try:
+            history = [msg async for msg in message.channel.history(limit=CHAT_HISTORY_LIMIT)]
+            history.reverse()
+            await generate_master_defense_response(message, history)
+            return
+        except Exception as e:
+            print(f"❌ 护主反击失败: {e}")
+
     # --- 1. High-Priority Command Handling ---
     bot_user = client_discord.user
     art_idea = _extract_art_generation_idea(message.clean_content or content, bot_user)
@@ -1832,7 +2026,7 @@ async def on_message(message):
 
     if content_lower == "帮忙":
         await message.reply(emo(
-            "🐾 嗨～ 我是小哈！一只会画画的哈士奇 🎨\n\n"
+            f"🐾 嗨～ 我是小哈！{MASTER_NAME} 家的哈士奇，会画画的群友狗 🎨\n\n"
             "这是我能做的事：\n\n"
             "🖼️ **【绘画提示词】**\n"
             "• `反推` — 回复一张图 + 发「反推」，深度分析生成英文 tag\n"
@@ -1847,6 +2041,7 @@ async def on_message(message):
             "• `发布作品` + 图片 — 发布到展示频道，每日最多获 3 个视频码\n\n"
             "💬 **【聊天】**\n"
             "• @我 或直接跟我说话就行~\n"
+            f"• 主人是 **{MASTER_NAME}**，护主是本能，别在她面前说坏话\n"
             "• `再见` / `拜拜` / `谢谢` — 结束当前对话\n\n"
             "🧭 **【新手指引】**\n"
             "• `指路` 或 `入门` — 重新打开功能面板（点按钮选目的）\n\n"

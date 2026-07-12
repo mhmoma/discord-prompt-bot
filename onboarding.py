@@ -252,9 +252,10 @@ def _purpose_panel_text() -> str:
 
 
 def _picker_body(bot_name: str) -> str:
+    master = os.getenv("MASTER_NAME", "璐瑶").strip() or "璐瑶"
     return (
-        f"我是 **{bot_name}** 🐺 — 会写 prompt、会反推、会查 Danbooru 标签、"
-        f"会看图锐评/彩虹屁，还能签到换视频码的哈士奇。\n\n"
+        f"我是 **{bot_name}** 🐺 — {master} 家的哈士奇，会写 prompt、会反推、会查 Danbooru 标签、"
+        f"会看图锐评/彩虹屁，还能签到换视频码。\n\n"
         f"{_purpose_panel_text()}\n\n"
         "👇 **直接点按钮**，本哈给你专属指引（仅你可见）\n"
         "🟢 **绿色按钮** = 主推功能（绘画工具 & 可视化提示词 & 画师查询）"

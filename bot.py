@@ -96,8 +96,14 @@ EXIT_KEYWORDS = {"再见", "拜拜", "谢谢", "谢谢你", "不用了", "没事
 
 # --- 主人（璐瑶）配置 ---
 MASTER_NAME = os.getenv("MASTER_NAME", "璐瑶").strip() or "璐瑶"
+_master_aliases_raw = os.getenv("MASTER_NAME_ALIASES", "路遥,路瑶").strip()
+MASTER_NAME_ALIASES = [
+    a.strip() for a in _master_aliases_raw.split(",") if a.strip() and a.strip() != MASTER_NAME
+]
 _master_id_raw = os.getenv("MASTER_BOT_ID", "1447138737866932387").strip()
 MASTER_BOT_ID = int(_master_id_raw) if _master_id_raw.isdigit() else None
+MASTER_DEFENSE_TTL = int(os.getenv("MASTER_DEFENSE_TTL", "3600"))
+_master_insult_defended: dict[int, float] = {}  # insult_message_id -> defended_at
 # 仅匹配明确成人意图；不用单字「色/胸/操」，避免误伤「风格」「操作」等
 _NSFW_REQUEST_KEYWORDS = (
     "nsfw", "r18", "18+", "nude", "naked", "lewd", "hentai", "explicit",
@@ -1358,12 +1364,20 @@ _MASTER_INSULT_KEYWORDS = (
 )
 
 
-def _keyword_insult_near_master(text: str) -> bool:
-    """ insult 词须出现在主人名附近，并排除「不/没/别」等否定前缀 """
-    idx = text.find(MASTER_NAME)
+def _master_name_variants() -> list[str]:
+    names = [MASTER_NAME]
+    for alias in MASTER_NAME_ALIASES:
+        if alias not in names:
+            names.append(alias)
+    return names
+
+
+def _keyword_insult_near_name(text: str, name: str) -> bool:
+    """ insult 词须出现在名字附近，并排除「不/没/别」等否定前缀 """
+    idx = text.find(name)
     if idx < 0:
         return False
-    window = text[max(0, idx - 10): idx + len(MASTER_NAME) + 12]
+    window = text[max(0, idx - 10): idx + len(name) + 12]
     wl = window.lower()
     for kw in _MASTER_INSULT_KEYWORDS:
         if kw not in window and kw not in wl:
@@ -1376,25 +1390,118 @@ def _keyword_insult_near_master(text: str) -> bool:
     return False
 
 
+def _is_insulting_master_via_proxy(text: str) -> bool:
+    """不直呼主人名，但冲小哈/主人不敬（如「玩你主人」）。"""
+    t = (text or "").strip()
+    if not t:
+        return False
+    hostile_proxy = (
+        r"玩\s*你\s*主人",
+        r"(?:弄|搞|整|损|欺负|骂|踩|黑|喷|diss|Diss)\s*你\s*主人",
+        r"你\s*主人\s*不要",
+        r"你\s*主人\s*(?:算|是)?\s*(?:什么|啥)(?:玩意|东西|垃圾|废物)",
+        r"你\s*主人\s*(?:太|真|好|很)?\s*(?:烂|差|笨|傻|蠢|烦|丑|垃圾|废物|没用|菜|下头)",
+        r"(?:草|操|艹)\s*你\s*主人",
+        r"骑\s*你\s*主人",
+        r"上\s*你\s*主人",
+    )
+    return any(re.search(p, t, re.I) for p in hostile_proxy)
+
+
+def _is_insulting_master_for_name(text: str, name: str) -> bool:
+    t = (text or "").strip()
+    if name not in t:
+        return False
+    dismiss_patterns = (
+        rf"{re.escape(name)}\s*不要",
+        rf"不要\s*{re.escape(name)}",
+        rf"滚\s*{re.escape(name)}",
+        rf"{re.escape(name)}\s*滚",
+        rf"{re.escape(name)}\s*爬",
+        rf"爬\s*{re.escape(name)}",
+    )
+    if any(re.search(p, t) for p in dismiss_patterns):
+        return True
+    insult_patterns = (
+        rf"讨厌\s*{re.escape(name)}",
+        rf"{re.escape(name)}\s*(不行|不好|真|太|很|好)?\s*(烂|差|笨|傻|蠢|烦|丑|垃圾|废物|没用|菜)",
+        rf"骂\s*{re.escape(name)}",
+        rf"黑\s*{re.escape(name)}",
+        rf"踩\s*{re.escape(name)}",
+        rf"喷\s*{re.escape(name)}",
+    )
+    if any(re.search(p, t) for p in insult_patterns):
+        return True
+    return _keyword_insult_near_name(t, name)
+
+
 def _mentions_master(text: str) -> bool:
-    return MASTER_NAME in (text or "")
+    return any(name in (text or "") for name in _master_name_variants())
 
 
 def _is_insulting_master(text: str) -> bool:
     t = (text or "").strip()
-    if not _mentions_master(t):
+    if not t:
         return False
-    insult_patterns = (
-        rf"讨厌\s*{re.escape(MASTER_NAME)}",
-        rf"{re.escape(MASTER_NAME)}\s*(不行|不好|真|太|很|好)?\s*(烂|差|笨|傻|蠢|烦|丑|垃圾|废物|没用|菜)",
-        rf"骂\s*{re.escape(MASTER_NAME)}",
-        rf"黑\s*{re.escape(MASTER_NAME)}",
-        rf"踩\s*{re.escape(MASTER_NAME)}",
-        rf"喷\s*{re.escape(MASTER_NAME)}",
-    )
-    if any(re.search(p, t) for p in insult_patterns):
+    if _is_insulting_master_via_proxy(t):
         return True
-    return _keyword_insult_near_master(t)
+    return any(_is_insulting_master_for_name(t, name) for name in _master_name_variants())
+
+
+def _already_defended_insult(msg_id: int) -> bool:
+    ts = _master_insult_defended.get(msg_id)
+    if not ts:
+        return False
+    if time.time() - ts > MASTER_DEFENSE_TTL:
+        _master_insult_defended.pop(msg_id, None)
+        return False
+    return True
+
+
+def _mark_insult_defended(msg_id: int) -> None:
+    _master_insult_defended[msg_id] = time.time()
+    if len(_master_insult_defended) > 500:
+        cutoff = time.time() - MASTER_DEFENSE_TTL
+        stale = [mid for mid, ts in _master_insult_defended.items() if ts < cutoff]
+        for mid in stale:
+            _master_insult_defended.pop(mid, None)
+
+
+def _message_text(msg) -> str:
+    return (getattr(msg, "clean_content", None) or getattr(msg, "content", None) or "").strip()
+
+
+def _find_master_insult_in_history(history, bot_user_id: int | None):
+    """从聊天记录（新→旧）找最近一条冒犯主人、尚未护主的消息。"""
+    for msg in reversed(history or []):
+        author = getattr(msg, "author", None)
+        if not author:
+            continue
+        if getattr(author, "bot", False):
+            if bot_user_id and author.id == bot_user_id:
+                continue
+            if _is_master_message(msg):
+                continue
+            continue
+        if _is_master_message(msg):
+            continue
+        text = _message_text(msg)
+        if not text:
+            continue
+        if _is_insulting_master(text) and not _already_defended_insult(msg.id):
+            return msg, text
+    return None, None
+
+
+async def _try_defend_master_in_history(history, bot_user) -> bool:
+    """上下文里有冒犯主人 → 优先护主怼回去。"""
+    bot_id = bot_user.id if bot_user else None
+    insult_msg, _ = _find_master_insult_in_history(history, bot_id)
+    if not insult_msg:
+        return False
+    await generate_master_defense_response(insult_msg, history)
+    _mark_insult_defended(insult_msg.id)
+    return True
 
 
 def _persona_identity_taboo_block() -> str:
@@ -1518,23 +1625,23 @@ async def _try_emoji_only_chime(message, history) -> bool:
     return True
 
 
-async def generate_master_defense_response(message, history):
-    """有人说主人坏话时，不等 @，直接护主反击。"""
+async def generate_master_defense_response(insult_message, history):
+    """有人说主人坏话时，不等 @，直接护主反击（可回怼历史消息）。"""
     try:
         bot_user = client_discord.user
         bot_name = bot_user.name if bot_user else "小哈"
         bot_id = bot_user.id if bot_user else None
-        user_name = message.author.display_name
-        user_text = message.clean_content or message.content or ""
+        user_name = insult_message.author.display_name
+        user_text = _message_text(insult_message)
         formatted_history = _format_chat_history(history, bot_id)
 
         system_prompt = f"""
 {_persona_core_block()}
-你是哈士奇「小哈」({bot_name})。有人在频道里说你的主人「{MASTER_NAME}」的坏话，你必须**立刻护主反击**。
+你是哈士奇「小哈」({bot_name})。频道里有人对你的主人「{MASTER_NAME}」不敬，你必须**护主反击**。
 
 ## 当前任务
-- {user_name} 刚说了对主人的坏话，**毫不犹豫**怼回去
-- 不用等 @，不用和稀泥，立场站在主人这边
+- **{user_name}** 说了冒犯主人的话（见下），你要怼 **{user_name}**
+- 不用和稀泥，立场站在主人这边；若上下文里还有别人起哄，也可以顺带嘴一句
 
 ## 怎么说
 - 1～2 句，微信式短句，口语；自称「本哈」，可「汪」「嗷呜」
@@ -1544,14 +1651,15 @@ async def generate_master_defense_response(message, history):
 
 ## 别这样
 - 不要「大家都消消气」、不要帮骂人的人说话、不要中立
+- 不要 SKIP；必须输出护主回复
 
 ### 最近频道消息（共 {len(history)} 条）:
 {formatted_history}
 
-### 当前
-{user_name} 刚说：「{user_text}」
+### 护主目标（怼这个人）
+{user_name} 说：「{user_text}」
 """
-        async with message.channel.typing():
+        async with insult_message.channel.typing():
             response = await client_openai.chat.completions.create(
                 model=MODEL_NAME,
                 messages=[
@@ -1562,8 +1670,8 @@ async def generate_master_defense_response(message, history):
             )
         raw = (response.choices[0].message.content or "").strip()
         full_response = _clean_chat_reply(raw)
-        if full_response:
-            await message.reply(content=emo(full_response, tone="roast"))
+        if full_response and full_response.upper() not in {"SKIP", "跳过", "无", "NONE"}:
+            await insult_message.reply(content=emo(full_response, tone="roast"))
     except Exception as e:
         error_message = emo(f"❌ 嗷呜~护主模式短路了: {str(e)}", scenario="error")
         print(error_message)
@@ -1575,6 +1683,11 @@ async def generate_smart_response(message, history, is_awakened, *, is_final_rep
         bot_user = client_discord.user
         bot_name = bot_user.name if bot_user else "小哈"
         bot_id = bot_user.id if bot_user else None
+
+        # 上下文有冒犯主人 → 优先护主，不走普通插话/闲聊
+        if await _try_defend_master_in_history(history, bot_user):
+            return
+
         user_name = message.author.display_name
         user_text = message.clean_content or ""
         user_intent = _strip_bot_wake_text(user_text, bot_user)
@@ -1974,11 +2087,12 @@ async def on_message(message):
     content_lower = content.lower()
 
     # --- 0. 护主反击（说主人坏话 → 不等 @，优先触发）---
-    if _is_insulting_master(content):
+    if _is_insulting_master(content) and not _already_defended_insult(message.id):
         try:
             history = [msg async for msg in message.channel.history(limit=CHAT_HISTORY_LIMIT)]
             history.reverse()
             await generate_master_defense_response(message, history)
+            _mark_insult_defended(message.id)
             return
         except Exception as e:
             print(f"❌ 护主反击失败: {e}")
@@ -2232,6 +2346,8 @@ async def on_message(message):
             return
         try:
             history = [msg async for msg in message.channel.history(limit=CHAT_HISTORY_LIMIT)]; history.reverse()
+            if await _try_defend_master_in_history(history, client_discord.user):
+                return
             if random.random() < CHAT_EMOJI_ONLY_PROBABILITY:
                 if await _try_emoji_only_chime(message, history):
                     return

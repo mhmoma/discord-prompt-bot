@@ -1,0 +1,3517 @@
+{
+  "meta": {
+    "source_dir": "D:\\迅雷下载",
+    "output_dir": "D:\\备份\\xiaoha\\emoji_library",
+    "updated_at": "2026-07-12T14:03:01.250249+00:00",
+    "total": 3,
+    "tagged_count": 387,
+    "usable_only": true,
+    "neutral_dir": "d:\\备份\\xiaoha\\emoji_library\\neutral"
+  },
+  "emotions": {
+    "happy": [
+      "happy_2647oreosmilers",
+      "happy_atsuko_smile",
+      "happy_baby_smile",
+      "happy_maodie_smile",
+      "happy_mf_smile",
+      "happy_nailong_happy",
+      "happy_nailong_smile",
+      "happy_okayjoy",
+      "happy_partyhard",
+      "happy_tou_xiao",
+      "happy_xiao",
+      "happy_xiaoxuegao"
+    ],
+    "sad": [
+      "sad_4916catcry",
+      "sad_aiyin_tangxiao",
+      "sad_cat_cry",
+      "sad_cry_cat",
+      "sad_emo",
+      "sad_emoj_97",
+      "sad_happy_cry",
+      "sad_izumi_kuku",
+      "sad_memories_pulse",
+      "sad_mf_kuku",
+      "sad_nailong_kuku",
+      "sad_nailong_sad",
+      "sad_nailong_tang",
+      "sad_noooo",
+      "sad_sad",
+      "sad_sad_1",
+      "sad_sambsad",
+      "sad_shatang1",
+      "sad_shatang2",
+      "sad_shatang3",
+      "sad_tangmao_smile"
+    ],
+    "angry": [
+      "angry_angryuni",
+      "angry_anon_angry",
+      "angry_anti1",
+      "angry_anti2",
+      "angry_anti3",
+      "angry_anti4",
+      "angry_cat_angry",
+      "angry_catrage",
+      "angry_catslap",
+      "angry_mad123",
+      "angry_madman",
+      "angry_madsoli",
+      "angry_mygo_xiba",
+      "angry_pig_attack",
+      "angry_pouting_fox",
+      "angry_rollingmadman",
+      "angry_sambangry",
+      "angry_seijo_angry",
+      "angry_sheng_qi",
+      "angry_ultramadman",
+      "angry_yinluan"
+    ],
+    "love": [
+      "love_1698fishlove",
+      "love_anon_love",
+      "love_cat_heart",
+      "love_durvis_bainian",
+      "love_durvis_hug",
+      "love_em_x",
+      "love_mf_heart",
+      "love_peepocathug",
+      "love_seijo_blush",
+      "love_slove"
+    ],
+    "surprised": [
+      "surprised_aaah",
+      "surprised_cat_scream",
+      "surprised_nailong_shock",
+      "surprised_nailongzhenjing",
+      "surprised_scream_1",
+      "surprised_shock_advanced",
+      "surprised_zhenjing",
+      "surprised_zhinaizhenjing"
+    ],
+    "thinking": [
+      "thinking_pensive_1",
+      "thinking_pepe_thonk",
+      "thinking_sambconfused",
+      "thinking_thinkfast",
+      "thinking_thinkloading",
+      "thinking_zenmezheyang",
+      "thinking_zhenwuyu"
+    ],
+    "neutral": [
+      "neutral_1698fishwave",
+      "neutral_2115popsquire",
+      "neutral_a_dario",
+      "neutral_a_dicksuck",
+      "neutral_aaab",
+      "neutral_alert_blue",
+      "neutral_alert_red",
+      "neutral_android_cat",
+      "neutral_angerspin",
+      "neutral_anon_bule",
+      "neutral_anthropic",
+      "neutral_ao_jiao",
+      "neutral_ayayab",
+      "neutral_biubiu",
+      "neutral_blackbyte",
+      "neutral_blhx_1",
+      "neutral_blhx_2",
+      "neutral_blob_no",
+      "neutral_blob_yorn",
+      "neutral_boochi",
+      "neutral_brian",
+      "neutral_cainai_basite",
+      "neutral_cainai_kitsch",
+      "neutral_cainai_miliyan",
+      "neutral_cainai_moli",
+      "neutral_cainai_onion",
+      "neutral_cainai_sanmingyue",
+      "neutral_cainai_tianzun",
+      "neutral_capoo17",
+      "neutral_capoo22",
+      "neutral_capoo_paidupi",
+      "neutral_cat_nerd",
+      "neutral_cat_police",
+      "neutral_cat_sweat",
+      "neutral_cat_triumph",
+      "neutral_cat_turtle",
+      "neutral_cat_turtle_swing",
+      "neutral_catbitting",
+      "neutral_catcheezits",
+      "neutral_catcombing",
+      "neutral_catvibe",
+      "neutral_cecilia2",
+      "neutral_cecilia3",
+      "neutral_cecilia4",
+      "neutral_chatgpt",
+      "neutral_chatgptimage202571519_40",
+      "neutral_cheshire_chishoushou",
+      "neutral_chouyou",
+      "neutral_chuaishou",
+      "neutral_chuhua_dog",
+      "neutral_claude",
+      "neutral_cockroach_1",
+      "neutral_cumonface",
+      "neutral_dance",
+      "neutral_deepseek",
+      "neutral_deer_cool",
+      "neutral_diantou",
+      "neutral_dog_1",
+      "neutral_dog_2",
+      "neutral_dog_4",
+      "neutral_doubao",
+      "neutral_dsfish",
+      "neutral_durvis",
+      "neutral_durvis_1",
+      "neutral_durvis_boom",
+      "neutral_eat",
+      "neutral_eggplanthand",
+      "neutral_emma",
+      "neutral_essex_1",
+      "neutral_essex_3",
+      "neutral_ewww",
+      "neutral_ex",
+      "neutral_gemini",
+      "neutral_gemma",
+      "neutral_gigachad",
+      "neutral_glm",
+      "neutral_gpt_purple",
+      "neutral_grok",
+      "neutral_ha",
+      "neutral_haha",
+      "neutral_hahaha",
+      "neutral_henainai",
+      "neutral_heyiwei",
+      "neutral_holyange1",
+      "neutral_hso",
+      "neutral_ihaveawebgf",
+      "neutral_image",
+      "neutral_image60",
+      "neutral_image_1753699035839",
+      "neutral_izumi_chan",
+      "neutral_jake_question",
+      "neutral_jiji_fire",
+      "neutral_jiqi",
+      "neutral_key_creator",
+      "neutral_kimi",
+      "neutral_kirby_music",
+      "neutral_kirby_music_rainbow",
+      "neutral_kui1",
+      "neutral_kui2",
+      "neutral_kui3",
+      "neutral_kui4",
+      "neutral_kui5",
+      "neutral_kui6",
+      "neutral_kui7",
+      "neutral_kui8",
+      "neutral_kyokokirigiripointing11",
+      "neutral_lightsword",
+      "neutral_lightsword2",
+      "neutral_like_a_mind",
+      "neutral_listeninguni",
+      "neutral_llk",
+      "neutral_llk2",
+      "neutral_logan_sweat",
+      "neutral_longtu01",
+      "neutral_ludoufu_chui",
+      "neutral_ludoufu_fly",
+      "neutral_maodie",
+      "neutral_maodie_1",
+      "neutral_maodie_ln",
+      "neutral_maodie_nandaoshuo",
+      "neutral_maodiesikao",
+      "neutral_meihuiliu",
+      "neutral_mf_anger",
+      "neutral_mf_zako",
+      "neutral_miku_01",
+      "neutral_miku_02",
+      "neutral_miku_03",
+      "neutral_miku_04",
+      "neutral_miku_06",
+      "neutral_miku_07",
+      "neutral_miku_cat",
+      "neutral_miku_gif_01",
+      "neutral_miku_gif_02",
+      "neutral_miku_gif_03",
+      "neutral_miku_gif_04",
+      "neutral_miku_gif_05",
+      "neutral_miku_gif_06",
+      "neutral_miku_gif_07",
+      "neutral_miku_gif_08",
+      "neutral_miku_gif_09",
+      "neutral_miku_gif_10",
+      "neutral_miku_gif_11",
+      "neutral_miku_gif_12",
+      "neutral_miku_gif_13",
+      "neutral_miku_gif_14",
+      "neutral_mikuhello",
+      "neutral_mikuswing",
+      "neutral_mistral",
+      "neutral_mll",
+      "neutral_mydadleftme",
+      "neutral_mygo_anno_1",
+      "neutral_mygo_anno_2",
+      "neutral_mygo_anno_3",
+      "neutral_mygo_anno_5",
+      "neutral_mygo_anno_6",
+      "neutral_mygo_cat_1",
+      "neutral_mygo_muzimi_1",
+      "neutral_mygo_muzimi_10",
+      "neutral_mygo_muzimi_11",
+      "neutral_mygo_muzimi_12",
+      "neutral_mygo_muzimi_13",
+      "neutral_mygo_muzimi_14",
+      "neutral_mygo_muzimi_15",
+      "neutral_mygo_muzimi_16",
+      "neutral_mygo_muzimi_2",
+      "neutral_mygo_muzimi_3",
+      "neutral_mygo_muzimi_4",
+      "neutral_mygo_muzimi_5",
+      "neutral_mygo_muzimi_6",
+      "neutral_mygo_muzimi_7",
+      "neutral_mygo_muzimi_8",
+      "neutral_mygo_muzimi_9",
+      "neutral_mygo_soyo_1",
+      "neutral_mygo_soyo_2",
+      "neutral_mygo_soyo_3",
+      "neutral_mygo_soyo_4",
+      "neutral_mygo_tomorin_1",
+      "neutral_mygo_tomorin_3",
+      "neutral_mygo_xz_11",
+      "neutral_mygo_xz_2",
+      "neutral_mygo_xz_3",
+      "neutral_mygo_xz_4",
+      "neutral_mygo_xz_5",
+      "neutral_myman",
+      "neutral_nai",
+      "neutral_naibaozha",
+      "neutral_nailong",
+      "neutral_nailong2",
+      "neutral_nailong_1",
+      "neutral_nailong_eat",
+      "neutral_nailong_eye_roll",
+      "neutral_nailong_fafeng",
+      "neutral_nailong_hang",
+      "neutral_nailong_nitro",
+      "neutral_nailong_papa",
+      "neutral_nailong_samb",
+      "neutral_nailong_samb1",
+      "neutral_nailong_sleep",
+      "neutral_nailongnaotou",
+      "neutral_nailongroududu",
+      "neutral_nailongtiaojiao",
+      "neutral_nairen",
+      "neutral_nairen10",
+      "neutral_nairen12",
+      "neutral_nairen3",
+      "neutral_nairen4",
+      "neutral_nairen5",
+      "neutral_nairen6",
+      "neutral_nevergonnagiveyouupdanci",
+      "neutral_nienie",
+      "neutral_otto",
+      "neutral_pandaaaaa",
+      "neutral_pangchou",
+      "neutral_pepeboom",
+      "neutral_pepegavibe",
+      "neutral_petpet",
+      "neutral_pig_1",
+      "neutral_pig_pixel",
+      "neutral_pig_play",
+      "neutral_ping",
+      "neutral_pop_cat",
+      "neutral_python",
+      "neutral_qier",
+      "neutral_qier_gaomao",
+      "neutral_quan_qu",
+      "neutral_qwen",
+      "neutral_rainbowmelon",
+      "neutral_rainbowparrots",
+      "neutral_rgbcockroach",
+      "neutral_rickandmortydancingstick",
+      "neutral_rickandmortylolstickerby",
+      "neutral_rickandmortysticker1",
+      "neutral_rickandmortytelevisionst",
+      "neutral_rourou",
+      "neutral_ru",
+      "neutral_s_datou",
+      "neutral_s_spin",
+      "neutral_sambembarrassed",
+      "neutral_sambnervous",
+      "neutral_sambscared",
+      "neutral_sambtongue",
+      "neutral_sawa",
+      "neutral_seijo_action",
+      "neutral_seijo_bed",
+      "neutral_seijo_hikari",
+      "neutral_seijo_inspect",
+      "neutral_seijo_movement",
+      "neutral_seijo_passive_move",
+      "neutral_seijo_talk",
+      "neutral_shao",
+      "neutral_shrug",
+      "neutral_soliumbra_fadian",
+      "neutral_soyo_datou",
+      "neutral_soyo_phone",
+      "neutral_sqmq",
+      "neutral_stage_crown",
+      "neutral_starjump",
+      "neutral_stolenfrommega",
+      "neutral_stut",
+      "neutral_sumimi_1",
+      "neutral_sumimi_2",
+      "neutral_sun_transparent_backgrou",
+      "neutral_sydney",
+      "neutral_tavo",
+      "neutral_this_is_fine",
+      "neutral_true_music",
+      "neutral_ui6c5pwvll72ic9ey95i1",
+      "neutral_vtb_sweat",
+      "neutral_wiggle",
+      "neutral_wu_yu",
+      "neutral_wugui",
+      "neutral_xiaxuan_qie",
+      "neutral_xuezhixialiuliladianxian",
+      "neutral_yaotou",
+      "neutral_youknowtherules",
+      "neutral_zhaomin_1",
+      "neutral_zhaomin_3",
+      "neutral_zhaoming_2",
+      "neutral_zuk87izb7rxgg3juff4"
+    ],
+    "funny": [
+      "funny_babylaugh",
+      "funny_boioioing",
+      "funny_cat_laught",
+      "funny_cat_rofl",
+      "funny_chi_gua",
+      "funny_durvis_xuanzhuan",
+      "funny_em_x",
+      "funny_gorushi_zhuanzhuanzhuan",
+      "funny_gracelaugh",
+      "funny_meme",
+      "funny_nailong_xuanzhuan",
+      "funny_oguri_zhuanzhuanzhuan",
+      "funny_oujinjin_xuanzhuan",
+      "funny_rice_zhuanzhuanzhuan",
+      "funny_rickroll",
+      "funny_sambahegao",
+      "funny_samblaugh",
+      "funny_xuanzhuan_qie",
+      "funny_zhuanzhuanzhuan"
+    ],
+    "support": [
+      "support_agree",
+      "support_bangni",
+      "support_blob_yes",
+      "support_blobsalute",
+      "support_cheer",
+      "support_clap",
+      "support_pepeclap",
+      "support_supportchannel",
+      "support_xiaoxiang_kefu",
+      "support_yes"
+    ],
+    "other": []
+  },
+  "details": {
+    "love_1698fishlove": {
+      "emotion": "love",
+      "description": "由文件名推断",
+      "source_file": "1698fishlove.webp",
+      "library_file": "love_1698fishlove.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.042490+00:00"
+    },
+    "neutral_1698fishwave": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "1698fishwave.webp",
+      "library_file": "neutral/neutral_1698fishwave.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.043721+00:00"
+    },
+    "neutral_2115popsquire": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "2115popsquire.webp",
+      "library_file": "neutral/neutral_2115popsquire.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.044705+00:00"
+    },
+    "happy_2647oreosmilers": {
+      "emotion": "happy",
+      "description": "由文件名推断",
+      "source_file": "2647oreosmilers.webp",
+      "library_file": "happy_2647oreosmilers.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.045658+00:00"
+    },
+    "sad_4916catcry": {
+      "emotion": "sad",
+      "description": "由文件名推断",
+      "source_file": "4916catcry.webp",
+      "library_file": "sad_4916catcry.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.046994+00:00"
+    },
+    "neutral_a_dario": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "a_dario.webp",
+      "library_file": "neutral/neutral_a_dario.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.048134+00:00"
+    },
+    "neutral_a_dicksuck": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "A_dicksuck.webp",
+      "library_file": "neutral/neutral_a_dicksuck.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.049215+00:00"
+    },
+    "neutral_aaab": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "AAAB.webp",
+      "library_file": "neutral/neutral_aaab.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.050208+00:00"
+    },
+    "surprised_aaah": {
+      "emotion": "surprised",
+      "description": "由文件名推断",
+      "source_file": "aaah.webp",
+      "library_file": "surprised_aaah.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.051249+00:00"
+    },
+    "support_agree": {
+      "emotion": "support",
+      "description": "由文件名推断",
+      "source_file": "agree.webp",
+      "library_file": "support_agree.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.052280+00:00"
+    },
+    "sad_aiyin_tangxiao": {
+      "emotion": "sad",
+      "description": "由文件名推断",
+      "source_file": "aiyin_tangxiao.webp",
+      "library_file": "sad_aiyin_tangxiao.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.053226+00:00"
+    },
+    "neutral_alert_blue": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "alert_blue.webp",
+      "library_file": "neutral/neutral_alert_blue.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.054148+00:00"
+    },
+    "neutral_alert_red": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "alert_red.webp",
+      "library_file": "neutral/neutral_alert_red.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.055084+00:00"
+    },
+    "neutral_android_cat": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Android_cat.webp",
+      "library_file": "neutral/neutral_android_cat.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.056195+00:00"
+    },
+    "neutral_angerspin": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "angerspin.webp",
+      "library_file": "neutral/neutral_angerspin.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.057591+00:00"
+    },
+    "angry_angryuni": {
+      "emotion": "angry",
+      "description": "由文件名推断",
+      "source_file": "angryuni.webp",
+      "library_file": "angry_angryuni.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.058611+00:00"
+    },
+    "angry_anon_angry": {
+      "emotion": "angry",
+      "description": "由文件名推断",
+      "source_file": "anon_angry.webp",
+      "library_file": "angry_anon_angry.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.059621+00:00"
+    },
+    "neutral_anon_bule": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "anon_bule.webp",
+      "library_file": "neutral/neutral_anon_bule.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.060697+00:00"
+    },
+    "love_anon_love": {
+      "emotion": "love",
+      "description": "由文件名推断",
+      "source_file": "anon_Love.webp",
+      "library_file": "love_anon_love.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.062003+00:00"
+    },
+    "neutral_anthropic": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "anthropic.webp",
+      "library_file": "neutral/neutral_anthropic.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.063341+00:00"
+    },
+    "angry_anti1": {
+      "emotion": "angry",
+      "description": "由文件名推断",
+      "source_file": "anti1.webp",
+      "library_file": "angry_anti1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.064270+00:00"
+    },
+    "angry_anti2": {
+      "emotion": "angry",
+      "description": "由文件名推断",
+      "source_file": "anti2.webp",
+      "library_file": "angry_anti2.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.065102+00:00"
+    },
+    "angry_anti3": {
+      "emotion": "angry",
+      "description": "由文件名推断",
+      "source_file": "anti3.webp",
+      "library_file": "angry_anti3.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.066131+00:00"
+    },
+    "angry_anti4": {
+      "emotion": "angry",
+      "description": "由文件名推断",
+      "source_file": "anti4.webp",
+      "library_file": "angry_anti4.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.067235+00:00"
+    },
+    "neutral_ao_jiao": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "ao_jiao.webp",
+      "library_file": "neutral/neutral_ao_jiao.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.068238+00:00"
+    },
+    "happy_atsuko_smile": {
+      "emotion": "happy",
+      "description": "由文件名推断",
+      "source_file": "atsuko_smile.webp",
+      "library_file": "happy_atsuko_smile.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.069127+00:00"
+    },
+    "neutral_ayayab": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "AYAYAB.webp",
+      "library_file": "neutral/neutral_ayayab.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.069995+00:00"
+    },
+    "happy_baby_smile": {
+      "emotion": "happy",
+      "description": "由文件名推断",
+      "source_file": "baby_smile.webp",
+      "library_file": "happy_baby_smile.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.071078+00:00"
+    },
+    "funny_babylaugh": {
+      "emotion": "funny",
+      "description": "由文件名推断",
+      "source_file": "babylaugh.webp",
+      "library_file": "funny_babylaugh.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.072479+00:00"
+    },
+    "support_bangni": {
+      "emotion": "support",
+      "description": "由文件名推断",
+      "source_file": "bangni.webp",
+      "library_file": "support_bangni.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.073479+00:00"
+    },
+    "neutral_biubiu": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "biubiu.webp",
+      "library_file": "neutral/neutral_biubiu.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.074438+00:00"
+    },
+    "neutral_blackbyte": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "blackbyte.webp",
+      "library_file": "neutral/neutral_blackbyte.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.075545+00:00"
+    },
+    "neutral_blhx_1": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "blhx_1.webp",
+      "library_file": "neutral/neutral_blhx_1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.076867+00:00"
+    },
+    "neutral_blhx_2": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "blhx_2.webp",
+      "library_file": "neutral/neutral_blhx_2.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.077938+00:00"
+    },
+    "neutral_blob_no": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "blob_no.webp",
+      "library_file": "neutral/neutral_blob_no.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.078842+00:00"
+    },
+    "support_blob_yes": {
+      "emotion": "support",
+      "description": "由文件名推断",
+      "source_file": "blob_yes.webp",
+      "library_file": "support_blob_yes.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.079709+00:00"
+    },
+    "neutral_blob_yorn": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "blob_YorN.webp",
+      "library_file": "neutral/neutral_blob_yorn.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.080580+00:00"
+    },
+    "support_blobsalute": {
+      "emotion": "support",
+      "description": "由文件名推断",
+      "source_file": "blobsalute.webp",
+      "library_file": "support_blobsalute.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.081799+00:00"
+    },
+    "funny_boioioing": {
+      "emotion": "funny",
+      "description": "由文件名推断",
+      "source_file": "boioioing.webp",
+      "library_file": "funny_boioioing.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.082877+00:00"
+    },
+    "neutral_boochi": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "boochi.webp",
+      "library_file": "neutral/neutral_boochi.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.083836+00:00"
+    },
+    "neutral_brian": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "brian.webp",
+      "library_file": "neutral/neutral_brian.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.084882+00:00"
+    },
+    "neutral_cainai_basite": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "cainai_basite.webp",
+      "library_file": "neutral/neutral_cainai_basite.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.086055+00:00"
+    },
+    "neutral_cainai_kitsch": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "cainai_kitsch.webp",
+      "library_file": "neutral/neutral_cainai_kitsch.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.087403+00:00"
+    },
+    "neutral_cainai_miliyan": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "cainai_miliyan.webp",
+      "library_file": "neutral/neutral_cainai_miliyan.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.088405+00:00"
+    },
+    "neutral_cainai_moli": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "cainai_moli.webp",
+      "library_file": "neutral/neutral_cainai_moli.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.089299+00:00"
+    },
+    "neutral_cainai_onion": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "cainai_onion.webp",
+      "library_file": "neutral/neutral_cainai_onion.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.090157+00:00"
+    },
+    "neutral_cainai_sanmingyue": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "cainai_sanmingyue.webp",
+      "library_file": "neutral/neutral_cainai_sanmingyue.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.091163+00:00"
+    },
+    "neutral_cainai_tianzun": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "cainai_tianzun.webp",
+      "library_file": "neutral/neutral_cainai_tianzun.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.092304+00:00"
+    },
+    "neutral_capoo17": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Capoo17.webp",
+      "library_file": "neutral/neutral_capoo17.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.093423+00:00"
+    },
+    "neutral_capoo22": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Capoo22.webp",
+      "library_file": "neutral/neutral_capoo22.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.094359+00:00"
+    },
+    "neutral_capoo_paidupi": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "capoo_paidupi.webp",
+      "library_file": "neutral/neutral_capoo_paidupi.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.095240+00:00"
+    },
+    "angry_cat_angry": {
+      "emotion": "angry",
+      "description": "由文件名推断",
+      "source_file": "cat_angry.webp",
+      "library_file": "angry_cat_angry.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.096281+00:00"
+    },
+    "sad_cat_cry": {
+      "emotion": "sad",
+      "description": "由文件名推断",
+      "source_file": "cat_cry.webp",
+      "library_file": "sad_cat_cry.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.097625+00:00"
+    },
+    "love_cat_heart": {
+      "emotion": "love",
+      "description": "由文件名推断",
+      "source_file": "cat_heart.webp",
+      "library_file": "love_cat_heart.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.098769+00:00"
+    },
+    "funny_cat_laught": {
+      "emotion": "funny",
+      "description": "由文件名推断",
+      "source_file": "cat_laught.webp",
+      "library_file": "funny_cat_laught.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.099771+00:00"
+    },
+    "neutral_cat_nerd": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "cat_nerd.webp",
+      "library_file": "neutral/neutral_cat_nerd.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.100985+00:00"
+    },
+    "neutral_cat_police": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "cat_police.webp",
+      "library_file": "neutral/neutral_cat_police.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.102082+00:00"
+    },
+    "funny_cat_rofl": {
+      "emotion": "funny",
+      "description": "由文件名推断",
+      "source_file": "cat_rofl.webp",
+      "library_file": "funny_cat_rofl.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.103077+00:00"
+    },
+    "surprised_cat_scream": {
+      "emotion": "surprised",
+      "description": "由文件名推断",
+      "source_file": "cat_scream.webp",
+      "library_file": "surprised_cat_scream.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.104027+00:00"
+    },
+    "neutral_cat_sweat": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "cat_sweat.webp",
+      "library_file": "neutral/neutral_cat_sweat.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.104892+00:00"
+    },
+    "neutral_cat_triumph": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "cat_triumph.webp",
+      "library_file": "neutral/neutral_cat_triumph.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.106032+00:00"
+    },
+    "neutral_cat_turtle": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "cat_turtle.webp",
+      "library_file": "neutral/neutral_cat_turtle.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.107165+00:00"
+    },
+    "neutral_cat_turtle_swing": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "cat_turtle_swing.webp",
+      "library_file": "neutral/neutral_cat_turtle_swing.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.108209+00:00"
+    },
+    "neutral_catbitting": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "catbitting.webp",
+      "library_file": "neutral/neutral_catbitting.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.109201+00:00"
+    },
+    "neutral_catcheezits": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "catcheezits.webp",
+      "library_file": "neutral/neutral_catcheezits.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.110230+00:00"
+    },
+    "neutral_catcombing": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "catcombing.webp",
+      "library_file": "neutral/neutral_catcombing.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.111343+00:00"
+    },
+    "angry_catrage": {
+      "emotion": "angry",
+      "description": "由文件名推断",
+      "source_file": "catrage.webp",
+      "library_file": "angry_catrage.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.112494+00:00"
+    },
+    "angry_catslap": {
+      "emotion": "angry",
+      "description": "由文件名推断",
+      "source_file": "CatSlap.webp",
+      "library_file": "angry_catslap.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.113522+00:00"
+    },
+    "neutral_catvibe": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "CatVibe.webp",
+      "library_file": "neutral/neutral_catvibe.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.114374+00:00"
+    },
+    "neutral_cecilia2": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Cecilia2.webp",
+      "library_file": "neutral/neutral_cecilia2.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.115469+00:00"
+    },
+    "neutral_cecilia3": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Cecilia3.webp",
+      "library_file": "neutral/neutral_cecilia3.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.116834+00:00"
+    },
+    "neutral_cecilia4": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Cecilia4.webp",
+      "library_file": "neutral/neutral_cecilia4.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.117942+00:00"
+    },
+    "neutral_chatgpt": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Chatgpt.webp",
+      "library_file": "neutral/neutral_chatgpt.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.118873+00:00"
+    },
+    "neutral_chatgptimage202571519_40": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "ChatGPTImage202571519_40_12.webp",
+      "library_file": "neutral/neutral_chatgptimage202571519_40.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.119834+00:00"
+    },
+    "support_cheer": {
+      "emotion": "support",
+      "description": "由文件名推断",
+      "source_file": "cheer.webp",
+      "library_file": "support_cheer.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.120846+00:00"
+    },
+    "neutral_cheshire_chishoushou": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Cheshire_chishoushou.webp",
+      "library_file": "neutral/neutral_cheshire_chishoushou.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.122163+00:00"
+    },
+    "funny_chi_gua": {
+      "emotion": "funny",
+      "description": "由文件名推断",
+      "source_file": "chi_gua.webp",
+      "library_file": "funny_chi_gua.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.123270+00:00"
+    },
+    "neutral_chouyou": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "chouyou.webp",
+      "library_file": "neutral/neutral_chouyou.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.124187+00:00"
+    },
+    "neutral_chuaishou": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "chuaishou.webp",
+      "library_file": "neutral/neutral_chuaishou.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.125070+00:00"
+    },
+    "neutral_chuhua_dog": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "chuhua_dog.webp",
+      "library_file": "neutral/neutral_chuhua_dog.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.126364+00:00"
+    },
+    "support_clap": {
+      "emotion": "support",
+      "description": "由文件名推断",
+      "source_file": "Clap.webp",
+      "library_file": "support_clap.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.127434+00:00"
+    },
+    "neutral_claude": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Claude.webp",
+      "library_file": "neutral/neutral_claude.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.128324+00:00"
+    },
+    "neutral_cockroach_1": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "cockroach_1.webp",
+      "library_file": "neutral/neutral_cockroach_1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.129165+00:00"
+    },
+    "sad_cry_cat": {
+      "emotion": "sad",
+      "description": "由文件名推断",
+      "source_file": "cry_cat.webp",
+      "library_file": "sad_cry_cat.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.130024+00:00"
+    },
+    "neutral_cumonface": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "cumonface.webp",
+      "library_file": "neutral/neutral_cumonface.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.130945+00:00"
+    },
+    "neutral_dance": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "dance.webp",
+      "library_file": "neutral/neutral_dance.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.132009+00:00"
+    },
+    "neutral_deepseek": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Deepseek.webp",
+      "library_file": "neutral/neutral_deepseek.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.133488+00:00"
+    },
+    "neutral_deer_cool": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "deer_cool.webp",
+      "library_file": "neutral/neutral_deer_cool.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.134686+00:00"
+    },
+    "neutral_diantou": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "diantou.webp",
+      "library_file": "neutral/neutral_diantou.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.135525+00:00"
+    },
+    "neutral_dog_1": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "dog_1.webp",
+      "library_file": "neutral/neutral_dog_1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.136493+00:00"
+    },
+    "neutral_dog_2": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "dog_2.webp",
+      "library_file": "neutral/neutral_dog_2.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.137559+00:00"
+    },
+    "neutral_dog_4": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "dog_4.webp",
+      "library_file": "neutral/neutral_dog_4.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.138514+00:00"
+    },
+    "neutral_doubao": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "doubao.webp",
+      "library_file": "neutral/neutral_doubao.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.139478+00:00"
+    },
+    "neutral_dsfish": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "dsfish.webp",
+      "library_file": "neutral/neutral_dsfish.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.140776+00:00"
+    },
+    "neutral_durvis": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "durvis.webp",
+      "library_file": "neutral/neutral_durvis.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.142212+00:00"
+    },
+    "neutral_durvis_1": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "durvis_1.webp",
+      "library_file": "neutral/neutral_durvis_1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.143280+00:00"
+    },
+    "love_durvis_bainian": {
+      "emotion": "love",
+      "description": "由文件名推断",
+      "source_file": "durvis_bainian.webp",
+      "library_file": "love_durvis_bainian.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.144108+00:00"
+    },
+    "neutral_durvis_boom": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "durvis_boom.webp",
+      "library_file": "neutral/neutral_durvis_boom.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.145042+00:00"
+    },
+    "love_durvis_hug": {
+      "emotion": "love",
+      "description": "由文件名推断",
+      "source_file": "durvis_hug.webp",
+      "library_file": "love_durvis_hug.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.146358+00:00"
+    },
+    "funny_durvis_xuanzhuan": {
+      "emotion": "funny",
+      "description": "由文件名推断",
+      "source_file": "durvis_xuanzhuan.webp",
+      "library_file": "funny_durvis_xuanzhuan.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.147615+00:00"
+    },
+    "neutral_eat": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Eat.webp",
+      "library_file": "neutral/neutral_eat.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.148567+00:00"
+    },
+    "neutral_eggplanthand": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "eggplanthand.webp",
+      "library_file": "neutral/neutral_eggplanthand.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.149437+00:00"
+    },
+    "neutral_emma": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Emma.webp",
+      "library_file": "neutral/neutral_emma.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.150353+00:00"
+    },
+    "sad_emo": {
+      "emotion": "sad",
+      "description": "由文件名推断",
+      "source_file": "emo.webp",
+      "library_file": "sad_emo.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.151648+00:00"
+    },
+    "sad_emoj_97": {
+      "emotion": "sad",
+      "description": "由文件名推断",
+      "source_file": "emoj_97.webp",
+      "library_file": "sad_emoj_97.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.152758+00:00"
+    },
+    "neutral_essex_1": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "essex_1.webp",
+      "library_file": "neutral/neutral_essex_1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.153824+00:00"
+    },
+    "neutral_essex_3": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "essex_3.webp",
+      "library_file": "neutral/neutral_essex_3.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.154787+00:00"
+    },
+    "neutral_ewww": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "ewww.webp",
+      "library_file": "neutral/neutral_ewww.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.156171+00:00"
+    },
+    "neutral_ex": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "ex.webp",
+      "library_file": "neutral/neutral_ex.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.157441+00:00"
+    },
+    "neutral_gemini": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Gemini.webp",
+      "library_file": "neutral/neutral_gemini.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.158444+00:00"
+    },
+    "neutral_gemma": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "gemma.webp",
+      "library_file": "neutral/neutral_gemma.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.159384+00:00"
+    },
+    "neutral_gigachad": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "gigachad.webp",
+      "library_file": "neutral/neutral_gigachad.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.160489+00:00"
+    },
+    "neutral_glm": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "GLM.webp",
+      "library_file": "neutral/neutral_glm.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.161539+00:00"
+    },
+    "funny_gorushi_zhuanzhuanzhuan": {
+      "emotion": "funny",
+      "description": "由文件名推断",
+      "source_file": "gorushi_zhuanzhuanzhuan.webp",
+      "library_file": "funny_gorushi_zhuanzhuanzhuan.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.162662+00:00"
+    },
+    "neutral_gpt_purple": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Gpt_purple.webp",
+      "library_file": "neutral/neutral_gpt_purple.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.163622+00:00"
+    },
+    "funny_gracelaugh": {
+      "emotion": "funny",
+      "description": "由文件名推断",
+      "source_file": "GraceLaugh.webp",
+      "library_file": "funny_gracelaugh.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.164507+00:00"
+    },
+    "neutral_grok": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Grok.webp",
+      "library_file": "neutral/neutral_grok.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.165470+00:00"
+    },
+    "neutral_ha": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "ha.webp",
+      "library_file": "neutral/neutral_ha.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.166389+00:00"
+    },
+    "neutral_haha": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Haha.webp",
+      "library_file": "neutral/neutral_haha.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.167275+00:00"
+    },
+    "neutral_hahaha": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "hahaha.webp",
+      "library_file": "neutral/neutral_hahaha.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.168055+00:00"
+    },
+    "sad_happy_cry": {
+      "emotion": "sad",
+      "description": "由文件名推断",
+      "source_file": "happy_cry.webp",
+      "library_file": "sad_happy_cry.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.168999+00:00"
+    },
+    "neutral_henainai": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "henainai.webp",
+      "library_file": "neutral/neutral_henainai.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.170033+00:00"
+    },
+    "neutral_heyiwei": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "heyiwei.webp",
+      "library_file": "neutral/neutral_heyiwei.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.171099+00:00"
+    },
+    "neutral_holyange1": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "holyange1.webp",
+      "library_file": "neutral/neutral_holyange1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.172220+00:00"
+    },
+    "neutral_hso": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "hso.webp",
+      "library_file": "neutral/neutral_hso.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.173165+00:00"
+    },
+    "neutral_ihaveawebgf": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "IHaveAWebGf.webp",
+      "library_file": "neutral/neutral_ihaveawebgf.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.174119+00:00"
+    },
+    "neutral_image": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "image.webp",
+      "library_file": "neutral/neutral_image.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.175065+00:00"
+    },
+    "neutral_image60": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "image60.webp",
+      "library_file": "neutral/neutral_image60.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.176061+00:00"
+    },
+    "neutral_image_1753699035839": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Image_1753699035839.webp",
+      "library_file": "neutral/neutral_image_1753699035839.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.177155+00:00"
+    },
+    "neutral_izumi_chan": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Izumi_chan.webp",
+      "library_file": "neutral/neutral_izumi_chan.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.178079+00:00"
+    },
+    "sad_izumi_kuku": {
+      "emotion": "sad",
+      "description": "由文件名推断",
+      "source_file": "Izumi_kuku.webp",
+      "library_file": "sad_izumi_kuku.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.178981+00:00"
+    },
+    "neutral_jake_question": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "jake_question.webp",
+      "library_file": "neutral/neutral_jake_question.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.179926+00:00"
+    },
+    "neutral_jiji_fire": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "jiji_fire.webp",
+      "library_file": "neutral/neutral_jiji_fire.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.180971+00:00"
+    },
+    "neutral_jiqi": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "jiqi.webp",
+      "library_file": "neutral/neutral_jiqi.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.182114+00:00"
+    },
+    "neutral_key_creator": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "key_creator.webp",
+      "library_file": "neutral/neutral_key_creator.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.183073+00:00"
+    },
+    "neutral_kimi": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Kimi.webp",
+      "library_file": "neutral/neutral_kimi.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.183997+00:00"
+    },
+    "neutral_kirby_music": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "kirby_music.webp",
+      "library_file": "neutral/neutral_kirby_music.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.184937+00:00"
+    },
+    "neutral_kirby_music_rainbow": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "kirby_music_rainbow.webp",
+      "library_file": "neutral/neutral_kirby_music_rainbow.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.186095+00:00"
+    },
+    "neutral_kui1": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "kui1.webp",
+      "library_file": "neutral/neutral_kui1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.187154+00:00"
+    },
+    "neutral_kui2": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "kui2.webp",
+      "library_file": "neutral/neutral_kui2.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.188070+00:00"
+    },
+    "neutral_kui3": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "kui3.webp",
+      "library_file": "neutral/neutral_kui3.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.189077+00:00"
+    },
+    "neutral_kui4": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "kui4.webp",
+      "library_file": "neutral/neutral_kui4.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.190005+00:00"
+    },
+    "neutral_kui5": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "kui5.webp",
+      "library_file": "neutral/neutral_kui5.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.191189+00:00"
+    },
+    "neutral_kui6": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "kui6.webp",
+      "library_file": "neutral/neutral_kui6.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.192623+00:00"
+    },
+    "neutral_kui7": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "kui7.webp",
+      "library_file": "neutral/neutral_kui7.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.193571+00:00"
+    },
+    "neutral_kui8": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "kui8.webp",
+      "library_file": "neutral/neutral_kui8.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.194405+00:00"
+    },
+    "neutral_kyokokirigiripointing11": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "kyokokirigiripointing11.webp",
+      "library_file": "neutral/neutral_kyokokirigiripointing11.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.195362+00:00"
+    },
+    "neutral_lightsword": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Lightsword.webp",
+      "library_file": "neutral/neutral_lightsword.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.196629+00:00"
+    },
+    "neutral_lightsword2": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Lightsword2.webp",
+      "library_file": "neutral/neutral_lightsword2.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.197639+00:00"
+    },
+    "neutral_like_a_mind": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "like_a_mind.webp",
+      "library_file": "neutral/neutral_like_a_mind.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.198532+00:00"
+    },
+    "neutral_listeninguni": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "listeninguni.webp",
+      "library_file": "neutral/neutral_listeninguni.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.199495+00:00"
+    },
+    "neutral_llk": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "llk.webp",
+      "library_file": "neutral/neutral_llk.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.200595+00:00"
+    },
+    "neutral_llk2": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "llk2.webp",
+      "library_file": "neutral/neutral_llk2.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.201933+00:00"
+    },
+    "neutral_logan_sweat": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "logan_sweat.webp",
+      "library_file": "neutral/neutral_logan_sweat.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.203069+00:00"
+    },
+    "neutral_longtu01": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "longtu01.webp",
+      "library_file": "neutral/neutral_longtu01.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.204002+00:00"
+    },
+    "neutral_ludoufu_chui": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "ludoufu_chui.webp",
+      "library_file": "neutral/neutral_ludoufu_chui.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.204926+00:00"
+    },
+    "neutral_ludoufu_fly": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "ludoufu_fly.webp",
+      "library_file": "neutral/neutral_ludoufu_fly.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.206026+00:00"
+    },
+    "angry_mad123": {
+      "emotion": "angry",
+      "description": "由文件名推断",
+      "source_file": "mad123.webp",
+      "library_file": "angry_mad123.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.207363+00:00"
+    },
+    "angry_madman": {
+      "emotion": "angry",
+      "description": "由文件名推断",
+      "source_file": "Madman.webp",
+      "library_file": "angry_madman.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.208425+00:00"
+    },
+    "angry_madsoli": {
+      "emotion": "angry",
+      "description": "由文件名推断",
+      "source_file": "madsoli.webp",
+      "library_file": "angry_madsoli.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.209312+00:00"
+    },
+    "neutral_maodie": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "maodie.webp",
+      "library_file": "neutral/neutral_maodie.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.210151+00:00"
+    },
+    "neutral_maodie_1": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "maodie_1.webp",
+      "library_file": "neutral/neutral_maodie_1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.211220+00:00"
+    },
+    "neutral_maodie_ln": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "maodie_ln.webp",
+      "library_file": "neutral/neutral_maodie_ln.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.212253+00:00"
+    },
+    "neutral_maodie_nandaoshuo": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "maodie_nandaoshuo.webp",
+      "library_file": "neutral/neutral_maodie_nandaoshuo.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.213226+00:00"
+    },
+    "happy_maodie_smile": {
+      "emotion": "happy",
+      "description": "由文件名推断",
+      "source_file": "maodie_smile.webp",
+      "library_file": "happy_maodie_smile.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.214347+00:00"
+    },
+    "neutral_maodiesikao": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "maodiesikao.webp",
+      "library_file": "neutral/neutral_maodiesikao.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.215187+00:00"
+    },
+    "neutral_meihuiliu": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "meihuiliu.webp",
+      "library_file": "neutral/neutral_meihuiliu.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.216474+00:00"
+    },
+    "funny_meme": {
+      "emotion": "funny",
+      "description": "由文件名推断",
+      "source_file": "MEME.webp",
+      "library_file": "funny_meme.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.217503+00:00"
+    },
+    "sad_memories_pulse": {
+      "emotion": "sad",
+      "description": "由文件名推断",
+      "source_file": "memories_pulse.webp",
+      "library_file": "sad_memories_pulse.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.218481+00:00"
+    },
+    "neutral_mf_anger": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mf_anger.webp",
+      "library_file": "neutral/neutral_mf_anger.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.219386+00:00"
+    },
+    "love_mf_heart": {
+      "emotion": "love",
+      "description": "由文件名推断",
+      "source_file": "mf_heart.webp",
+      "library_file": "love_mf_heart.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.220345+00:00"
+    },
+    "sad_mf_kuku": {
+      "emotion": "sad",
+      "description": "由文件名推断",
+      "source_file": "mf_kuku.webp",
+      "library_file": "sad_mf_kuku.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.221369+00:00"
+    },
+    "happy_mf_smile": {
+      "emotion": "happy",
+      "description": "由文件名推断",
+      "source_file": "mf_smile.webp",
+      "library_file": "happy_mf_smile.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.222364+00:00"
+    },
+    "neutral_mf_zako": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mf_zako.webp",
+      "library_file": "neutral/neutral_mf_zako.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.223346+00:00"
+    },
+    "neutral_miku_01": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "miku_01.webp",
+      "library_file": "neutral/neutral_miku_01.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.224412+00:00"
+    },
+    "neutral_miku_02": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "miku_02.webp",
+      "library_file": "neutral/neutral_miku_02.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.225459+00:00"
+    },
+    "neutral_miku_03": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "miku_03.webp",
+      "library_file": "neutral/neutral_miku_03.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.226895+00:00"
+    },
+    "neutral_miku_04": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "miku_04.webp",
+      "library_file": "neutral/neutral_miku_04.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.228082+00:00"
+    },
+    "neutral_miku_06": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "miku_06.webp",
+      "library_file": "neutral/neutral_miku_06.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.228986+00:00"
+    },
+    "neutral_miku_07": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "miku_07.webp",
+      "library_file": "neutral/neutral_miku_07.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.229901+00:00"
+    },
+    "neutral_miku_cat": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "miku_cat.webp",
+      "library_file": "neutral/neutral_miku_cat.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.231030+00:00"
+    },
+    "neutral_miku_gif_01": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "miku_gif_01.webp",
+      "library_file": "neutral/neutral_miku_gif_01.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.232348+00:00"
+    },
+    "neutral_miku_gif_02": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "miku_gif_02.webp",
+      "library_file": "neutral/neutral_miku_gif_02.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.233498+00:00"
+    },
+    "neutral_miku_gif_03": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "miku_gif_03.webp",
+      "library_file": "neutral/neutral_miku_gif_03.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.234546+00:00"
+    },
+    "neutral_miku_gif_04": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "miku_gif_04.webp",
+      "library_file": "neutral/neutral_miku_gif_04.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.235682+00:00"
+    },
+    "neutral_miku_gif_05": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "miku_gif_05.webp",
+      "library_file": "neutral/neutral_miku_gif_05.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.237153+00:00"
+    },
+    "neutral_miku_gif_06": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "miku_gif_06.webp",
+      "library_file": "neutral/neutral_miku_gif_06.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.238232+00:00"
+    },
+    "neutral_miku_gif_07": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "miku_gif_07.webp",
+      "library_file": "neutral/neutral_miku_gif_07.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.239189+00:00"
+    },
+    "neutral_miku_gif_08": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "miku_gif_08.webp",
+      "library_file": "neutral/neutral_miku_gif_08.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.240177+00:00"
+    },
+    "neutral_miku_gif_09": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "miku_gif_09.webp",
+      "library_file": "neutral/neutral_miku_gif_09.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.241153+00:00"
+    },
+    "neutral_miku_gif_10": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "miku_gif_10.webp",
+      "library_file": "neutral/neutral_miku_gif_10.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.242255+00:00"
+    },
+    "neutral_miku_gif_11": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "miku_gif_11.webp",
+      "library_file": "neutral/neutral_miku_gif_11.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.243247+00:00"
+    },
+    "neutral_miku_gif_12": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "miku_gif_12.webp",
+      "library_file": "neutral/neutral_miku_gif_12.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.244226+00:00"
+    },
+    "neutral_miku_gif_13": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "miku_gif_13.webp",
+      "library_file": "neutral/neutral_miku_gif_13.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.245054+00:00"
+    },
+    "neutral_miku_gif_14": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "miku_gif_14.webp",
+      "library_file": "neutral/neutral_miku_gif_14.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.246271+00:00"
+    },
+    "neutral_mikuhello": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mikuhello.webp",
+      "library_file": "neutral/neutral_mikuhello.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.247444+00:00"
+    },
+    "neutral_mikuswing": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mikuswing.webp",
+      "library_file": "neutral/neutral_mikuswing.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.248290+00:00"
+    },
+    "neutral_mistral": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Mistral.webp",
+      "library_file": "neutral/neutral_mistral.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.249170+00:00"
+    },
+    "neutral_mll": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mll.webp",
+      "library_file": "neutral/neutral_mll.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.250155+00:00"
+    },
+    "neutral_mydadleftme": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "MyDadLeftMe.webp",
+      "library_file": "neutral/neutral_mydadleftme.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.251287+00:00"
+    },
+    "neutral_mygo_anno_1": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_anno_1.webp",
+      "library_file": "neutral/neutral_mygo_anno_1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.252420+00:00"
+    },
+    "neutral_mygo_anno_2": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_anno_2.webp",
+      "library_file": "neutral/neutral_mygo_anno_2.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.253366+00:00"
+    },
+    "neutral_mygo_anno_3": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_anno_3.webp",
+      "library_file": "neutral/neutral_mygo_anno_3.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.254244+00:00"
+    },
+    "neutral_mygo_anno_5": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_anno_5.webp",
+      "library_file": "neutral/neutral_mygo_anno_5.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.255129+00:00"
+    },
+    "neutral_mygo_anno_6": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_anno_6.webp",
+      "library_file": "neutral/neutral_mygo_anno_6.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.256328+00:00"
+    },
+    "neutral_mygo_cat_1": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_cat_1.webp",
+      "library_file": "neutral/neutral_mygo_cat_1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.257721+00:00"
+    },
+    "neutral_mygo_muzimi_1": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_muzimi_1.webp",
+      "library_file": "neutral/neutral_mygo_muzimi_1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.258766+00:00"
+    },
+    "neutral_mygo_muzimi_10": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_muzimi_10.webp",
+      "library_file": "neutral/neutral_mygo_muzimi_10.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.259650+00:00"
+    },
+    "neutral_mygo_muzimi_11": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_muzimi_11.webp",
+      "library_file": "neutral/neutral_mygo_muzimi_11.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.260605+00:00"
+    },
+    "neutral_mygo_muzimi_12": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_muzimi_12.webp",
+      "library_file": "neutral/neutral_mygo_muzimi_12.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.261748+00:00"
+    },
+    "neutral_mygo_muzimi_13": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_muzimi_13.webp",
+      "library_file": "neutral/neutral_mygo_muzimi_13.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.262773+00:00"
+    },
+    "neutral_mygo_muzimi_14": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_muzimi_14.webp",
+      "library_file": "neutral/neutral_mygo_muzimi_14.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.263700+00:00"
+    },
+    "neutral_mygo_muzimi_15": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_muzimi_15.webp",
+      "library_file": "neutral/neutral_mygo_muzimi_15.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.264540+00:00"
+    },
+    "neutral_mygo_muzimi_16": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_muzimi_16.webp",
+      "library_file": "neutral/neutral_mygo_muzimi_16.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.265371+00:00"
+    },
+    "neutral_mygo_muzimi_2": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_muzimi_2.webp",
+      "library_file": "neutral/neutral_mygo_muzimi_2.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.266393+00:00"
+    },
+    "neutral_mygo_muzimi_3": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_muzimi_3.webp",
+      "library_file": "neutral/neutral_mygo_muzimi_3.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.267400+00:00"
+    },
+    "neutral_mygo_muzimi_4": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_muzimi_4.webp",
+      "library_file": "neutral/neutral_mygo_muzimi_4.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.268270+00:00"
+    },
+    "neutral_mygo_muzimi_5": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_muzimi_5.webp",
+      "library_file": "neutral/neutral_mygo_muzimi_5.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.269217+00:00"
+    },
+    "neutral_mygo_muzimi_6": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_muzimi_6.webp",
+      "library_file": "neutral/neutral_mygo_muzimi_6.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.270164+00:00"
+    },
+    "neutral_mygo_muzimi_7": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_muzimi_7.webp",
+      "library_file": "neutral/neutral_mygo_muzimi_7.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.271303+00:00"
+    },
+    "neutral_mygo_muzimi_8": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_muzimi_8.webp",
+      "library_file": "neutral/neutral_mygo_muzimi_8.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.272442+00:00"
+    },
+    "neutral_mygo_muzimi_9": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_muzimi_9.webp",
+      "library_file": "neutral/neutral_mygo_muzimi_9.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.273588+00:00"
+    },
+    "neutral_mygo_soyo_1": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_soyo_1.webp",
+      "library_file": "neutral/neutral_mygo_soyo_1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.274551+00:00"
+    },
+    "neutral_mygo_soyo_2": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_soyo_2.webp",
+      "library_file": "neutral/neutral_mygo_soyo_2.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.275465+00:00"
+    },
+    "neutral_mygo_soyo_3": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_soyo_3.webp",
+      "library_file": "neutral/neutral_mygo_soyo_3.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.276612+00:00"
+    },
+    "neutral_mygo_soyo_4": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_soyo_4.webp",
+      "library_file": "neutral/neutral_mygo_soyo_4.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.277732+00:00"
+    },
+    "neutral_mygo_tomorin_1": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_tomorin_1.webp",
+      "library_file": "neutral/neutral_mygo_tomorin_1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.278881+00:00"
+    },
+    "neutral_mygo_tomorin_3": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_tomorin_3.webp",
+      "library_file": "neutral/neutral_mygo_tomorin_3.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.279920+00:00"
+    },
+    "angry_mygo_xiba": {
+      "emotion": "angry",
+      "description": "由文件名推断",
+      "source_file": "mygo_xiba.webp",
+      "library_file": "angry_mygo_xiba.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.281006+00:00"
+    },
+    "neutral_mygo_xz_11": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_XZ_11.webp",
+      "library_file": "neutral/neutral_mygo_xz_11.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.282118+00:00"
+    },
+    "neutral_mygo_xz_2": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_XZ_2.webp",
+      "library_file": "neutral/neutral_mygo_xz_2.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.283236+00:00"
+    },
+    "neutral_mygo_xz_3": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_XZ_3.webp",
+      "library_file": "neutral/neutral_mygo_xz_3.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.284182+00:00"
+    },
+    "neutral_mygo_xz_4": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_XZ_4.webp",
+      "library_file": "neutral/neutral_mygo_xz_4.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.285088+00:00"
+    },
+    "neutral_mygo_xz_5": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "mygo_XZ_5.webp",
+      "library_file": "neutral/neutral_mygo_xz_5.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.286407+00:00"
+    },
+    "neutral_myman": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Myman.webp",
+      "library_file": "neutral/neutral_myman.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.287657+00:00"
+    },
+    "neutral_nai": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nai.webp",
+      "library_file": "neutral/neutral_nai.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.288726+00:00"
+    },
+    "neutral_naibaozha": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "naibaozha.webp",
+      "library_file": "neutral/neutral_naibaozha.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.289704+00:00"
+    },
+    "neutral_nailong": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nailong.webp",
+      "library_file": "neutral/neutral_nailong.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.290541+00:00"
+    },
+    "neutral_nailong2": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nailong2.webp",
+      "library_file": "neutral/neutral_nailong2.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.291570+00:00"
+    },
+    "neutral_nailong_1": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nailong_1.webp",
+      "library_file": "neutral/neutral_nailong_1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.292564+00:00"
+    },
+    "neutral_nailong_eat": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nailong_eat.webp",
+      "library_file": "neutral/neutral_nailong_eat.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.293518+00:00"
+    },
+    "neutral_nailong_eye_roll": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nailong_eye_roll.webp",
+      "library_file": "neutral/neutral_nailong_eye_roll.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.294400+00:00"
+    },
+    "neutral_nailong_fafeng": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nailong_fafeng.webp",
+      "library_file": "neutral/neutral_nailong_fafeng.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.295367+00:00"
+    },
+    "neutral_nailong_hang": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nailong_hang.webp",
+      "library_file": "neutral/neutral_nailong_hang.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.296582+00:00"
+    },
+    "happy_nailong_happy": {
+      "emotion": "happy",
+      "description": "由文件名推断",
+      "source_file": "nailong_happy.webp",
+      "library_file": "happy_nailong_happy.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.297667+00:00"
+    },
+    "sad_nailong_kuku": {
+      "emotion": "sad",
+      "description": "由文件名推断",
+      "source_file": "nailong_kuku.webp",
+      "library_file": "sad_nailong_kuku.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.298720+00:00"
+    },
+    "neutral_nailong_nitro": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nailong_nitro.webp",
+      "library_file": "neutral/neutral_nailong_nitro.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.299712+00:00"
+    },
+    "neutral_nailong_papa": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nailong_papa.webp",
+      "library_file": "neutral/neutral_nailong_papa.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.300969+00:00"
+    },
+    "sad_nailong_sad": {
+      "emotion": "sad",
+      "description": "由文件名推断",
+      "source_file": "nailong_sad.webp",
+      "library_file": "sad_nailong_sad.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.302143+00:00"
+    },
+    "neutral_nailong_samb": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nailong_samb.webp",
+      "library_file": "neutral/neutral_nailong_samb.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.303189+00:00"
+    },
+    "neutral_nailong_samb1": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nailong_samb1.webp",
+      "library_file": "neutral/neutral_nailong_samb1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.304269+00:00"
+    },
+    "surprised_nailong_shock": {
+      "emotion": "surprised",
+      "description": "由文件名推断",
+      "source_file": "nailong_shock.webp",
+      "library_file": "surprised_nailong_shock.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.305204+00:00"
+    },
+    "neutral_nailong_sleep": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nailong_sleep.webp",
+      "library_file": "neutral/neutral_nailong_sleep.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.306336+00:00"
+    },
+    "happy_nailong_smile": {
+      "emotion": "happy",
+      "description": "由文件名推断",
+      "source_file": "nailong_smile.webp",
+      "library_file": "happy_nailong_smile.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.308022+00:00"
+    },
+    "sad_nailong_tang": {
+      "emotion": "sad",
+      "description": "由文件名推断",
+      "source_file": "nailong_tang.webp",
+      "library_file": "sad_nailong_tang.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.309145+00:00"
+    },
+    "funny_nailong_xuanzhuan": {
+      "emotion": "funny",
+      "description": "由文件名推断",
+      "source_file": "nailong_xuanzhuan.webp",
+      "library_file": "funny_nailong_xuanzhuan.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.310309+00:00"
+    },
+    "neutral_nailongnaotou": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nailongnaotou.webp",
+      "library_file": "neutral/neutral_nailongnaotou.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.311586+00:00"
+    },
+    "neutral_nailongroududu": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nailongroududu.webp",
+      "library_file": "neutral/neutral_nailongroududu.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.312756+00:00"
+    },
+    "neutral_nailongtiaojiao": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nailongtiaojiao.webp",
+      "library_file": "neutral/neutral_nailongtiaojiao.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.313771+00:00"
+    },
+    "surprised_nailongzhenjing": {
+      "emotion": "surprised",
+      "description": "由文件名推断",
+      "source_file": "nailongzhenjing.webp",
+      "library_file": "surprised_nailongzhenjing.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.315057+00:00"
+    },
+    "neutral_nairen": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nairen.webp",
+      "library_file": "neutral/neutral_nairen.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.316426+00:00"
+    },
+    "neutral_nairen10": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nairen10.webp",
+      "library_file": "neutral/neutral_nairen10.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.317731+00:00"
+    },
+    "neutral_nairen12": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nairen12.webp",
+      "library_file": "neutral/neutral_nairen12.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.318853+00:00"
+    },
+    "neutral_nairen3": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nairen3.webp",
+      "library_file": "neutral/neutral_nairen3.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.319941+00:00"
+    },
+    "neutral_nairen4": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nairen4.webp",
+      "library_file": "neutral/neutral_nairen4.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.321323+00:00"
+    },
+    "neutral_nairen5": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nairen5.webp",
+      "library_file": "neutral/neutral_nairen5.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.322553+00:00"
+    },
+    "neutral_nairen6": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nairen6.webp",
+      "library_file": "neutral/neutral_nairen6.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.323588+00:00"
+    },
+    "neutral_nevergonnagiveyouupdanci": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "NeverGonnaGiveYouUpDancingSticke.webp",
+      "library_file": "neutral/neutral_nevergonnagiveyouupdanci.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.324833+00:00"
+    },
+    "neutral_nienie": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "nienie.webp",
+      "library_file": "neutral/neutral_nienie.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.326420+00:00"
+    },
+    "sad_noooo": {
+      "emotion": "sad",
+      "description": "由文件名推断",
+      "source_file": "noooo.webp",
+      "library_file": "sad_noooo.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.327786+00:00"
+    },
+    "funny_oguri_zhuanzhuanzhuan": {
+      "emotion": "funny",
+      "description": "由文件名推断",
+      "source_file": "oguri_zhuanzhuanzhuan.webp",
+      "library_file": "funny_oguri_zhuanzhuanzhuan.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.329085+00:00"
+    },
+    "happy_okayjoy": {
+      "emotion": "happy",
+      "description": "由文件名推断",
+      "source_file": "okayjoy.webp",
+      "library_file": "happy_okayjoy.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.330359+00:00"
+    },
+    "neutral_otto": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "otto.webp",
+      "library_file": "neutral/neutral_otto.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.332121+00:00"
+    },
+    "funny_oujinjin_xuanzhuan": {
+      "emotion": "funny",
+      "description": "由文件名推断",
+      "source_file": "oujinjin_xuanzhuan.webp",
+      "library_file": "funny_oujinjin_xuanzhuan.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.333279+00:00"
+    },
+    "neutral_pandaaaaa": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "PandaAAAA.webp",
+      "library_file": "neutral/neutral_pandaaaaa.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.334432+00:00"
+    },
+    "neutral_pangchou": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "pangchou.webp",
+      "library_file": "neutral/neutral_pangchou.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.335472+00:00"
+    },
+    "happy_partyhard": {
+      "emotion": "happy",
+      "description": "由文件名推断",
+      "source_file": "partyhard.webp",
+      "library_file": "happy_partyhard.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.336865+00:00"
+    },
+    "love_peepocathug": {
+      "emotion": "love",
+      "description": "由文件名推断",
+      "source_file": "peepoCatHug.webp",
+      "library_file": "love_peepocathug.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.337999+00:00"
+    },
+    "thinking_pensive_1": {
+      "emotion": "thinking",
+      "description": "由文件名推断",
+      "source_file": "pensive_1.webp",
+      "library_file": "thinking_pensive_1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.338995+00:00"
+    },
+    "thinking_pepe_thonk": {
+      "emotion": "thinking",
+      "description": "由文件名推断",
+      "source_file": "pepe_thonk.webp",
+      "library_file": "thinking_pepe_thonk.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.339987+00:00"
+    },
+    "neutral_pepeboom": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "pepeboom.webp",
+      "library_file": "neutral/neutral_pepeboom.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.341211+00:00"
+    },
+    "support_pepeclap": {
+      "emotion": "support",
+      "description": "由文件名推断",
+      "source_file": "pepeclap.webp",
+      "library_file": "support_pepeclap.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.342494+00:00"
+    },
+    "neutral_pepegavibe": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "pepegavibe.webp",
+      "library_file": "neutral/neutral_pepegavibe.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.343615+00:00"
+    },
+    "neutral_petpet": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "petpet.webp",
+      "library_file": "neutral/neutral_petpet.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.344515+00:00"
+    },
+    "neutral_pig_1": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "pig_1.webp",
+      "library_file": "neutral/neutral_pig_1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.345468+00:00"
+    },
+    "angry_pig_attack": {
+      "emotion": "angry",
+      "description": "由文件名推断",
+      "source_file": "pig_attack.webp",
+      "library_file": "angry_pig_attack.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.346772+00:00"
+    },
+    "neutral_pig_pixel": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "pig_pixel.webp",
+      "library_file": "neutral/neutral_pig_pixel.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.348004+00:00"
+    },
+    "neutral_pig_play": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "pig_play.webp",
+      "library_file": "neutral/neutral_pig_play.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.348928+00:00"
+    },
+    "neutral_ping": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "ping.webp",
+      "library_file": "neutral/neutral_ping.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.349795+00:00"
+    },
+    "neutral_pop_cat": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Pop_cat.webp",
+      "library_file": "neutral/neutral_pop_cat.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.350669+00:00"
+    },
+    "angry_pouting_fox": {
+      "emotion": "angry",
+      "description": "由文件名推断",
+      "source_file": "pouting_fox.webp",
+      "library_file": "angry_pouting_fox.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.352181+00:00"
+    },
+    "neutral_python": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "python.webp",
+      "library_file": "neutral/neutral_python.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.353239+00:00"
+    },
+    "neutral_qier": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "qier.webp",
+      "library_file": "neutral/neutral_qier.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.354166+00:00"
+    },
+    "neutral_qier_gaomao": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "qier_gaomao.webp",
+      "library_file": "neutral/neutral_qier_gaomao.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.355132+00:00"
+    },
+    "neutral_quan_qu": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "quan_qu.webp",
+      "library_file": "neutral/neutral_quan_qu.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.356775+00:00"
+    },
+    "neutral_qwen": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Qwen.webp",
+      "library_file": "neutral/neutral_qwen.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.358457+00:00"
+    },
+    "neutral_rainbowmelon": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "rainbowmelon.webp",
+      "library_file": "neutral/neutral_rainbowmelon.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.359624+00:00"
+    },
+    "neutral_rainbowparrots": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "rainbowparrots.webp",
+      "library_file": "neutral/neutral_rainbowparrots.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.360725+00:00"
+    },
+    "neutral_rgbcockroach": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "RGBcockroach.webp",
+      "library_file": "neutral/neutral_rgbcockroach.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.362443+00:00"
+    },
+    "funny_rice_zhuanzhuanzhuan": {
+      "emotion": "funny",
+      "description": "由文件名推断",
+      "source_file": "rice_zhuanzhuanzhuan.webp",
+      "library_file": "funny_rice_zhuanzhuanzhuan.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.363795+00:00"
+    },
+    "neutral_rickandmortydancingstick": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "RickAndMortyDancingSticker.webp",
+      "library_file": "neutral/neutral_rickandmortydancingstick.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.364950+00:00"
+    },
+    "neutral_rickandmortylolstickerby": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "RickAndMortyLolStickerbydieselra.webp",
+      "library_file": "neutral/neutral_rickandmortylolstickerby.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.365998+00:00"
+    },
+    "neutral_rickandmortysticker1": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "RickAndMortySticker1.webp",
+      "library_file": "neutral/neutral_rickandmortysticker1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.367113+00:00"
+    },
+    "neutral_rickandmortytelevisionst": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "rickandmortytelevisionSTICKERbyi.webp",
+      "library_file": "neutral/neutral_rickandmortytelevisionst.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.368221+00:00"
+    },
+    "funny_rickroll": {
+      "emotion": "funny",
+      "description": "由文件名推断",
+      "source_file": "rickroll.webp",
+      "library_file": "funny_rickroll.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.369167+00:00"
+    },
+    "angry_rollingmadman": {
+      "emotion": "angry",
+      "description": "由文件名推断",
+      "source_file": "rollingMadman.webp",
+      "library_file": "angry_rollingmadman.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.370165+00:00"
+    },
+    "neutral_rourou": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "rourou.webp",
+      "library_file": "neutral/neutral_rourou.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.371317+00:00"
+    },
+    "neutral_ru": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "ru.webp",
+      "library_file": "neutral/neutral_ru.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.372418+00:00"
+    },
+    "neutral_s_datou": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "s_datou.webp",
+      "library_file": "neutral/neutral_s_datou.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.373319+00:00"
+    },
+    "neutral_s_spin": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "s_spin.webp",
+      "library_file": "neutral/neutral_s_spin.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.374269+00:00"
+    },
+    "sad_sad": {
+      "emotion": "sad",
+      "description": "由文件名推断",
+      "source_file": "sad.webp",
+      "library_file": "sad_sad.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.375264+00:00"
+    },
+    "sad_sad_1": {
+      "emotion": "sad",
+      "description": "由文件名推断",
+      "source_file": "sad_1.webp",
+      "library_file": "sad_sad_1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.376280+00:00"
+    },
+    "funny_sambahegao": {
+      "emotion": "funny",
+      "description": "由文件名推断",
+      "source_file": "sambahegao.webp",
+      "library_file": "funny_sambahegao.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.377329+00:00"
+    },
+    "angry_sambangry": {
+      "emotion": "angry",
+      "description": "由文件名推断",
+      "source_file": "sambangry.webp",
+      "library_file": "angry_sambangry.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.378221+00:00"
+    },
+    "thinking_sambconfused": {
+      "emotion": "thinking",
+      "description": "由文件名推断",
+      "source_file": "sambconfused.webp",
+      "library_file": "thinking_sambconfused.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.379210+00:00"
+    },
+    "neutral_sambembarrassed": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "sambembarrassed.webp",
+      "library_file": "neutral/neutral_sambembarrassed.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.380029+00:00"
+    },
+    "funny_samblaugh": {
+      "emotion": "funny",
+      "description": "由文件名推断",
+      "source_file": "samblaugh.webp",
+      "library_file": "funny_samblaugh.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.380957+00:00"
+    },
+    "neutral_sambnervous": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "sambnervous.webp",
+      "library_file": "neutral/neutral_sambnervous.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.382034+00:00"
+    },
+    "sad_sambsad": {
+      "emotion": "sad",
+      "description": "由文件名推断",
+      "source_file": "sambsad.webp",
+      "library_file": "sad_sambsad.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.383030+00:00"
+    },
+    "neutral_sambscared": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "sambscared.webp",
+      "library_file": "neutral/neutral_sambscared.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.383951+00:00"
+    },
+    "neutral_sambtongue": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "sambtongue.webp",
+      "library_file": "neutral/neutral_sambtongue.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.384898+00:00"
+    },
+    "neutral_sawa": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Sawa.webp",
+      "library_file": "neutral/neutral_sawa.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.385836+00:00"
+    },
+    "surprised_scream_1": {
+      "emotion": "surprised",
+      "description": "由文件名推断",
+      "source_file": "scream_1.webp",
+      "library_file": "surprised_scream_1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.386912+00:00"
+    },
+    "neutral_seijo_action": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "seijo_action.webp",
+      "library_file": "neutral/neutral_seijo_action.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.387849+00:00"
+    },
+    "angry_seijo_angry": {
+      "emotion": "angry",
+      "description": "由文件名推断",
+      "source_file": "seijo_angry.webp",
+      "library_file": "angry_seijo_angry.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.388668+00:00"
+    },
+    "neutral_seijo_bed": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "seijo_bed.webp",
+      "library_file": "neutral/neutral_seijo_bed.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.389465+00:00"
+    },
+    "love_seijo_blush": {
+      "emotion": "love",
+      "description": "由文件名推断",
+      "source_file": "seijo_blush.webp",
+      "library_file": "love_seijo_blush.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.390428+00:00"
+    },
+    "neutral_seijo_hikari": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "seijo_hikari.webp",
+      "library_file": "neutral/neutral_seijo_hikari.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.391385+00:00"
+    },
+    "neutral_seijo_inspect": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "seijo_inspect.webp",
+      "library_file": "neutral/neutral_seijo_inspect.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.392306+00:00"
+    },
+    "neutral_seijo_movement": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "seijo_movement.webp",
+      "library_file": "neutral/neutral_seijo_movement.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.393178+00:00"
+    },
+    "neutral_seijo_passive_move": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "seijo_passive_move.webp",
+      "library_file": "neutral/neutral_seijo_passive_move.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.394097+00:00"
+    },
+    "neutral_seijo_talk": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "seijo_talk.webp",
+      "library_file": "neutral/neutral_seijo_talk.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.394901+00:00"
+    },
+    "neutral_shao": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "shao.webp",
+      "library_file": "neutral/neutral_shao.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.395844+00:00"
+    },
+    "sad_shatang1": {
+      "emotion": "sad",
+      "description": "由文件名推断",
+      "source_file": "shatang1.webp",
+      "library_file": "sad_shatang1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.397032+00:00"
+    },
+    "sad_shatang2": {
+      "emotion": "sad",
+      "description": "由文件名推断",
+      "source_file": "shatang2.webp",
+      "library_file": "sad_shatang2.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.398167+00:00"
+    },
+    "sad_shatang3": {
+      "emotion": "sad",
+      "description": "由文件名推断",
+      "source_file": "shatang3.webp",
+      "library_file": "sad_shatang3.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.399075+00:00"
+    },
+    "angry_sheng_qi": {
+      "emotion": "angry",
+      "description": "由文件名推断",
+      "source_file": "sheng_qi.webp",
+      "library_file": "angry_sheng_qi.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.399976+00:00"
+    },
+    "surprised_shock_advanced": {
+      "emotion": "surprised",
+      "description": "由文件名推断",
+      "source_file": "shock_advanced.webp",
+      "library_file": "surprised_shock_advanced.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.400958+00:00"
+    },
+    "neutral_shrug": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Shrug.webp",
+      "library_file": "neutral/neutral_shrug.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.402371+00:00"
+    },
+    "love_slove": {
+      "emotion": "love",
+      "description": "由文件名推断",
+      "source_file": "Slove.webp",
+      "library_file": "love_slove.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.403519+00:00"
+    },
+    "neutral_soliumbra_fadian": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "soliumbra_fadian.webp",
+      "library_file": "neutral/neutral_soliumbra_fadian.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.404536+00:00"
+    },
+    "neutral_soyo_datou": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "soyo_datou.webp",
+      "library_file": "neutral/neutral_soyo_datou.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.405427+00:00"
+    },
+    "neutral_soyo_phone": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "soyo_phone.webp",
+      "library_file": "neutral/neutral_soyo_phone.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.406564+00:00"
+    },
+    "neutral_sqmq": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "SQMQ.webp",
+      "library_file": "neutral/neutral_sqmq.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.407554+00:00"
+    },
+    "neutral_stage_crown": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "stage_crown.webp",
+      "library_file": "neutral/neutral_stage_crown.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.408543+00:00"
+    },
+    "neutral_starjump": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "StarJump.webp",
+      "library_file": "neutral/neutral_starjump.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.409534+00:00"
+    },
+    "neutral_stolenfrommega": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "stolenfrommega.webp",
+      "library_file": "neutral/neutral_stolenfrommega.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.410436+00:00"
+    },
+    "neutral_stut": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "STUT.webp",
+      "library_file": "neutral/neutral_stut.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.411536+00:00"
+    },
+    "neutral_sumimi_1": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "sumimi_1.webp",
+      "library_file": "neutral/neutral_sumimi_1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.412644+00:00"
+    },
+    "neutral_sumimi_2": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "sumimi_2.webp",
+      "library_file": "neutral/neutral_sumimi_2.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.413556+00:00"
+    },
+    "neutral_sun_transparent_backgrou": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "sun_transparent_background.webp",
+      "library_file": "neutral/neutral_sun_transparent_backgrou.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.414437+00:00"
+    },
+    "support_supportchannel": {
+      "emotion": "support",
+      "description": "由文件名推断",
+      "source_file": "SupportChannel.webp",
+      "library_file": "support_supportchannel.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.415381+00:00"
+    },
+    "neutral_sydney": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "Sydney.webp",
+      "library_file": "neutral/neutral_sydney.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.416687+00:00"
+    },
+    "sad_tangmao_smile": {
+      "emotion": "sad",
+      "description": "由文件名推断",
+      "source_file": "tangmao_smile.webp",
+      "library_file": "sad_tangmao_smile.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.417801+00:00"
+    },
+    "neutral_tavo": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "tavo.webp",
+      "library_file": "neutral/neutral_tavo.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.418711+00:00"
+    },
+    "thinking_thinkfast": {
+      "emotion": "thinking",
+      "description": "由文件名推断",
+      "source_file": "ThinkFast.webp",
+      "library_file": "thinking_thinkfast.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.419617+00:00"
+    },
+    "thinking_thinkloading": {
+      "emotion": "thinking",
+      "description": "由文件名推断",
+      "source_file": "ThinkLoading.webp",
+      "library_file": "thinking_thinkloading.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.420551+00:00"
+    },
+    "neutral_this_is_fine": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "this_is_fine.webp",
+      "library_file": "neutral/neutral_this_is_fine.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.421660+00:00"
+    },
+    "happy_tou_xiao": {
+      "emotion": "happy",
+      "description": "由文件名推断",
+      "source_file": "tou_xiao.webp",
+      "library_file": "happy_tou_xiao.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.422724+00:00"
+    },
+    "neutral_true_music": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "true_music.webp",
+      "library_file": "neutral/neutral_true_music.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.423770+00:00"
+    },
+    "neutral_ui6c5pwvll72ic9ey95i1": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "UI6C5PWVLL72IC9EY95I1.webp",
+      "library_file": "neutral/neutral_ui6c5pwvll72ic9ey95i1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.424726+00:00"
+    },
+    "angry_ultramadman": {
+      "emotion": "angry",
+      "description": "由文件名推断",
+      "source_file": "ultramadman.webp",
+      "library_file": "angry_ultramadman.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.425635+00:00"
+    },
+    "neutral_vtb_sweat": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "vtb_sweat.webp",
+      "library_file": "neutral/neutral_vtb_sweat.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.426505+00:00"
+    },
+    "neutral_wiggle": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "wiggle.webp",
+      "library_file": "neutral/neutral_wiggle.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.427412+00:00"
+    },
+    "neutral_wu_yu": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "wu_yu.webp",
+      "library_file": "neutral/neutral_wu_yu.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.428342+00:00"
+    },
+    "neutral_wugui": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "wugui.webp",
+      "library_file": "neutral/neutral_wugui.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.429260+00:00"
+    },
+    "happy_xiao": {
+      "emotion": "happy",
+      "description": "由文件名推断",
+      "source_file": "xiao.webp",
+      "library_file": "happy_xiao.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.430129+00:00"
+    },
+    "support_xiaoxiang_kefu": {
+      "emotion": "support",
+      "description": "由文件名推断",
+      "source_file": "xiaoxiang_kefu.webp",
+      "library_file": "support_xiaoxiang_kefu.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.431114+00:00"
+    },
+    "happy_xiaoxuegao": {
+      "emotion": "happy",
+      "description": "由文件名推断",
+      "source_file": "xiaoxuegao.webp",
+      "library_file": "happy_xiaoxuegao.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.432007+00:00"
+    },
+    "neutral_xiaxuan_qie": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "xiaxuan_qie.webp",
+      "library_file": "neutral/neutral_xiaxuan_qie.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.432869+00:00"
+    },
+    "funny_xuanzhuan_qie": {
+      "emotion": "funny",
+      "description": "由文件名推断",
+      "source_file": "xuanzhuan_qie.webp",
+      "library_file": "funny_xuanzhuan_qie.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.433792+00:00"
+    },
+    "neutral_xuezhixialiuliladianxian": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "xuezhixialiuliladianxian.webp",
+      "library_file": "neutral/neutral_xuezhixialiuliladianxian.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.434721+00:00"
+    },
+    "neutral_yaotou": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "yaotou.webp",
+      "library_file": "neutral/neutral_yaotou.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.435728+00:00"
+    },
+    "support_yes": {
+      "emotion": "support",
+      "description": "由文件名推断",
+      "source_file": "yes.webp",
+      "library_file": "support_yes.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.436594+00:00"
+    },
+    "angry_yinluan": {
+      "emotion": "angry",
+      "description": "由文件名推断",
+      "source_file": "yinluan.webp",
+      "library_file": "angry_yinluan.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.437478+00:00"
+    },
+    "neutral_youknowtherules": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "YouKnowTheRules.webp",
+      "library_file": "neutral/neutral_youknowtherules.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.438368+00:00"
+    },
+    "thinking_zenmezheyang": {
+      "emotion": "thinking",
+      "description": "由文件名推断",
+      "source_file": "zenmezheyang.webp",
+      "library_file": "thinking_zenmezheyang.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.440072+00:00"
+    },
+    "neutral_zhaomin_1": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "zhaomin_1.webp",
+      "library_file": "neutral/neutral_zhaomin_1.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.441568+00:00"
+    },
+    "neutral_zhaomin_3": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "zhaomin_3.webp",
+      "library_file": "neutral/neutral_zhaomin_3.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.442624+00:00"
+    },
+    "neutral_zhaoming_2": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "zhaoming_2.webp",
+      "library_file": "neutral/neutral_zhaoming_2.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.443577+00:00"
+    },
+    "surprised_zhenjing": {
+      "emotion": "surprised",
+      "description": "由文件名推断",
+      "source_file": "zhenjing.webp",
+      "library_file": "surprised_zhenjing.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.444487+00:00"
+    },
+    "thinking_zhenwuyu": {
+      "emotion": "thinking",
+      "description": "由文件名推断",
+      "source_file": "zhenwuyu.webp",
+      "library_file": "thinking_zhenwuyu.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.445344+00:00"
+    },
+    "surprised_zhinaizhenjing": {
+      "emotion": "surprised",
+      "description": "由文件名推断",
+      "source_file": "zhinaizhenjing.webp",
+      "library_file": "surprised_zhinaizhenjing.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.446299+00:00"
+    },
+    "funny_zhuanzhuanzhuan": {
+      "emotion": "funny",
+      "description": "由文件名推断",
+      "source_file": "zhuanzhuanzhuan.webp",
+      "library_file": "funny_zhuanzhuanzhuan.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.447217+00:00"
+    },
+    "neutral_zuk87izb7rxgg3juff4": {
+      "emotion": "neutral",
+      "description": "由文件名推断",
+      "source_file": "ZUK87IZB7RXGG3JUFF4.webp",
+      "library_file": "neutral/neutral_zuk87izb7rxgg3juff4.webp",
+      "tagged_via": "filename",
+      "tagged_at": "2026-07-12T13:52:51.448132+00:00"
+    },
+    "funny_em_x": {
+      "emotion": "funny",
+      "description": "auto",
+      "source_file": "10.webp",
+      "library_file": "funny_em_x.webp",
+      "tagged_via": "ai",
+      "tagged_at": "2026-07-12T13:59:18.241183+00:00"
+    },
+    "love_em_x": {
+      "emotion": "love",
+      "description": "auto",
+      "source_file": "1000166574.webp",
+      "library_file": "love_em_x.webp",
+      "tagged_via": "ai",
+      "tagged_at": "2026-07-12T13:59:32.897007+00:00"
+    }
+  }
+}

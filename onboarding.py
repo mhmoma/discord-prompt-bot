@@ -9,6 +9,11 @@ from datetime import datetime, timezone
 import discord
 
 import tag_browser
+import app_emojis
+
+
+def _emo(text: str, *, scenario: str | None = None, emotion: str | None = None) -> str:
+    return app_emojis.decorate(text, scenario=scenario, emotion=emotion)
 
 _CONFIG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "onboarding_config.json")
 _VIEW_TIMEOUT = None  # 持久 View，重启后在 on_ready 重新注册
@@ -149,20 +154,20 @@ async def _open_tag_browser(interaction: discord.Interaction) -> None:
             _openai_client,
             _model_name,
         )
-        await interaction.followup.send("📖 标签面板已打开，请在下方操作~", ephemeral=True)
+        await interaction.followup.send(_emo("📖 标签面板已打开，请在下方操作~", scenario="info"), ephemeral=True)
     except FileNotFoundError:
         await interaction.followup.send(
-            "❌ 缺少 `danbooru_category_map.json`，无法打开浏览面板。",
+            _emo("❌ 缺少 `danbooru_category_map.json`，无法打开浏览面板。", scenario="error"),
             ephemeral=True,
         )
     except Exception as e:
-        await interaction.followup.send(f"❌ 打开浏览面板失败：{e}", ephemeral=True)
+        await interaction.followup.send(_emo(f"❌ 打开浏览面板失败：{e}", scenario="error"), ephemeral=True)
 
 
 async def _respond_purpose(interaction: discord.Interaction, purpose_id: str) -> None:
     purpose = get_purpose(purpose_id)
     if not purpose:
-        await interaction.response.send_message("❌ 选项无效，请重试。", ephemeral=True)
+        await interaction.response.send_message(_emo("❌ 选项无效，请重试。", scenario="error"), ephemeral=True)
         return
 
     if purpose.get("action") == "tag_browser":
@@ -175,7 +180,7 @@ async def _respond_purpose(interaction: discord.Interaction, purpose_id: str) ->
     kwargs: dict = {"ephemeral": True}
     if view is not None:
         kwargs["view"] = view
-    await interaction.response.send_message(guide, **kwargs)
+    await interaction.response.send_message(_emo(guide, scenario="help"), **kwargs)
 
     if purpose.get("notify_admin"):
         ok = await _notify_admin_custom(
@@ -185,11 +190,11 @@ async def _respond_purpose(interaction: discord.Interaction, purpose_id: str) ->
             fallback_channel=interaction.channel,
         )
         if not ok:
-            await interaction.followup.send(
+            await interaction.followup.send(_emo(
                 "⚠️ 已记录你的需求，但管理员暂时收不到 Bot 通知。"
                 "请直接在成员列表 **私聊管理员**，或在此频道 @管理员 说明需求。",
-                ephemeral=True,
-            )
+                scenario="info",
+            ), ephemeral=True)
 
 
 def _button_style(purpose: dict) -> discord.ButtonStyle:
@@ -270,7 +275,7 @@ async def send_purpose_picker(
     user: discord.abc.User,
     bot_name: str,
 ) -> None:
-    await channel.send(build_picker_content(user, bot_name), view=OnboardingWelcomeView())
+    await channel.send(_emo(build_picker_content(user, bot_name), scenario="welcome"), view=OnboardingWelcomeView())
 
 
 async def send_member_welcome(
@@ -278,4 +283,4 @@ async def send_member_welcome(
     channel: discord.abc.Messageable,
     bot_name: str,
 ) -> None:
-    await channel.send(build_welcome_content(member, bot_name), view=OnboardingWelcomeView())
+    await channel.send(_emo(build_welcome_content(member, bot_name), scenario="welcome"), view=OnboardingWelcomeView())

@@ -21,6 +21,7 @@ import asyncio
 import sqlite3
 from datetime import date
 
+import app_emojis
 import onboarding
 import tag_browser
 import tag_translate as ttr
@@ -579,7 +580,7 @@ async def handle_tag_search(message, raw_query: str, *, online_only: bool = Fals
     query, force_online = _parse_tag_search_query(raw_query)
     if not query:
         example = "在线查词 red_hair" if online_only else "查词 红发"
-        await message.reply(f"请在指令后输入关键词，例如：`{example}`")
+        await message.reply(emo(f"请在指令后输入关键词，例如：`{example}`", scenario="info"))
         return
 
     parts = []
@@ -609,7 +610,7 @@ async def handle_tag_search(message, raw_query: str, *, online_only: bool = Fals
     footer = ""
     if not online_only and not force_online and local_results:
         footer = "\n\n💡 需要 Danbooru 实时数据：`查词 <词> --live` 或 `在线查词 <词>`"
-    await message.reply("\n\n".join(parts) + footer)
+    await message.reply(emo("\n\n".join(parts) + footer, scenario="search"))
 
 def resolve_primary_welcome_channel(guild):
     if WELCOME_CHANNEL_ID:
@@ -635,11 +636,12 @@ async def on_member_join(member):
     chat_channel = discord.utils.get(member.guild.text_channels, name="聊天")
     if chat_channel and chat_channel.id != getattr(primary_channel, "id", None):
         try:
-            await chat_channel.send(
+            await chat_channel.send(emo(
                 f"嗷呜！新伙伴 {member.mention} 来啦~ "
                 f"去 {primary_channel.mention if primary_channel else '欢迎频道'} "
-                f"选个目的（写词 / 反推 / 查标签 / 视频码…），本哈给你指路！汪！"
-            )
+                f"选个目的（写词 / 反推 / 查标签 / 视频码…），本哈给你指路！汪！",
+                scenario="welcome",
+            ))
         except Exception as e:
             print(f"❌ 在 #聊天 频道发送消息时出错: {e}")
 
@@ -720,10 +722,20 @@ async def on_ready():
     load_knowledge_base()
     onboarding.load_config()
     onboarding.register_views(client_discord, openai_client=client_openai, model_name=MODEL_NAME)
+    try:
+        emoji_n = await app_emojis.load_app_emojis(client_discord)
+        pool_n = app_emojis.load_emotion_pools()
+        print(f"😀 应用表情 {emoji_n} 个，情绪池 {pool_n} 条", flush=True)
+    except Exception as e:
+        print(f"⚠️ 应用表情加载失败: {e}", flush=True)
     print("⏳ 正在加载汉化表…", flush=True)
     ttr.init_translator(CHINESE_TAG_MAP, KNOWLEDGE_BASE_TERMS)
     print_startup_help()
     client_discord.loop.create_task(_periodic_db_cleanup())
+
+def emo(text: str, *, scenario: str | None = None, emotion: str | None = None, tone: str | None = None) -> str:
+    """按场景/语气在回复前插入应用表情。"""
+    return app_emojis.decorate(text, scenario=scenario, emotion=emotion, tone=tone)
 
 def image_to_base64(image_data: bytes) -> str:
     return base64.b64encode(image_data).decode('utf-8')
@@ -837,18 +849,18 @@ async def send_rainbow_compliment(message):
                         image_data = await resp.read()
                         text = await generate_lite_compliment(image_data)
                         if text:
-                            await message.channel.send(f"{mention} {text}")
+                            await message.channel.send(emo(f"{mention} {text}", scenario="compliment"))
                             return
         except Exception as e:
             print(f"⚠️ 轻量彩虹屁失败，回退静态: {e}")
 
-    await message.channel.send(f"{mention} {pick_static_compliment(message.channel.id)}")
+    await message.channel.send(emo(f"{mention} {pick_static_compliment(message.channel.id)}", scenario="compliment"))
 
 async def comment_on_image_when_awakened(image_data: bytes, author_mention: str, channel):
     loading_message = None
     try:
         async with channel.typing():
-            loading_message = await channel.send(f"嗷呜！本哈正在用艺术的眼光审视这张图... 🤔")
+            loading_message = await channel.send(emo("嗷呜！本哈正在用艺术的眼光审视这张图...", scenario="loading"))
             base64_image = image_to_base64(image_data)
             image_url = f"data:image/jpeg;base64,{base64_image}"
             is_nsfw = False
@@ -941,10 +953,13 @@ async def comment_on_image_when_awakened(image_data: bytes, author_mention: str,
                 final_comment_title = "**本哈的内心OS**"
 
             await loading_message.delete()
-            final_message = (f"{intro_message}\n\n{final_title}\n{analysis}\n\n{final_comment_title}\n> {comment}")
+            final_message = emo(
+                f"{intro_message}\n\n{final_title}\n{analysis}\n\n{final_comment_title}\n> {comment}",
+                emotion="funny" if is_nsfw else "happy",
+            )
             await channel.send(content=final_message)
     except Exception as e:
-        error_message = f"❌ 嗷呜~本哈的评论功能短路了：{str(e)}"
+        error_message = emo(f"❌ 嗷呜~本哈的评论功能短路了：{str(e)}", scenario="error")
         print(error_message)
         try:
             if loading_message: await loading_message.edit(content=error_message)
@@ -1030,9 +1045,9 @@ async def analyze_image_with_openai(image_data: bytes, author_mention: str, chan
                     f"```\n{(raw_content or '')[:500]}\n```"
                 )
 
-            await channel.send(final_message)
+            await channel.send(emo(final_message, scenario="reverse", tone="art"))
     except Exception as e:
-        error_message = f"❌ 分析失败：{str(e)}"
+        error_message = emo(f"❌ 分析失败：{str(e)}", scenario="error")
         print(error_message)
         await channel.send(error_message)
 
@@ -1105,10 +1120,10 @@ async def generate_art_prompt(user_idea: str, author_mention: str, channel):
                     (code_blocks[0] if code_blocks else ai_response_text).replace("_", " ").strip()
                 ) if not is_nsfw else (code_blocks[0] if code_blocks else ai_response_text).replace("_", " ").strip()
 
-            final_message = f"{intro_message}\n```\n{final_prompt}\n```"
+            final_message = emo(f"{intro_message}\n```\n{final_prompt}\n```", scenario="art", tone="art")
             await channel.send(final_message)
     except Exception as e:
-        error_message = f"❌ 创作失败：{str(e)}"
+        error_message = emo(f"❌ 创作失败：{str(e)}", scenario="error")
         print(error_message)
         await channel.send(error_message)
 
@@ -1446,13 +1461,15 @@ async def generate_smart_response(message, history, is_awakened, *, is_final_rep
         if not full_response:
             return
 
+        full_response = emo(full_response, tone=chat_tone)
+
         if is_awakened:
             await message.reply(content=full_response)
         else:
             await message.channel.send(content=full_response)
 
     except Exception as e:
-        error_message = f"❌ 嗷呜~对话功能短路了: {str(e)}"
+        error_message = emo(f"❌ 嗷呜~对话功能短路了: {str(e)}", scenario="error")
         print(error_message)
 
 VIDEOCODE_API_URL = os.getenv("VIDEOCODE_API_URL", "https://comfyui-web-89u.pages.dev/api/nai/videocode")
@@ -1570,25 +1587,26 @@ async def _handle_checkin(message):
     """每日签到：每天 1 次，奖励 1 个视频码（私发）。"""
     uid = message.author.id
     if _has_checked_in_today(uid):
-        await message.reply("🐾 你今天已经签到过了，明天再来吧~", delete_after=10)
+        await message.reply(emo("🐾 你今天已经签到过了，明天再来吧~", scenario="signin_dup"), delete_after=10)
         return
     code = await _generate_one_videocode()
     if not code:
-        await message.reply("❌ 签到失败：视频码生成服务暂时不可用，请稍后再试。", delete_after=10)
+        await message.reply(emo("❌ 签到失败：视频码生成服务暂时不可用，请稍后再试。", scenario="signin_fail"), delete_after=10)
         return
     _record_checkin(uid, code)
     try:
-        await message.author.send(
+        await message.author.send(emo(
             f"✅ **签到成功！**\n"
             f"🎬 获得视频码（72h有效）：\n```{code}```\n"
-            f"在 [ComfyUI Web](https://comfyui-web-89u.pages.dev) 生成视频时输入。"
-        )
-        await message.reply("✅ 签到成功！视频码已私信发送，请查看 DM 📬", delete_after=10)
+            f"在 [ComfyUI Web](https://comfyui-web-89u.pages.dev) 生成视频时输入。",
+            scenario="signin_ok",
+        ))
+        await message.reply(emo("✅ 签到成功！视频码已私信发送，请查看 DM 📬", scenario="signin_ok"), delete_after=10)
     except discord.Forbidden:
-        await message.reply(
+        await message.reply(emo(
             f"✅ 签到成功！但无法私信你，请打开 DM 权限。\n||{code}||",
-            delete_after=30,
-        )
+            scenario="signin_ok",
+        ), delete_after=30)
 
 
 class _PublishChannelSelect(Select):
@@ -1606,13 +1624,13 @@ class _PublishChannelSelect(Select):
 
     async def callback(self, interaction: discord.Interaction):
         if interaction.user.id != self._author.id:
-            await interaction.response.send_message("这不是你的操作哦~", ephemeral=True)
+            await interaction.response.send_message(emo("这不是你的操作哦~", scenario="info"), ephemeral=True)
             return
         channel_id = int(self.values[0])
         guild = interaction.guild
         target_ch = guild.get_channel(channel_id) if guild else None
         if not target_ch:
-            await interaction.response.send_message("❌ 找不到该频道。", ephemeral=True)
+            await interaction.response.send_message(emo("❌ 找不到该频道。", scenario="error"), ephemeral=True)
             return
 
         uid = self._author.id
@@ -1623,7 +1641,7 @@ class _PublishChannelSelect(Select):
             async with aiohttp.ClientSession() as session:
                 async with session.get(self._image_url, proxy=PROXY_URL) as resp:
                     if resp.status != 200:
-                        await interaction.response.send_message("❌ 下载图片失败。", ephemeral=True)
+                        await interaction.response.send_message(emo("❌ 下载图片失败。", scenario="error"), ephemeral=True)
                         return
                     img_data = await resp.read()
             filename = self._image_url.split("/")[-1].split("?")[0] or "artwork.png"
@@ -1635,7 +1653,7 @@ class _PublishChannelSelect(Select):
             embed.set_image(url=f"attachment://{filename}")
             await target_ch.send(embed=embed, file=file)
         except Exception as e:
-            await interaction.response.send_message(f"❌ 发布失败: {e}", ephemeral=True)
+            await interaction.response.send_message(emo(f"❌ 发布失败: {e}", scenario="error"), ephemeral=True)
             return
 
         if today_count < 3:
@@ -1643,26 +1661,26 @@ class _PublishChannelSelect(Select):
             if code:
                 _record_publish(uid, channel_id, code)
                 new_count = today_count + 1
-                await interaction.response.send_message(
+                await interaction.response.send_message(emo(
                     f"✅ 作品已发布到 <#{channel_id}>！\n"
                     f"🎬 获得视频码（72h有效）：\n```{code}```\n"
                     f"今日发布奖励 {new_count}/3",
-                    ephemeral=True,
-                )
+                    scenario="publish_ok",
+                ), ephemeral=True)
             else:
                 _record_publish(uid, channel_id, "")
-                await interaction.response.send_message(
+                await interaction.response.send_message(emo(
                     f"✅ 作品已发布到 <#{channel_id}>！\n"
                     f"⚠️ 视频码生成暂时不可用，但发布已成功。",
-                    ephemeral=True,
-                )
+                    scenario="publish_ok",
+                ), ephemeral=True)
         else:
             _record_publish(uid, channel_id, "")
-            await interaction.response.send_message(
+            await interaction.response.send_message(emo(
                 f"✅ 作品已发布到 <#{channel_id}>！\n"
                 f"📌 今日发布奖励已达上限（3/3），不再发放视频码。",
-                ephemeral=True,
-            )
+                scenario="publish_info",
+            ), ephemeral=True)
 
         # 删除原频道中用户发布的图片消息
         try:
@@ -1678,21 +1696,21 @@ class _PublishChannelSelect(Select):
 async def _handle_publish(message):
     """发布作品：附带图片 → 选择频道 → 转发 → 奖励视频码（每日最多 3 个）。"""
     if not message.attachments:
-        await message.reply("📷 请在发送「发布作品」时附带一张图片。")
+        await message.reply(emo("📷 请在发送「发布作品」时附带一张图片。", scenario="info"))
         return
     attachment = message.attachments[0]
     if not attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.webp', '.gif')):
-        await message.reply("❌ 只支持图片格式（png/jpg/webp/gif）。")
+        await message.reply(emo("❌ 只支持图片格式（png/jpg/webp/gif）。", scenario="error"))
         return
 
     guild = message.guild
     if not guild:
-        await message.reply("❌ 该功能仅在服务器中可用。")
+        await message.reply(emo("❌ 该功能仅在服务器中可用。", scenario="error"))
         return
 
     category = guild.get_channel(PUBLISH_CATEGORY_ID)
     if not category or not isinstance(category, discord.CategoryChannel):
-        await message.reply("❌ 找不到发布类别频道，请联系管理员。")
+        await message.reply(emo("❌ 找不到发布类别频道，请联系管理员。", scenario="error"))
         return
 
     channels = [
@@ -1700,18 +1718,18 @@ async def _handle_publish(message):
         if ch.permissions_for(guild.me).send_messages
     ]
     if not channels:
-        await message.reply("❌ 该类别下没有可用的文字频道。")
+        await message.reply(emo("❌ 该类别下没有可用的文字频道。", scenario="error"))
         return
 
     view = View(timeout=60)
     select = _PublishChannelSelect(channels, message.author, attachment.url, message)
     view.add_item(select)
-    await message.reply("🖼️ 请选择要发布到的频道：", view=view, delete_after=60)
+    await message.reply(emo("🖼️ 请选择要发布到的频道：", scenario="publish_info"), view=view, delete_after=60)
 
 
 async def _handle_videocode_command(message, content):
     if not VIDEOCODE_ADMIN_KEY:
-        await message.reply("❌ 视频码功能未配置（缺少 VIDEOCODE_ADMIN_KEY）。")
+        await message.reply(emo("❌ 视频码功能未配置（缺少 VIDEOCODE_ADMIN_KEY）。", scenario="error"))
         return
     parts = content.split()
     count = 1
@@ -1730,22 +1748,23 @@ async def _handle_videocode_command(message, content):
             ) as resp:
                 if resp.status != 200:
                     err = await resp.text()
-                    await message.reply(f"❌ 生成失败 ({resp.status}): {err}")
+                    await message.reply(emo(f"❌ 生成失败 ({resp.status}): {err}", scenario="error"))
                     return
                 data = await resp.json()
     except Exception as e:
-        await message.reply(f"❌ 请求失败: {e}")
+        await message.reply(emo(f"❌ 请求失败: {e}", scenario="error"))
         return
     codes = data.get("codes", [])
     if not codes:
-        await message.reply("❌ 没有生成任何视频码。")
+        await message.reply(emo("❌ 没有生成任何视频码。", scenario="error"))
         return
     ttl = data.get("ttl_hours", 24)
     code_list = "\n".join(f"```{c}```" for c in codes)
-    await message.reply(
+    await message.reply(emo(
         f"🎬 **视频码** ({ttl}小时有效，单次使用)\n{code_list}\n"
-        f"在 [ComfyUI Web](https://comfyui-web-89u.pages.dev) 生成视频时输入视频码。"
-    )
+        f"在 [ComfyUI Web](https://comfyui-web-89u.pages.dev) 生成视频时输入视频码。",
+        scenario="success",
+    ))
 
 @client_discord.event
 async def on_message(message):
@@ -1772,24 +1791,24 @@ async def on_message(message):
         target_message = message
         if message.reference:
             try: target_message = await message.channel.fetch_message(message.reference.message_id)
-            except (discord.NotFound, discord.HTTPException): await message.reply("❌ 无法找到引用的消息。"); return
-        if not target_message.attachments: await message.reply("请在“反推”指令中附带图片，或回复一条包含图片的消息。"); return
+            except (discord.NotFound, discord.HTTPException): await message.reply(emo("❌ 无法找到引用的消息。", scenario="error")); return
+        if not target_message.attachments: await message.reply(emo("请在「反推」指令中附带图片，或回复一条包含图片的消息。", scenario="info")); return
         attachment = target_message.attachments[0]
-        if not attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.webp', '.gif')): await message.reply("❌ 文件格式不支持，请上传图片。"); return
+        if not attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg', '.webp', '.gif')): await message.reply(emo("❌ 文件格式不支持，请上传图片。", scenario="error")); return
         try:
             async with aiohttp.ClientSession() as session:
                 async with session.get(attachment.url, proxy=PROXY_URL) as resp:
-                    if resp.status != 200: await message.reply(f"❌ 无法从 Discord 下载图片，状态码：{resp.status}"); return
+                    if resp.status != 200: await message.reply(emo(f"❌ 无法从 Discord 下载图片，状态码：{resp.status}", scenario="error")); return
                     image_data = await resp.read()
             await analyze_image_with_openai(image_data, message.author.mention, message.channel)
-        except Exception as e: await message.reply(f"❌ 处理图片时发生未知错误：{str(e)}")
+        except Exception as e: await message.reply(emo(f"❌ 处理图片时发生未知错误：{str(e)}", scenario="error"))
         return
 
-    if content_lower == "聊天开启": CHAT_ENABLED = True; await message.reply("✅ 智能聊天功能已开启。"); print("✅ 智能聊天功能已由用户开启。"); return
-    if content_lower == "聊天关闭": CHAT_ENABLED = False; await message.reply("☑️ 智能聊天功能已关闭。"); print("☑️ 智能聊天功能已由用户关闭。"); return
+    if content_lower == "聊天开启": CHAT_ENABLED = True; await message.reply(emo("✅ 智能聊天功能已开启。", scenario="toggle_on")); print("✅ 智能聊天功能已由用户开启。"); return
+    if content_lower == "聊天关闭": CHAT_ENABLED = False; await message.reply(emo("☑️ 智能聊天功能已关闭。", scenario="toggle_off")); print("☑️ 智能聊天功能已由用户关闭。"); return
 
-    if content_lower == "彩虹屁开启": COMPLIMENT_ENABLED = True; await message.reply("✅ 彩虹屁已开启。"); return
-    if content_lower == "彩虹屁关闭": COMPLIMENT_ENABLED = False; await message.reply("☑️ 彩虹屁已关闭。"); return
+    if content_lower == "彩虹屁开启": COMPLIMENT_ENABLED = True; await message.reply(emo("✅ 彩虹屁已开启。", scenario="toggle_on")); return
+    if content_lower == "彩虹屁关闭": COMPLIMENT_ENABLED = False; await message.reply(emo("☑️ 彩虹屁已关闭。", scenario="toggle_off")); return
 
     if content_lower in {"指路", "入门", "新手指引"}:
         if author_id in user_states:
@@ -1799,7 +1818,7 @@ async def on_message(message):
         return
 
     if content_lower == "帮忙":
-        await message.reply(
+        await message.reply(emo(
             "🐾 嗨～ 我是小哈！一只会画画的哈士奇 🎨\n\n"
             "这是我能做的事：\n\n"
             "🖼️ **【绘画提示词】**\n"
@@ -1818,8 +1837,9 @@ async def on_message(message):
             "• `再见` / `拜拜` / `谢谢` — 结束当前对话\n\n"
             "🧭 **【新手指引】**\n"
             "• `指路` 或 `入门` — 重新打开功能面板（点按钮选目的）\n\n"
-            "✨ 有问题随时叫我！汪！"
-        )
+            "✨ 有问题随时叫我！汪！",
+            scenario="help",
+        ))
         return
 
     if content_lower == "签到":
@@ -1833,8 +1853,8 @@ async def on_message(message):
     if content_lower.startswith("视频码"):
         await _handle_videocode_command(message, content)
         return
-    if content_lower == "彩虹屁模式 轻量": COMPLIMENT_MODE = "lite"; await message.reply("✅ 彩虹屁已切换为 **轻量 AI** 模式（贴图一句话）。"); return
-    if content_lower == "彩虹屁模式 静态": COMPLIMENT_MODE = "static"; await message.reply("✅ 彩虹屁已切换为 **静态文案** 模式（零 API 消耗）。"); return
+    if content_lower == "彩虹屁模式 轻量": COMPLIMENT_MODE = "lite"; await message.reply(emo("✅ 彩虹屁已切换为 **轻量 AI** 模式（贴图一句话）。", scenario="toggle_on")); return
+    if content_lower == "彩虹屁模式 静态": COMPLIMENT_MODE = "static"; await message.reply(emo("✅ 彩虹屁已切换为 **静态文案** 模式（零 API 消耗）。", scenario="toggle_on")); return
     
     if content_lower.startswith("在线查词 "):
         if author_id in user_states:
@@ -1848,9 +1868,9 @@ async def on_message(message):
         try:
             await tag_browser.open_browser(message.channel, author_id, client_openai, MODEL_NAME)
         except FileNotFoundError:
-            await message.reply("❌ 缺少 `danbooru_category_map.json`，无法打开浏览面板。")
+            await message.reply(emo("❌ 缺少 `danbooru_category_map.json`，无法打开浏览面板。", scenario="error"))
         except Exception as e:
-            await message.reply(f"❌ 打开浏览面板失败：{e}")
+            await message.reply(emo(f"❌ 打开浏览面板失败：{e}", scenario="error"))
         return
 
     if content_lower.startswith("d类 "):
@@ -1858,14 +1878,14 @@ async def on_message(message):
             del user_states[author_id]
         args = content[3:].strip().split()
         if len(args) < 2:
-            await message.reply("用法：`D类 姿势 性姿势` 或 `D类 姿势 日常姿势 2`（页码可选）")
+            await message.reply(emo("用法：`D类 姿势 性姿势` 或 `D类 姿势 日常姿势 2`（页码可选）", scenario="info"))
             return
         page = 1
         if args[-1].isdigit():
             page = int(args[-1])
             args = args[:-1]
         if len(args) < 2:
-            await message.reply("请指定大类和子类，例如：`D类 姿势 性姿势`")
+            await message.reply(emo("请指定大类和子类，例如：`D类 姿势 性姿势`", scenario="info"))
             return
         cat_label, sub_label = args[0], args[1]
         try:
@@ -1873,7 +1893,7 @@ async def on_message(message):
                 message.channel, author_id, cat_label, sub_label, page, client_openai, MODEL_NAME
             )
         except Exception as e:
-            await message.reply(f"❌ 打开分类失败：{e}")
+            await message.reply(emo(f"❌ 打开分类失败：{e}", scenario="error"))
         return
 
     if content_lower.startswith("查词 "):
@@ -1883,17 +1903,17 @@ async def on_message(message):
         return
 
     if content_lower == "打开标签目录":
-        if not KNOWLEDGE_BASE: await message.reply("知识库尚未加载，请稍后再试。"); return
+        if not KNOWLEDGE_BASE: await message.reply(emo("知识库尚未加载，请稍后再试。", scenario="error")); return
         categories = get_browse_categories()
         response_text = "📚 **知识库标签目录** 📚\n\n" + "\n".join(f"{i+1}. {cat} ({len(KNOWLEDGE_BASE[cat])})" for i, cat in enumerate(categories)) + "\n\n请回复您想查阅的目录 **序号** 或 **完整名称**："
-        await message.reply(response_text)
+        await message.reply(emo(response_text, scenario="search"))
         user_states[author_id] = "awaiting_category_choice"
         return
     
     if content_lower == "取消":
         if user_states.get(author_id) == "awaiting_category_choice":
             del user_states[author_id]
-            await message.reply("操作已取消。")
+            await message.reply(emo("操作已取消。", scenario="cancel"))
         return
 
     # --- 2. Continuous Chat & State Handling ---
@@ -1911,7 +1931,7 @@ async def on_message(message):
             
             if chosen_category:
                 tags = KNOWLEDGE_BASE.get(chosen_category, [])
-                if not tags: await message.reply(f"🤔 目录“{chosen_category}”下没有找到任何标签。")
+                if not tags: await message.reply(emo(f"🤔 目录「{chosen_category}」下没有找到任何标签。", scenario="info"))
                 else:
                     response_parts = []; current_part = f"📜 **{chosen_category}** 目录下的标签：\n"
                     for tag in tags:
@@ -1920,8 +1940,8 @@ async def on_message(message):
                         if len(current_part) + len(line) > 1900: response_parts.append(current_part); current_part = ""
                         current_part += line
                     response_parts.append(current_part)
-                    for part in response_parts: await message.reply(part)
-            else: await message.reply("无效的目录选项，请重新输入序号或完整的目录名称，或输入`取消`来退出。"); return
+                    for part in response_parts: await message.reply(emo(part, scenario="search"))
+            else: await message.reply(emo("无效的目录选项，请重新输入序号或完整的目录名称，或输入`取消`来退出。", scenario="info")); return
         finally:
             if author_id in user_states: del user_states[author_id]
         return
@@ -1947,7 +1967,7 @@ async def on_message(message):
                                 image_data = await resp.read()
                                 await comment_on_image_when_awakened(image_data, message.author.mention, message.channel)
                                 return
-                except Exception as e: await message.reply(f"❌ 评论图片时发生未知错误：{str(e)}")
+                except Exception as e: await message.reply(emo(f"❌ 评论图片时发生未知错误：{str(e)}", scenario="error"))
                 return
         
         # It's a text-based wake-up call, so initialize the chat state.
@@ -1962,7 +1982,7 @@ async def on_message(message):
         # Handle explicit exit keywords
         if content_lower in EXIT_KEYWORDS:
             if author_id in user_states: del user_states[author_id]
-            await message.reply("好的，嗷呜~！本哈去玩飞盘了，有事再叫我！")
+            await message.reply(emo("好的，嗷呜~！本哈去玩飞盘了，有事再叫我！", scenario="goodbye"))
             return
 
         # Handle session timeout

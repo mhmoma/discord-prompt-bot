@@ -20,6 +20,14 @@ __pycache__/
 
 # 忽略日志文件
 *.log
+upload_emojis_log.json
+
+# 本地表情素材（已上传 Discord，不入库）
+emoji_library/
+
+# 素材 / 生成物（非代码）
+legend-assets/
+sucai/
 
 # 忽略Excel等办公文件
 *.xlsx

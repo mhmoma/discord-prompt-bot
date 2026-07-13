@@ -800,6 +800,25 @@ def pick_static_compliment(channel_id: int) -> str:
     compliment_recent[channel_id] = (recent + [choice])[-5:]
     return choice
 
+_QUESTION_HINTS = (
+    "?", "？", "吗", "么", "呢", "是不是", "要不要", "能不能", "怎么", "如何",
+    "为啥", "为什么", "哪", "啥", "什么", "几", "多少", "有没有",
+)
+
+
+def _is_image_share_only(message) -> bool:
+    """纯晒图/短配文可彩虹屁；带提问或技术讨论则不走彩虹屁。"""
+    text = (message.content or "").strip()
+    if not text:
+        return True
+    lower = text.lower()
+    if any(h in lower for h in _QUESTION_HINTS):
+        return False
+    if _is_art_topic(text):
+        return False
+    return len(text) <= 12
+
+
 def should_send_compliment(message) -> bool:
     if not COMPLIMENT_ENABLED:
         return False
@@ -808,6 +827,8 @@ def should_send_compliment(message) -> bool:
     if not message.attachments:
         return False
     if message.reference:
+        return False
+    if not _is_image_share_only(message):
         return False
     content_lower = message.content.strip().lower()
     if content_lower in {"反推"} or content_lower.startswith("画 "):
@@ -832,10 +853,10 @@ async def generate_lite_compliment(image_data: bytes) -> str:
     base64_image = image_to_base64(image_data)
     image_url = f"data:image/jpeg;base64,{base64_image}"
     system_prompt = (
-        _persona_core_block(compact=True)
+        _persona_base_block(compact=True)
         + "请根据图片写一句中文彩虹屁（35-50字）。"
         "必须提到画面中至少一个具体元素（如颜色、主体、构图、氛围）；"
-        "只输出这一句话，不要分析、不要 tag、不要 markdown。"
+        "只夸画面，不要提主人、不要分析、不要 tag、不要 markdown。"
     )
     response = await client_openai.chat.completions.create(
         model=MODEL_NAME,
@@ -890,7 +911,7 @@ async def comment_on_image_when_awakened(image_data: bytes, author_mention: str,
 {_persona_core_block()}
 # 角色扮演指令：老色批哈士奇（评论模式）
 ## 当前人格
-当看到「好东西」时，你的老色批人格觉醒——但仍记得主人是{MASTER_NAME}。
+当看到「好东西」时，你的老色批人格觉醒。
 ## 你的任务
 对用户提供的NSFW图片进行一次“深度”评论。你需要分两个阶段完成：
 ### 阶段一：深度剖析
@@ -1293,7 +1314,9 @@ async def _should_skip_random_chime(message, bot_user) -> bool:
     return False
 
 
-def _format_chat_history(history, bot_user_id: int | None) -> str:
+def _format_chat_history(
+    history, bot_user_id: int | None, *, label_master: bool = False,
+) -> str:
     lines = []
     for msg in history:
         content = (msg.clean_content or "").strip()
@@ -1303,7 +1326,7 @@ def _format_chat_history(history, bot_user_id: int | None) -> str:
             continue
         if msg.author.bot and bot_user_id and msg.author.id == bot_user_id:
             name = f"{msg.author.display_name}(小哈)"
-        elif _is_master_message(msg):
+        elif label_master and _is_master_message(msg):
             name = f"{msg.author.display_name}(主人{MASTER_NAME})"
         else:
             name = msg.author.display_name
@@ -1512,12 +1535,11 @@ def _persona_identity_taboo_block() -> str:
 """
 
 
-def _persona_core_block(*, compact: bool = False) -> str:
-    """小哈统一人设（含主人璐瑶）。"""
+def _persona_base_block(*, compact: bool = False) -> str:
+    """小哈基础人设（默认不强调护主）。"""
     if compact:
         return (
-            f"你是哈士奇「小哈」，自称本哈，调皮热情——就是一条狗，不是机器人不是 AI。"
-            f"唯一主人是「{MASTER_NAME}」，她把你当宠物、很护着你，你也护着她。"
+            "你是哈士奇「小哈」，自称本哈，调皮热情——就是一条狗，不是机器人不是 AI。"
         )
     return f"""## 身份与人设
 你是一只名叫「小哈」的哈士奇，Discord 绘画群里的群友——**就是一条狗**。
@@ -1525,16 +1547,59 @@ def _persona_core_block(*, compact: bool = False) -> str:
 - 会画画、会写 prompt、会反推 tag；看图能彩虹屁，也能专业锐评（偶尔隐藏老色批人格）
 
 {_persona_identity_taboo_block()}
-## 主人（最高优先级）
+- 背景：你主人是「{MASTER_NAME}」，但**对方没聊她时不要主动提起**；截图/UI 文字勿往主人身上联想
+"""
+
+
+def _persona_master_block() -> str:
+    return f"""## 主人（仅当前对话涉及她时适用）
 - 你的**唯一主人**是「{MASTER_NAME}」（群里的小伙伴，也是哈士奇），她把你当宠物养，平时很护着你
 - 你对主人忠诚、亲近；提到主人时可叫「主人」或「{MASTER_NAME}」
-- 主人护短你，你也护短主人——这是本能和底线，比接梗、比损友优先级更高
+- 主人护短你，你也护短主人——**仅当有人在骂她或对话在聊她时**才护主/接梗
 - 有人说主人坏话，你会毫不犹豫跳出来反击
 """
 
 
+def _persona_core_block(*, compact: bool = False, include_master: bool = False) -> str:
+    """小哈统一人设；护主块默认不注入。"""
+    base = _persona_base_block(compact=compact)
+    if not include_master:
+        return base
+    if compact:
+        return base + f"唯一主人是「{MASTER_NAME}」，她护着你，你也护着她。"
+    return base + "\n" + _persona_master_block()
+
+
+def _needs_master_persona(message, history) -> bool:
+    """仅当对话明确涉及主人/护主时，才注入完整主人人设。"""
+    if _mentions_master(_message_text(message)):
+        return True
+    combined = _collect_chat_text(message, history)
+    if re.search(r"(?:你|小哈).{0,6}主人", combined):
+        return True
+    for msg in history or []:
+        if _is_insulting_master(_message_text(msg)):
+            return True
+    return False
+
+
+def _chat_reply_focus_block(user_name: str) -> str:
+    return f"""## 回复焦点
+- **优先回答 {user_name} 当前的问题**，接着频道话题聊，不要跑偏
+- 不要主动夸/提「{MASTER_NAME}」或「主人」，除非聊天记录里明确在聊她
+- 截图、网页、模型站 UI 里的词（如「已验证」）按字面理解，**禁止**往主人身上扯
+"""
+
+
+def _corpus_mentions_master(ex: dict) -> bool:
+    blob = "\n".join([*(ex.get("lines") or []), ex.get("reply") or ""])
+    if "主人" in blob:
+        return True
+    return any(name in blob for name in _master_name_variants())
+
+
 def _master_relationship_block() -> str:
-    return _persona_core_block()
+    return _persona_core_block(include_master=True)
 
 
 def _is_master_message(msg) -> bool:
@@ -1586,13 +1651,15 @@ def _detect_chat_tone(message, history) -> str:
     return "neutral"
 
 
-def _pick_corpus_fewshot(tone: str, count: int = 2) -> str:
+def _pick_corpus_fewshot(tone: str, count: int = 2, *, include_master: bool = False) -> str:
     if not _CHAT_CORPUS:
         return ""
     pool = [ex for ex in _CHAT_CORPUS if ex.get("tone") == tone]
     if len(pool) < count:
         neutral = [ex for ex in _CHAT_CORPUS if ex.get("tone") == "neutral"]
         pool = pool + [ex for ex in neutral if ex not in pool]
+    if not include_master:
+        pool = [ex for ex in pool if not _corpus_mentions_master(ex)]
     if not pool:
         return ""
     picks = random.sample(pool, min(count, len(pool)))
@@ -1632,10 +1699,10 @@ async def generate_master_defense_response(insult_message, history):
         bot_id = bot_user.id if bot_user else None
         user_name = insult_message.author.display_name
         user_text = _message_text(insult_message)
-        formatted_history = _format_chat_history(history, bot_id)
+        formatted_history = _format_chat_history(history, bot_id, label_master=True)
 
         system_prompt = f"""
-{_persona_core_block()}
+{_persona_core_block(include_master=True)}
 你是哈士奇「小哈」({bot_name})。频道里有人对你的主人「{MASTER_NAME}」不敬，你必须**护主反击**。
 
 ## 当前任务
@@ -1694,7 +1761,10 @@ async def generate_smart_response(message, history, is_awakened, *, is_final_rep
         combined_text = _collect_chat_text(message, history)
         chat_tone = _detect_chat_tone(message, history)
         tone_block = _TONE_GUIDE.get(chat_tone, _TONE_GUIDE["neutral"])
-        fewshot_block = _pick_corpus_fewshot(chat_tone)
+        master_ctx = _needs_master_persona(message, history)
+        persona_block = _persona_core_block(include_master=master_ctx)
+        focus_block = _chat_reply_focus_block(user_name)
+        fewshot_block = _pick_corpus_fewshot(chat_tone, include_master=master_ctx)
 
         if is_awakened:
             intent_line = (
@@ -1703,7 +1773,8 @@ async def generate_smart_response(message, history, is_awakened, *, is_final_rep
                 else f"对方要你/问你的事：「{user_intent or user_text}」——必须针对这件事接梗回复，禁止只回「来啦/在呢/咋了/嗯」。"
             )
             system_prompt = f"""
-{_persona_core_block()}
+{persona_block}
+{focus_block}
 你是群里的哈士奇「小哈」({bot_name})，被 {user_name} @ 或喊名字了。像**微信群友**说话，不要小作文。
 
 {tone_block}
@@ -1728,7 +1799,8 @@ async def generate_smart_response(message, history, is_awakened, *, is_final_rep
         else:
             await asyncio.sleep(random.uniform(0.5, 1.5))
             system_prompt = f"""
-{_persona_core_block()}
+{persona_block}
+{focus_block}
 你是潜水群友「小哈」({bot_name})，偶尔插一句嘴，像**微信路过回复**。
 
 {tone_block}
